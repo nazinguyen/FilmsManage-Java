@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="238b93ff20784aeba9f763873c85db4f" Name="Diagram1">
+        <EntityTypeShape EntityType="FilmsManage_DbModel.DangPhim" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.DanhSachDatVeOnline" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.Ghe" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.Gia" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.KhachHang" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.LoaiGhe" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.LoaiPhim" Width="1.5" PointX="6" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.NhanVien" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.Phim" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.PhongChieu" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.QuocGia" Width="1.5" PointX="6" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.Quyen" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.sysdiagram" Width="1.5" PointX="7.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.TinhTrang" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.Ve" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FilmsManage_DbModel.XuatChieu" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Gia__MaDangPhim__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Phim__MaDangPhim__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__DanhSachD__MaKha__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__DanhSachD__MaPhi__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__DanhSachD__MaXua__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ghe__MaLoaiGhe__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ghe__MaPhong__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ghe__MaTinhTrang__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ve__SoGhe__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Gia__IdLoaiGhe__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Phim__MaLoaiPhim__6E01572D" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__NhanVien__MaQuye__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ve__IdNhanVien__7D439ABD" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Phim__IdQuocGia__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Phim__MaXuatChie__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ve__MaPhong__7B5B524B" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__XuatChieu__IdPho__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmsManage_DbModel.FK__Ve__MaXuatChieu__7C4F7684" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
