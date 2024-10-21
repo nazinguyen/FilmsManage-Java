@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj": {}
+    "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj": {}
   },
   "projects": {
-    "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj": {
+    "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
+        "projectUniqueName": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
         "projectName": "FilmsManage",
-        "projectPath": "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\obj\\",
+        "projectPath": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
+        "packagesPath": "C:\\Users\\dangd\\.nuget\\packages\\",
+        "outputPath": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\dangd\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,6 +61,8 @@
               "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.10, )"
             }
@@ -88,7 +86,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
