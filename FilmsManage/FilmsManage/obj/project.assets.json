@@ -4174,19 +4174,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dangd\\.nuget\\packages\\": {}
+    "C:\\Users\\luong\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
+      "projectUniqueName": "C:\\project\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
       "projectName": "FilmsManage",
-      "projectPath": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
-      "packagesPath": "C:\\Users\\dangd\\.nuget\\packages\\",
-      "outputPath": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\obj\\",
+      "projectPath": "C:\\project\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
+      "packagesPath": "C:\\Users\\luong\\.nuget\\packages\\",
+      "outputPath": "C:\\project\\FilmsManage\\FilmsManage\\FilmsManage\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dangd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\luong\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4194,7 +4194,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4207,11 +4206,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4258,7 +4252,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

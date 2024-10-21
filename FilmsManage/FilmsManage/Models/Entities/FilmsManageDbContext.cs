@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmsManage.Models.Entities;
 
-public partial class FilmManageContext : DbContext
+public partial class FilmsManageDbContext : DbContext
 {
-    public FilmManageContext()
+    public FilmsManageDbContext()
     {
     }
 
-    public FilmManageContext(DbContextOptions<FilmManageContext> options)
+    public FilmsManageDbContext(DbContextOptions<FilmsManageDbContext> options)
         : base(options)
     {
     }
@@ -45,15 +45,15 @@ public partial class FilmManageContext : DbContext
 
     public virtual DbSet<XuatChieu> XuatChieus { get; set; }
 
-//    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-//        => optionsBuilder.UseSqlServer("Data Source=HAIDANG\\SQLEXPRESS;Initial Catalog=FilmManage;Integrated Security=True;Trust Server Certificate=True");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=QUYDEV\\SQLEXPRESS;Initial Catalog=FilmsManage_Db;Integrated Security=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<DangPhim>(entity =>
         {
-            entity.HasKey(e => e.MaDangPhim).HasName("PK__DangPhim__D957C0F546179B05");
+            entity.HasKey(e => e.MaDangPhim).HasName("PK__DangPhim__D957C0F5F44E57AE");
 
             entity.ToTable("DangPhim");
 
@@ -62,7 +62,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<DanhSachDatVeOnline>(entity =>
         {
-            entity.HasKey(e => e.MaDatVe).HasName("PK__DanhSach__6A32C5930DA14948");
+            entity.HasKey(e => e.MaDatVe).HasName("PK__DanhSach__6A32C593A63E8344");
 
             entity.ToTable("DanhSachDatVeOnline");
 
@@ -86,7 +86,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<Ghe>(entity =>
         {
-            entity.HasKey(e => e.SoGhe).HasName("PK__Ghe__278288CB16928A46");
+            entity.HasKey(e => e.SoGhe).HasName("PK__Ghe__278288CB5E9055B4");
 
             entity.ToTable("Ghe");
 
@@ -108,7 +108,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<Gium>(entity =>
         {
-            entity.HasKey(e => e.MaGia).HasName("PK__Gia__3CD3DE5EB0D2BF28");
+            entity.HasKey(e => e.MaGia).HasName("PK__Gia__3CD3DE5EF77A6C29");
 
             entity.Property(e => e.SoTien).HasColumnType("decimal(8, 2)");
 
@@ -125,7 +125,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<KhachHang>(entity =>
         {
-            entity.HasKey(e => e.MaKhachHang).HasName("PK__KhachHan__88D2F0E510DA4305");
+            entity.HasKey(e => e.MaKhachHang).HasName("PK__KhachHan__88D2F0E5EC867418");
 
             entity.ToTable("KhachHang");
 
@@ -139,7 +139,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<LoaiGhe>(entity =>
         {
-            entity.HasKey(e => e.MaLoaiGhe).HasName("PK__LoaiGhe__965BB4C12F1C44A0");
+            entity.HasKey(e => e.MaLoaiGhe).HasName("PK__LoaiGhe__965BB4C125C33AD2");
 
             entity.ToTable("LoaiGhe");
 
@@ -148,7 +148,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<LoaiPhim>(entity =>
         {
-            entity.HasKey(e => e.MaLoaiPhim).HasName("PK__LoaiPhim__9CA05BEF82C8524C");
+            entity.HasKey(e => e.MaLoaiPhim).HasName("PK__LoaiPhim__9CA05BEF7803FD10");
 
             entity.ToTable("LoaiPhim");
 
@@ -157,7 +157,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<NhanVien>(entity =>
         {
-            entity.HasKey(e => e.IdNhanVien).HasName("PK__NhanVien__B8294845AF983CE7");
+            entity.HasKey(e => e.IdNhanVien).HasName("PK__NhanVien__B8294845953E5194");
 
             entity.ToTable("NhanVien");
 
@@ -174,7 +174,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<Phim>(entity =>
         {
-            entity.HasKey(e => e.MaPhim).HasName("PK__Phim__4AC03DE3F8A39BFC");
+            entity.HasKey(e => e.MaPhim).HasName("PK__Phim__4AC03DE34283C901");
 
             entity.ToTable("Phim");
 
@@ -208,7 +208,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<PhongChieu>(entity =>
         {
-            entity.HasKey(e => e.IdPhongChieu).HasName("PK__PhongChi__77D0B8D0054529AF");
+            entity.HasKey(e => e.IdPhongChieu).HasName("PK__PhongChi__77D0B8D01673B468");
 
             entity.ToTable("PhongChieu");
 
@@ -217,14 +217,14 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<QuocGium>(entity =>
         {
-            entity.HasKey(e => e.IdQuocGia).HasName("PK__QuocGia__DEA34C5EEEF471EE");
+            entity.HasKey(e => e.IdQuocGia).HasName("PK__QuocGia__DEA34C5E90B100BB");
 
             entity.Property(e => e.TenNuoc).HasMaxLength(255);
         });
 
         modelBuilder.Entity<Quyen>(entity =>
         {
-            entity.HasKey(e => e.MaQuyen).HasName("PK__Quyen__1D4B7ED4FB81CA68");
+            entity.HasKey(e => e.MaQuyen).HasName("PK__Quyen__1D4B7ED4DD645B84");
 
             entity.ToTable("Quyen");
 
@@ -233,7 +233,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<TinhTrang>(entity =>
         {
-            entity.HasKey(e => e.MaTinhTrang).HasName("PK__TinhTran__89F8F6696FF2807B");
+            entity.HasKey(e => e.MaTinhTrang).HasName("PK__TinhTran__89F8F66920F664EF");
 
             entity.ToTable("TinhTrang");
 
@@ -242,7 +242,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<Ve>(entity =>
         {
-            entity.HasKey(e => e.IdVe).HasName("PK__Ve__B7700A99C0B63D61");
+            entity.HasKey(e => e.IdVe).HasName("PK__Ve__B7700A99DDFBDFB9");
 
             entity.ToTable("Ve");
 
@@ -271,7 +271,7 @@ public partial class FilmManageContext : DbContext
 
         modelBuilder.Entity<XuatChieu>(entity =>
         {
-            entity.HasKey(e => e.MaXuatChieu).HasName("PK__XuatChie__46080F55184DA7E3");
+            entity.HasKey(e => e.MaXuatChieu).HasName("PK__XuatChie__46080F55B3385B87");
 
             entity.ToTable("XuatChieu");
 
