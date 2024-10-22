@@ -22,7 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GUI\UserControls\" />
+    <Folder Include="GUI\Forms\" />
+    <Folder Include="GUI\NewFolder\" />
     <Folder Include="Models\Entities\" />
   </ItemGroup>
 
