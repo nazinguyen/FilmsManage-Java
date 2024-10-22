@@ -4174,19 +4174,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dangd\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
+      "projectUniqueName": "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
       "projectName": "FilmsManage",
-      "projectPath": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
-      "packagesPath": "C:\\Users\\dangd\\.nuget\\packages\\",
-      "outputPath": "D:\\University\\HK1-Y3\\BTapLon_C#\\FilmsManage\\FilmsManage\\FilmsManage\\obj\\",
+      "projectPath": "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\FilmsManage.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\C#\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\dangd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4258,7 +4263,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
