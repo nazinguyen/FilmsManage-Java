@@ -13,15 +13,15 @@ namespace FilmsManage
         {
             try
             {
-                FilmManageContext context = new FilmManageContext();
+                FilmsManageDbContext context = new FilmsManageDbContext();
                 var film = context.Ghes.ToList();
 
-                // N?u k?t n?i thành công và truy v?n ???c d? li?u
-                MessageBox.Show("K?t n?i c? s? d? li?u thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // N?u k?t n?i thï¿½nh cï¿½ng vï¿½ truy v?n ???c d? li?u
+                MessageBox.Show("K?t n?i c? s? d? li?u thï¿½nh cï¿½ng!", "Thï¿½ng bï¿½o", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                // N?u x?y ra l?i, hi?n th? thông báo l?i
+                // N?u x?y ra l?i, hi?n th? thï¿½ng bï¿½o l?i
                 MessageBox.Show("K?t n?i c? s? d? li?u th?t b?i: " + ex.Message, "L?i", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
