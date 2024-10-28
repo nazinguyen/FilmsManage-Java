@@ -248,6 +248,10 @@ D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\bin\Debug\net8.0-windows\runt
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\bin\Debug\net8.0-windows\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.csproj.AssemblyReference.cache
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.Form1.resources
+<<<<<<< HEAD
+=======
+D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.LichChieu.resources
+>>>>>>> dat
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.csproj.GenerateResource.cache
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.GeneratedMSBuildEditorConfig.editorconfig
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.AssemblyInfoInputs.cache
@@ -262,3 +266,4 @@ D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\Film
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\ref\FilmsManage.dll
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.Login.resources
 D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.GUI.Forms.Register.resources
+D:\C#\Winforms\FilmsManage\FilmsManage\FilmsManage\obj\Debug\net8.0-windows\FilmsManage.BanVe.resources
