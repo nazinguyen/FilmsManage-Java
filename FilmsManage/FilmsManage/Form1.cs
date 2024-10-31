@@ -13,7 +13,7 @@ namespace FilmsManage
         {
             try
             {
-                FilmManageContext context = new FilmManageContext();
+                FilmsManageDbContext context = new FilmsManageDbContext();
                 var film = context.Ghes.ToList();
 
                 // N?u k?t n?i thành công và truy v?n ???c d? li?u
