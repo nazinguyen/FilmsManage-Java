@@ -7,7 +7,13 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="GUI\DataUC.cs">
+    <Compile Update="GUI\UserControls\Customer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\DataUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Account.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="GUI\Forms\AccountUC.cs">
@@ -19,8 +25,38 @@
     <Compile Update="GUI\Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\Forms\Register.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\CinemaUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\DinhDangPhimUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\KieuManHinhUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\LichChieuUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\PhimUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\TheLoaiPhimUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Data\VeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\DoanhThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\UserControls\Staff.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="LichChieu.cs">
       <SubType>Form</SubType>
