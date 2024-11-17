@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FilmsManage.GUI.DataUserControl
+namespace FilmsManage.GUI.UserControls.Data
 {
-    public partial class DataUC : UserControl
+    public partial class CinemaUC : UserControl
     {
-        public DataUC()
+        public CinemaUC()
         {
             InitializeComponent();
-        }
-
-        private void DataUC_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
