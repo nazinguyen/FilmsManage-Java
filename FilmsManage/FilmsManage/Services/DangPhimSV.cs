@@ -35,9 +35,11 @@ namespace FilmsManage.Services
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _client.PostAsync(endpoint, content);
-
             string responseData = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine("Response Data: " + responseData); 
+
+            // In thông tin chi tiết về phản hồi của API
+            Debug.WriteLine("Response Status Code: " + response.StatusCode);
+            Debug.WriteLine("Response Data: " + responseData);
 
             if (response.IsSuccessStatusCode)
             {
@@ -50,6 +52,7 @@ namespace FilmsManage.Services
                     ? errorResponse["message"]
                     : "Đã xảy ra lỗi không xác định.";
 
+                Debug.WriteLine("Error Message: " + errorMessage);
                 throw new HttpRequestException($"Request failed with message: {errorMessage}");
             }
         }

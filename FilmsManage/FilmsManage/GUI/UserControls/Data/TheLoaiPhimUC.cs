@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -99,8 +100,8 @@ namespace FilmsManage.GUI.UserControls.Data
 
             try
             {
-                string endpoint = "DangPhim"; // Đảm bảo đường dẫn API đúng
-                var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, dangPhim);
+                string endpoint = "/DangPhim"; // Đảm bảo đường dẫn API đúng
+                var response = await _dangPhimSV.PutAsync<Models.ApiRespone>(endpoint, dangPhim);
 
                 MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
                 await LoadData();                   // Tải lại dữ liệu sau khi thêm mới thành công
@@ -128,21 +129,21 @@ namespace FilmsManage.GUI.UserControls.Data
                 TenDangPhim = genreName,
                 Gia = new List<Gium>(),
                 Phims = new List<Phim>()
-
             };
 
             try
             {
-                string endpoint = "DangPhim";
-                var response = await _dangPhimSV.PutAsync<Models.ApiRespone>(endpoint, dangPhim);
-                MessageBox.Show(response.Message); 
+                string endpoint = "/DangPhim"; // Đảm bảo rằng endpoint là đúng
+                var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, dangPhim);  // Sử dụng POST thay vì PUT
 
-                await LoadData();           
+                MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
+                await LoadData();  // Tải lại dữ liệu sau khi cập nhật thành công
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
+
 
         }
 
