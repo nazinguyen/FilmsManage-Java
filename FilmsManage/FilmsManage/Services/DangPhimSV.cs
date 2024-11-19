@@ -26,6 +26,20 @@ namespace FilmsManage.Services
             throw new HttpRequestException($"Request failed with status: {response.StatusCode}, message: {response.ErrorMessage}");
         }
 
+          //GET WITH ID
+          public async Task<T> GetAsync<T>(string endpoint, string id)
+          {
+              var request = new RestRequest($"{endpoint}/{id}", Method.Get);
+              var response = await _client.ExecuteAsync(request);
+        
+              if (response.IsSuccessful && response.Content != null)
+              {
+                  return JsonConvert.DeserializeObject<T>(response.Content) ?? throw new InvalidOperationException("Received null content from the API.");
+              }
+        
+              throw new HttpRequestException($"Request failed with status: {response.StatusCode}, message: {response.ErrorMessage}");
+          }
+
         // POST
         public async Task<T> PostAsync<T>(string endpoint, object data)
         {
