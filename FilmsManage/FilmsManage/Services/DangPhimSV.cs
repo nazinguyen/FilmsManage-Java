@@ -27,7 +27,7 @@ namespace FilmsManage.Services
         }
 
           //GET WITH ID
-          public async Task<T> GetAsync<T>(string endpoint, string id)
+          public async Task<T> GetAsync<T>(string endpoint, int id)
           {
               var request = new RestRequest($"{endpoint}/{id}", Method.Get);
               var response = await _client.ExecuteAsync(request);
