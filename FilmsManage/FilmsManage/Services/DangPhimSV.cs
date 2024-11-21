@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,14 +91,18 @@ namespace FilmsManage.Services
             }
         }
 
-
-
-
-
-        public async Task<bool> DeleteAsync(string endpoint)
+        public async Task<T> DeleteAsync<T>(string endpoint)
         {
-            HttpResponseMessage response = await _client.DeleteAsync(endpoint);
-            return response.IsSuccessStatusCode;
+            var response = await _client.DeleteAsync(endpoint);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"API Error: {response.ReasonPhrase}");
+            }
+
+            string jsonData = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(jsonData);
         }
+
     }
 }
