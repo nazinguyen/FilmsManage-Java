@@ -16,5 +16,14 @@ namespace FilmsManage.GUI.UserControls.Data
         {
             InitializeComponent();
         }
+
+        public void LoadData()
+        {
+
+        }
+        private void dtgvShowtime_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

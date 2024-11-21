@@ -1,5 +1,5 @@
-﻿using FilmsManage.Models;
-using FilmsManage.Models.Entities;
+﻿using FilmsAPI.Models;
+using FilmsManage.Models;
 using FilmsManage.Services;
 using Newtonsoft.Json;
 using System;
@@ -45,12 +45,17 @@ namespace FilmsManage.GUI.UserControls.Data
 
         public async Task LoadData()
         {
-         
-
             try
             {
-                // Gọi API để lấy danh sách DangPhim
                 List<DangPhim> dangPhimList = await _dangPhimSV.GetAsync<List<DangPhim>>("DangPhim");
+
+                if (dangPhimList == null || !dangPhimList.Any())
+                {
+                    MessageBox.Show("Không có dữ liệu.");
+                    return;
+                }
+
+               
 
                 var dangPhimDisplayList = dangPhimList.Select(d => new
                 {
@@ -66,6 +71,7 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
         }
+
 
 
         private void dtgvGenre_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -95,13 +101,17 @@ namespace FilmsManage.GUI.UserControls.Data
 
             var dangPhim = new DangPhim
             {
-                TenDangPhim = genreName
+                MaDangPhim = 0,
+                TenDangPhim = genreName,
+                MaManHinh = 1,
+                Phims = new List<Phim>(),
+                MaManHinhNavigation = new ManHinh()
             };
 
             try
             {
                 string endpoint = "/DangPhim"; // Đảm bảo đường dẫn API đúng
-                var response = await _dangPhimSV.PutAsync<Models.ApiRespone>(endpoint, dangPhim);
+                var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, dangPhim);
 
                 MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
                 await LoadData();                   // Tải lại dữ liệu sau khi thêm mới thành công
@@ -127,14 +137,13 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 MaDangPhim = int.Parse(genreId),
                 TenDangPhim = genreName,
-                Gia = new List<Gium>(),
-                Phims = new List<Phim>()
+                MaManHinh = 1,
             };
 
             try
             {
-                string endpoint = "/DangPhim"; // Đảm bảo rằng endpoint là đúng
-                var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, dangPhim);  // Sử dụng POST thay vì PUT
+                string endpoint = "DangPhim"; // Đảm bảo rằng endpoint là đúng
+                var response = await _dangPhimSV.PutAsync<Models.ApiRespone>(endpoint, dangPhim);  // Sử dụng POST thay vì PUT
 
                 MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
                 await LoadData();  // Tải lại dữ liệu sau khi cập nhật thành công

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FilmsManage.Models.Entities;
+namespace FilmsAPI.Models;
 
 public partial class Quyen
 {

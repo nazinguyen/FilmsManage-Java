@@ -1,6 +1,6 @@
 ﻿using FilmsManage.GUI.UserControls;
 using FilmsManage.GUI.UserControls.Data;
-using FilmsManage.Models.Entities;
+using FilmsManage.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

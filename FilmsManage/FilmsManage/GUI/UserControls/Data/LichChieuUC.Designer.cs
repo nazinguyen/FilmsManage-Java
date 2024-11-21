@@ -28,363 +28,344 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.panel54 = new System.Windows.Forms.Panel();
-            this.btnSearchShowtime = new System.Windows.Forms.Button();
-            this.txtSearchShowtime = new System.Windows.Forms.TextBox();
-            this.btnShowShowtime = new System.Windows.Forms.Button();
-            this.btnUpdateShowtime = new System.Windows.Forms.Button();
-            this.btnDeleteShowtime = new System.Windows.Forms.Button();
-            this.btnInsertShowtime = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.dtgvShowtime = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtmShowtimeTime = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtmShowtimeDate = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cboFormatID_Showtime = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cboCinemaID_Showtime = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtScreenTypeName_Showtime = new System.Windows.Forms.TextBox();
-            this.txtMovieName_Showtime = new System.Windows.Forms.TextBox();
-            this.txtTicketPrice_Showtime = new System.Windows.Forms.TextBox();
-            this.txtShowtimeID = new System.Windows.Forms.TextBox();
-            this.toolTipCinema = new System.Windows.Forms.ToolTip(this.components);
-            this.panel54.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowtime)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            panel54 = new Panel();
+            btnSearchShowtime = new Button();
+            txtSearchShowtime = new TextBox();
+            btnShowShowtime = new Button();
+            btnUpdateShowtime = new Button();
+            btnDeleteShowtime = new Button();
+            btnInsertShowtime = new Button();
+            panel1 = new Panel();
+            toolTipCinema = new ToolTip(components);
+            groupBox2 = new GroupBox();
+            dtmShowtimeTime = new DateTimePicker();
+            label6 = new Label();
+            dtmShowtimeDate = new DateTimePicker();
+            label5 = new Label();
+            cboFormatID_Showtime = new ComboBox();
+            label3 = new Label();
+            cboCinemaID_Showtime = new ComboBox();
+            label2 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label4 = new Label();
+            label1 = new Label();
+            txtScreenTypeName_Showtime = new TextBox();
+            txtMovieName_Showtime = new TextBox();
+            txtTicketPrice_Showtime = new TextBox();
+            txtShowtimeID = new TextBox();
+            dtgvShowLichChieu = new DataGridView();
+            panel54.SuspendLayout();
+            panel1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvShowLichChieu).BeginInit();
+            SuspendLayout();
             // 
             // panel54
             // 
-            this.panel54.Controls.Add(this.btnSearchShowtime);
-            this.panel54.Controls.Add(this.txtSearchShowtime);
-            this.panel54.Controls.Add(this.btnShowShowtime);
-            this.panel54.Controls.Add(this.btnUpdateShowtime);
-            this.panel54.Controls.Add(this.btnDeleteShowtime);
-            this.panel54.Controls.Add(this.btnInsertShowtime);
-            this.panel54.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel54.Location = new System.Drawing.Point(0, 0);
-            this.panel54.Name = "panel54";
-            this.panel54.Size = new System.Drawing.Size(1161, 52);
-            this.panel54.TabIndex = 10;
+            panel54.Controls.Add(btnSearchShowtime);
+            panel54.Controls.Add(txtSearchShowtime);
+            panel54.Controls.Add(btnShowShowtime);
+            panel54.Controls.Add(btnUpdateShowtime);
+            panel54.Controls.Add(btnDeleteShowtime);
+            panel54.Controls.Add(btnInsertShowtime);
+            panel54.Dock = DockStyle.Top;
+            panel54.Location = new Point(0, 0);
+            panel54.Margin = new Padding(5, 6, 5, 6);
+            panel54.Name = "panel54";
+            panel54.Size = new Size(1935, 105);
+            panel54.TabIndex = 10;
             // 
             // btnSearchShowtime
             // 
-            this.btnSearchShowtime.Location = new System.Drawing.Point(725, 24);
-            this.btnSearchShowtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnSearchShowtime.Name = "btnSearchShowtime";
-            this.btnSearchShowtime.Size = new System.Drawing.Size(20, 22);
-            this.btnSearchShowtime.TabIndex = 7;
-            this.btnSearchShowtime.UseVisualStyleBackColor = true;
+            btnSearchShowtime.Location = new Point(1169, 22);
+            btnSearchShowtime.Margin = new Padding(3, 4, 3, 4);
+            btnSearchShowtime.Name = "btnSearchShowtime";
+            btnSearchShowtime.Size = new Size(33, 42);
+            btnSearchShowtime.TabIndex = 7;
+            btnSearchShowtime.UseVisualStyleBackColor = true;
             // 
             // txtSearchShowtime
             // 
-            this.txtSearchShowtime.Location = new System.Drawing.Point(470, 24);
-            this.txtSearchShowtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtSearchShowtime.Multiline = true;
-            this.txtSearchShowtime.Name = "txtSearchShowtime";
-            this.txtSearchShowtime.Size = new System.Drawing.Size(252, 23);
-            this.txtSearchShowtime.TabIndex = 6;
-            this.txtSearchShowtime.Text = "Tìm theo tên phim...";
+            txtSearchShowtime.Location = new Point(733, 22);
+            txtSearchShowtime.Margin = new Padding(3, 4, 3, 4);
+            txtSearchShowtime.Multiline = true;
+            txtSearchShowtime.Name = "txtSearchShowtime";
+            txtSearchShowtime.Size = new Size(417, 41);
+            txtSearchShowtime.TabIndex = 6;
+            txtSearchShowtime.Text = "Tìm theo tên phim...";
             // 
             // btnShowShowtime
             // 
-            this.btnShowShowtime.Location = new System.Drawing.Point(246, 3);
-            this.btnShowShowtime.Name = "btnShowShowtime";
-            this.btnShowShowtime.Size = new System.Drawing.Size(75, 46);
-            this.btnShowShowtime.TabIndex = 3;
-            this.btnShowShowtime.Text = "Xem";
-            this.btnShowShowtime.UseVisualStyleBackColor = true;
+            btnShowShowtime.Location = new Point(410, 6);
+            btnShowShowtime.Margin = new Padding(5, 6, 5, 6);
+            btnShowShowtime.Name = "btnShowShowtime";
+            btnShowShowtime.Size = new Size(125, 88);
+            btnShowShowtime.TabIndex = 3;
+            btnShowShowtime.Text = "Xem";
+            btnShowShowtime.UseVisualStyleBackColor = true;
             // 
             // btnUpdateShowtime
             // 
-            this.btnUpdateShowtime.Location = new System.Drawing.Point(165, 3);
-            this.btnUpdateShowtime.Name = "btnUpdateShowtime";
-            this.btnUpdateShowtime.Size = new System.Drawing.Size(75, 46);
-            this.btnUpdateShowtime.TabIndex = 2;
-            this.btnUpdateShowtime.Text = "Sửa";
-            this.btnUpdateShowtime.UseVisualStyleBackColor = true;
+            btnUpdateShowtime.Location = new Point(275, 6);
+            btnUpdateShowtime.Margin = new Padding(5, 6, 5, 6);
+            btnUpdateShowtime.Name = "btnUpdateShowtime";
+            btnUpdateShowtime.Size = new Size(125, 88);
+            btnUpdateShowtime.TabIndex = 2;
+            btnUpdateShowtime.Text = "Sửa";
+            btnUpdateShowtime.UseVisualStyleBackColor = true;
             // 
             // btnDeleteShowtime
             // 
-            this.btnDeleteShowtime.Location = new System.Drawing.Point(84, 3);
-            this.btnDeleteShowtime.Name = "btnDeleteShowtime";
-            this.btnDeleteShowtime.Size = new System.Drawing.Size(75, 46);
-            this.btnDeleteShowtime.TabIndex = 1;
-            this.btnDeleteShowtime.Text = "Xóa";
-            this.btnDeleteShowtime.UseVisualStyleBackColor = true;
+            btnDeleteShowtime.Location = new Point(140, 6);
+            btnDeleteShowtime.Margin = new Padding(5, 6, 5, 6);
+            btnDeleteShowtime.Name = "btnDeleteShowtime";
+            btnDeleteShowtime.Size = new Size(125, 88);
+            btnDeleteShowtime.TabIndex = 1;
+            btnDeleteShowtime.Text = "Xóa";
+            btnDeleteShowtime.UseVisualStyleBackColor = true;
             // 
             // btnInsertShowtime
             // 
-            this.btnInsertShowtime.Location = new System.Drawing.Point(3, 3);
-            this.btnInsertShowtime.Name = "btnInsertShowtime";
-            this.btnInsertShowtime.Size = new System.Drawing.Size(75, 46);
-            this.btnInsertShowtime.TabIndex = 0;
-            this.btnInsertShowtime.Text = "Thêm";
-            this.btnInsertShowtime.UseVisualStyleBackColor = true;
+            btnInsertShowtime.Location = new Point(5, 6);
+            btnInsertShowtime.Margin = new Padding(5, 6, 5, 6);
+            btnInsertShowtime.Name = "btnInsertShowtime";
+            btnInsertShowtime.Size = new Size(125, 88);
+            btnInsertShowtime.TabIndex = 0;
+            btnInsertShowtime.Text = "Thêm";
+            btnInsertShowtime.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dtgvShowtime);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 52);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1161, 466);
-            this.panel1.TabIndex = 11;
-            // 
-            // dtgvShowtime
-            // 
-            this.dtgvShowtime.AllowUserToAddRows = false;
-            this.dtgvShowtime.AllowUserToDeleteRows = false;
-            this.dtgvShowtime.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvShowtime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvShowtime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgvShowtime.Location = new System.Drawing.Point(0, 0);
-            this.dtgvShowtime.Name = "dtgvShowtime";
-            this.dtgvShowtime.ReadOnly = true;
-            this.dtgvShowtime.Size = new System.Drawing.Size(845, 466);
-            this.dtgvShowtime.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.groupBox2);
-            this.panel2.Controls.Add(this.cboFormatID_Showtime);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.cboCinemaID_Showtime);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.txtScreenTypeName_Showtime);
-            this.panel2.Controls.Add(this.txtMovieName_Showtime);
-            this.panel2.Controls.Add(this.txtTicketPrice_Showtime);
-            this.panel2.Controls.Add(this.txtShowtimeID);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(845, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(316, 466);
-            this.panel2.TabIndex = 0;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dtmShowtimeTime);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.dtmShowtimeDate);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(10, 197);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(287, 80);
-            this.groupBox2.TabIndex = 28;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thời gian chiếu";
-            // 
-            // dtmShowtimeTime
-            // 
-            this.dtmShowtimeTime.CalendarFont = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtmShowtimeTime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtmShowtimeTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtmShowtimeTime.Location = new System.Drawing.Point(110, 45);
-            this.dtmShowtimeTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dtmShowtimeTime.Name = "dtmShowtimeTime";
-            this.dtmShowtimeTime.ShowUpDown = true;
-            this.dtmShowtimeTime.Size = new System.Drawing.Size(163, 26);
-            this.dtmShowtimeTime.TabIndex = 14;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(22, 50);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 19);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Giờ:";
-            // 
-            // dtmShowtimeDate
-            // 
-            this.dtmShowtimeDate.CalendarFont = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtmShowtimeDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtmShowtimeDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtmShowtimeDate.Location = new System.Drawing.Point(110, 16);
-            this.dtmShowtimeDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.dtmShowtimeDate.Name = "dtmShowtimeDate";
-            this.dtmShowtimeDate.Size = new System.Drawing.Size(163, 26);
-            this.dtmShowtimeDate.TabIndex = 14;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 20);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 19);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Ngày:";
-            // 
-            // cboFormatID_Showtime
-            // 
-            this.cboFormatID_Showtime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFormatID_Showtime.FormattingEnabled = true;
-            this.cboFormatID_Showtime.Location = new System.Drawing.Point(121, 58);
-            this.cboFormatID_Showtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cboFormatID_Showtime.Name = "cboFormatID_Showtime";
-            this.cboFormatID_Showtime.Size = new System.Drawing.Size(163, 21);
-            this.cboFormatID_Showtime.TabIndex = 26;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 60);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 19);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Mã định dạng:";
-            // 
-            // cboCinemaID_Showtime
-            // 
-            this.cboCinemaID_Showtime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCinemaID_Showtime.FormattingEnabled = true;
-            this.cboCinemaID_Showtime.Location = new System.Drawing.Point(121, 157);
-            this.cboCinemaID_Showtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cboCinemaID_Showtime.Name = "cboCinemaID_Showtime";
-            this.cboCinemaID_Showtime.Size = new System.Drawing.Size(163, 21);
-            this.cboCinemaID_Showtime.TabIndex = 27;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 158);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 19);
-            this.label2.TabIndex = 21;
-            this.label2.Text = "Phòng chiếu:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 301);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 19);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Giá vé:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(12, 114);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 19);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "Màn hình:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 88);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 19);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Phim:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 19);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "Mã lịch chiếu:";
-            // 
-            // txtScreenTypeName_Showtime
-            // 
-            this.txtScreenTypeName_Showtime.Location = new System.Drawing.Point(121, 111);
-            this.txtScreenTypeName_Showtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtScreenTypeName_Showtime.Name = "txtScreenTypeName_Showtime";
-            this.txtScreenTypeName_Showtime.ReadOnly = true;
-            this.txtScreenTypeName_Showtime.Size = new System.Drawing.Size(163, 20);
-            this.txtScreenTypeName_Showtime.TabIndex = 16;
-            // 
-            // txtMovieName_Showtime
-            // 
-            this.txtMovieName_Showtime.Location = new System.Drawing.Point(121, 85);
-            this.txtMovieName_Showtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtMovieName_Showtime.Name = "txtMovieName_Showtime";
-            this.txtMovieName_Showtime.ReadOnly = true;
-            this.txtMovieName_Showtime.Size = new System.Drawing.Size(163, 20);
-            this.txtMovieName_Showtime.TabIndex = 17;
-            // 
-            // txtTicketPrice_Showtime
-            // 
-            this.txtTicketPrice_Showtime.Location = new System.Drawing.Point(121, 303);
-            this.txtTicketPrice_Showtime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtTicketPrice_Showtime.Name = "txtTicketPrice_Showtime";
-            this.txtTicketPrice_Showtime.Size = new System.Drawing.Size(163, 20);
-            this.txtTicketPrice_Showtime.TabIndex = 18;
-            // 
-            // txtShowtimeID
-            // 
-            this.txtShowtimeID.Location = new System.Drawing.Point(121, 11);
-            this.txtShowtimeID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtShowtimeID.Name = "txtShowtimeID";
-            this.txtShowtimeID.Size = new System.Drawing.Size(163, 20);
-            this.txtShowtimeID.TabIndex = 19;
+            panel1.AutoSize = true;
+            panel1.Controls.Add(dtgvShowLichChieu);
+            panel1.Controls.Add(groupBox2);
+            panel1.Controls.Add(cboFormatID_Showtime);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(cboCinemaID_Showtime);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(txtScreenTypeName_Showtime);
+            panel1.Controls.Add(txtMovieName_Showtime);
+            panel1.Controls.Add(txtTicketPrice_Showtime);
+            panel1.Controls.Add(txtShowtimeID);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 105);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1935, 891);
+            panel1.TabIndex = 11;
             // 
             // toolTipCinema
             // 
-            this.toolTipCinema.AutoPopDelay = 5000;
-            this.toolTipCinema.InitialDelay = 100;
-            this.toolTipCinema.ReshowDelay = 100;
+            toolTipCinema.AutoPopDelay = 5000;
+            toolTipCinema.InitialDelay = 100;
+            toolTipCinema.ReshowDelay = 100;
             // 
-            // ShowTimesUC
+            // groupBox2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel54);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "ShowTimesUC";
-            this.Size = new System.Drawing.Size(1161, 518);
-            this.panel54.ResumeLayout(false);
-            this.panel54.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvShowtime)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.ResumeLayout(false);
-
+            groupBox2.Controls.Add(dtmShowtimeTime);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(dtmShowtimeDate);
+            groupBox2.Controls.Add(label5);
+            groupBox2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox2.Location = new Point(1451, 390);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(478, 154);
+            groupBox2.TabIndex = 41;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Thời gian chiếu";
+            // 
+            // dtmShowtimeTime
+            // 
+            dtmShowtimeTime.CalendarFont = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtmShowtimeTime.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtmShowtimeTime.Format = DateTimePickerFormat.Time;
+            dtmShowtimeTime.Location = new Point(183, 87);
+            dtmShowtimeTime.Margin = new Padding(3, 4, 3, 4);
+            dtmShowtimeTime.Name = "dtmShowtimeTime";
+            dtmShowtimeTime.ShowUpDown = true;
+            dtmShowtimeTime.Size = new Size(269, 35);
+            dtmShowtimeTime.TabIndex = 14;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(37, 97);
+            label6.Name = "label6";
+            label6.Size = new Size(58, 26);
+            label6.TabIndex = 12;
+            label6.Text = "Giờ:";
+            // 
+            // dtmShowtimeDate
+            // 
+            dtmShowtimeDate.CalendarFont = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtmShowtimeDate.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtmShowtimeDate.Format = DateTimePickerFormat.Short;
+            dtmShowtimeDate.Location = new Point(183, 31);
+            dtmShowtimeDate.Margin = new Padding(3, 4, 3, 4);
+            dtmShowtimeDate.Name = "dtmShowtimeDate";
+            dtmShowtimeDate.Size = new Size(269, 35);
+            dtmShowtimeDate.TabIndex = 14;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(37, 39);
+            label5.Name = "label5";
+            label5.Size = new Size(73, 26);
+            label5.TabIndex = 12;
+            label5.Text = "Ngày:";
+            // 
+            // cboFormatID_Showtime
+            // 
+            cboFormatID_Showtime.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFormatID_Showtime.FormattingEnabled = true;
+            cboFormatID_Showtime.Location = new Point(1636, 124);
+            cboFormatID_Showtime.Margin = new Padding(3, 4, 3, 4);
+            cboFormatID_Showtime.Name = "cboFormatID_Showtime";
+            cboFormatID_Showtime.Size = new Size(269, 33);
+            cboFormatID_Showtime.TabIndex = 39;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(1454, 126);
+            label3.Name = "label3";
+            label3.Size = new Size(163, 26);
+            label3.TabIndex = 33;
+            label3.Text = "Mã định dạng:";
+            // 
+            // cboCinemaID_Showtime
+            // 
+            cboCinemaID_Showtime.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCinemaID_Showtime.FormattingEnabled = true;
+            cboCinemaID_Showtime.Location = new Point(1636, 313);
+            cboCinemaID_Showtime.Margin = new Padding(3, 4, 3, 4);
+            cboCinemaID_Showtime.Name = "cboCinemaID_Showtime";
+            cboCinemaID_Showtime.Size = new Size(269, 33);
+            cboCinemaID_Showtime.TabIndex = 40;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(1454, 315);
+            label2.Name = "label2";
+            label2.Size = new Size(146, 26);
+            label2.TabIndex = 34;
+            label2.Text = "Phòng chiếu:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(1454, 590);
+            label7.Name = "label7";
+            label7.Size = new Size(85, 26);
+            label7.TabIndex = 35;
+            label7.Text = "Giá vé:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(1454, 230);
+            label8.Name = "label8";
+            label8.Size = new Size(120, 26);
+            label8.TabIndex = 36;
+            label8.Text = "Màn hình:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(1454, 180);
+            label4.Name = "label4";
+            label4.Size = new Size(74, 26);
+            label4.TabIndex = 37;
+            label4.Text = "Phim:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(1454, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(160, 26);
+            label1.TabIndex = 38;
+            label1.Text = "Mã lịch chiếu:";
+            // 
+            // txtScreenTypeName_Showtime
+            // 
+            txtScreenTypeName_Showtime.Location = new Point(1636, 224);
+            txtScreenTypeName_Showtime.Margin = new Padding(3, 4, 3, 4);
+            txtScreenTypeName_Showtime.Name = "txtScreenTypeName_Showtime";
+            txtScreenTypeName_Showtime.ReadOnly = true;
+            txtScreenTypeName_Showtime.Size = new Size(269, 31);
+            txtScreenTypeName_Showtime.TabIndex = 29;
+            // 
+            // txtMovieName_Showtime
+            // 
+            txtMovieName_Showtime.Location = new Point(1636, 174);
+            txtMovieName_Showtime.Margin = new Padding(3, 4, 3, 4);
+            txtMovieName_Showtime.Name = "txtMovieName_Showtime";
+            txtMovieName_Showtime.ReadOnly = true;
+            txtMovieName_Showtime.Size = new Size(269, 31);
+            txtMovieName_Showtime.TabIndex = 30;
+            // 
+            // txtTicketPrice_Showtime
+            // 
+            txtTicketPrice_Showtime.Location = new Point(1636, 594);
+            txtTicketPrice_Showtime.Margin = new Padding(3, 4, 3, 4);
+            txtTicketPrice_Showtime.Name = "txtTicketPrice_Showtime";
+            txtTicketPrice_Showtime.Size = new Size(269, 31);
+            txtTicketPrice_Showtime.TabIndex = 31;
+            // 
+            // txtShowtimeID
+            // 
+            txtShowtimeID.Location = new Point(1636, 32);
+            txtShowtimeID.Margin = new Padding(3, 4, 3, 4);
+            txtShowtimeID.Name = "txtShowtimeID";
+            txtShowtimeID.Size = new Size(269, 31);
+            txtShowtimeID.TabIndex = 32;
+            // 
+            // dtgvShowLichChieu
+            // 
+            dtgvShowLichChieu.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvShowLichChieu.Location = new Point(3, 3);
+            dtgvShowLichChieu.Name = "dtgvShowLichChieu";
+            dtgvShowLichChieu.RowHeadersWidth = 62;
+            dtgvShowLichChieu.Size = new Size(1400, 656);
+            dtgvShowLichChieu.TabIndex = 42;
+            // 
+            // LichChieuUC
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panel1);
+            Controls.Add(panel54);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "LichChieuUC";
+            Size = new Size(1935, 996);
+            panel54.ResumeLayout(false);
+            panel54.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvShowLichChieu).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -397,25 +378,24 @@
         private System.Windows.Forms.Button btnDeleteShowtime;
         private System.Windows.Forms.Button btnInsertShowtime;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dtmShowtimeTime;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtmShowtimeDate;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cboFormatID_Showtime;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cboCinemaID_Showtime;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtScreenTypeName_Showtime;
-        private System.Windows.Forms.TextBox txtMovieName_Showtime;
-        private System.Windows.Forms.TextBox txtTicketPrice_Showtime;
-        private System.Windows.Forms.TextBox txtShowtimeID;
-        private System.Windows.Forms.DataGridView dtgvShowtime;
         private System.Windows.Forms.ToolTip toolTipCinema;
+        private DataGridView dtgvShowLichChieu;
+        private GroupBox groupBox2;
+        private DateTimePicker dtmShowtimeTime;
+        private Label label6;
+        private DateTimePicker dtmShowtimeDate;
+        private Label label5;
+        private ComboBox cboFormatID_Showtime;
+        private Label label3;
+        private ComboBox cboCinemaID_Showtime;
+        private Label label2;
+        private Label label7;
+        private Label label8;
+        private Label label4;
+        private Label label1;
+        private TextBox txtScreenTypeName_Showtime;
+        private TextBox txtMovieName_Showtime;
+        private TextBox txtTicketPrice_Showtime;
+        private TextBox txtShowtimeID;
     }
 }
