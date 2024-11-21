@@ -106,7 +106,6 @@ namespace FilmsManage.Services
             throw new HttpRequestException($"Request failed with message: {errorMessage}");
         }
 
-
         // DELETE
         public async Task<bool> DeleteAsync(string endpoint)
         {
