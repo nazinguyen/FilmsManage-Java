@@ -63,12 +63,12 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1539, 157);
+            panel1.Size = new Size(1539, 271);
             panel1.TabIndex = 2;
             // 
             // btnShowScreenType
             // 
-            btnShowScreenType.Location = new Point(367, 36);
+            btnShowScreenType.Location = new Point(364, 122);
             btnShowScreenType.Margin = new Padding(4, 5, 4, 5);
             btnShowScreenType.Name = "btnShowScreenType";
             btnShowScreenType.Size = new Size(100, 71);
@@ -78,7 +78,7 @@
             // 
             // btnUpdateScreenType
             // 
-            btnUpdateScreenType.Location = new Point(259, 36);
+            btnUpdateScreenType.Location = new Point(256, 122);
             btnUpdateScreenType.Margin = new Padding(4, 5, 4, 5);
             btnUpdateScreenType.Name = "btnUpdateScreenType";
             btnUpdateScreenType.Size = new Size(100, 71);
@@ -89,7 +89,7 @@
             // 
             // btnDeleteScreenType
             // 
-            btnDeleteScreenType.Location = new Point(151, 36);
+            btnDeleteScreenType.Location = new Point(148, 122);
             btnDeleteScreenType.Margin = new Padding(4, 5, 4, 5);
             btnDeleteScreenType.Name = "btnDeleteScreenType";
             btnDeleteScreenType.Size = new Size(100, 71);
@@ -100,7 +100,7 @@
             // 
             // btnInsertScreenType
             // 
-            btnInsertScreenType.Location = new Point(43, 36);
+            btnInsertScreenType.Location = new Point(40, 122);
             btnInsertScreenType.Margin = new Padding(4, 5, 4, 5);
             btnInsertScreenType.Name = "btnInsertScreenType";
             btnInsertScreenType.Size = new Size(100, 71);
@@ -114,10 +114,10 @@
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 157);
+            panel2.Location = new Point(0, 271);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1539, 537);
+            panel2.Size = new Size(1539, 423);
             panel2.TabIndex = 3;
             // 
             // panel4
@@ -129,7 +129,7 @@
             panel4.Location = new Point(779, 0);
             panel4.Margin = new Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new Size(760, 537);
+            panel4.Size = new Size(760, 423);
             panel4.TabIndex = 1;
             // 
             // panel20
@@ -144,7 +144,7 @@
             // 
             // txtScreenTypeName
             // 
-            txtScreenTypeName.Location = new Point(190, 18);
+            txtScreenTypeName.Location = new Point(180, 14);
             txtScreenTypeName.Margin = new Padding(4, 5, 4, 5);
             txtScreenTypeName.Name = "txtScreenTypeName";
             txtScreenTypeName.Size = new Size(192, 27);
@@ -172,7 +172,7 @@
             // 
             // txtScreenTypeID
             // 
-            txtScreenTypeID.Location = new Point(190, 18);
+            txtScreenTypeID.Location = new Point(180, 11);
             txtScreenTypeID.Margin = new Padding(4, 5, 4, 5);
             txtScreenTypeID.Name = "txtScreenTypeID";
             txtScreenTypeID.Size = new Size(192, 27);
@@ -186,7 +186,7 @@
             lblScreenTypeID.Name = "lblScreenTypeID";
             lblScreenTypeID.Size = new Size(178, 24);
             lblScreenTypeID.TabIndex = 0;
-            lblScreenTypeID.Text = "Mã loại màn hình:";
+            lblScreenTypeID.Text = "Mã màn hình:";
             // 
             // panel3
             // 
@@ -195,7 +195,7 @@
             panel3.Location = new Point(0, 0);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(779, 537);
+            panel3.Size = new Size(779, 423);
             panel3.TabIndex = 0;
             // 
             // dtgvScreenType
@@ -212,7 +212,7 @@
             dtgvScreenType.Name = "dtgvScreenType";
             dtgvScreenType.ReadOnly = true;
             dtgvScreenType.RowHeadersWidth = 51;
-            dtgvScreenType.Size = new Size(779, 537);
+            dtgvScreenType.Size = new Size(779, 423);
             dtgvScreenType.TabIndex = 1;
             // 
             // KieuManHinhUC

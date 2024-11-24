@@ -1,4 +1,5 @@
-﻿using FilmsManage.Models.Entities;
+﻿using FilmsAPI.Models;
+using FilmsManage.Models;
 using FilmsManage.Services;
 using System;
 using System.Collections.Generic;
@@ -24,16 +25,20 @@ namespace FilmsManage.GUI.UserControls.Data
             dtgvScreenType.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "TitleId",
-                HeaderText = "Title ID",
-                DataPropertyName = "MaDangPhim" // Tên trường chính xác trong dữ liệu
+                HeaderText = "Mã màn hình",
+                DataPropertyName = "MaManHinh" // Tên trường chính xác trong dữ liệu
             });
 
             dtgvScreenType.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "GenreName",
-                HeaderText = "Tên Dạng Phim",
-                DataPropertyName = "TenDangPhim" // Tên trường chính xác trong dữ liệu
+                HeaderText = "Tên màn hình",
+                DataPropertyName = "TenManHinh" // Tên trường chính xác trong dữ liệu
             });
+            txtScreenTypeID.Enabled = false;
+
+            // Thêm sự kiện CellClick
+            dtgvScreenType.CellClick += DtgvFormat_CellClick;
         }
 
         public async Task LoadData()
@@ -41,15 +46,15 @@ namespace FilmsManage.GUI.UserControls.Data
             try
             {
                 // Gọi API để lấy danh sách DangPhim
-                List<DangPhim> dangPhimList = await _kieuManHinh.GetAsync<List<DangPhim>>("DangPhim");
+                List<ManHinh> manHinhList = await _kieuManHinh.GetAsync<List<ManHinh>>("api/ManHinh");
 
-                var dangPhimDisplayList = dangPhimList.Select(d => new
+                var manHinhDisplayList = manHinhList.Select(d => new
                 {
-                    d.MaDangPhim,
-                    d.TenDangPhim
+                    d.MaManHinh,
+                    d.TenManHinh
                 }).ToList();
 
-                dtgvScreenType.DataSource = dangPhimDisplayList;
+                dtgvScreenType.DataSource = manHinhDisplayList;
                 dtgvScreenType.Refresh();
             }
             catch (Exception ex)
@@ -58,28 +63,59 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
+        private void DtgvFormat_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Kiểm tra hàng hợp lệ
+            {
+                DataGridViewRow selectedRow = dtgvScreenType.Rows[e.RowIndex];
+
+                // Gán giá trị từ hàng được chọn vào các ô nhập liệu
+                txtScreenTypeID.Text = selectedRow.Cells["TitleId"].Value?.ToString();
+                txtScreenTypeName.Text = selectedRow.Cells["GenreName"].Value?.ToString(); 
+            }
+        }
+
         private async void btnInsertScreenType_Click(object sender, EventArgs e)
         {
-            string genreName = txtScreenTypeName.Text;
+            string newScreenTypeName = txtScreenTypeName.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(genreName))
+            if (string.IsNullOrWhiteSpace(newScreenTypeName))
             {
                 MessageBox.Show("Vui lòng nhập tên màn hình.");
                 return;
             }
 
-            var dangPhim = new DangPhim
-            {
-                TenDangPhim = genreName
-            };
-
             try
             {
-                string endpoint = "/DangPhim";
-                var response = await _kieuManHinh.PutAsync<Models.ApiRespone>(endpoint, dangPhim);
+                // Gọi API để kiểm tra danh sách tên màn hình
+                List<ManHinh> manHinhList = await _kieuManHinh.GetAsync<List<ManHinh>>("api/ManHinh");
 
-                MessageBox.Show(response.Message);
-                await LoadData();
+                bool isDuplicateName = manHinhList.Any(mh => mh.TenManHinh.Equals(newScreenTypeName, StringComparison.OrdinalIgnoreCase));
+
+                if (isDuplicateName)
+                {
+                    MessageBox.Show("Tên màn hình đã tồn tại. Vui lòng nhập một tên khác.");
+                    return;
+                }
+
+                // Nếu tên không trùng, thực hiện thêm mới
+                var manHinh = new ManHinh
+                {
+                    TenManHinh = newScreenTypeName
+                };
+
+                string endpoint = "/api/ManHinh";
+                var response = await _kieuManHinh.PostAsync<Models.ApiRespone>(endpoint, manHinh);
+
+                if (response != null) // Giả sử ApiRespone có thuộc tính xác định thành công
+                {
+                    MessageBox.Show("Thêm màn hình thành công!");
+                    await LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể thêm màn hình. Vui lòng thử lại.");
+                }
             }
             catch (Exception ex)
             {
@@ -89,28 +125,52 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnUpdateScreenType_Click(object sender, EventArgs e)
         {
-            string genreId = txtScreenTypeID.Text;
-            string genreName = txtScreenTypeName.Text;
+            string newScreenTypeName = txtScreenTypeName.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(genreId) || string.IsNullOrWhiteSpace(genreName))
+            if (!int.TryParse(txtScreenTypeID.Text, out int maManHinh))
             {
-                MessageBox.Show("Vui lòng nhập mã và tên màn hình.");
+                MessageBox.Show("Mã màn hình không hợp lệ. Vui lòng nhập một số nguyên.");
                 return;
             }
 
-            var dangPhim = new DangPhim
+            if (string.IsNullOrWhiteSpace(newScreenTypeName))
             {
-                MaDangPhim = int.Parse(genreId),
-                TenDangPhim = genreName
-            };
+                MessageBox.Show("Vui lòng nhập tên màn hình.");
+                return;
+            }
 
             try
             {
-                string endpoint = "/DangPhim"; // Đảm bảo rằng endpoint là đúng
-                var response = await _kieuManHinh.PostAsync<Models.ApiRespone>(endpoint, dangPhim);  // Sử dụng POST thay vì PUT
+                // Gọi API kiểm tra xem tên màn hình mới có tồn tại không
+                List<ManHinh> manHinhList = await _kieuManHinh.GetAsync<List<ManHinh>>("api/ManHinh");
 
-                MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
-                await LoadData();  // Tải lại dữ liệu sau khi cập nhật thành công
+                bool isDuplicateName = manHinhList.Any(mh => mh.TenManHinh.Equals(newScreenTypeName, StringComparison.OrdinalIgnoreCase)
+                                                             && mh.MaManHinh != maManHinh);
+
+                if (isDuplicateName)
+                {
+                    MessageBox.Show("Tên màn hình đã tồn tại. Vui lòng nhập một tên khác.");
+                    return;
+                }
+
+                // Nếu không trùng, tiếp tục thực hiện cập nhật
+                var manHinh = new { TenManHinh = newScreenTypeName }; // Chỉ gửi tên màn hình
+                string endpoint = $"/api/ManHinh/{maManHinh}";
+                var response = await _kieuManHinh.PutAsync<string>(endpoint, manHinh);
+
+                if (!string.IsNullOrEmpty(response))
+                {
+                    MessageBox.Show("Cập nhật thành công!");
+                    await LoadData(); // Tải lại dữ liệu sau khi cập nhật thành công
+                }
+                else
+                {
+                    MessageBox.Show("Không có phản hồi từ API.");
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"Lỗi yêu cầu: {ex.Message}");
             }
             catch (Exception ex)
             {
@@ -124,22 +184,30 @@ namespace FilmsManage.GUI.UserControls.Data
 
             if (string.IsNullOrWhiteSpace(genreId))
             {
-                MessageBox.Show("Vui lòng nhập mã dạng phim để xóa.");
+                MessageBox.Show("Vui lòng nhập mã màn hình để xóa.");
                 return;
             }
 
             try
             {
-                string endpoint = $"/DangPhim"; // Endpoint phù hợp với API xóa dạng phim
-                var response = await _kieuManHinh.DeleteAsync<Models.ApiRespone>(endpoint); // Gọi API Delete
+                string endpoint = $"/api/ManHinh/{genreId}"; // Chỉnh sửa endpoint nếu cần
+                var response = await _kieuManHinh.DeleteAsync(endpoint); // Gọi API Delete
 
-                MessageBox.Show(response.Message); // Hiển thị thông báo trả về từ API
-                await LoadData(); // Tải lại dữ liệu sau khi xóa thành công
+                if (response) // Kiểm tra nếu việc xóa thành công
+                {
+                    MessageBox.Show("Màn hình đã được xóa thành công.");
+                    await LoadData(); // Tải lại dữ liệu sau khi xóa thành công
+                }
+                else
+                {
+                    MessageBox.Show("Xóa màn hình thất bại.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
         }
+
     }
 }

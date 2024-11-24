@@ -1,7 +1,5 @@
-﻿using FilmsManage.Models.Entities;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -13,96 +11,109 @@ namespace FilmsManage.Services
 {
     public class DangPhimSV
     {
-        private readonly HttpClient _client;
+        private readonly RestClient _client;
 
         public DangPhimSV(string baseUrl)
         {
-            _client = new HttpClient
-            {
-                BaseAddress = new Uri(baseUrl)
-            };
+            _client = new RestClient(baseUrl);
         }
 
+        // GET
         public async Task<T> GetAsync<T>(string endpoint)
         {
-            HttpResponseMessage response = await _client.GetAsync(endpoint);
-            response.EnsureSuccessStatusCode();
-            T? result = await response.Content.ReadFromJsonAsync<T>();
-            return result ?? throw new InvalidOperationException("Received null content from the API.");
+            var request = new RestRequest(endpoint, Method.Get);
+            var response = await _client.ExecuteAsync(request);
+
+            if (response.IsSuccessful && response.Content != null)
+            {
+                return JsonConvert.DeserializeObject<T>(response.Content) ?? throw new InvalidOperationException("Received null content from the API.");
+            }
+
+            throw new HttpRequestException($"Request failed with status: {response.StatusCode}, message: {response.ErrorMessage}");
         }
+
+
+        //GET WITH ID
+        public async Task<T> GetAsync<T>(string endpoint, int id)
+        {
+            var request = new RestRequest($"{endpoint}/{id}", Method.Get);
+            var response = await _client.ExecuteAsync(request);
+
+            if (response.IsSuccessful && response.Content != null)
+            {
+                return JsonConvert.DeserializeObject<T>(response.Content) ?? throw new InvalidOperationException("Received null content from the API.");
+            }
+
+            throw new HttpRequestException($"Request failed with status: {response.StatusCode}, message: {response.ErrorMessage}");
+        }
+
+
+        // POST
         public async Task<T> PostAsync<T>(string endpoint, object data)
         {
-            var json = JsonConvert.SerializeObject(data);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var request = new RestRequest(endpoint, Method.Post);
+            request.AddJsonBody(data);
 
-            HttpResponseMessage response = await _client.PostAsync(endpoint, content);
-            string responseData = await response.Content.ReadAsStringAsync();
+            var response = await _client.ExecuteAsync(request);
 
-            // In thông tin chi tiết về phản hồi của API
-            Debug.WriteLine("Response Status Code: " + response.StatusCode);
-            Debug.WriteLine("Response Data: " + responseData);
-
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessful && response.Content != null)
             {
-                return JsonConvert.DeserializeObject<T>(responseData) ?? throw new InvalidOperationException("Received null content from the API.");
+                return JsonConvert.DeserializeObject<T>(response.Content) ?? throw new InvalidOperationException("Received null content from the API.");
             }
-            else
-            {
-                var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseData);
-                string errorMessage = errorResponse != null && errorResponse.ContainsKey("message")
-                    ? errorResponse["message"]
-                    : "Đã xảy ra lỗi không xác định.";
 
-                Debug.WriteLine("Error Message: " + errorMessage);
-                throw new HttpRequestException($"Request failed with message: {errorMessage}");
-            }
+            var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content ?? "");
+            string errorMessage = errorResponse != null && errorResponse.ContainsKey("message")
+                ? errorResponse["message"]
+                : "Đã xảy ra lỗi không xác định.";
+
+            throw new HttpRequestException($"Request failed with message: {errorMessage}");
         }
 
-
+        // PUT
         public async Task<T> PutAsync<T>(string endpoint, object data)
         {
-            var json = JsonConvert.SerializeObject(data);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var request = new RestRequest(endpoint, Method.Put);
+            request.AddJsonBody(data);
 
-            HttpResponseMessage response = await _client.PutAsync(endpoint, content);
+            Debug.WriteLine("Request: " + request.ToString());
 
-            // Đọc nội dung trả về từ API dưới dạng chuỗi
-            string responseData = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine("Response Data: " + responseData); // In ra nội dung trả về từ API
+            var response = await _client.ExecuteAsync(request);
+            Debug.WriteLine("Response status: " + response.StatusCode);
 
-            if (response.IsSuccessStatusCode)
+            if (response.IsSuccessful && !string.IsNullOrWhiteSpace(response.Content))
             {
-                // Deserialize thành ApiResponse hoặc kiểu tương ứng nếu bạn chỉ cần thông điệp
+                Debug.WriteLine("Response content: " + response.Content);
+
                 if (typeof(T) == typeof(string))
                 {
-                    return (T)(object)responseData;
+                    return (T)(object)response.Content;
                 }
-                return JsonConvert.DeserializeObject<T>(responseData) ?? throw new InvalidOperationException("Received null content from the API.");
-            }
-            else
-            {
-                // Nếu có lỗi, parse thông báo lỗi
-                var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseData);
-                string errorMessage = errorResponse != null && errorResponse.ContainsKey("message")
-                    ? errorResponse["message"]
-                    : "Đã xảy ra lỗi không xác định.";
 
-                throw new HttpRequestException($"Request failed with message: {errorMessage}");
+                try
+                {
+                    return JsonConvert.DeserializeObject<T>(response.Content) ??
+                           throw new InvalidOperationException("Nội dung phản hồi rỗng.");
+                }
+                catch (JsonException ex)
+                {
+                    Debug.WriteLine("Lỗi JSON: " + ex.Message);
+                    throw;
+                }
             }
+
+            // Xử lý lỗi từ API
+            var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content ?? "");
+            string errorMessage = errorResponse?.GetValueOrDefault("message") ?? "Lỗi không xác định.";
+
+            Debug.WriteLine("Error message: " + errorMessage);
+            throw new HttpRequestException(errorMessage);
         }
 
-        public async Task<T> DeleteAsync<T>(string endpoint)
+        public async Task<bool> DeleteAsync(string endpoint)
         {
-            var response = await _client.DeleteAsync(endpoint);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"API Error: {response.ReasonPhrase}");
-            }
-
-            string jsonData = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(jsonData);
+            var request = new RestRequest(endpoint, Method.Delete);
+            var response = await _client.ExecuteAsync(request);
+            return response.IsSuccessful;
         }
-
     }
 }
