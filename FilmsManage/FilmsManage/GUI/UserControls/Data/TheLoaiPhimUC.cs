@@ -152,8 +152,6 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
-
-
         }
 
     }

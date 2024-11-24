@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FilmsManage": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\project\\FilmsManage"
+    }
+  }
+}

@@ -28,229 +28,201 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnShowFormat = new System.Windows.Forms.Button();
-            this.btnUpdateFormat = new System.Windows.Forms.Button();
-            this.btnDeleteFormat = new System.Windows.Forms.Button();
-            this.btnInsertFormat = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dtgvFormat = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.cboFormat_ScreenID = new System.Windows.Forms.ComboBox();
-            this.lblFormat_ScreenName = new System.Windows.Forms.Label();
-            this.cboFormat_MovieID = new System.Windows.Forms.ComboBox();
-            this.lblFormat_ScreenID = new System.Windows.Forms.Label();
-            this.lblFormat_MovieName = new System.Windows.Forms.Label();
-            this.lblFormat_MovieID = new System.Windows.Forms.Label();
-            this.txtFormat_ScreenName = new System.Windows.Forms.TextBox();
-            this.lblFormatID = new System.Windows.Forms.Label();
-            this.txtFormat_MovieName = new System.Windows.Forms.TextBox();
-            this.txtFormatID = new System.Windows.Forms.TextBox();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvFormat)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            btnShowFormat = new Button();
+            btnUpdateFormat = new Button();
+            btnInsertFormat = new Button();
+            panel2 = new Panel();
+            dtgvFormat = new DataGridView();
+            panel3 = new Panel();
+            cbMaMH = new ComboBox();
+            label3 = new Label();
+            txtTenMh = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
+            txtTenDangPhim = new TextBox();
+            lblFormatID = new Label();
+            txtFormatID = new TextBox();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvFormat).BeginInit();
+            panel3.SuspendLayout();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnShowFormat);
-            this.panel1.Controls.Add(this.btnUpdateFormat);
-            this.panel1.Controls.Add(this.btnDeleteFormat);
-            this.panel1.Controls.Add(this.btnInsertFormat);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1548, 64);
-            this.panel1.TabIndex = 0;
+            panel1.Controls.Add(btnShowFormat);
+            panel1.Controls.Add(btnUpdateFormat);
+            panel1.Controls.Add(btnInsertFormat);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1548, 80);
+            panel1.TabIndex = 0;
             // 
             // btnShowFormat
             // 
-            this.btnShowFormat.Location = new System.Drawing.Point(328, 4);
-            this.btnShowFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowFormat.Name = "btnShowFormat";
-            this.btnShowFormat.Size = new System.Drawing.Size(100, 57);
-            this.btnShowFormat.TabIndex = 11;
-            this.btnShowFormat.Text = "Xem";
-            this.btnShowFormat.UseVisualStyleBackColor = true;
+            btnShowFormat.Location = new Point(284, 5);
+            btnShowFormat.Margin = new Padding(4, 5, 4, 5);
+            btnShowFormat.Name = "btnShowFormat";
+            btnShowFormat.Size = new Size(100, 71);
+            btnShowFormat.TabIndex = 11;
+            btnShowFormat.Text = "Xem";
+            btnShowFormat.UseVisualStyleBackColor = true;
             // 
             // btnUpdateFormat
             // 
-            this.btnUpdateFormat.Location = new System.Drawing.Point(220, 4);
-            this.btnUpdateFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpdateFormat.Name = "btnUpdateFormat";
-            this.btnUpdateFormat.Size = new System.Drawing.Size(100, 57);
-            this.btnUpdateFormat.TabIndex = 10;
-            this.btnUpdateFormat.Text = "Sửa";
-            this.btnUpdateFormat.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteFormat
-            // 
-            this.btnDeleteFormat.Location = new System.Drawing.Point(112, 4);
-            this.btnDeleteFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteFormat.Name = "btnDeleteFormat";
-            this.btnDeleteFormat.Size = new System.Drawing.Size(100, 57);
-            this.btnDeleteFormat.TabIndex = 9;
-            this.btnDeleteFormat.Text = "Xóa";
-            this.btnDeleteFormat.UseVisualStyleBackColor = true;
+            btnUpdateFormat.Location = new Point(142, 5);
+            btnUpdateFormat.Margin = new Padding(4, 5, 4, 5);
+            btnUpdateFormat.Name = "btnUpdateFormat";
+            btnUpdateFormat.Size = new Size(100, 71);
+            btnUpdateFormat.TabIndex = 10;
+            btnUpdateFormat.Text = "Sửa";
+            btnUpdateFormat.UseVisualStyleBackColor = true;
+            btnUpdateFormat.Click += btnUpdateFormat_Click;
             // 
             // btnInsertFormat
             // 
-            this.btnInsertFormat.Location = new System.Drawing.Point(4, 4);
-            this.btnInsertFormat.Margin = new System.Windows.Forms.Padding(4);
-            this.btnInsertFormat.Name = "btnInsertFormat";
-            this.btnInsertFormat.Size = new System.Drawing.Size(100, 57);
-            this.btnInsertFormat.TabIndex = 8;
-            this.btnInsertFormat.Text = "Thêm";
-            this.btnInsertFormat.UseVisualStyleBackColor = true;
+            btnInsertFormat.Location = new Point(4, 5);
+            btnInsertFormat.Margin = new Padding(4, 5, 4, 5);
+            btnInsertFormat.Name = "btnInsertFormat";
+            btnInsertFormat.Size = new Size(100, 71);
+            btnInsertFormat.TabIndex = 8;
+            btnInsertFormat.Text = "Thêm";
+            btnInsertFormat.UseVisualStyleBackColor = true;
+            btnInsertFormat.Click += btnInsertFormat_Click;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dtgvFormat);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 64);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1548, 574);
-            this.panel2.TabIndex = 1;
+            panel2.Controls.Add(dtgvFormat);
+            panel2.Controls.Add(panel3);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 80);
+            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1548, 718);
+            panel2.TabIndex = 1;
             // 
             // dtgvFormat
             // 
-            this.dtgvFormat.AllowUserToAddRows = false;
-            this.dtgvFormat.AllowUserToDeleteRows = false;
-            this.dtgvFormat.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvFormat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvFormat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgvFormat.Location = new System.Drawing.Point(0, 0);
-            this.dtgvFormat.Name = "dtgvFormat";
-            this.dtgvFormat.ReadOnly = true;
-            this.dtgvFormat.Size = new System.Drawing.Size(1098, 574);
-            this.dtgvFormat.TabIndex = 9;
+            dtgvFormat.AllowUserToAddRows = false;
+            dtgvFormat.AllowUserToDeleteRows = false;
+            dtgvFormat.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvFormat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvFormat.Dock = DockStyle.Fill;
+            dtgvFormat.Location = new Point(0, 0);
+            dtgvFormat.Margin = new Padding(3, 4, 3, 4);
+            dtgvFormat.Name = "dtgvFormat";
+            dtgvFormat.ReadOnly = true;
+            dtgvFormat.RowHeadersWidth = 51;
+            dtgvFormat.Size = new Size(1011, 718);
+            dtgvFormat.TabIndex = 9;
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.cboFormat_ScreenID);
-            this.panel3.Controls.Add(this.lblFormat_ScreenName);
-            this.panel3.Controls.Add(this.cboFormat_MovieID);
-            this.panel3.Controls.Add(this.lblFormat_ScreenID);
-            this.panel3.Controls.Add(this.lblFormat_MovieName);
-            this.panel3.Controls.Add(this.lblFormat_MovieID);
-            this.panel3.Controls.Add(this.txtFormat_ScreenName);
-            this.panel3.Controls.Add(this.lblFormatID);
-            this.panel3.Controls.Add(this.txtFormat_MovieName);
-            this.panel3.Controls.Add(this.txtFormatID);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1098, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(450, 574);
-            this.panel3.TabIndex = 0;
+            panel3.Controls.Add(cbMaMH);
+            panel3.Controls.Add(label3);
+            panel3.Controls.Add(txtTenMh);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(label1);
+            panel3.Controls.Add(txtTenDangPhim);
+            panel3.Controls.Add(lblFormatID);
+            panel3.Controls.Add(txtFormatID);
+            panel3.Dock = DockStyle.Right;
+            panel3.Location = new Point(1011, 0);
+            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(537, 718);
+            panel3.TabIndex = 0;
             // 
-            // cboFormat_ScreenID
+            // cbMaMH
             // 
-            this.cboFormat_ScreenID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFormat_ScreenID.FormattingEnabled = true;
-            this.cboFormat_ScreenID.Location = new System.Drawing.Point(170, 172);
-            this.cboFormat_ScreenID.Name = "cboFormat_ScreenID";
-            this.cboFormat_ScreenID.Size = new System.Drawing.Size(249, 24);
-            this.cboFormat_ScreenID.TabIndex = 20;
+            cbMaMH.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbMaMH.FormattingEnabled = true;
+            cbMaMH.Location = new Point(170, 131);
+            cbMaMH.Margin = new Padding(3, 2, 3, 2);
+            cbMaMH.Name = "cbMaMH";
+            cbMaMH.Size = new Size(214, 28);
+            cbMaMH.TabIndex = 27;
             // 
-            // lblFormat_ScreenName
+            // label3
             // 
-            this.lblFormat_ScreenName.AutoSize = true;
-            this.lblFormat_ScreenName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormat_ScreenName.Location = new System.Drawing.Point(12, 206);
-            this.lblFormat_ScreenName.Name = "lblFormat_ScreenName";
-            this.lblFormat_ScreenName.Size = new System.Drawing.Size(130, 23);
-            this.lblFormat_ScreenName.TabIndex = 15;
-            this.lblFormat_ScreenName.Text = "Tên màn hình:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(16, 180);
+            label3.Name = "label3";
+            label3.Size = new Size(130, 23);
+            label3.TabIndex = 26;
+            label3.Text = "Tên màn hình:";
             // 
-            // cboFormat_MovieID
+            // txtTenMh
             // 
-            this.cboFormat_MovieID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFormat_MovieID.FormattingEnabled = true;
-            this.cboFormat_MovieID.Location = new System.Drawing.Point(170, 78);
-            this.cboFormat_MovieID.Name = "cboFormat_MovieID";
-            this.cboFormat_MovieID.Size = new System.Drawing.Size(249, 24);
-            this.cboFormat_MovieID.TabIndex = 21;
+            txtTenMh.Location = new Point(175, 180);
+            txtTenMh.Name = "txtTenMh";
+            txtTenMh.Size = new Size(244, 27);
+            txtTenMh.TabIndex = 25;
             // 
-            // lblFormat_ScreenID
+            // label2
             // 
-            this.lblFormat_ScreenID.AutoSize = true;
-            this.lblFormat_ScreenID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormat_ScreenID.Location = new System.Drawing.Point(12, 173);
-            this.lblFormat_ScreenID.Name = "lblFormat_ScreenID";
-            this.lblFormat_ScreenID.Size = new System.Drawing.Size(126, 23);
-            this.lblFormat_ScreenID.TabIndex = 16;
-            this.lblFormat_ScreenID.Text = "Mã màn hình:";
+            label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(16, 121);
+            label2.Name = "label2";
+            label2.Size = new Size(126, 23);
+            label2.TabIndex = 24;
+            label2.Text = "Mã màn hình:";
             // 
-            // lblFormat_MovieName
+            // label1
             // 
-            this.lblFormat_MovieName.AutoSize = true;
-            this.lblFormat_MovieName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormat_MovieName.Location = new System.Drawing.Point(12, 112);
-            this.lblFormat_MovieName.Name = "lblFormat_MovieName";
-            this.lblFormat_MovieName.Size = new System.Drawing.Size(94, 23);
-            this.lblFormat_MovieName.TabIndex = 17;
-            this.lblFormat_MovieName.Text = "Tên phim:";
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(16, 63);
+            label1.Name = "label1";
+            label1.Size = new Size(139, 23);
+            label1.TabIndex = 23;
+            label1.Text = "Tên dạng phim:";
             // 
-            // lblFormat_MovieID
+            // txtTenDangPhim
             // 
-            this.lblFormat_MovieID.AutoSize = true;
-            this.lblFormat_MovieID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormat_MovieID.Location = new System.Drawing.Point(12, 79);
-            this.lblFormat_MovieID.Name = "lblFormat_MovieID";
-            this.lblFormat_MovieID.Size = new System.Drawing.Size(90, 23);
-            this.lblFormat_MovieID.TabIndex = 18;
-            this.lblFormat_MovieID.Text = "Mã phim:";
-            // 
-            // txtFormat_ScreenName
-            // 
-            this.txtFormat_ScreenName.Location = new System.Drawing.Point(170, 209);
-            this.txtFormat_ScreenName.Name = "txtFormat_ScreenName";
-            this.txtFormat_ScreenName.ReadOnly = true;
-            this.txtFormat_ScreenName.Size = new System.Drawing.Size(249, 22);
-            this.txtFormat_ScreenName.TabIndex = 12;
+            txtTenDangPhim.Location = new Point(175, 63);
+            txtTenDangPhim.Name = "txtTenDangPhim";
+            txtTenDangPhim.Size = new Size(244, 27);
+            txtTenDangPhim.TabIndex = 22;
             // 
             // lblFormatID
             // 
-            this.lblFormatID.AutoSize = true;
-            this.lblFormatID.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormatID.Location = new System.Drawing.Point(12, 17);
-            this.lblFormatID.Name = "lblFormatID";
-            this.lblFormatID.Size = new System.Drawing.Size(130, 23);
-            this.lblFormatID.TabIndex = 19;
-            this.lblFormatID.Text = "Mã định dạng:";
-            // 
-            // txtFormat_MovieName
-            // 
-            this.txtFormat_MovieName.Location = new System.Drawing.Point(170, 111);
-            this.txtFormat_MovieName.Name = "txtFormat_MovieName";
-            this.txtFormat_MovieName.ReadOnly = true;
-            this.txtFormat_MovieName.Size = new System.Drawing.Size(249, 22);
-            this.txtFormat_MovieName.TabIndex = 13;
+            lblFormatID.AutoSize = true;
+            lblFormatID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblFormatID.Location = new Point(12, 21);
+            lblFormatID.Name = "lblFormatID";
+            lblFormatID.Size = new Size(130, 23);
+            lblFormatID.TabIndex = 19;
+            lblFormatID.Text = "Mã định dạng:";
             // 
             // txtFormatID
             // 
-            this.txtFormatID.Location = new System.Drawing.Point(170, 16);
-            this.txtFormatID.Name = "txtFormatID";
-            this.txtFormatID.Size = new System.Drawing.Size(249, 22);
-            this.txtFormatID.TabIndex = 14;
+            txtFormatID.Location = new Point(170, 20);
+            txtFormatID.Margin = new Padding(3, 4, 3, 4);
+            txtFormatID.Name = "txtFormatID";
+            txtFormatID.Size = new Size(249, 27);
+            txtFormatID.TabIndex = 14;
             // 
-            // FormatMovieUC
+            // DinhDangPhimUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Name = "FormatMovieUC";
-            this.Size = new System.Drawing.Size(1548, 638);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvFormat)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "DinhDangPhimUC";
+            Size = new Size(1548, 798);
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtgvFormat).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -262,16 +234,14 @@
         private System.Windows.Forms.Button btnInsertFormat;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox cboFormat_ScreenID;
-        private System.Windows.Forms.Label lblFormat_ScreenName;
-        private System.Windows.Forms.ComboBox cboFormat_MovieID;
-        private System.Windows.Forms.Label lblFormat_ScreenID;
-        private System.Windows.Forms.Label lblFormat_MovieName;
-        private System.Windows.Forms.Label lblFormat_MovieID;
-        private System.Windows.Forms.TextBox txtFormat_ScreenName;
         private System.Windows.Forms.Label lblFormatID;
-        private System.Windows.Forms.TextBox txtFormat_MovieName;
         private System.Windows.Forms.TextBox txtFormatID;
         private System.Windows.Forms.DataGridView dtgvFormat;
+        private Label label1;
+        private TextBox txtTenDangPhim;
+        private Label label2;
+        private Label label3;
+        private TextBox txtTenMh;
+        private ComboBox cbMaMH;
     }
 }
