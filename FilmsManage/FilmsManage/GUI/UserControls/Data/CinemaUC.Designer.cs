@@ -31,7 +31,6 @@
             panel33 = new Panel();
             btnShowCinema = new Button();
             btnUpdateCinema = new Button();
-            btnDeleteCinema = new Button();
             btnInsertCinema = new Button();
             panel2 = new Panel();
             panel6 = new Panel();
@@ -42,7 +41,6 @@
             lblSeatsPerRow = new Label();
             panel12 = new Panel();
             txtNumberOfRows = new TextBox();
-            lblNumberOfRows = new Label();
             panel8 = new Panel();
             txtCinemaSeats = new TextBox();
             lblCinemaSeats = new Label();
@@ -70,7 +68,6 @@
             // 
             panel33.Controls.Add(btnShowCinema);
             panel33.Controls.Add(btnUpdateCinema);
-            panel33.Controls.Add(btnDeleteCinema);
             panel33.Controls.Add(btnInsertCinema);
             panel33.Dock = DockStyle.Top;
             panel33.Location = new Point(0, 0);
@@ -81,7 +78,7 @@
             // 
             // btnShowCinema
             // 
-            btnShowCinema.Location = new Point(362, 39);
+            btnShowCinema.Location = new Point(254, 39);
             btnShowCinema.Margin = new Padding(4, 5, 4, 5);
             btnShowCinema.Name = "btnShowCinema";
             btnShowCinema.Size = new Size(100, 71);
@@ -91,23 +88,14 @@
             // 
             // btnUpdateCinema
             // 
-            btnUpdateCinema.Location = new Point(254, 39);
+            btnUpdateCinema.Location = new Point(146, 39);
             btnUpdateCinema.Margin = new Padding(4, 5, 4, 5);
             btnUpdateCinema.Name = "btnUpdateCinema";
             btnUpdateCinema.Size = new Size(100, 71);
             btnUpdateCinema.TabIndex = 2;
             btnUpdateCinema.Text = "Sửa";
             btnUpdateCinema.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteCinema
-            // 
-            btnDeleteCinema.Location = new Point(146, 39);
-            btnDeleteCinema.Margin = new Padding(4, 5, 4, 5);
-            btnDeleteCinema.Name = "btnDeleteCinema";
-            btnDeleteCinema.Size = new Size(100, 71);
-            btnDeleteCinema.TabIndex = 1;
-            btnDeleteCinema.Text = "Xóa";
-            btnDeleteCinema.UseVisualStyleBackColor = true;
+            btnUpdateCinema.Click += btnUpdateCinema_Click;
             // 
             // btnInsertCinema
             // 
@@ -118,6 +106,7 @@
             btnInsertCinema.TabIndex = 0;
             btnInsertCinema.Text = "Thêm";
             btnInsertCinema.UseVisualStyleBackColor = true;
+            btnInsertCinema.Click += btnInsertCinema_Click;
             // 
             // panel2
             // 
@@ -169,7 +158,7 @@
             // 
             panel15.Controls.Add(txtSeatsPerRow);
             panel15.Controls.Add(lblSeatsPerRow);
-            panel15.Location = new Point(17, 394);
+            panel15.Location = new Point(17, 316);
             panel15.Margin = new Padding(4, 5, 4, 5);
             panel15.Name = "panel15";
             panel15.Size = new Size(412, 68);
@@ -197,8 +186,7 @@
             // panel12
             // 
             panel12.Controls.Add(txtNumberOfRows);
-            panel12.Controls.Add(lblNumberOfRows);
-            panel12.Location = new Point(17, 316);
+            panel12.Location = new Point(17, 394);
             panel12.Margin = new Padding(4, 5, 4, 5);
             panel12.Name = "panel12";
             panel12.Size = new Size(412, 68);
@@ -211,17 +199,6 @@
             txtNumberOfRows.Name = "txtNumberOfRows";
             txtNumberOfRows.Size = new Size(214, 27);
             txtNumberOfRows.TabIndex = 1;
-            // 
-            // lblNumberOfRows
-            // 
-            lblNumberOfRows.AutoSize = true;
-            lblNumberOfRows.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblNumberOfRows.Location = new Point(4, 14);
-            lblNumberOfRows.Margin = new Padding(4, 0, 4, 0);
-            lblNumberOfRows.Name = "lblNumberOfRows";
-            lblNumberOfRows.Size = new Size(136, 24);
-            lblNumberOfRows.TabIndex = 0;
-            lblNumberOfRows.Text = "Số hàng ghế:";
             // 
             // panel8
             // 
@@ -369,7 +346,6 @@
         private System.Windows.Forms.Panel panel33;
         private System.Windows.Forms.Button btnShowCinema;
         private System.Windows.Forms.Button btnUpdateCinema;
-        private System.Windows.Forms.Button btnDeleteCinema;
         private System.Windows.Forms.Button btnInsertCinema;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
@@ -381,7 +357,6 @@
         private Label lblSeatsPerRow;
         private Panel panel12;
         private TextBox txtNumberOfRows;
-        private Label lblNumberOfRows;
         private Panel panel8;
         private TextBox txtCinemaSeats;
         private Label lblCinemaSeats;

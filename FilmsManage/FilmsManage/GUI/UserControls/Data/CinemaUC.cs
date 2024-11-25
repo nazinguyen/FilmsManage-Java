@@ -1,11 +1,13 @@
 ﻿using FilmsAPI.Models;
 using FilmsManage.Services;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -64,6 +66,8 @@ namespace FilmsManage.GUI.UserControls.Data
             });
             // Thêm sự kiện CellClick
             dtgvCinema.CellClick += DtgvFormat_CellClick;
+            txtCinemaID.Enabled = false;
+            txtNumberOfRows.Visible = false;
         }
 
         public async Task LoadData()
@@ -100,11 +104,11 @@ namespace FilmsManage.GUI.UserControls.Data
 
                 // Gán giá trị từ hàng được chọn vào các ô nhập liệu
                 txtCinemaID.Text = selectedRow.Cells["MaPhong"].Value?.ToString();
-                txtCinemaName.Text = selectedRow.Cells["TenPhong"].Value?.ToString(); 
-                cboCinemaScreenType.Text = selectedRow.Cells["tenManHinh"].Value?.ToString(); 
+                txtCinemaName.Text = selectedRow.Cells["TenPhong"].Value?.ToString();
+                cboCinemaScreenType.Text = selectedRow.Cells["tenManHinh"].Value?.ToString();
                 txtCinemaSeats.Text = selectedRow.Cells["soChoNgoi"].Value?.ToString();
-                txtNumberOfRows.Text = selectedRow.Cells["soHangGhe"].Value?.ToString(); 
-                txtSeatsPerRow.Text = selectedRow.Cells["soGheMoiHang"].Value?.ToString(); 
+                txtNumberOfRows.Text = selectedRow.Cells["soHangGhe"].Value?.ToString();
+                txtSeatsPerRow.Text = selectedRow.Cells["soGheMoiHang"].Value?.ToString();
             }
         }
 
@@ -133,5 +137,126 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
+        private async void btnInsertCinema_Click(object sender, EventArgs e)
+        {
+            string tenPhong = txtCinemaName.Text;
+            string manHinh = cboCinemaScreenType.Text;
+
+            if (string.IsNullOrWhiteSpace(tenPhong))
+            {
+                MessageBox.Show("Vui lòng nhập tên phòng.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(manHinh))
+            {
+                MessageBox.Show("Vui lòng nhập tên màn hình.");
+                return;
+            }
+
+            if (!int.TryParse(txtCinemaID.Text, out int maPC))
+            {
+                MessageBox.Show("Mã phòng chiếu không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
+            {
+                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            if (!int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang))
+            {
+                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            var phongChieu = new PhongChieu
+            {
+                MaPhongChieu = maPC,
+                TenPhongChieu = tenPhong,
+                SoGhe = soGhe,
+                SoGheMotHang = gheMoiHang,
+                MaManHinhNavigation = new ManHinh
+                {
+                    TenManHinh = manHinh
+                }
+            };
+
+            try
+            {
+                string endpoint = "/api/PhongChieu";
+                var response = await _PhongChieu.PostAsync<Models.ApiRespone>(endpoint, phongChieu);
+
+                MessageBox.Show(response.Message);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+            }
+        }
+
+        private async void btnUpdateCinema_Click(object sender, EventArgs e)
+        {
+            string tenPC = txtCinemaName.Text.Trim();
+            string tenMH = cboCinemaScreenType.Text.Trim();
+
+            if (!int.TryParse(txtCinemaID.Text, out int maPC))
+            {
+                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
+            {
+                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            if (!int.TryParse(txtSeatsPerRow.Text, out int soGheMoiHang))
+            {
+                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(tenPC))
+            {
+                MessageBox.Show("Vui lòng nhập tên phòng chiếu.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(tenMH))
+            {
+                MessageBox.Show("Vui lòng nhập tên màn hình.");
+                return;
+            }
+
+            var phongChieu = new PhongChieu
+            {
+                MaPhongChieu = maPC,
+                TenPhongChieu = tenPC,
+                MaManHinhNavigation = new ManHinh
+                {
+                    TenManHinh = tenMH
+                },
+                SoGhe = soGhe,
+                SoGheMotHang = soGheMoiHang
+            };
+
+            try
+            {
+                string endpoint = "api/PhongChieu"; // Đảm bảo rằng endpoint là đúng
+                var response = await _PhongChieu.PutAsync<Models.ApiRespone>(endpoint, phongChieu);
+
+                MessageBox.Show(response.Message);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+            }
+        }
     }
 }
