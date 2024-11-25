@@ -28,549 +28,540 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flpSeat = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblTime = new System.Windows.Forms.Label();
-            this.lblInformation = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pnCustomer = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numericFreeTickets = new System.Windows.Forms.NumericUpDown();
-            this.btnFreeTicket = new System.Windows.Forms.Button();
-            this.lblPlusPoint = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lblCustomerName = new System.Windows.Forms.Label();
-            this.lblPoint = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.chkCustomer = new System.Windows.Forms.CheckBox();
-            this.grpLoaiVe = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.rdoStudent = new System.Windows.Forms.RadioButton();
-            this.lblTicketPrice = new System.Windows.Forms.Label();
-            this.rdoAdult = new System.Windows.Forms.RadioButton();
-            this.rdoChild = new System.Windows.Forms.RadioButton();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.btnPayment = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblPayment = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblDiscount = new System.Windows.Forms.Label();
-            this.picFilm = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.pnCustomer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFreeTickets)).BeginInit();
-            this.grpLoaiVe.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFilm)).BeginInit();
-            this.SuspendLayout();
+            flpSeat = new FlowLayoutPanel();
+            panel1 = new Panel();
+            label1 = new Label();
+            panel2 = new Panel();
+            button1 = new Button();
+            button4 = new Button();
+            label2 = new Label();
+            label3 = new Label();
+            panel4 = new Panel();
+            lblTime = new Label();
+            lblInformation = new Label();
+            panel5 = new Panel();
+            panel7 = new Panel();
+            groupBox2 = new GroupBox();
+            pnCustomer = new Panel();
+            label7 = new Label();
+            label6 = new Label();
+            numericFreeTickets = new NumericUpDown();
+            btnFreeTicket = new Button();
+            lblPlusPoint = new Label();
+            label4 = new Label();
+            lblCustomerName = new Label();
+            lblPoint = new Label();
+            label11 = new Label();
+            chkCustomer = new CheckBox();
+            grpLoaiVe = new GroupBox();
+            label12 = new Label();
+            rdoStudent = new RadioButton();
+            lblTicketPrice = new Label();
+            rdoAdult = new RadioButton();
+            rdoChild = new RadioButton();
+            panel6 = new Panel();
+            btnCancel = new Button();
+            lblTotal = new Label();
+            btnPayment = new Button();
+            label5 = new Label();
+            lblPayment = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            lblDiscount = new Label();
+            picFilm = new PictureBox();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel4.SuspendLayout();
+            panel5.SuspendLayout();
+            panel7.SuspendLayout();
+            groupBox2.SuspendLayout();
+            pnCustomer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericFreeTickets).BeginInit();
+            grpLoaiVe.SuspendLayout();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picFilm).BeginInit();
+            SuspendLayout();
             // 
             // flpSeat
             // 
-            this.flpSeat.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.flpSeat.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flpSeat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flpSeat.Location = new System.Drawing.Point(69, 154);
-            this.flpSeat.Name = "flpSeat";
-            this.flpSeat.Size = new System.Drawing.Size(800, 400);
-            this.flpSeat.TabIndex = 0;
+            flpSeat.Anchor = AnchorStyles.Top;
+            flpSeat.FlowDirection = FlowDirection.RightToLeft;
+            flpSeat.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            flpSeat.Location = new Point(82, 154);
+            flpSeat.Name = "flpSeat";
+            flpSeat.Size = new Size(800, 400);
+            flpSeat.TabIndex = 0;
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(30, 87);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(883, 50);
-            this.panel1.TabIndex = 2;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(30, 87);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(883, 50);
+            panel1.TabIndex = 2;
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(881, 48);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Màn Chiếu";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            label1.BackColor = SystemColors.ControlDark;
+            label1.BorderStyle = BorderStyle.Fixed3D;
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Microsoft Sans Serif", 19.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(881, 48);
+            label1.TabIndex = 0;
+            label1.Text = "Màn Chiếu";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(943, 419);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(211, 92);
-            this.panel2.TabIndex = 4;
+            panel2.Controls.Add(button1);
+            panel2.Controls.Add(button4);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(label3);
+            panel2.Location = new Point(943, 419);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(211, 92);
+            panel2.TabIndex = 4;
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(22, 52);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 30);
-            this.button1.TabIndex = 8;
-            this.button1.UseVisualStyleBackColor = false;
+            button1.BackColor = Color.Red;
+            button1.Enabled = false;
+            button1.Location = new Point(22, 52);
+            button1.Name = "button1";
+            button1.Size = new Size(30, 30);
+            button1.TabIndex = 8;
+            button1.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.Yellow;
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(22, 16);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 30);
-            this.button4.TabIndex = 7;
-            this.button4.UseVisualStyleBackColor = false;
+            button4.BackColor = Color.Yellow;
+            button4.Enabled = false;
+            button4.Location = new Point(22, 16);
+            button4.Name = "button4";
+            button4.Size = new Size(30, 30);
+            button4.TabIndex = 7;
+            button4.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(69, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Đã Mua";
+            label2.AutoSize = true;
+            label2.Location = new Point(69, 55);
+            label2.Name = "label2";
+            label2.Size = new Size(95, 29);
+            label2.TabIndex = 6;
+            label2.Text = "Đã Mua";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(69, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 25);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Đang chọn";
+            label3.AutoSize = true;
+            label3.Location = new Point(69, 16);
+            label3.Name = "label3";
+            label3.Size = new Size(128, 29);
+            label3.TabIndex = 5;
+            label3.Text = "Đang chọn";
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel4.Controls.Add(this.lblTime);
-            this.panel4.Controls.Add(this.lblInformation);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1176, 72);
-            this.panel4.TabIndex = 5;
+            panel4.BackColor = Color.FromArgb(255, 255, 192);
+            panel4.Controls.Add(lblTime);
+            panel4.Controls.Add(lblInformation);
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(0, 0);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1202, 72);
+            panel4.TabIndex = 5;
             // 
             // lblTime
             // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(12, 44);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(56, 25);
-            this.lblTime.TabIndex = 2;
-            this.lblTime.Text = "Time";
+            lblTime.AutoSize = true;
+            lblTime.Location = new Point(12, 44);
+            lblTime.Name = "lblTime";
+            lblTime.Size = new Size(69, 29);
+            lblTime.TabIndex = 2;
+            lblTime.Text = "Time";
             // 
             // lblInformation
             // 
-            this.lblInformation.AutoSize = true;
-            this.lblInformation.Location = new System.Drawing.Point(12, 9);
-            this.lblInformation.Name = "lblInformation";
-            this.lblInformation.Size = new System.Drawing.Size(108, 25);
-            this.lblInformation.TabIndex = 1;
-            this.lblInformation.Text = "Information";
+            lblInformation.AutoSize = true;
+            lblInformation.Location = new Point(12, 9);
+            lblInformation.Name = "lblInformation";
+            lblInformation.Size = new Size(132, 29);
+            lblInformation.TabIndex = 1;
+            lblInformation.Text = "Information";
             // 
             // panel5
             // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 584);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1176, 202);
-            this.panel5.TabIndex = 6;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(panel7);
+            panel5.Controls.Add(panel6);
+            panel5.Dock = DockStyle.Bottom;
+            panel5.Location = new Point(0, 589);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1202, 202);
+            panel5.TabIndex = 6;
             // 
             // panel7
             // 
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.groupBox2);
-            this.panel7.Controls.Add(this.grpLoaiVe);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(754, 200);
-            this.panel7.TabIndex = 17;
+            panel7.BorderStyle = BorderStyle.FixedSingle;
+            panel7.Controls.Add(groupBox2);
+            panel7.Controls.Add(grpLoaiVe);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(0, 0);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(780, 200);
+            panel7.TabIndex = 17;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pnCustomer);
-            this.groupBox2.Controls.Add(this.chkCustomer);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(343, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(409, 198);
-            this.groupBox2.TabIndex = 18;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thành Viên:";
+            groupBox2.Controls.Add(pnCustomer);
+            groupBox2.Controls.Add(chkCustomer);
+            groupBox2.Dock = DockStyle.Fill;
+            groupBox2.Location = new Point(343, 0);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(435, 198);
+            groupBox2.TabIndex = 18;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Thành Viên:";
             // 
             // pnCustomer
             // 
-            this.pnCustomer.Controls.Add(this.label7);
-            this.pnCustomer.Controls.Add(this.label6);
-            this.pnCustomer.Controls.Add(this.numericFreeTickets);
-            this.pnCustomer.Controls.Add(this.btnFreeTicket);
-            this.pnCustomer.Controls.Add(this.lblPlusPoint);
-            this.pnCustomer.Controls.Add(this.label4);
-            this.pnCustomer.Controls.Add(this.lblCustomerName);
-            this.pnCustomer.Controls.Add(this.lblPoint);
-            this.pnCustomer.Controls.Add(this.label11);
-            this.pnCustomer.Location = new System.Drawing.Point(6, 54);
-            this.pnCustomer.Name = "pnCustomer";
-            this.pnCustomer.Size = new System.Drawing.Size(387, 141);
-            this.pnCustomer.TabIndex = 16;
+            pnCustomer.Controls.Add(label7);
+            pnCustomer.Controls.Add(label6);
+            pnCustomer.Controls.Add(numericFreeTickets);
+            pnCustomer.Controls.Add(btnFreeTicket);
+            pnCustomer.Controls.Add(lblPlusPoint);
+            pnCustomer.Controls.Add(label4);
+            pnCustomer.Controls.Add(lblCustomerName);
+            pnCustomer.Controls.Add(lblPoint);
+            pnCustomer.Controls.Add(label11);
+            pnCustomer.Location = new Point(6, 54);
+            pnCustomer.Name = "pnCustomer";
+            pnCustomer.Size = new Size(387, 141);
+            pnCustomer.TabIndex = 16;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 2);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 25);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Tên Khách Hàng:";
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 2);
+            label7.Name = "label7";
+            label7.Size = new Size(198, 29);
+            label7.TabIndex = 25;
+            label7.Text = "Tên Khách Hàng:";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 25);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Đổi vé miễn phí:";
+            label6.AutoSize = true;
+            label6.Location = new Point(4, 109);
+            label6.Name = "label6";
+            label6.Size = new Size(185, 29);
+            label6.TabIndex = 24;
+            label6.Text = "Đổi vé miễn phí:";
             // 
             // numericFreeTickets
             // 
-            this.numericFreeTickets.Location = new System.Drawing.Point(177, 107);
-            this.numericFreeTickets.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericFreeTickets.Name = "numericFreeTickets";
-            this.numericFreeTickets.Size = new System.Drawing.Size(73, 30);
-            this.numericFreeTickets.TabIndex = 23;
-            this.numericFreeTickets.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericFreeTickets.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            numericFreeTickets.Location = new Point(177, 107);
+            numericFreeTickets.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericFreeTickets.Name = "numericFreeTickets";
+            numericFreeTickets.Size = new Size(73, 35);
+            numericFreeTickets.TabIndex = 23;
+            numericFreeTickets.TextAlign = HorizontalAlignment.Right;
+            numericFreeTickets.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnFreeTicket
             // 
-            this.btnFreeTicket.Location = new System.Drawing.Point(256, 104);
-            this.btnFreeTicket.Name = "btnFreeTicket";
-            this.btnFreeTicket.Size = new System.Drawing.Size(114, 35);
-            this.btnFreeTicket.TabIndex = 22;
-            this.btnFreeTicket.Text = "Đổi Vé";
-            this.btnFreeTicket.UseVisualStyleBackColor = true;
+            btnFreeTicket.Location = new Point(256, 104);
+            btnFreeTicket.Name = "btnFreeTicket";
+            btnFreeTicket.Size = new Size(114, 35);
+            btnFreeTicket.TabIndex = 22;
+            btnFreeTicket.Text = "Đổi Vé";
+            btnFreeTicket.UseVisualStyleBackColor = true;
             // 
             // lblPlusPoint
             // 
-            this.lblPlusPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPlusPoint.BackColor = System.Drawing.Color.White;
-            this.lblPlusPoint.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPlusPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlusPoint.ForeColor = System.Drawing.Color.Red;
-            this.lblPlusPoint.Location = new System.Drawing.Point(177, 68);
-            this.lblPlusPoint.Name = "lblPlusPoint";
-            this.lblPlusPoint.Size = new System.Drawing.Size(193, 30);
-            this.lblPlusPoint.TabIndex = 21;
-            this.lblPlusPoint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblPlusPoint.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPlusPoint.BackColor = Color.White;
+            lblPlusPoint.BorderStyle = BorderStyle.Fixed3D;
+            lblPlusPoint.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPlusPoint.ForeColor = Color.Red;
+            lblPlusPoint.Location = new Point(177, 68);
+            lblPlusPoint.Name = "lblPlusPoint";
+            lblPlusPoint.Size = new Size(193, 30);
+            lblPlusPoint.TabIndex = 21;
+            lblPlusPoint.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 25);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Điểm Cộng Thêm:";
+            label4.AutoSize = true;
+            label4.Location = new Point(4, 68);
+            label4.Name = "label4";
+            label4.Size = new Size(209, 29);
+            label4.TabIndex = 20;
+            label4.Text = "Điểm Cộng Thêm:";
             // 
             // lblCustomerName
             // 
-            this.lblCustomerName.Location = new System.Drawing.Point(172, 2);
-            this.lblCustomerName.Name = "lblCustomerName";
-            this.lblCustomerName.Size = new System.Drawing.Size(193, 25);
-            this.lblCustomerName.TabIndex = 19;
+            lblCustomerName.Location = new Point(172, 2);
+            lblCustomerName.Name = "lblCustomerName";
+            lblCustomerName.Size = new Size(193, 25);
+            lblCustomerName.TabIndex = 19;
             // 
             // lblPoint
             // 
-            this.lblPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPoint.BackColor = System.Drawing.Color.White;
-            this.lblPoint.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPoint.ForeColor = System.Drawing.Color.Red;
-            this.lblPoint.Location = new System.Drawing.Point(177, 33);
-            this.lblPoint.Name = "lblPoint";
-            this.lblPoint.Size = new System.Drawing.Size(193, 30);
-            this.lblPoint.TabIndex = 17;
-            this.lblPoint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblPoint.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPoint.BackColor = Color.White;
+            lblPoint.BorderStyle = BorderStyle.Fixed3D;
+            lblPoint.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPoint.ForeColor = Color.Red;
+            lblPoint.Location = new Point(177, 33);
+            lblPoint.Name = "lblPoint";
+            lblPoint.Size = new Size(193, 30);
+            lblPoint.TabIndex = 17;
+            lblPoint.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 33);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(143, 25);
-            this.label11.TabIndex = 16;
-            this.label11.Text = "Điểm Tích Lũy:";
+            label11.AutoSize = true;
+            label11.Location = new Point(4, 33);
+            label11.Name = "label11";
+            label11.Size = new Size(172, 29);
+            label11.TabIndex = 16;
+            label11.Text = "Điểm Tích Lũy:";
             // 
             // chkCustomer
             // 
-            this.chkCustomer.AutoSize = true;
-            this.chkCustomer.Location = new System.Drawing.Point(6, 29);
-            this.chkCustomer.Name = "chkCustomer";
-            this.chkCustomer.Size = new System.Drawing.Size(250, 29);
-            this.chkCustomer.TabIndex = 0;
-            this.chkCustomer.Text = "Khách Hàng Thành Viên";
-            this.chkCustomer.UseVisualStyleBackColor = true;
+            chkCustomer.AutoSize = true;
+            chkCustomer.Location = new Point(6, 29);
+            chkCustomer.Name = "chkCustomer";
+            chkCustomer.Size = new Size(297, 33);
+            chkCustomer.TabIndex = 0;
+            chkCustomer.Text = "Khách Hàng Thành Viên";
+            chkCustomer.UseVisualStyleBackColor = true;
             // 
             // grpLoaiVe
             // 
-            this.grpLoaiVe.Controls.Add(this.label12);
-            this.grpLoaiVe.Controls.Add(this.rdoStudent);
-            this.grpLoaiVe.Controls.Add(this.lblTicketPrice);
-            this.grpLoaiVe.Controls.Add(this.rdoAdult);
-            this.grpLoaiVe.Controls.Add(this.rdoChild);
-            this.grpLoaiVe.Dock = System.Windows.Forms.DockStyle.Left;
-            this.grpLoaiVe.Location = new System.Drawing.Point(0, 0);
-            this.grpLoaiVe.Name = "grpLoaiVe";
-            this.grpLoaiVe.Size = new System.Drawing.Size(343, 198);
-            this.grpLoaiVe.TabIndex = 17;
-            this.grpLoaiVe.TabStop = false;
-            this.grpLoaiVe.Text = "Loại Vé:";
+            grpLoaiVe.Controls.Add(label12);
+            grpLoaiVe.Controls.Add(rdoStudent);
+            grpLoaiVe.Controls.Add(lblTicketPrice);
+            grpLoaiVe.Controls.Add(rdoAdult);
+            grpLoaiVe.Controls.Add(rdoChild);
+            grpLoaiVe.Dock = DockStyle.Left;
+            grpLoaiVe.Location = new Point(0, 0);
+            grpLoaiVe.Name = "grpLoaiVe";
+            grpLoaiVe.Size = new Size(343, 198);
+            grpLoaiVe.TabIndex = 17;
+            grpLoaiVe.TabStop = false;
+            grpLoaiVe.Text = "Loại Vé:";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 136);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(78, 25);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "Giá Vé:";
+            label12.AutoSize = true;
+            label12.Location = new Point(6, 136);
+            label12.Name = "label12";
+            label12.Size = new Size(91, 29);
+            label12.TabIndex = 10;
+            label12.Text = "Giá Vé:";
             // 
             // rdoStudent
             // 
-            this.rdoStudent.AutoSize = true;
-            this.rdoStudent.Location = new System.Drawing.Point(156, 43);
-            this.rdoStudent.Name = "rdoStudent";
-            this.rdoStudent.Size = new System.Drawing.Size(118, 29);
-            this.rdoStudent.TabIndex = 5;
-            this.rdoStudent.TabStop = true;
-            this.rdoStudent.Text = "Sinh Viên";
-            this.rdoStudent.UseVisualStyleBackColor = true;
+            rdoStudent.AutoSize = true;
+            rdoStudent.Location = new Point(156, 43);
+            rdoStudent.Name = "rdoStudent";
+            rdoStudent.Size = new Size(140, 33);
+            rdoStudent.TabIndex = 5;
+            rdoStudent.TabStop = true;
+            rdoStudent.Text = "Sinh Viên";
+            rdoStudent.UseVisualStyleBackColor = true;
             // 
             // lblTicketPrice
             // 
-            this.lblTicketPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTicketPrice.BackColor = System.Drawing.Color.White;
-            this.lblTicketPrice.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTicketPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTicketPrice.ForeColor = System.Drawing.Color.Red;
-            this.lblTicketPrice.Location = new System.Drawing.Point(90, 133);
-            this.lblTicketPrice.Name = "lblTicketPrice";
-            this.lblTicketPrice.Size = new System.Drawing.Size(247, 30);
-            this.lblTicketPrice.TabIndex = 9;
-            this.lblTicketPrice.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblTicketPrice.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTicketPrice.BackColor = Color.White;
+            lblTicketPrice.BorderStyle = BorderStyle.Fixed3D;
+            lblTicketPrice.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTicketPrice.ForeColor = Color.Red;
+            lblTicketPrice.Location = new Point(90, 133);
+            lblTicketPrice.Name = "lblTicketPrice";
+            lblTicketPrice.Size = new Size(247, 30);
+            lblTicketPrice.TabIndex = 9;
+            lblTicketPrice.TextAlign = ContentAlignment.MiddleRight;
             // 
             // rdoAdult
             // 
-            this.rdoAdult.AutoSize = true;
-            this.rdoAdult.Location = new System.Drawing.Point(28, 43);
-            this.rdoAdult.Name = "rdoAdult";
-            this.rdoAdult.Size = new System.Drawing.Size(122, 29);
-            this.rdoAdult.TabIndex = 4;
-            this.rdoAdult.TabStop = true;
-            this.rdoAdult.Text = "Người Lớn";
-            this.rdoAdult.UseVisualStyleBackColor = true;
+            rdoAdult.AutoSize = true;
+            rdoAdult.Location = new Point(28, 43);
+            rdoAdult.Name = "rdoAdult";
+            rdoAdult.Size = new Size(149, 33);
+            rdoAdult.TabIndex = 4;
+            rdoAdult.TabStop = true;
+            rdoAdult.Text = "Người Lớn";
+            rdoAdult.UseVisualStyleBackColor = true;
             // 
             // rdoChild
             // 
-            this.rdoChild.AutoSize = true;
-            this.rdoChild.Location = new System.Drawing.Point(28, 87);
-            this.rdoChild.Name = "rdoChild";
-            this.rdoChild.Size = new System.Drawing.Size(219, 29);
-            this.rdoChild.TabIndex = 3;
-            this.rdoChild.TabStop = true;
-            this.rdoChild.Text = "Trẻ Em (Dưới 12 tuổi)";
-            this.rdoChild.UseVisualStyleBackColor = true;
+            rdoChild.AutoSize = true;
+            rdoChild.Location = new Point(28, 87);
+            rdoChild.Name = "rdoChild";
+            rdoChild.Size = new Size(267, 33);
+            rdoChild.TabIndex = 3;
+            rdoChild.TabStop = true;
+            rdoChild.Text = "Trẻ Em (Dưới 12 tuổi)";
+            rdoChild.UseVisualStyleBackColor = true;
             // 
             // panel6
             // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.btnCancel);
-            this.panel6.Controls.Add(this.lblTotal);
-            this.panel6.Controls.Add(this.btnPayment);
-            this.panel6.Controls.Add(this.label5);
-            this.panel6.Controls.Add(this.lblPayment);
-            this.panel6.Controls.Add(this.label8);
-            this.panel6.Controls.Add(this.label9);
-            this.panel6.Controls.Add(this.lblDiscount);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(754, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(420, 200);
-            this.panel6.TabIndex = 14;
+            panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(btnCancel);
+            panel6.Controls.Add(lblTotal);
+            panel6.Controls.Add(btnPayment);
+            panel6.Controls.Add(label5);
+            panel6.Controls.Add(lblPayment);
+            panel6.Controls.Add(label8);
+            panel6.Controls.Add(label9);
+            panel6.Controls.Add(lblDiscount);
+            panel6.Dock = DockStyle.Right;
+            panel6.Location = new Point(780, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(420, 200);
+            panel6.TabIndex = 14;
             // 
             // btnCancel
             // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.Location = new System.Drawing.Point(304, 148);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(104, 35);
-            this.btnCancel.TabIndex = 12;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.AutoSize = true;
+            btnCancel.Location = new Point(304, 148);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(104, 39);
+            btnCancel.TabIndex = 12;
+            btnCancel.Text = "Hủy";
+            btnCancel.UseVisualStyleBackColor = true;
             // 
             // lblTotal
             // 
-            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotal.BackColor = System.Drawing.Color.White;
-            this.lblTotal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.ForeColor = System.Drawing.Color.Red;
-            this.lblTotal.Location = new System.Drawing.Point(154, 9);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(254, 30);
-            this.lblTotal.TabIndex = 9;
-            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblTotal.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotal.BackColor = Color.White;
+            lblTotal.BorderStyle = BorderStyle.Fixed3D;
+            lblTotal.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotal.ForeColor = Color.Red;
+            lblTotal.Location = new Point(154, 9);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(254, 30);
+            lblTotal.TabIndex = 9;
+            lblTotal.TextAlign = ContentAlignment.MiddleRight;
             // 
             // btnPayment
             // 
-            this.btnPayment.Location = new System.Drawing.Point(154, 148);
-            this.btnPayment.Name = "btnPayment";
-            this.btnPayment.Size = new System.Drawing.Size(133, 35);
-            this.btnPayment.TabIndex = 11;
-            this.btnPayment.Text = "Thanh Toán";
-            this.btnPayment.UseVisualStyleBackColor = true;
+            btnPayment.Location = new Point(154, 148);
+            btnPayment.Name = "btnPayment";
+            btnPayment.Size = new Size(133, 35);
+            btnPayment.TabIndex = 11;
+            btnPayment.Text = "Thanh Toán";
+            btnPayment.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(5, 54);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 25);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Số tiền giảm:";
+            label5.AutoSize = true;
+            label5.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(5, 54);
+            label5.Name = "label5";
+            label5.Size = new Size(153, 29);
+            label5.TabIndex = 8;
+            label5.Text = "Số tiền giảm:";
             // 
             // lblPayment
             // 
-            this.lblPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPayment.BackColor = System.Drawing.Color.White;
-            this.lblPayment.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblPayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPayment.ForeColor = System.Drawing.Color.Red;
-            this.lblPayment.Location = new System.Drawing.Point(154, 93);
-            this.lblPayment.Name = "lblPayment";
-            this.lblPayment.Size = new System.Drawing.Size(254, 30);
-            this.lblPayment.TabIndex = 10;
-            this.lblPayment.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblPayment.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPayment.BackColor = Color.White;
+            lblPayment.BorderStyle = BorderStyle.Fixed3D;
+            lblPayment.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPayment.ForeColor = Color.Red;
+            lblPayment.Location = new Point(154, 93);
+            lblPayment.Name = "lblPayment";
+            lblPayment.Size = new Size(254, 30);
+            lblPayment.TabIndex = 10;
+            lblPayment.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(5, 12);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 25);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Tổng Tiền:";
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.Location = new Point(5, 12);
+            label8.Name = "label8";
+            label8.Size = new Size(131, 29);
+            label8.TabIndex = 7;
+            label8.Text = "Tổng Tiền:";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(5, 96);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 25);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Số tiền cần trả:";
+            label9.AutoSize = true;
+            label9.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(5, 96);
+            label9.Name = "label9";
+            label9.Size = new Size(171, 29);
+            label9.TabIndex = 8;
+            label9.Text = "Số tiền cần trả:";
             // 
             // lblDiscount
             // 
-            this.lblDiscount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDiscount.BackColor = System.Drawing.Color.White;
-            this.lblDiscount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiscount.ForeColor = System.Drawing.Color.Red;
-            this.lblDiscount.Location = new System.Drawing.Point(154, 51);
-            this.lblDiscount.Name = "lblDiscount";
-            this.lblDiscount.Size = new System.Drawing.Size(254, 30);
-            this.lblDiscount.TabIndex = 10;
-            this.lblDiscount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            lblDiscount.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblDiscount.BackColor = Color.White;
+            lblDiscount.BorderStyle = BorderStyle.Fixed3D;
+            lblDiscount.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDiscount.ForeColor = Color.Red;
+            lblDiscount.Location = new Point(154, 51);
+            lblDiscount.Name = "lblDiscount";
+            lblDiscount.Size = new Size(254, 30);
+            lblDiscount.TabIndex = 10;
+            lblDiscount.TextAlign = ContentAlignment.MiddleRight;
             // 
             // picFilm
             // 
-            this.picFilm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picFilm.Location = new System.Drawing.Point(943, 154);
-            this.picFilm.Name = "picFilm";
-            this.picFilm.Size = new System.Drawing.Size(211, 259);
-            this.picFilm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFilm.TabIndex = 7;
-            this.picFilm.TabStop = false;
+            picFilm.BorderStyle = BorderStyle.FixedSingle;
+            picFilm.Location = new Point(943, 154);
+            picFilm.Name = "picFilm";
+            picFilm.Size = new Size(211, 259);
+            picFilm.SizeMode = PictureBoxSizeMode.StretchImage;
+            picFilm.TabIndex = 7;
+            picFilm.TabStop = false;
             // 
-            // frmTheatre
+            // BanVe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.OldLace;
-            this.ClientSize = new System.Drawing.Size(1176, 786);
-            this.Controls.Add(this.picFilm);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.flpSeat);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximizeBox = false;
-            this.Name = "frmTheatre";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Bán Vé";
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.pnCustomer.ResumeLayout(false);
-            this.pnCustomer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericFreeTickets)).EndInit();
-            this.grpLoaiVe.ResumeLayout(false);
-            this.grpLoaiVe.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFilm)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(14F, 29F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.OldLace;
+            ClientSize = new Size(1202, 791);
+            Controls.Add(picFilm);
+            Controls.Add(panel5);
+            Controls.Add(panel4);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Controls.Add(flpSeat);
+            Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4);
+            MaximizeBox = false;
+            Name = "BanVe";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Bán Vé";
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            pnCustomer.ResumeLayout(false);
+            pnCustomer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericFreeTickets).EndInit();
+            grpLoaiVe.ResumeLayout(false);
+            grpLoaiVe.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picFilm).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

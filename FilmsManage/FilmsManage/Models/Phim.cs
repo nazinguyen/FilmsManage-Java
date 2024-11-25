@@ -29,9 +29,9 @@ public partial class Phim
 
     public int MaDangPhim { get; set; }
 
-    public virtual DangPhim MaDangPhimNavigation { get; set; } = null!;
+    public virtual DangPhim? MaDangPhimNavigation { get; set; } = null!;
 
-    public virtual ICollection<TheLoaiCuaPhim> TheLoaiCuaPhims { get; set; } = new List<TheLoaiCuaPhim>();
+    public virtual ICollection<TheLoaiCuaPhim>? TheLoaiCuaPhims { get; set; } = new List<TheLoaiCuaPhim>();
 
-    public virtual ICollection<XuatChieu> XuatChieus { get; set; } = new List<XuatChieu>();
+    public virtual ICollection<XuatChieu>? XuatChieus { get; set; } = new List<XuatChieu>();
 }

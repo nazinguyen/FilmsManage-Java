@@ -111,6 +111,93 @@ Create table XuatChieu(
 	Check(ThoiGianBatDau < ThoiGianKetThuc)
 );
 
+ALTER TRIGGER trg_XuatChieu_Validation
+ON XuatChieu
+INSTEAD OF INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Khai báo các biến tạm
+    DECLARE @MaPhim INT, @MaPhong INT, @ThoiGianBatDau DATETIME, @ThoiGianKetThuc DATETIME;
+
+    -- Lấy dữ liệu từ bản ghi được thêm hoặc cập nhật
+    SELECT 
+        @MaPhim = MaPhim,
+        @MaPhong = MaPhong,
+        @ThoiGianBatDau = ThoiGianBatDau,
+        @ThoiGianKetThuc = ThoiGianKetThuc
+    FROM inserted;
+
+    -- 1. Kiểm tra thời gian bắt đầu phải >= thời gian hiện tại
+    IF (@ThoiGianBatDau < GETDATE())
+    BEGIN
+        THROW 50001, 'Thời gian bắt đầu phải lớn hơn hoặc bằng thời gian hiện tại.', 1;
+    END;
+
+    -- 2. Kiểm tra thời gian kết thúc phải lớn hơn thời gian bắt đầu
+    IF (@ThoiGianKetThuc <= @ThoiGianBatDau)
+    BEGIN
+        THROW 50002, 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu.', 1;
+    END;
+
+    -- 3. Phòng chỉ chiếu một phim trong một khoảng thời gian
+    IF EXISTS (
+        SELECT 1
+        FROM XuatChieu
+        WHERE MaPhong = @MaPhong
+          AND (ThoiGianBatDau < @ThoiGianKetThuc AND ThoiGianKetThuc > @ThoiGianBatDau)
+    )
+    BEGIN
+        THROW 50003, 'Phòng chiếu đã được sử dụng cho một phim khác trong khoảng thời gian này.', 1;
+    END;
+
+    -- 4. Kiểm tra trùng lặp suất chiếu (cùng phim, cùng phòng, cùng thời gian)
+    IF EXISTS (
+        SELECT 1
+        FROM XuatChieu
+        WHERE MaPhim = @MaPhim 
+          AND MaPhong = @MaPhong
+          AND ThoiGianBatDau = @ThoiGianBatDau 
+          AND ThoiGianKetThuc = @ThoiGianKetThuc
+    )
+    BEGIN
+        THROW 50004, 'Suất chiếu bị trùng lặp.', 1;
+    END;
+
+    -- 5. Giới hạn số suất chiếu trong một ngày cho một phòng
+    IF (
+        SELECT COUNT(*)
+        FROM XuatChieu
+        WHERE MaPhong = @MaPhong
+          AND CAST(ThoiGianBatDau AS DATE) = CAST(@ThoiGianBatDau AS DATE)
+    ) >= 10
+    BEGIN
+        THROW 50005, 'Phòng chiếu đã đạt giới hạn số suất chiếu trong ngày.', 1;
+    END;
+
+    -- Thêm hoặc cập nhật bản ghi vào bảng XuatChieu
+    IF EXISTS (SELECT 1 FROM inserted WHERE MaXuatChieu IS NOT NULL)
+    BEGIN
+        -- Thực hiện cập nhật
+        UPDATE XuatChieu
+        SET 
+            MaPhim = @MaPhim,
+            MaPhong = @MaPhong,
+            ThoiGianBatDau = @ThoiGianBatDau,
+            ThoiGianKetThuc = @ThoiGianKetThuc
+        WHERE MaXuatChieu = (SELECT TOP 1 MaXuatChieu FROM inserted);
+    END
+    ELSE
+    BEGIN
+        -- Thực hiện thêm mới
+        INSERT INTO XuatChieu (MaPhim, MaPhong, ThoiGianBatDau, ThoiGianKetThuc)
+        VALUES (@MaPhim, @MaPhong, @ThoiGianBatDau, @ThoiGianKetThuc);
+    END;
+END;
+
+
+
 Create table KhachHang(
 	MaKH int identity(1,1) primary key,
 	TenKH nvarchar(100),
