@@ -24,7 +24,6 @@ namespace FilmsManage.GUI.UserControls.Data
             InitializeComponent();
             LoadData();
         }
-
         public void LoadTitle()
         {
             dtgvMovie.Columns.Add(new DataGridViewTextBoxColumn
