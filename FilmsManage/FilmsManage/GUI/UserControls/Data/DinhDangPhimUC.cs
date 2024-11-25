@@ -139,23 +139,30 @@ namespace FilmsManage.GUI.UserControls.Data
 
             try
             {
-                // Gửi yêu cầu thêm dữ liệu qua API
                 string endpoint = "/DangPhim";
                 var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, dangPhim);
 
-                if (response != null && response.Message != null)
+                if (response != null)
                 {
-                    MessageBox.Show(response.Message);
-                    await LoadData(); // Tải lại dữ liệu sau khi thêm thành công
+                    if (!string.IsNullOrWhiteSpace(response.Message))
+                    {
+                        MessageBox.Show(response.Message);
+                        await LoadData(); // Tải lại dữ liệu sau khi thêm thành công
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phản hồi không chứa thông báo.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Không có phản hồi từ API.");
+                    MessageBox.Show("Phản hồi null từ API.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                // Log lỗi chi tiết
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
