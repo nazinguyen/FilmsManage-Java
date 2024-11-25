@@ -175,6 +175,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 var putPhim = await _dangPhimSV.PutAsync<Models.ApiRespone>("/api/Phim", phim);
 
                 MessageBox.Show(putPhim.Message);
+                BackPage();
             }
             catch (Exception ex)
             {
@@ -290,7 +291,28 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
         {
 
         }
+        public void BackPage()
+        {
+            var phim = dataUc.pnData.Controls.OfType<PhimUC>().FirstOrDefault();
+            if (phim != null)
+            {
+                dataUc.pnData.Controls.Remove(phim);
+                phim.Dispose();
+            }
 
+            Debug.WriteLine("ok");
+
+            // Ẩn tất cả các control khác
+            foreach (Control control in dataUc.pnData.Controls)
+            {
+                control.Visible = false;
+            }
+
+            // Khởi tạo control Them_Sua cho "Sửa"
+            phim = new PhimUC(dataUc);
+            phim.Dock = DockStyle.Fill;
+            dataUc.pnData.Controls.Add(phim);
+        }
         private void btnHuy_Click(object sender, EventArgs e)
         {
             var phimUC = dataUc.pnData.Controls.OfType<PhimUC>().FirstOrDefault();
@@ -410,6 +432,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
 
                     // Thêm các loại phim vào phim vừa tạo
                     await ThemLoaiChoPhim(idPhim);
+                    BackPage();
                 }
                 else
                 {

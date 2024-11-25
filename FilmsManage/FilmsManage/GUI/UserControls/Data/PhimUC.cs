@@ -31,7 +31,6 @@ namespace FilmsManage.GUI.UserControls.Data
             LoadDangPhim();
             txtMovieID.Enabled = false;
         }
-
         public void LoadTitle()
         {
             lwShow.Columns.Clear();
@@ -268,6 +267,9 @@ namespace FilmsManage.GUI.UserControls.Data
             dataUC.pnData.Controls.Add(themSua);
         }
 
+       
+        
+
         private async void btnUpdateMovie_Click(object sender, EventArgs e)
         {
             if (lwShow.SelectedItems.Count > 0)
@@ -351,10 +353,13 @@ namespace FilmsManage.GUI.UserControls.Data
                             txtMovieDirector.Text = "";
                             ccbDangPhim.SelectedValue = "";
                             picFilm.Image = LoadImageFromFileSystem("");
+                            LoadData();
                         }
                     }
                  
                 }
+
+
             }
             else
             {

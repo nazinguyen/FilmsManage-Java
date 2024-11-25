@@ -28,202 +28,212 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnShowScreenType = new System.Windows.Forms.Button();
-            this.btnUpdateScreenType = new System.Windows.Forms.Button();
-            this.btnDeleteScreenType = new System.Windows.Forms.Button();
-            this.btnInsertScreenType = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.txtScreenTypeName = new System.Windows.Forms.TextBox();
-            this.lblScreenTypeName = new System.Windows.Forms.Label();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.txtScreenTypeID = new System.Windows.Forms.TextBox();
-            this.lblScreenTypeID = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dtgvScreenType = new System.Windows.Forms.DataGridView();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel20.SuspendLayout();
-            this.panel21.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvScreenType)).BeginInit();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            btnShowScreenType = new Button();
+            btnUpdateScreenType = new Button();
+            btnDeleteScreenType = new Button();
+            btnInsertScreenType = new Button();
+            panel2 = new Panel();
+            panel4 = new Panel();
+            panel20 = new Panel();
+            txtScreenTypeName = new TextBox();
+            lblScreenTypeName = new Label();
+            panel21 = new Panel();
+            txtScreenTypeID = new TextBox();
+            lblScreenTypeID = new Label();
+            panel3 = new Panel();
+            dtgvScreenType = new DataGridView();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel4.SuspendLayout();
+            panel20.SuspendLayout();
+            panel21.SuspendLayout();
+            panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dtgvScreenType).BeginInit();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnShowScreenType);
-            this.panel1.Controls.Add(this.btnUpdateScreenType);
-            this.panel1.Controls.Add(this.btnDeleteScreenType);
-            this.panel1.Controls.Add(this.btnInsertScreenType);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1233, 73);
-            this.panel1.TabIndex = 2;
+            panel1.Controls.Add(btnShowScreenType);
+            panel1.Controls.Add(btnUpdateScreenType);
+            panel1.Controls.Add(btnDeleteScreenType);
+            panel1.Controls.Add(btnInsertScreenType);
+            panel1.Dock = DockStyle.Top;
+            panel1.ImeMode = ImeMode.Disable;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1539, 271);
+            panel1.TabIndex = 2;
             // 
             // btnShowScreenType
             // 
-            this.btnShowScreenType.Location = new System.Drawing.Point(332, 4);
-            this.btnShowScreenType.Margin = new System.Windows.Forms.Padding(4);
-            this.btnShowScreenType.Name = "btnShowScreenType";
-            this.btnShowScreenType.Size = new System.Drawing.Size(100, 57);
-            this.btnShowScreenType.TabIndex = 7;
-            this.btnShowScreenType.Text = "Xem";
-            this.btnShowScreenType.UseVisualStyleBackColor = true;
+            btnShowScreenType.Location = new Point(364, 122);
+            btnShowScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnShowScreenType.Name = "btnShowScreenType";
+            btnShowScreenType.Size = new Size(100, 71);
+            btnShowScreenType.TabIndex = 7;
+            btnShowScreenType.Text = "Xem";
+            btnShowScreenType.UseVisualStyleBackColor = true;
             // 
             // btnUpdateScreenType
             // 
-            this.btnUpdateScreenType.Location = new System.Drawing.Point(224, 4);
-            this.btnUpdateScreenType.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpdateScreenType.Name = "btnUpdateScreenType";
-            this.btnUpdateScreenType.Size = new System.Drawing.Size(100, 57);
-            this.btnUpdateScreenType.TabIndex = 6;
-            this.btnUpdateScreenType.Text = "Sửa";
-            this.btnUpdateScreenType.UseVisualStyleBackColor = true;
+            btnUpdateScreenType.Location = new Point(256, 122);
+            btnUpdateScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnUpdateScreenType.Name = "btnUpdateScreenType";
+            btnUpdateScreenType.Size = new Size(100, 71);
+            btnUpdateScreenType.TabIndex = 6;
+            btnUpdateScreenType.Text = "Sửa";
+            btnUpdateScreenType.UseVisualStyleBackColor = true;
+            btnUpdateScreenType.Click += btnUpdateScreenType_Click;
             // 
             // btnDeleteScreenType
             // 
-            this.btnDeleteScreenType.Location = new System.Drawing.Point(116, 4);
-            this.btnDeleteScreenType.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteScreenType.Name = "btnDeleteScreenType";
-            this.btnDeleteScreenType.Size = new System.Drawing.Size(100, 57);
-            this.btnDeleteScreenType.TabIndex = 5;
-            this.btnDeleteScreenType.Text = "Xóa";
-            this.btnDeleteScreenType.UseVisualStyleBackColor = true;
+            btnDeleteScreenType.Location = new Point(148, 122);
+            btnDeleteScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnDeleteScreenType.Name = "btnDeleteScreenType";
+            btnDeleteScreenType.Size = new Size(100, 71);
+            btnDeleteScreenType.TabIndex = 5;
+            btnDeleteScreenType.Text = "Xóa";
+            btnDeleteScreenType.UseVisualStyleBackColor = true;
+            btnDeleteScreenType.Click += btnDeleteScreenType_Click;
             // 
             // btnInsertScreenType
             // 
-            this.btnInsertScreenType.Location = new System.Drawing.Point(8, 4);
-            this.btnInsertScreenType.Margin = new System.Windows.Forms.Padding(4);
-            this.btnInsertScreenType.Name = "btnInsertScreenType";
-            this.btnInsertScreenType.Size = new System.Drawing.Size(100, 57);
-            this.btnInsertScreenType.TabIndex = 4;
-            this.btnInsertScreenType.Text = "Thêm";
-            this.btnInsertScreenType.UseVisualStyleBackColor = true;
+            btnInsertScreenType.Location = new Point(40, 122);
+            btnInsertScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnInsertScreenType.Name = "btnInsertScreenType";
+            btnInsertScreenType.Size = new Size(100, 71);
+            btnInsertScreenType.TabIndex = 4;
+            btnInsertScreenType.Text = "Thêm";
+            btnInsertScreenType.UseVisualStyleBackColor = true;
+            btnInsertScreenType.Click += btnInsertScreenType_Click;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 73);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1233, 565);
-            this.panel2.TabIndex = 3;
+            panel2.Controls.Add(panel4);
+            panel2.Controls.Add(panel3);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(0, 271);
+            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1539, 423);
+            panel2.TabIndex = 3;
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.panel20);
-            this.panel4.Controls.Add(this.panel21);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(779, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(454, 565);
-            this.panel4.TabIndex = 1;
+            panel4.Controls.Add(panel20);
+            panel4.Controls.Add(panel21);
+            panel4.Dock = DockStyle.Fill;
+            panel4.ImeMode = ImeMode.Disable;
+            panel4.Location = new Point(779, 0);
+            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(760, 423);
+            panel4.TabIndex = 1;
             // 
             // panel20
             // 
-            this.panel20.Controls.Add(this.txtScreenTypeName);
-            this.panel20.Controls.Add(this.lblScreenTypeName);
-            this.panel20.Location = new System.Drawing.Point(24, 65);
-            this.panel20.Margin = new System.Windows.Forms.Padding(4);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(391, 54);
-            this.panel20.TabIndex = 4;
+            panel20.Controls.Add(txtScreenTypeName);
+            panel20.Controls.Add(lblScreenTypeName);
+            panel20.Location = new Point(44, 104);
+            panel20.Margin = new Padding(4, 5, 4, 5);
+            panel20.Name = "panel20";
+            panel20.Size = new Size(391, 68);
+            panel20.TabIndex = 4;
             // 
             // txtScreenTypeName
             // 
-            this.txtScreenTypeName.Location = new System.Drawing.Point(190, 14);
-            this.txtScreenTypeName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtScreenTypeName.Name = "txtScreenTypeName";
-            this.txtScreenTypeName.Size = new System.Drawing.Size(192, 22);
-            this.txtScreenTypeName.TabIndex = 1;
+            txtScreenTypeName.Location = new Point(180, 14);
+            txtScreenTypeName.Margin = new Padding(4, 5, 4, 5);
+            txtScreenTypeName.Name = "txtScreenTypeName";
+            txtScreenTypeName.Size = new Size(192, 27);
+            txtScreenTypeName.TabIndex = 1;
             // 
             // lblScreenTypeName
             // 
-            this.lblScreenTypeName.AutoSize = true;
-            this.lblScreenTypeName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblScreenTypeName.Location = new System.Drawing.Point(4, 11);
-            this.lblScreenTypeName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblScreenTypeName.Name = "lblScreenTypeName";
-            this.lblScreenTypeName.Size = new System.Drawing.Size(147, 24);
-            this.lblScreenTypeName.TabIndex = 0;
-            this.lblScreenTypeName.Text = "Tên màn hình:";
+            lblScreenTypeName.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblScreenTypeName.Location = new Point(4, 14);
+            lblScreenTypeName.Margin = new Padding(4, 0, 4, 0);
+            lblScreenTypeName.Name = "lblScreenTypeName";
+            lblScreenTypeName.Size = new Size(147, 24);
+            lblScreenTypeName.TabIndex = 0;
+            lblScreenTypeName.Text = "Tên màn hình:";
             // 
             // panel21
             // 
-            this.panel21.Controls.Add(this.txtScreenTypeID);
-            this.panel21.Controls.Add(this.lblScreenTypeID);
-            this.panel21.Location = new System.Drawing.Point(24, 4);
-            this.panel21.Margin = new System.Windows.Forms.Padding(4);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(391, 54);
-            this.panel21.TabIndex = 3;
+            panel21.Controls.Add(txtScreenTypeID);
+            panel21.Controls.Add(lblScreenTypeID);
+            panel21.Location = new Point(44, 28);
+            panel21.Margin = new Padding(4, 5, 4, 5);
+            panel21.Name = "panel21";
+            panel21.Size = new Size(391, 68);
+            panel21.TabIndex = 3;
             // 
             // txtScreenTypeID
             // 
-            this.txtScreenTypeID.Location = new System.Drawing.Point(190, 14);
-            this.txtScreenTypeID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtScreenTypeID.Name = "txtScreenTypeID";
-            this.txtScreenTypeID.Size = new System.Drawing.Size(192, 22);
-            this.txtScreenTypeID.TabIndex = 1;
+            txtScreenTypeID.Location = new Point(180, 11);
+            txtScreenTypeID.Margin = new Padding(4, 5, 4, 5);
+            txtScreenTypeID.Name = "txtScreenTypeID";
+            txtScreenTypeID.Size = new Size(192, 27);
+            txtScreenTypeID.TabIndex = 1;
             // 
             // lblScreenTypeID
             // 
-            this.lblScreenTypeID.AutoSize = true;
-            this.lblScreenTypeID.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblScreenTypeID.Location = new System.Drawing.Point(4, 11);
-            this.lblScreenTypeID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblScreenTypeID.Name = "lblScreenTypeID";
-            this.lblScreenTypeID.Size = new System.Drawing.Size(178, 24);
-            this.lblScreenTypeID.TabIndex = 0;
-            this.lblScreenTypeID.Text = "Mã loại màn hình:";
+            lblScreenTypeID.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblScreenTypeID.Location = new Point(4, 14);
+            lblScreenTypeID.Margin = new Padding(4, 0, 4, 0);
+            lblScreenTypeID.Name = "lblScreenTypeID";
+            lblScreenTypeID.Size = new Size(178, 24);
+            lblScreenTypeID.TabIndex = 0;
+            lblScreenTypeID.Text = "Mã màn hình:";
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dtgvScreenType);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(779, 565);
-            this.panel3.TabIndex = 0;
+            panel3.Controls.Add(dtgvScreenType);
+            panel3.Dock = DockStyle.Left;
+            panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(779, 423);
+            panel3.TabIndex = 0;
             // 
             // dtgvScreenType
             // 
-            this.dtgvScreenType.AllowUserToAddRows = false;
-            this.dtgvScreenType.AllowUserToDeleteRows = false;
-            this.dtgvScreenType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvScreenType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvScreenType.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgvScreenType.Location = new System.Drawing.Point(0, 0);
-            this.dtgvScreenType.Margin = new System.Windows.Forms.Padding(4);
-            this.dtgvScreenType.Name = "dtgvScreenType";
-            this.dtgvScreenType.ReadOnly = true;
-            this.dtgvScreenType.Size = new System.Drawing.Size(779, 565);
-            this.dtgvScreenType.TabIndex = 1;
+            dtgvScreenType.AllowUserToAddRows = false;
+            dtgvScreenType.AllowUserToDeleteRows = false;
+            dtgvScreenType.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvScreenType.BorderStyle = BorderStyle.None;
+            dtgvScreenType.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvScreenType.Dock = DockStyle.Fill;
+            dtgvScreenType.ImeMode = ImeMode.Disable;
+            dtgvScreenType.Location = new Point(0, 0);
+            dtgvScreenType.Margin = new Padding(4, 5, 4, 5);
+            dtgvScreenType.Name = "dtgvScreenType";
+            dtgvScreenType.ReadOnly = true;
+            dtgvScreenType.RowHeadersWidth = 51;
+            dtgvScreenType.Size = new Size(779, 423);
+            dtgvScreenType.TabIndex = 1;
             // 
-            // ScreenTypeUC
+            // KieuManHinhUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Name = "ScreenTypeUC";
-            this.Size = new System.Drawing.Size(1233, 638);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel20.ResumeLayout(false);
-            this.panel20.PerformLayout();
-            this.panel21.ResumeLayout(false);
-            this.panel21.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvScreenType)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(panel2);
+            Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "KieuManHinhUC";
+            Size = new Size(1539, 694);
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            panel20.ResumeLayout(false);
+            panel20.PerformLayout();
+            panel21.ResumeLayout(false);
+            panel21.PerformLayout();
+            panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dtgvScreenType).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

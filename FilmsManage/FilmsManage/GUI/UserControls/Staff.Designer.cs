@@ -32,22 +32,25 @@
             btnAddStaff = new Button();
             lblStaffID = new Label();
             txtStaffId = new TextBox();
-            txtStaffAddress = new TextBox();
+            txtStaffEmail = new TextBox();
             lblStaffINumber = new Label();
             lblStaffBirth = new Label();
-            txtStaffPhone = new TextBox();
+            txtStaffPass = new TextBox();
             lblStaffPhone = new Label();
             btnSearchStaff = new Button();
             txtSearchStaff = new TextBox();
             btnDeleteStaff = new Button();
             btnUpdateStaff = new Button();
-            txtStaffBirth = new TextBox();
-            lblStaffAddress = new Label();
-            txtStaffINumber = new TextBox();
+            txtStaffPhone = new TextBox();
+            lblStaffEmail = new Label();
             grpStaff = new GroupBox();
+            lblStaffRole = new Label();
+            cbbMaQuyen = new ComboBox();
             lblStaffName = new Label();
             btnShowStaff = new Button();
             dtgvStaff = new DataGridView();
+            lblTimKiem = new Label();
+            txtTenQuyen = new TextBox();
             grpStaff.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvStaff).BeginInit();
             SuspendLayout();
@@ -63,13 +66,17 @@
             // 
             // btnAddStaff
             // 
-            btnAddStaff.Location = new Point(680, 259);
+            btnAddStaff.BackColor = Color.FromArgb(133, 19, 33);
+            btnAddStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnAddStaff.ForeColor = Color.White;
+            btnAddStaff.Location = new Point(78, 429);
             btnAddStaff.Margin = new Padding(3, 4, 3, 4);
             btnAddStaff.Name = "btnAddStaff";
-            btnAddStaff.Size = new Size(113, 50);
+            btnAddStaff.Size = new Size(171, 58);
             btnAddStaff.TabIndex = 20;
             btnAddStaff.Text = "Thêm";
-            btnAddStaff.UseVisualStyleBackColor = true;
+            btnAddStaff.UseVisualStyleBackColor = false;
+            btnAddStaff.Click += btnAddStaff_Click;
             // 
             // lblStaffID
             // 
@@ -87,27 +94,28 @@
             txtStaffId.Location = new Point(187, 50);
             txtStaffId.Margin = new Padding(3, 4, 3, 4);
             txtStaffId.Name = "txtStaffId";
+            txtStaffId.ReadOnly = true;
             txtStaffId.Size = new Size(237, 35);
             txtStaffId.TabIndex = 2;
             // 
-            // txtStaffAddress
+            // txtStaffEmail
             // 
-            txtStaffAddress.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStaffAddress.Location = new Point(629, 56);
-            txtStaffAddress.Margin = new Padding(3, 4, 3, 4);
-            txtStaffAddress.Name = "txtStaffAddress";
-            txtStaffAddress.Size = new Size(237, 35);
-            txtStaffAddress.TabIndex = 2;
+            txtStaffEmail.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtStaffEmail.Location = new Point(651, 109);
+            txtStaffEmail.Margin = new Padding(3, 4, 3, 4);
+            txtStaffEmail.Name = "txtStaffEmail";
+            txtStaffEmail.Size = new Size(237, 35);
+            txtStaffEmail.TabIndex = 2;
             // 
             // lblStaffINumber
             // 
             lblStaffINumber.AutoSize = true;
             lblStaffINumber.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffINumber.Location = new Point(510, 169);
+            lblStaffINumber.Location = new Point(941, 114);
             lblStaffINumber.Name = "lblStaffINumber";
-            lblStaffINumber.Size = new Size(94, 26);
+            lblStaffINumber.Size = new Size(135, 26);
             lblStaffINumber.TabIndex = 4;
-            lblStaffINumber.Text = "CMND:";
+            lblStaffINumber.Text = "Mã Quyền :";
             // 
             // lblStaffBirth
             // 
@@ -115,119 +123,143 @@
             lblStaffBirth.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStaffBirth.Location = new Point(30, 169);
             lblStaffBirth.Name = "lblStaffBirth";
-            lblStaffBirth.Size = new Size(121, 26);
+            lblStaffBirth.Size = new Size(81, 26);
             lblStaffBirth.TabIndex = 4;
-            lblStaffBirth.Text = "Ngày sinh:";
+            lblStaffBirth.Text = "Số ĐT:";
             // 
-            // txtStaffPhone
+            // txtStaffPass
             // 
-            txtStaffPhone.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStaffPhone.Location = new Point(629, 111);
-            txtStaffPhone.Margin = new Padding(3, 4, 3, 4);
-            txtStaffPhone.Name = "txtStaffPhone";
-            txtStaffPhone.Size = new Size(237, 35);
-            txtStaffPhone.TabIndex = 2;
+            txtStaffPass.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtStaffPass.Location = new Point(651, 169);
+            txtStaffPass.Margin = new Padding(3, 4, 3, 4);
+            txtStaffPass.Name = "txtStaffPass";
+            txtStaffPass.Size = new Size(237, 35);
+            txtStaffPass.TabIndex = 2;
             // 
             // lblStaffPhone
             // 
             lblStaffPhone.AutoSize = true;
             lblStaffPhone.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffPhone.Location = new Point(510, 118);
+            lblStaffPhone.Location = new Point(510, 178);
             lblStaffPhone.Name = "lblStaffPhone";
-            lblStaffPhone.Size = new Size(81, 26);
+            lblStaffPhone.Size = new Size(126, 26);
             lblStaffPhone.TabIndex = 4;
-            lblStaffPhone.Text = "Số ĐT:";
+            lblStaffPhone.Text = "Mật khẩu :";
             // 
             // btnSearchStaff
             // 
             btnSearchStaff.BackgroundImageLayout = ImageLayout.Stretch;
-            btnSearchStaff.Location = new Point(1391, 264);
+            btnSearchStaff.Image = Properties.Resources.search_icon;
+            btnSearchStaff.Location = new Point(1248, 272);
             btnSearchStaff.Margin = new Padding(3, 4, 3, 4);
             btnSearchStaff.Name = "btnSearchStaff";
-            btnSearchStaff.Size = new Size(33, 40);
+            btnSearchStaff.Size = new Size(70, 40);
             btnSearchStaff.TabIndex = 22;
             btnSearchStaff.UseVisualStyleBackColor = true;
+            btnSearchStaff.Click += btnSearchStaff_Click;
             // 
             // txtSearchStaff
             // 
-            txtSearchStaff.Location = new Point(1221, 271);
+            txtSearchStaff.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            txtSearchStaff.Location = new Point(1035, 273);
             txtSearchStaff.Margin = new Padding(3, 4, 3, 4);
             txtSearchStaff.Name = "txtSearchStaff";
-            txtSearchStaff.Size = new Size(164, 31);
+            txtSearchStaff.Size = new Size(164, 37);
             txtSearchStaff.TabIndex = 21;
             // 
             // btnDeleteStaff
             // 
-            btnDeleteStaff.Location = new Point(1058, 259);
+            btnDeleteStaff.BackColor = Color.FromArgb(133, 19, 33);
+            btnDeleteStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnDeleteStaff.ForeColor = Color.White;
+            btnDeleteStaff.Location = new Point(78, 632);
             btnDeleteStaff.Margin = new Padding(3, 4, 3, 4);
             btnDeleteStaff.Name = "btnDeleteStaff";
-            btnDeleteStaff.Size = new Size(113, 50);
+            btnDeleteStaff.Size = new Size(171, 60);
             btnDeleteStaff.TabIndex = 18;
             btnDeleteStaff.Text = "Xóa";
-            btnDeleteStaff.UseVisualStyleBackColor = true;
+            btnDeleteStaff.UseVisualStyleBackColor = false;
+            btnDeleteStaff.Click += btnDeleteStaff_Click;
             // 
             // btnUpdateStaff
             // 
-            btnUpdateStaff.Location = new Point(869, 259);
+            btnUpdateStaff.BackColor = Color.FromArgb(133, 19, 33);
+            btnUpdateStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnUpdateStaff.ForeColor = Color.White;
+            btnUpdateStaff.Location = new Point(78, 530);
             btnUpdateStaff.Margin = new Padding(3, 4, 3, 4);
             btnUpdateStaff.Name = "btnUpdateStaff";
-            btnUpdateStaff.Size = new Size(113, 50);
+            btnUpdateStaff.Size = new Size(171, 64);
             btnUpdateStaff.TabIndex = 19;
             btnUpdateStaff.Text = "Sửa";
-            btnUpdateStaff.UseVisualStyleBackColor = true;
+            btnUpdateStaff.UseVisualStyleBackColor = false;
+            btnUpdateStaff.Click += btnUpdateStaff_Click;
             // 
-            // txtStaffBirth
+            // txtStaffPhone
             // 
-            txtStaffBirth.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStaffBirth.Location = new Point(187, 165);
-            txtStaffBirth.Margin = new Padding(3, 4, 3, 4);
-            txtStaffBirth.Name = "txtStaffBirth";
-            txtStaffBirth.Size = new Size(237, 35);
-            txtStaffBirth.TabIndex = 2;
+            txtStaffPhone.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtStaffPhone.Location = new Point(187, 165);
+            txtStaffPhone.Margin = new Padding(3, 4, 3, 4);
+            txtStaffPhone.Name = "txtStaffPhone";
+            txtStaffPhone.Size = new Size(237, 35);
+            txtStaffPhone.TabIndex = 2;
             // 
-            // lblStaffAddress
+            // lblStaffEmail
             // 
-            lblStaffAddress.AutoSize = true;
-            lblStaffAddress.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffAddress.Location = new Point(510, 61);
-            lblStaffAddress.Name = "lblStaffAddress";
-            lblStaffAddress.Size = new Size(93, 26);
-            lblStaffAddress.TabIndex = 4;
-            lblStaffAddress.Text = "Địa chỉ:";
-            // 
-            // txtStaffINumber
-            // 
-            txtStaffINumber.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStaffINumber.Location = new Point(629, 169);
-            txtStaffINumber.Margin = new Padding(3, 4, 3, 4);
-            txtStaffINumber.Name = "txtStaffINumber";
-            txtStaffINumber.Size = new Size(237, 35);
-            txtStaffINumber.TabIndex = 2;
+            lblStaffEmail.AutoSize = true;
+            lblStaffEmail.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblStaffEmail.Location = new Point(510, 120);
+            lblStaffEmail.Name = "lblStaffEmail";
+            lblStaffEmail.Size = new Size(81, 26);
+            lblStaffEmail.TabIndex = 4;
+            lblStaffEmail.Text = "Email:";
             // 
             // grpStaff
             // 
             grpStaff.BackColor = Color.Transparent;
+            grpStaff.Controls.Add(txtTenQuyen);
+            grpStaff.Controls.Add(lblStaffRole);
+            grpStaff.Controls.Add(cbbMaQuyen);
             grpStaff.Controls.Add(lblStaffID);
             grpStaff.Controls.Add(txtStaffId);
-            grpStaff.Controls.Add(txtStaffAddress);
+            grpStaff.Controls.Add(txtStaffEmail);
             grpStaff.Controls.Add(lblStaffINumber);
             grpStaff.Controls.Add(txtStaffName);
             grpStaff.Controls.Add(lblStaffBirth);
-            grpStaff.Controls.Add(txtStaffPhone);
+            grpStaff.Controls.Add(txtStaffPass);
             grpStaff.Controls.Add(lblStaffPhone);
-            grpStaff.Controls.Add(txtStaffBirth);
-            grpStaff.Controls.Add(lblStaffAddress);
-            grpStaff.Controls.Add(txtStaffINumber);
+            grpStaff.Controls.Add(txtStaffPhone);
+            grpStaff.Controls.Add(lblStaffEmail);
             grpStaff.Controls.Add(lblStaffName);
             grpStaff.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            grpStaff.Location = new Point(170, 22);
+            grpStaff.Location = new Point(78, 22);
             grpStaff.Margin = new Padding(3, 4, 3, 4);
             grpStaff.Name = "grpStaff";
             grpStaff.Padding = new Padding(3, 4, 3, 4);
-            grpStaff.Size = new Size(1093, 228);
+            grpStaff.Size = new Size(1339, 228);
             grpStaff.TabIndex = 23;
             grpStaff.TabStop = false;
             grpStaff.Text = "Thông tin nhân viên";
+            // 
+            // lblStaffRole
+            // 
+            lblStaffRole.AutoSize = true;
+            lblStaffRole.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblStaffRole.Location = new Point(941, 178);
+            lblStaffRole.Name = "lblStaffRole";
+            lblStaffRole.Size = new Size(133, 26);
+            lblStaffRole.TabIndex = 6;
+            lblStaffRole.Text = "Tên quyền: ";
+            // 
+            // cbbMaQuyen
+            // 
+            cbbMaQuyen.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            cbbMaQuyen.FormattingEnabled = true;
+            cbbMaQuyen.Location = new Point(1080, 109);
+            cbbMaQuyen.Name = "cbbMaQuyen";
+            cbbMaQuyen.Size = new Size(237, 34);
+            cbbMaQuyen.TabIndex = 5;
+            cbbMaQuyen.SelectedIndexChanged += cbbMaQuyen_SelectedIndexChanged_1;
             // 
             // lblStaffName
             // 
@@ -235,19 +267,22 @@
             lblStaffName.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStaffName.Location = new Point(30, 118);
             lblStaffName.Name = "lblStaffName";
-            lblStaffName.Size = new Size(89, 26);
+            lblStaffName.Size = new Size(97, 26);
             lblStaffName.TabIndex = 4;
-            lblStaffName.Text = "Họ tên:";
+            lblStaffName.Text = "Tên NV:";
             // 
             // btnShowStaff
             // 
-            btnShowStaff.Location = new Point(149, 259);
+            btnShowStaff.BackColor = Color.FromArgb(133, 19, 33);
+            btnShowStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnShowStaff.ForeColor = Color.White;
+            btnShowStaff.Location = new Point(78, 333);
             btnShowStaff.Margin = new Padding(3, 4, 3, 4);
             btnShowStaff.Name = "btnShowStaff";
-            btnShowStaff.Size = new Size(110, 54);
+            btnShowStaff.Size = new Size(171, 64);
             btnShowStaff.TabIndex = 17;
             btnShowStaff.Text = "Xem";
-            btnShowStaff.UseVisualStyleBackColor = true;
+            btnShowStaff.UseVisualStyleBackColor = false;
             // 
             // dtgvStaff
             // 
@@ -255,18 +290,36 @@
             dtgvStaff.AllowUserToDeleteRows = false;
             dtgvStaff.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvStaff.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvStaff.Location = new Point(98, 340);
+            dtgvStaff.Location = new Point(276, 333);
             dtgvStaff.Margin = new Padding(4, 6, 4, 6);
             dtgvStaff.Name = "dtgvStaff";
             dtgvStaff.ReadOnly = true;
             dtgvStaff.RowHeadersWidth = 62;
-            dtgvStaff.Size = new Size(1177, 586);
+            dtgvStaff.Size = new Size(1141, 392);
             dtgvStaff.TabIndex = 16;
+            // 
+            // lblTimKiem
+            // 
+            lblTimKiem.AutoSize = true;
+            lblTimKiem.Font = new Font("Tahoma", 11F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            lblTimKiem.Location = new Point(870, 279);
+            lblTimKiem.Name = "lblTimKiem";
+            lblTimKiem.Size = new Size(136, 27);
+            lblTimKiem.TabIndex = 24;
+            lblTimKiem.Text = "Tìm theo tên";
+            // 
+            // txtTenQuyen
+            // 
+            txtTenQuyen.Location = new Point(1080, 178);
+            txtTenQuyen.Name = "txtTenQuyen";
+            txtTenQuyen.Size = new Size(234, 35);
+            txtTenQuyen.TabIndex = 7;
             // 
             // Staff
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblTimKiem);
             Controls.Add(btnAddStaff);
             Controls.Add(btnSearchStaff);
             Controls.Add(txtSearchStaff);
@@ -277,7 +330,7 @@
             Controls.Add(dtgvStaff);
             Margin = new Padding(3, 4, 3, 4);
             Name = "Staff";
-            Size = new Size(1750, 1015);
+            Size = new Size(1440, 747);
             grpStaff.ResumeLayout(false);
             grpStaff.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvStaff).EndInit();
@@ -291,21 +344,25 @@
         private System.Windows.Forms.Button btnAddStaff;
         private System.Windows.Forms.Label lblStaffID;
         private System.Windows.Forms.TextBox txtStaffId;
-        private System.Windows.Forms.TextBox txtStaffAddress;
+        private System.Windows.Forms.TextBox txtStaffEmail;
         private System.Windows.Forms.Label lblStaffINumber;
         private System.Windows.Forms.Label lblStaffBirth;
-        private System.Windows.Forms.TextBox txtStaffPhone;
+        private System.Windows.Forms.TextBox txtStaffPass;
         private System.Windows.Forms.Label lblStaffPhone;
         private System.Windows.Forms.Button btnSearchStaff;
         private System.Windows.Forms.TextBox txtSearchStaff;
         private System.Windows.Forms.Button btnDeleteStaff;
         private System.Windows.Forms.Button btnUpdateStaff;
         private System.Windows.Forms.TextBox txtStaffBirth;
-        private System.Windows.Forms.Label lblStaffAddress;
-        private System.Windows.Forms.TextBox txtStaffINumber;
+        private System.Windows.Forms.Label lblStaffEmail;
         private System.Windows.Forms.GroupBox grpStaff;
         private System.Windows.Forms.Label lblStaffName;
         private System.Windows.Forms.Button btnShowStaff;
         private System.Windows.Forms.DataGridView dtgvStaff;
+        private Label lblTimKiem;
+        private TextBox txtStaffPhone;
+        private ComboBox cbbMaQuyen;
+        private Label lblStaffRole;
+        private TextBox txtTenQuyen;
     }
 }

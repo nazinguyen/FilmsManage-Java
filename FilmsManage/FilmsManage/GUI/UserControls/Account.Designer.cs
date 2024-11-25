@@ -79,6 +79,7 @@
             // btnSearchAccount
             // 
             btnSearchAccount.BackgroundImageLayout = ImageLayout.Stretch;
+            btnSearchAccount.Image = Properties.Resources.search_icon;
             btnSearchAccount.Location = new Point(210, 39);
             btnSearchAccount.Margin = new Padding(4, 2, 4, 2);
             btnSearchAccount.Name = "btnSearchAccount";

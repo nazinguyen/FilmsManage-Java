@@ -175,8 +175,6 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
-
-
         }
 
         private async void dtgvGenre_CellClick(object sender, DataGridViewCellEventArgs e)

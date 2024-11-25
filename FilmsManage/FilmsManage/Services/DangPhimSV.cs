@@ -1,6 +1,11 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System.Diagnostics;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace FilmsManage.Services
 {
@@ -69,15 +74,15 @@ namespace FilmsManage.Services
         {
             var request = new RestRequest(endpoint, Method.Put);
             request.AddJsonBody(data);
-            Debug.WriteLine(request.ToString()); // In yêu cầu gửi đi
+
+            Debug.WriteLine("Request: " + request.ToString());
 
             var response = await _client.ExecuteAsync(request);
-            Debug.WriteLine("Response status: " + response.StatusCode); // In trạng thái HTTP
+            Debug.WriteLine("Response status: " + response.StatusCode);
 
-            // Kiểm tra nếu phản hồi thành công và có nội dung
-            if (response.IsSuccessful && response.Content != null)
+            if (response.IsSuccessful && !string.IsNullOrWhiteSpace(response.Content))
             {
-                Debug.WriteLine("Response Content: " + response.Content); // In nội dung trả về từ API
+                Debug.WriteLine("Response content: " + response.Content);
 
                 if (typeof(T) == typeof(string))
                 {
@@ -87,23 +92,21 @@ namespace FilmsManage.Services
                 try
                 {
                     return JsonConvert.DeserializeObject<T>(response.Content) ??
-                           throw new InvalidOperationException("Received null content from the API.");
+                           throw new InvalidOperationException("Nội dung phản hồi rỗng.");
                 }
                 catch (JsonException ex)
                 {
-                    // Nếu có lỗi phân tích cú pháp JSON
-                    Debug.WriteLine("Error parsing JSON: " + ex.Message);
+                    Debug.WriteLine("Lỗi JSON: " + ex.Message);
                     throw;
                 }
             }
 
-            // Xử lý khi yêu cầu không thành công
+            // Xử lý lỗi từ API
             var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(response.Content ?? "");
-            string errorMessage = errorResponse != null && errorResponse.ContainsKey("message")
-                ? errorResponse["message"]
-                : "Đã xảy ra lỗi không xác định.";
+            string errorMessage = errorResponse?.GetValueOrDefault("message") ?? "Lỗi không xác định.";
 
-            throw new HttpRequestException($"Request failed with message: {errorMessage}");
+            Debug.WriteLine("Error message: " + errorMessage);
+            throw new HttpRequestException(errorMessage);
         }
 
         // DELETE
