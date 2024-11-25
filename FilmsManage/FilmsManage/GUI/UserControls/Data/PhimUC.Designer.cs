@@ -354,6 +354,7 @@
             btnAddMovie.TabIndex = 0;
             btnAddMovie.Text = "Thêm";
             btnAddMovie.UseVisualStyleBackColor = true;
+         
             // 
             // panel1
             // 
