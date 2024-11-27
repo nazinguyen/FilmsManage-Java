@@ -16,5 +16,10 @@ namespace FilmsManage.GUI.UserControls.Data
         {
             InitializeComponent();
         }
+
+        private void dtgvTicket_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

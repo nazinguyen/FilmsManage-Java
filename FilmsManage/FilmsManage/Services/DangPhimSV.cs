@@ -109,11 +109,19 @@ namespace FilmsManage.Services
             throw new HttpRequestException(errorMessage);
         }
 
-        public async Task<bool> DeleteAsync(string endpoint)
+        // DELETE
+        public async Task<bool> DeleteAsync(string endpoint, object body = null)
         {
             var request = new RestRequest(endpoint, Method.Delete);
+
+            if (body != null)
+            {
+                request.AddJsonBody(body);
+            }
+
             var response = await _client.ExecuteAsync(request);
             return response.IsSuccessful;
         }
+
     }
 }

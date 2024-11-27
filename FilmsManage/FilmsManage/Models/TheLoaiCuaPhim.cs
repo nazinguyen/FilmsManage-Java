@@ -11,7 +11,7 @@ public partial class TheLoaiCuaPhim
 
     public int Id { get; set; }
 
-    public virtual LoaiPhim MaTheLoaiNavigation { get; set; } = null!;
+    public virtual LoaiPhim? MaTheLoaiNavigation { get; set; } = null!;
 
-    public virtual Phim MaphimNavigation { get; set; } = null!;
+    public virtual Phim? MaphimNavigation { get; set; } = null!;
 }
