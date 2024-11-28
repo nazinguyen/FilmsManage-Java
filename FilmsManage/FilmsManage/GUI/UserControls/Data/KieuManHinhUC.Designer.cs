@@ -61,27 +61,27 @@
             panel1.Dock = DockStyle.Top;
             panel1.ImeMode = ImeMode.Disable;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1539, 271);
+            panel1.Size = new Size(1924, 339);
             panel1.TabIndex = 2;
             // 
             // btnShowScreenType
             // 
-            btnShowScreenType.Location = new Point(364, 122);
-            btnShowScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnShowScreenType.Location = new Point(471, 239);
+            btnShowScreenType.Margin = new Padding(5, 6, 5, 6);
             btnShowScreenType.Name = "btnShowScreenType";
-            btnShowScreenType.Size = new Size(100, 71);
+            btnShowScreenType.Size = new Size(125, 89);
             btnShowScreenType.TabIndex = 7;
             btnShowScreenType.Text = "Xem";
             btnShowScreenType.UseVisualStyleBackColor = true;
             // 
             // btnUpdateScreenType
             // 
-            btnUpdateScreenType.Location = new Point(256, 122);
-            btnUpdateScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnUpdateScreenType.Location = new Point(320, 238);
+            btnUpdateScreenType.Margin = new Padding(5, 6, 5, 6);
             btnUpdateScreenType.Name = "btnUpdateScreenType";
-            btnUpdateScreenType.Size = new Size(100, 71);
+            btnUpdateScreenType.Size = new Size(125, 89);
             btnUpdateScreenType.TabIndex = 6;
             btnUpdateScreenType.Text = "Sửa";
             btnUpdateScreenType.UseVisualStyleBackColor = true;
@@ -89,10 +89,10 @@
             // 
             // btnDeleteScreenType
             // 
-            btnDeleteScreenType.Location = new Point(148, 122);
-            btnDeleteScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnDeleteScreenType.Location = new Point(173, 238);
+            btnDeleteScreenType.Margin = new Padding(5, 6, 5, 6);
             btnDeleteScreenType.Name = "btnDeleteScreenType";
-            btnDeleteScreenType.Size = new Size(100, 71);
+            btnDeleteScreenType.Size = new Size(125, 89);
             btnDeleteScreenType.TabIndex = 5;
             btnDeleteScreenType.Text = "Xóa";
             btnDeleteScreenType.UseVisualStyleBackColor = true;
@@ -100,10 +100,10 @@
             // 
             // btnInsertScreenType
             // 
-            btnInsertScreenType.Location = new Point(40, 122);
-            btnInsertScreenType.Margin = new Padding(4, 5, 4, 5);
+            btnInsertScreenType.Location = new Point(0, 238);
+            btnInsertScreenType.Margin = new Padding(5, 6, 5, 6);
             btnInsertScreenType.Name = "btnInsertScreenType";
-            btnInsertScreenType.Size = new Size(100, 71);
+            btnInsertScreenType.Size = new Size(125, 89);
             btnInsertScreenType.TabIndex = 4;
             btnInsertScreenType.Text = "Thêm";
             btnInsertScreenType.UseVisualStyleBackColor = true;
@@ -114,10 +114,10 @@
             panel2.Controls.Add(panel4);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 271);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(0, 339);
+            panel2.Margin = new Padding(4, 5, 4, 5);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1539, 423);
+            panel2.Size = new Size(1924, 529);
             panel2.TabIndex = 3;
             // 
             // panel4
@@ -126,37 +126,37 @@
             panel4.Controls.Add(panel21);
             panel4.Dock = DockStyle.Fill;
             panel4.ImeMode = ImeMode.Disable;
-            panel4.Location = new Point(779, 0);
-            panel4.Margin = new Padding(3, 4, 3, 4);
+            panel4.Location = new Point(974, 0);
+            panel4.Margin = new Padding(4, 5, 4, 5);
             panel4.Name = "panel4";
-            panel4.Size = new Size(760, 423);
+            panel4.Size = new Size(950, 529);
             panel4.TabIndex = 1;
             // 
             // panel20
             // 
             panel20.Controls.Add(txtScreenTypeName);
             panel20.Controls.Add(lblScreenTypeName);
-            panel20.Location = new Point(44, 104);
-            panel20.Margin = new Padding(4, 5, 4, 5);
+            panel20.Location = new Point(55, 130);
+            panel20.Margin = new Padding(5, 6, 5, 6);
             panel20.Name = "panel20";
-            panel20.Size = new Size(391, 68);
+            panel20.Size = new Size(489, 85);
             panel20.TabIndex = 4;
             // 
             // txtScreenTypeName
             // 
-            txtScreenTypeName.Location = new Point(180, 14);
-            txtScreenTypeName.Margin = new Padding(4, 5, 4, 5);
+            txtScreenTypeName.Location = new Point(225, 18);
+            txtScreenTypeName.Margin = new Padding(5, 6, 5, 6);
             txtScreenTypeName.Name = "txtScreenTypeName";
-            txtScreenTypeName.Size = new Size(192, 27);
+            txtScreenTypeName.Size = new Size(239, 31);
             txtScreenTypeName.TabIndex = 1;
             // 
             // lblScreenTypeName
             // 
             lblScreenTypeName.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblScreenTypeName.Location = new Point(4, 14);
-            lblScreenTypeName.Margin = new Padding(4, 0, 4, 0);
+            lblScreenTypeName.Location = new Point(5, 18);
+            lblScreenTypeName.Margin = new Padding(5, 0, 5, 0);
             lblScreenTypeName.Name = "lblScreenTypeName";
-            lblScreenTypeName.Size = new Size(147, 24);
+            lblScreenTypeName.Size = new Size(184, 30);
             lblScreenTypeName.TabIndex = 0;
             lblScreenTypeName.Text = "Tên màn hình:";
             // 
@@ -164,27 +164,27 @@
             // 
             panel21.Controls.Add(txtScreenTypeID);
             panel21.Controls.Add(lblScreenTypeID);
-            panel21.Location = new Point(44, 28);
-            panel21.Margin = new Padding(4, 5, 4, 5);
+            panel21.Location = new Point(55, 35);
+            panel21.Margin = new Padding(5, 6, 5, 6);
             panel21.Name = "panel21";
-            panel21.Size = new Size(391, 68);
+            panel21.Size = new Size(489, 85);
             panel21.TabIndex = 3;
             // 
             // txtScreenTypeID
             // 
-            txtScreenTypeID.Location = new Point(180, 11);
-            txtScreenTypeID.Margin = new Padding(4, 5, 4, 5);
+            txtScreenTypeID.Location = new Point(225, 14);
+            txtScreenTypeID.Margin = new Padding(5, 6, 5, 6);
             txtScreenTypeID.Name = "txtScreenTypeID";
-            txtScreenTypeID.Size = new Size(192, 27);
+            txtScreenTypeID.Size = new Size(239, 31);
             txtScreenTypeID.TabIndex = 1;
             // 
             // lblScreenTypeID
             // 
             lblScreenTypeID.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblScreenTypeID.Location = new Point(4, 14);
-            lblScreenTypeID.Margin = new Padding(4, 0, 4, 0);
+            lblScreenTypeID.Location = new Point(5, 18);
+            lblScreenTypeID.Margin = new Padding(5, 0, 5, 0);
             lblScreenTypeID.Name = "lblScreenTypeID";
-            lblScreenTypeID.Size = new Size(178, 24);
+            lblScreenTypeID.Size = new Size(222, 30);
             lblScreenTypeID.TabIndex = 0;
             lblScreenTypeID.Text = "Mã màn hình:";
             // 
@@ -193,9 +193,9 @@
             panel3.Controls.Add(dtgvScreenType);
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(3, 4, 3, 4);
+            panel3.Margin = new Padding(4, 5, 4, 5);
             panel3.Name = "panel3";
-            panel3.Size = new Size(779, 423);
+            panel3.Size = new Size(974, 529);
             panel3.TabIndex = 0;
             // 
             // dtgvScreenType
@@ -208,22 +208,22 @@
             dtgvScreenType.Dock = DockStyle.Fill;
             dtgvScreenType.ImeMode = ImeMode.Disable;
             dtgvScreenType.Location = new Point(0, 0);
-            dtgvScreenType.Margin = new Padding(4, 5, 4, 5);
+            dtgvScreenType.Margin = new Padding(5, 6, 5, 6);
             dtgvScreenType.Name = "dtgvScreenType";
             dtgvScreenType.ReadOnly = true;
             dtgvScreenType.RowHeadersWidth = 51;
-            dtgvScreenType.Size = new Size(779, 423);
+            dtgvScreenType.Size = new Size(974, 529);
             dtgvScreenType.TabIndex = 1;
             // 
             // KieuManHinhUC
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "KieuManHinhUC";
-            Size = new Size(1539, 694);
+            Size = new Size(1924, 868);
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel4.ResumeLayout(false);
