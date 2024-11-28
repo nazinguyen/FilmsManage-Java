@@ -107,7 +107,7 @@
             // 
             lblMovieID.AutoSize = true;
             lblMovieID.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieID.Location = new Point(67, 174);
+            lblMovieID.Location = new Point(90, 242);
             lblMovieID.Margin = new Padding(4, 0, 4, 0);
             lblMovieID.Name = "lblMovieID";
             lblMovieID.Size = new Size(137, 32);
@@ -117,7 +117,7 @@
             // ccbDangPhim
             // 
             ccbDangPhim.FormattingEnabled = true;
-            ccbDangPhim.Location = new Point(854, 467);
+            ccbDangPhim.Location = new Point(831, 634);
             ccbDangPhim.Name = "ccbDangPhim";
             ccbDangPhim.Size = new Size(254, 33);
             ccbDangPhim.TabIndex = 163;
@@ -126,7 +126,7 @@
             // 
             lblMovieName.AutoSize = true;
             lblMovieName.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieName.Location = new Point(67, 234);
+            lblMovieName.Location = new Point(90, 302);
             lblMovieName.Margin = new Padding(4, 0, 4, 0);
             lblMovieName.Name = "lblMovieName";
             lblMovieName.Size = new Size(142, 32);
@@ -135,7 +135,7 @@
             // 
             // txtMovieName
             // 
-            txtMovieName.Location = new Point(237, 237);
+            txtMovieName.Location = new Point(260, 305);
             txtMovieName.Margin = new Padding(4, 3, 4, 3);
             txtMovieName.Name = "txtMovieName";
             txtMovieName.Size = new Size(254, 31);
@@ -145,7 +145,7 @@
             // 
             lblMovieDesc.AutoSize = true;
             lblMovieDesc.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieDesc.Location = new Point(67, 290);
+            lblMovieDesc.Location = new Point(90, 358);
             lblMovieDesc.Margin = new Padding(4, 0, 4, 0);
             lblMovieDesc.Name = "lblMovieDesc";
             lblMovieDesc.Size = new Size(97, 32);
@@ -156,7 +156,7 @@
             // 
             lblMovieProductor.AutoSize = true;
             lblMovieProductor.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieProductor.Location = new Point(683, 349);
+            lblMovieProductor.Location = new Point(660, 516);
             lblMovieProductor.Margin = new Padding(4, 0, 4, 0);
             lblMovieProductor.Name = "lblMovieProductor";
             lblMovieProductor.Size = new Size(114, 32);
@@ -167,7 +167,7 @@
             // 
             lblMovieDirector.AutoSize = true;
             lblMovieDirector.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieDirector.Location = new Point(683, 409);
+            lblMovieDirector.Location = new Point(660, 576);
             lblMovieDirector.Margin = new Padding(4, 0, 4, 0);
             lblMovieDirector.Name = "lblMovieDirector";
             lblMovieDirector.Size = new Size(133, 32);
@@ -189,7 +189,7 @@
             // 
             lblMovieYear.AutoSize = true;
             lblMovieYear.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieYear.Location = new Point(683, 468);
+            lblMovieYear.Location = new Point(660, 635);
             lblMovieYear.Margin = new Padding(4, 0, 4, 0);
             lblMovieYear.Name = "lblMovieYear";
             lblMovieYear.Size = new Size(151, 32);
@@ -198,7 +198,7 @@
             // 
             // txtMovieDesc
             // 
-            txtMovieDesc.Location = new Point(237, 290);
+            txtMovieDesc.Location = new Point(260, 358);
             txtMovieDesc.Margin = new Padding(4, 3, 4, 3);
             txtMovieDesc.Multiline = true;
             txtMovieDesc.Name = "txtMovieDesc";
@@ -209,7 +209,7 @@
             // 
             lblMovieLength.AutoSize = true;
             lblMovieLength.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieLength.Location = new Point(684, 179);
+            lblMovieLength.Location = new Point(661, 346);
             lblMovieLength.Margin = new Padding(4, 0, 4, 0);
             lblMovieLength.Name = "lblMovieLength";
             lblMovieLength.Size = new Size(133, 26);
@@ -220,7 +220,7 @@
             // 
             lblMovieStartDate.AutoSize = true;
             lblMovieStartDate.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieStartDate.Location = new Point(684, 235);
+            lblMovieStartDate.Location = new Point(661, 402);
             lblMovieStartDate.Margin = new Padding(4, 0, 4, 0);
             lblMovieStartDate.Name = "lblMovieStartDate";
             lblMovieStartDate.Size = new Size(115, 26);
@@ -231,7 +231,7 @@
             // 
             lblMovieEndDate.AutoSize = true;
             lblMovieEndDate.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieEndDate.Location = new Point(684, 290);
+            lblMovieEndDate.Location = new Point(661, 457);
             lblMovieEndDate.Margin = new Padding(4, 0, 4, 0);
             lblMovieEndDate.Name = "lblMovieEndDate";
             lblMovieEndDate.Size = new Size(111, 26);
@@ -240,7 +240,7 @@
             // 
             // txtMovieLength
             // 
-            txtMovieLength.Location = new Point(854, 182);
+            txtMovieLength.Location = new Point(831, 349);
             txtMovieLength.Margin = new Padding(4, 3, 4, 3);
             txtMovieLength.Name = "txtMovieLength";
             txtMovieLength.Size = new Size(254, 31);
@@ -248,7 +248,7 @@
             // 
             // txtDoTuoi
             // 
-            txtDoTuoi.Location = new Point(853, 357);
+            txtDoTuoi.Location = new Point(830, 524);
             txtDoTuoi.Margin = new Padding(4, 3, 4, 3);
             txtDoTuoi.Name = "txtDoTuoi";
             txtDoTuoi.Size = new Size(254, 31);
@@ -256,7 +256,7 @@
             // 
             // txtMovieDirector
             // 
-            txtMovieDirector.Location = new Point(853, 416);
+            txtMovieDirector.Location = new Point(830, 583);
             txtMovieDirector.Margin = new Padding(4, 3, 4, 3);
             txtMovieDirector.Name = "txtMovieDirector";
             txtMovieDirector.Size = new Size(254, 31);
@@ -265,7 +265,7 @@
             // dtmMovieStart
             // 
             dtmMovieStart.Format = DateTimePickerFormat.Short;
-            dtmMovieStart.Location = new Point(854, 235);
+            dtmMovieStart.Location = new Point(831, 402);
             dtmMovieStart.Margin = new Padding(4, 3, 4, 3);
             dtmMovieStart.Name = "dtmMovieStart";
             dtmMovieStart.Size = new Size(254, 31);
@@ -274,7 +274,7 @@
             // dtmMovieEnd
             // 
             dtmMovieEnd.Format = DateTimePickerFormat.Short;
-            dtmMovieEnd.Location = new Point(854, 290);
+            dtmMovieEnd.Location = new Point(831, 457);
             dtmMovieEnd.Margin = new Padding(4, 3, 4, 3);
             dtmMovieEnd.Name = "dtmMovieEnd";
             dtmMovieEnd.Size = new Size(254, 31);
@@ -283,7 +283,7 @@
             // picFilm
             // 
             picFilm.BorderStyle = BorderStyle.FixedSingle;
-            picFilm.Location = new Point(1216, 186);
+            picFilm.Location = new Point(1214, 246);
             picFilm.Margin = new Padding(4, 3, 4, 3);
             picFilm.Name = "picFilm";
             picFilm.Size = new Size(236, 300);
@@ -293,7 +293,7 @@
             // 
             // txtMovieID
             // 
-            txtMovieID.Location = new Point(237, 182);
+            txtMovieID.Location = new Point(260, 250);
             txtMovieID.Margin = new Padding(4, 3, 4, 3);
             txtMovieID.Name = "txtMovieID";
             txtMovieID.Size = new Size(254, 31);
@@ -311,7 +311,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(67, 346);
+            label1.Location = new Point(661, 246);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(112, 32);
@@ -320,7 +320,7 @@
             // 
             // txtGhiChu
             // 
-            txtGhiChu.Location = new Point(237, 349);
+            txtGhiChu.Location = new Point(831, 249);
             txtGhiChu.Margin = new Padding(4, 3, 4, 3);
             txtGhiChu.Multiline = true;
             txtGhiChu.Name = "txtGhiChu";
@@ -331,7 +331,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(67, 396);
+            label2.Location = new Point(661, 296);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(127, 32);
@@ -340,7 +340,7 @@
             // 
             // txtNoiDung
             // 
-            txtNoiDung.Location = new Point(237, 399);
+            txtNoiDung.Location = new Point(831, 299);
             txtNoiDung.Margin = new Padding(4, 3, 4, 3);
             txtNoiDung.Multiline = true;
             txtNoiDung.Name = "txtNoiDung";

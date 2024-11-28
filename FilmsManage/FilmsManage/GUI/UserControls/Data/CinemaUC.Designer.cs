@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel33 = new Panel();
             btnShowCinema = new Button();
             btnUpdateCinema = new Button();
             btnInsertCinema = new Button();
@@ -52,7 +51,7 @@
             lblCinemaID = new Label();
             panel1 = new Panel();
             dtgvCinema = new DataGridView();
-            panel33.SuspendLayout();
+            panel33 = new Panel();
             panel2.SuspendLayout();
             panel6.SuspendLayout();
             panel15.SuspendLayout();
@@ -62,23 +61,12 @@
             panel32.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvCinema).BeginInit();
+            panel33.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel33
-            // 
-            panel33.Controls.Add(btnShowCinema);
-            panel33.Controls.Add(btnUpdateCinema);
-            panel33.Controls.Add(btnInsertCinema);
-            panel33.Dock = DockStyle.Top;
-            panel33.Location = new Point(0, 0);
-            panel33.Margin = new Padding(5, 6, 5, 6);
-            panel33.Name = "panel33";
-            panel33.Size = new Size(1814, 237);
-            panel33.TabIndex = 10;
             // 
             // btnShowCinema
             // 
-            btnShowCinema.Location = new Point(324, 142);
+            btnShowCinema.Location = new Point(300, 255);
             btnShowCinema.Margin = new Padding(5, 6, 5, 6);
             btnShowCinema.Name = "btnShowCinema";
             btnShowCinema.Size = new Size(125, 89);
@@ -88,7 +76,7 @@
             // 
             // btnUpdateCinema
             // 
-            btnUpdateCinema.Location = new Point(173, 136);
+            btnUpdateCinema.Location = new Point(151, 255);
             btnUpdateCinema.Margin = new Padding(5, 6, 5, 6);
             btnUpdateCinema.Name = "btnUpdateCinema";
             btnUpdateCinema.Size = new Size(125, 89);
@@ -99,7 +87,7 @@
             // 
             // btnInsertCinema
             // 
-            btnInsertCinema.Location = new Point(19, 136);
+            btnInsertCinema.Location = new Point(5, 255);
             btnInsertCinema.Margin = new Padding(5, 6, 5, 6);
             btnInsertCinema.Name = "btnInsertCinema";
             btnInsertCinema.Size = new Size(125, 89);
@@ -120,7 +108,7 @@
             panel2.Location = new Point(1259, 0);
             panel2.Margin = new Padding(4, 2, 4, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(555, 761);
+            panel2.Size = new Size(555, 648);
             panel2.TabIndex = 0;
             // 
             // panel6
@@ -292,10 +280,10 @@
             panel1.Controls.Add(dtgvCinema);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 237);
+            panel1.Location = new Point(0, 350);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1814, 761);
+            panel1.Size = new Size(1814, 648);
             panel1.TabIndex = 11;
             // 
             // dtgvCinema
@@ -310,9 +298,21 @@
             dtgvCinema.Name = "dtgvCinema";
             dtgvCinema.ReadOnly = true;
             dtgvCinema.RowHeadersWidth = 51;
-            dtgvCinema.Size = new Size(1259, 761);
+            dtgvCinema.Size = new Size(1259, 648);
             dtgvCinema.TabIndex = 1;
             dtgvCinema.CellContentClick += dtgvCinema_CellContentClick;
+            // 
+            // panel33
+            // 
+            panel33.Controls.Add(btnShowCinema);
+            panel33.Controls.Add(btnUpdateCinema);
+            panel33.Controls.Add(btnInsertCinema);
+            panel33.Dock = DockStyle.Top;
+            panel33.Location = new Point(0, 0);
+            panel33.Margin = new Padding(5, 6, 5, 6);
+            panel33.Name = "panel33";
+            panel33.Size = new Size(1814, 350);
+            panel33.TabIndex = 10;
             // 
             // CinemaUC
             // 
@@ -323,7 +323,6 @@
             Margin = new Padding(4, 2, 4, 2);
             Name = "CinemaUC";
             Size = new Size(1814, 998);
-            panel33.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
@@ -339,6 +338,7 @@
             panel32.PerformLayout();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvCinema).EndInit();
+            panel33.ResumeLayout(false);
             ResumeLayout(false);
         }
 

@@ -31,24 +31,25 @@
             groupBox1 = new GroupBox();
             txtSearchAccount = new TextBox();
             btnSearchAccount = new Button();
-            btnResetPass = new Button();
+            btnReset = new Button();
             btnDeleteAccount = new Button();
             btnUpdateAccount = new Button();
             btnInsertAccount = new Button();
             btnShowAccount = new Button();
             grpAccount = new GroupBox();
-            nudAccountType = new NumericUpDown();
-            cboStaffID_Account = new ComboBox();
+            txtPassWord = new TextBox();
+            lblPassword = new Label();
+            txtAccountName = new TextBox();
+            cbbAccountID = new ComboBox();
             lblUsername = new Label();
-            txtUsername = new TextBox();
-            txtStaffName_Account = new TextBox();
+            txtMaTK = new TextBox();
+            txtUserName = new TextBox();
             lblStaffName_Account = new Label();
             lblAccountType = new Label();
-            lblStaffID_Account = new Label();
+            lblAccountID = new Label();
             dtgvAccount = new DataGridView();
             groupBox1.SuspendLayout();
             grpAccount.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudAccountType).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvAccount).BeginInit();
             SuspendLayout();
             // 
@@ -86,17 +87,19 @@
             btnSearchAccount.Size = new Size(34, 40);
             btnSearchAccount.TabIndex = 19;
             btnSearchAccount.UseVisualStyleBackColor = true;
+            btnSearchAccount.Click += btnSearchAccount_Click;
             // 
-            // btnResetPass
+            // btnReset
             // 
-            btnResetPass.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnResetPass.Location = new Point(1102, 158);
-            btnResetPass.Margin = new Padding(4, 2, 4, 2);
-            btnResetPass.Name = "btnResetPass";
-            btnResetPass.Size = new Size(303, 56);
-            btnResetPass.TabIndex = 32;
-            btnResetPass.Text = "Reset mật khẩu";
-            btnResetPass.UseVisualStyleBackColor = true;
+            btnReset.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnReset.Location = new Point(1102, 158);
+            btnReset.Margin = new Padding(4, 2, 4, 2);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(303, 56);
+            btnReset.TabIndex = 32;
+            btnReset.Text = "Reset";
+            btnReset.UseVisualStyleBackColor = true;
+            btnReset.Click += btnReset_Click;
             // 
             // btnDeleteAccount
             // 
@@ -110,6 +113,7 @@
             btnDeleteAccount.TabIndex = 33;
             btnDeleteAccount.Text = "Xóa";
             btnDeleteAccount.UseVisualStyleBackColor = false;
+            btnDeleteAccount.Click += btnDeleteAccount_Click;
             // 
             // btnUpdateAccount
             // 
@@ -123,6 +127,7 @@
             btnUpdateAccount.TabIndex = 34;
             btnUpdateAccount.Text = "Sửa";
             btnUpdateAccount.UseVisualStyleBackColor = false;
+            btnUpdateAccount.Click += btnUpdateAccount_Click;
             // 
             // btnInsertAccount
             // 
@@ -136,6 +141,7 @@
             btnInsertAccount.TabIndex = 35;
             btnInsertAccount.Text = "Thêm";
             btnInsertAccount.UseVisualStyleBackColor = false;
+            btnInsertAccount.Click += btnInsertAccount_Click;
             // 
             // btnShowAccount
             // 
@@ -153,14 +159,16 @@
             // grpAccount
             // 
             grpAccount.BackColor = Color.Transparent;
-            grpAccount.Controls.Add(nudAccountType);
-            grpAccount.Controls.Add(cboStaffID_Account);
+            grpAccount.Controls.Add(txtPassWord);
+            grpAccount.Controls.Add(lblPassword);
+            grpAccount.Controls.Add(txtAccountName);
+            grpAccount.Controls.Add(cbbAccountID);
             grpAccount.Controls.Add(lblUsername);
-            grpAccount.Controls.Add(txtUsername);
-            grpAccount.Controls.Add(txtStaffName_Account);
+            grpAccount.Controls.Add(txtMaTK);
+            grpAccount.Controls.Add(txtUserName);
             grpAccount.Controls.Add(lblStaffName_Account);
             grpAccount.Controls.Add(lblAccountType);
-            grpAccount.Controls.Add(lblStaffID_Account);
+            grpAccount.Controls.Add(lblAccountID);
             grpAccount.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             grpAccount.Location = new Point(24, 27);
             grpAccount.Margin = new Padding(4, 2, 4, 2);
@@ -171,28 +179,43 @@
             grpAccount.TabStop = false;
             grpAccount.Text = "Thông tin tài khoản";
             // 
-            // nudAccountType
+            // txtPassWord
             // 
-            nudAccountType.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            nudAccountType.Location = new Point(671, 55);
-            nudAccountType.Margin = new Padding(4, 2, 4, 2);
-            nudAccountType.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
-            nudAccountType.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudAccountType.Name = "nudAccountType";
-            nudAccountType.Size = new Size(271, 35);
-            nudAccountType.TabIndex = 6;
-            nudAccountType.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            txtPassWord.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            txtPassWord.Location = new Point(731, 142);
+            txtPassWord.Name = "txtPassWord";
+            txtPassWord.Size = new Size(253, 35);
+            txtPassWord.TabIndex = 8;
             // 
-            // cboStaffID_Account
+            // lblPassword
             // 
-            cboStaffID_Account.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboStaffID_Account.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cboStaffID_Account.FormattingEnabled = true;
-            cboStaffID_Account.Location = new Point(171, 128);
-            cboStaffID_Account.Margin = new Padding(4, 2, 4, 2);
-            cboStaffID_Account.Name = "cboStaffID_Account";
-            cboStaffID_Account.Size = new Size(279, 35);
-            cboStaffID_Account.TabIndex = 5;
+            lblPassword.AutoSize = true;
+            lblPassword.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblPassword.Location = new Point(547, 146);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(126, 26);
+            lblPassword.TabIndex = 7;
+            lblPassword.Text = "Mật khẩu :";
+            // 
+            // txtAccountName
+            // 
+            txtAccountName.Location = new Point(731, 21);
+            txtAccountName.Name = "txtAccountName";
+            txtAccountName.ReadOnly = true;
+            txtAccountName.Size = new Size(253, 35);
+            txtAccountName.TabIndex = 6;
+            // 
+            // cbbAccountID
+            // 
+            cbbAccountID.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbbAccountID.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbbAccountID.FormattingEnabled = true;
+            cbbAccountID.Location = new Point(207, 128);
+            cbbAccountID.Margin = new Padding(4, 2, 4, 2);
+            cbbAccountID.Name = "cbbAccountID";
+            cbbAccountID.Size = new Size(243, 35);
+            cbbAccountID.TabIndex = 5;
+            cbbAccountID.SelectedIndexChanged += cbbAccountID_SelectedIndexChanged;
             // 
             // lblUsername
             // 
@@ -201,61 +224,61 @@
             lblUsername.Location = new Point(31, 60);
             lblUsername.Margin = new Padding(4, 0, 4, 0);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(123, 26);
+            lblUsername.Size = new Size(157, 26);
             lblUsername.TabIndex = 4;
-            lblUsername.Text = "Username:";
+            lblUsername.Text = "Mã tài khoản:";
             // 
-            // txtUsername
+            // txtMaTK
             // 
-            txtUsername.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUsername.Location = new Point(171, 56);
-            txtUsername.Margin = new Padding(4, 2, 4, 2);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(279, 35);
-            txtUsername.TabIndex = 2;
+            txtMaTK.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtMaTK.Location = new Point(207, 56);
+            txtMaTK.Margin = new Padding(4, 2, 4, 2);
+            txtMaTK.Name = "txtMaTK";
+            txtMaTK.ReadOnly = true;
+            txtMaTK.Size = new Size(243, 35);
+            txtMaTK.TabIndex = 2;
             // 
-            // txtStaffName_Account
+            // txtUserName
             // 
-            txtStaffName_Account.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStaffName_Account.Location = new Point(671, 126);
-            txtStaffName_Account.Margin = new Padding(4, 2, 4, 2);
-            txtStaffName_Account.Name = "txtStaffName_Account";
-            txtStaffName_Account.ReadOnly = true;
-            txtStaffName_Account.Size = new Size(270, 35);
-            txtStaffName_Account.TabIndex = 2;
+            txtUserName.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUserName.Location = new Point(731, 83);
+            txtUserName.Margin = new Padding(4, 2, 4, 2);
+            txtUserName.Name = "txtUserName";
+            txtUserName.Size = new Size(256, 35);
+            txtUserName.TabIndex = 2;
             // 
             // lblStaffName_Account
             // 
             lblStaffName_Account.AutoSize = true;
             lblStaffName_Account.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffName_Account.Location = new Point(553, 130);
+            lblStaffName_Account.Location = new Point(547, 92);
             lblStaffName_Account.Margin = new Padding(4, 0, 4, 0);
             lblStaffName_Account.Name = "lblStaffName_Account";
-            lblStaffName_Account.Size = new Size(97, 26);
+            lblStaffName_Account.Size = new Size(176, 26);
             lblStaffName_Account.TabIndex = 4;
-            lblStaffName_Account.Text = "Tên NV:";
+            lblStaffName_Account.Text = "Tên Đăng nhập:";
             // 
             // lblAccountType
             // 
             lblAccountType.AutoSize = true;
             lblAccountType.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAccountType.Location = new Point(553, 59);
+            lblAccountType.Location = new Point(547, 30);
             lblAccountType.Margin = new Padding(4, 0, 4, 0);
             lblAccountType.Name = "lblAccountType";
-            lblAccountType.Size = new Size(107, 26);
+            lblAccountType.Size = new Size(103, 26);
             lblAccountType.TabIndex = 4;
-            lblAccountType.Text = "Loại TK:";
+            lblAccountType.Text = "Tên KH:";
             // 
-            // lblStaffID_Account
+            // lblAccountID
             // 
-            lblStaffID_Account.AutoSize = true;
-            lblStaffID_Account.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffID_Account.Location = new Point(31, 131);
-            lblStaffID_Account.Margin = new Padding(4, 0, 4, 0);
-            lblStaffID_Account.Name = "lblStaffID_Account";
-            lblStaffID_Account.Size = new Size(93, 26);
-            lblStaffID_Account.TabIndex = 4;
-            lblStaffID_Account.Text = "Mã NV:";
+            lblAccountID.AutoSize = true;
+            lblAccountID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAccountID.Location = new Point(31, 131);
+            lblAccountID.Margin = new Padding(4, 0, 4, 0);
+            lblAccountID.Name = "lblAccountID";
+            lblAccountID.Size = new Size(99, 26);
+            lblAccountID.TabIndex = 4;
+            lblAccountID.Text = "Mã KH:";
             // 
             // dtgvAccount
             // 
@@ -276,7 +299,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(groupBox1);
-            Controls.Add(btnResetPass);
+            Controls.Add(btnReset);
             Controls.Add(btnDeleteAccount);
             Controls.Add(btnUpdateAccount);
             Controls.Add(btnInsertAccount);
@@ -289,7 +312,6 @@
             groupBox1.PerformLayout();
             grpAccount.ResumeLayout(false);
             grpAccount.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudAccountType).EndInit();
             ((System.ComponentModel.ISupportInitialize)dtgvAccount).EndInit();
             ResumeLayout(false);
         }
@@ -299,20 +321,23 @@
         private GroupBox groupBox1;
         private TextBox txtSearchAccount;
         private Button btnSearchAccount;
-        private Button btnResetPass;
+        private Button btnReset;
         private Button btnDeleteAccount;
         private Button btnUpdateAccount;
         private Button btnInsertAccount;
         private Button btnShowAccount;
         private GroupBox grpAccount;
         private NumericUpDown nudAccountType;
-        private ComboBox cboStaffID_Account;
+        private ComboBox cbbAccountID;
         private Label lblUsername;
-        private TextBox txtUsername;
-        private TextBox txtStaffName_Account;
+        private TextBox txtMaTK;
+        private TextBox txtUserName;
         private Label lblStaffName_Account;
         private Label lblAccountType;
-        private Label lblStaffID_Account;
+        private Label lblAccountID;
         private DataGridView dtgvAccount;
+        private TextBox txtAccountName;
+        private TextBox txtPassWord;
+        private Label lblPassword;
     }
 }
