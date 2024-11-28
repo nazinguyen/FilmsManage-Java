@@ -28,43 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel61 = new Panel();
             btnShowAllTicketsByShowTime = new Button();
             btnShowAllTicketsBoughtByShowTime = new Button();
             btnAddTicketsByShowTime = new Button();
             btnAllListShowTimes = new Button();
             btnShowShowTimeNotCreateTickets = new Button();
             btnDeleteTicketsByShowTime = new Button();
-            dtgvTicket = new DataGridView();
-            panel1 = new Panel();
             lsvAllListShowTimes = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
-            panel61.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dtgvTicket).BeginInit();
-            panel1.SuspendLayout();
+            dtgvVe = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dtgvVe).BeginInit();
             SuspendLayout();
-            // 
-            // panel61
-            // 
-            panel61.Controls.Add(btnShowAllTicketsByShowTime);
-            panel61.Controls.Add(btnShowAllTicketsBoughtByShowTime);
-            panel61.Controls.Add(btnAddTicketsByShowTime);
-            panel61.Controls.Add(btnAllListShowTimes);
-            panel61.Controls.Add(btnShowShowTimeNotCreateTickets);
-            panel61.Controls.Add(btnDeleteTicketsByShowTime);
-            panel61.Dock = DockStyle.Top;
-            panel61.Location = new Point(0, 0);
-            panel61.Margin = new Padding(5, 6, 5, 6);
-            panel61.Name = "panel61";
-            panel61.Size = new Size(1935, 100);
-            panel61.TabIndex = 10;
             // 
             // btnShowAllTicketsByShowTime
             // 
-            btnShowAllTicketsByShowTime.Location = new Point(612, 6);
+            btnShowAllTicketsByShowTime.Location = new Point(653, 175);
             btnShowAllTicketsByShowTime.Margin = new Padding(5, 6, 5, 6);
             btnShowAllTicketsByShowTime.Name = "btnShowAllTicketsByShowTime";
             btnShowAllTicketsByShowTime.Size = new Size(192, 89);
@@ -74,7 +55,7 @@
             // 
             // btnShowAllTicketsBoughtByShowTime
             // 
-            btnShowAllTicketsBoughtByShowTime.Location = new Point(410, 6);
+            btnShowAllTicketsBoughtByShowTime.Location = new Point(435, 175);
             btnShowAllTicketsBoughtByShowTime.Margin = new Padding(5, 6, 5, 6);
             btnShowAllTicketsBoughtByShowTime.Name = "btnShowAllTicketsBoughtByShowTime";
             btnShowAllTicketsBoughtByShowTime.Size = new Size(192, 89);
@@ -84,17 +65,18 @@
             // 
             // btnAddTicketsByShowTime
             // 
-            btnAddTicketsByShowTime.Location = new Point(5, 6);
+            btnAddTicketsByShowTime.Location = new Point(6, 175);
             btnAddTicketsByShowTime.Margin = new Padding(5, 6, 5, 6);
             btnAddTicketsByShowTime.Name = "btnAddTicketsByShowTime";
             btnAddTicketsByShowTime.Size = new Size(192, 89);
             btnAddTicketsByShowTime.TabIndex = 0;
             btnAddTicketsByShowTime.Text = "Tự Động Thêm Vé Theo Lịch Chiếu\r\n";
             btnAddTicketsByShowTime.UseVisualStyleBackColor = true;
+            btnAddTicketsByShowTime.Click += btnAddTicketsByShowTime_Click;
             // 
             // btnAllListShowTimes
             // 
-            btnAllListShowTimes.Location = new Point(1018, 6);
+            btnAllListShowTimes.Location = new Point(1077, 175);
             btnAllListShowTimes.Margin = new Padding(5, 6, 5, 6);
             btnAllListShowTimes.Name = "btnAllListShowTimes";
             btnAllListShowTimes.Size = new Size(192, 89);
@@ -104,7 +86,7 @@
             // 
             // btnShowShowTimeNotCreateTickets
             // 
-            btnShowShowTimeNotCreateTickets.Location = new Point(815, 6);
+            btnShowShowTimeNotCreateTickets.Location = new Point(866, 175);
             btnShowShowTimeNotCreateTickets.Margin = new Padding(5, 6, 5, 6);
             btnShowShowTimeNotCreateTickets.Name = "btnShowShowTimeNotCreateTickets";
             btnShowShowTimeNotCreateTickets.Size = new Size(192, 89);
@@ -114,7 +96,7 @@
             // 
             // btnDeleteTicketsByShowTime
             // 
-            btnDeleteTicketsByShowTime.Location = new Point(208, 6);
+            btnDeleteTicketsByShowTime.Location = new Point(220, 175);
             btnDeleteTicketsByShowTime.Margin = new Padding(5, 6, 5, 6);
             btnDeleteTicketsByShowTime.Name = "btnDeleteTicketsByShowTime";
             btnDeleteTicketsByShowTime.Size = new Size(192, 89);
@@ -122,76 +104,66 @@
             btnDeleteTicketsByShowTime.Text = "Xóa Vé Theo Lịch Chiếu";
             btnDeleteTicketsByShowTime.UseVisualStyleBackColor = true;
             // 
-            // dtgvTicket
-            // 
-            dtgvTicket.AllowUserToAddRows = false;
-            dtgvTicket.AllowUserToDeleteRows = false;
-            dtgvTicket.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dtgvTicket.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvTicket.Dock = DockStyle.Fill;
-            dtgvTicket.Location = new Point(0, 100);
-            dtgvTicket.Margin = new Padding(5, 6, 5, 6);
-            dtgvTicket.Name = "dtgvTicket";
-            dtgvTicket.RowHeadersWidth = 62;
-            dtgvTicket.Size = new Size(1083, 602);
-            dtgvTicket.TabIndex = 12;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(lsvAllListShowTimes);
-            panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(1083, 100);
-            panel1.Margin = new Padding(4, 5, 4, 5);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(852, 602);
-            panel1.TabIndex = 11;
-            // 
             // lsvAllListShowTimes
             // 
             lsvAllListShowTimes.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
             lsvAllListShowTimes.FullRowSelect = true;
             lsvAllListShowTimes.GridLines = true;
-            lsvAllListShowTimes.Location = new Point(9, 11);
+            lsvAllListShowTimes.Location = new Point(0, 304);
             lsvAllListShowTimes.Margin = new Padding(4, 5, 4, 5);
             lsvAllListShowTimes.Name = "lsvAllListShowTimes";
-            lsvAllListShowTimes.Size = new Size(828, 879);
+            lsvAllListShowTimes.Size = new Size(828, 763);
             lsvAllListShowTimes.TabIndex = 9;
             lsvAllListShowTimes.UseCompatibleStateImageBehavior = false;
             lsvAllListShowTimes.View = View.Details;
+            lsvAllListShowTimes.SelectedIndexChanged += lsvAllListShowTimes_SelectedIndexChanged;
+            lsvAllListShowTimes.MouseClick += lsvAllListShowTimes_MouseClick;
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "Tên Phòng Chiếu";
-            columnHeader1.Width = 120;
+            columnHeader1.Text = "Tên phòng chiếu";
+            columnHeader1.Width = 150;
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Tên Phim";
+            columnHeader2.Text = "Tên phim";
             columnHeader2.Width = 150;
             // 
             // columnHeader3
             // 
-            columnHeader3.Text = "Thời Gian";
-            columnHeader3.Width = 150;
+            columnHeader3.Text = "Thời gian";
+            columnHeader3.Width = 400;
             // 
             // columnHeader4
             // 
-            columnHeader4.Text = "Trạng Thái";
-            columnHeader4.Width = 100;
+            columnHeader4.Text = "Trạng thái";
+            columnHeader4.Width = 150;
+            // 
+            // dtgvVe
+            // 
+            dtgvVe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvVe.Location = new Point(832, 304);
+            dtgvVe.Name = "dtgvVe";
+            dtgvVe.RowHeadersWidth = 62;
+            dtgvVe.Size = new Size(831, 760);
+            dtgvVe.TabIndex = 10;
             // 
             // VeUC
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(dtgvTicket);
-            Controls.Add(panel1);
-            Controls.Add(panel61);
+            Controls.Add(dtgvVe);
+            Controls.Add(btnAllListShowTimes);
+            Controls.Add(btnShowAllTicketsByShowTime);
+            Controls.Add(btnShowShowTimeNotCreateTickets);
+            Controls.Add(lsvAllListShowTimes);
+            Controls.Add(btnShowAllTicketsBoughtByShowTime);
+            Controls.Add(btnAddTicketsByShowTime);
+            Controls.Add(btnDeleteTicketsByShowTime);
             Margin = new Padding(4, 5, 4, 5);
             Name = "VeUC";
-            Size = new Size(1935, 702);
-            panel61.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dtgvTicket).EndInit();
-            panel1.ResumeLayout(false);
+            Size = new Size(1663, 1067);
+            ((System.ComponentModel.ISupportInitialize)dtgvVe).EndInit();
             ResumeLayout(false);
         }
 
@@ -207,6 +179,8 @@
         private DataGridView dtgvTicket;
         private Panel panel1;
         private ListView lsvAllListShowTimes;
+        private DataGridView dataGridView1;
+        private DataGridView dtgvVe;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
