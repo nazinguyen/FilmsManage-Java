@@ -1,4 +1,5 @@
 ﻿using FilmsAPI.Models;
+using FilmsManage.GUI.DataUserControl;
 using FilmsManage.Services;
 using Microsoft.VisualBasic;
 using System;
@@ -17,11 +18,13 @@ namespace FilmsManage.GUI.UserControls.Data
 {
     public partial class CinemaUC : UserControl
     {
+        private DataUC dataUC;
         private readonly DangPhimSV _PhongChieu;
-        public CinemaUC()
+        public CinemaUC(DataUC data)
         {
-            InitializeComponent();
             _PhongChieu = new DangPhimSV("https://localhost:7085");
+            InitializeComponent();
+            dataUC = data;
             LoadData();
             LoadComboBoxData();
             dtgvCinema.Columns.Add(new DataGridViewTextBoxColumn
@@ -135,123 +138,25 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnInsertCinema_Click(object sender, EventArgs e)
         {
-            string tenPhong = txtCinemaName.Text;
-            string manHinh = cboCinemaScreenType.Text;
-
-            if (string.IsNullOrWhiteSpace(tenPhong))
+            var themSua = dataUC.pnData.Controls.OfType<ChucNang_PhongChieu.ThemSua>().FirstOrDefault();
+            if (themSua != null)
             {
-                MessageBox.Show("Vui lòng nhập tên phòng.");
-                return;
+                dataUC.pnData.Controls.Remove(themSua);
+                themSua.Dispose();
             }
 
-            if (string.IsNullOrWhiteSpace(manHinh))
+            Debug.WriteLine("ok");
+
+            // Ẩn tất cả các control khác
+            foreach (Control control in dataUC.pnData.Controls)
             {
-                MessageBox.Show("Vui lòng nhập tên màn hình.");
-                return;
+                control.Visible = false;
             }
 
-
-
-            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
-            {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang))
-            {
-                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            var phongChieu = new PhongChieu
-            {
-                TenPhongChieu = tenPhong,
-                SoGhe = soGhe,
-                SoGheMotHang = gheMoiHang,
-                MaManHinh = Convert.ToInt32(cboCinemaScreenType.SelectedValue),
-            };
-
-            try
-            {
-                string endpoint = "/api/PhongChieu";
-                var response = await _PhongChieu.PostAsync<Models.ApiRespone>(endpoint, phongChieu);
-
-                //them ghe tu phong chieu
-                var loaiGheList = await _PhongChieu.GetAsync<List<LoaiGhe>>("/api/LoaiGhe");
-                if (loaiGheList == null || !loaiGheList.Any())
-                {
-                    MessageBox.Show("Dữ liệu loại ghế không có!");
-                    return;
-                }
-
-                int loaiGheVIP = 0;
-                int loaiGheThuong = 0;
-                foreach (var item in loaiGheList)
-                {
-                    if (item.TenLoaiGhe == "VIP")
-                    {
-                        loaiGheVIP = item.MaLoai;
-                        Debug.WriteLine(loaiGheVIP);
-                    }
-                    else
-                    {
-                        loaiGheThuong = item.MaLoai;
-                        Debug.WriteLine(loaiGheThuong);
-                    }
-                }
-
-                var listGhe = new List<Ghe>();
-
-                // Tạo ghế
-                var getPhong = await _PhongChieu.GetAsync<List<PhongChieu>>("/api/PhongChieu");
-                var phong = new PhongChieu();
-                int idPhong = 0;
-                foreach (var item in getPhong)
-                {
-                    if (item.TenPhongChieu == tenPhong)
-                    {
-                        idPhong = item.MaPhongChieu;
-                        phong = item;
-                        Debug.WriteLine(idPhong);
-                        break;
-                    }
-                }
-                for (int i = 1; i <= phong.SoHangGhe; i++)
-                {
-                    for (int j = 1; j <= phong.SoGheMotHang; j++)
-                    {
-                        Debug.WriteLine("ok");
-
-                        Ghe ghe = new Ghe
-                        {
-                            TrangThai = false,
-                            MaPhong = idPhong,
-                            MaLoaiGhe = (i >= 4) ? loaiGheVIP : loaiGheThuong // Ghế VIP bắt đầu từ hàng số 4, ghế Thường cho các hàng còn lại
-                        };
-                        Debug.WriteLine("hang " + i);
-                        var addGhe = await _PhongChieu.PostAsync<Models.ApiRespone>("/api/Ghe", ghe);
-                        listGhe.Add(ghe);
-
-                        if (listGhe.Count >= phong.SoGhe)
-                        {
-                            break;
-                        }
-                    }
-
-                    if (listGhe.Count >= phong.SoGhe)
-                    {
-                        break;
-                    }
-                }
-
-                MessageBox.Show(response.Message);
-                await LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
-            }
+            // Khởi tạo control Them_Sua cho "Sửa"
+            themSua = new ChucNang_PhongChieu.ThemSua("Them", new PhongChieu(), dataUC);
+            themSua.Dock = DockStyle.Fill;
+            dataUC.pnData.Controls.Add(themSua);
         }
 
         private async void btnUpdateCinema_Click(object sender, EventArgs e)
@@ -313,11 +218,6 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
-        }
-
-        private void dtgvCinema_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

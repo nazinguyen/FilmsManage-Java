@@ -51,7 +51,7 @@ namespace FilmsManage.GUI.DataUserControl
             if (!(pnData.Controls.OfType<LichChieuUC>().Any()))
             {
                 pnData.Controls.Clear();
-                CinemaUC phongChieu = new CinemaUC();
+                CinemaUC phongChieu = new CinemaUC(this);
                 phongChieu.Dock = DockStyle.Fill;
                 pnData.Controls.Add(phongChieu);
             }
