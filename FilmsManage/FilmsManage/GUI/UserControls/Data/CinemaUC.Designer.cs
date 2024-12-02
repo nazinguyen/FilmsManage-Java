@@ -300,7 +300,6 @@
             dtgvCinema.RowHeadersWidth = 51;
             dtgvCinema.Size = new Size(1259, 648);
             dtgvCinema.TabIndex = 1;
-            dtgvCinema.CellContentClick += dtgvCinema_CellContentClick;
             // 
             // panel33
             // 
