@@ -66,7 +66,7 @@ namespace FilmsManage.GUI.UserControls
             txtTenQuyen.Enabled = false;
             //Thêm sự kiện CellClick
             dtgvStaff.CellClick += DtgvFormat_CellClick;
-            cbbMaQuyen.SelectedIndexChanged += CbbMaQuyen_SelectedIndexChanged; 
+            cbbMaQuyen.SelectedIndexChanged += CbbMaQuyen_SelectedIndexChanged;
         }
 
         private void CbbMaQuyen_SelectedIndexChanged(object? sender, EventArgs e)
@@ -320,7 +320,7 @@ namespace FilmsManage.GUI.UserControls
                     d.Email,
                     d.MatKhau,
                     d.MaQuyen,
-                    TenQuyen=d.MaQuyenNavigation?.TenQuyen
+                    TenQuyen = d.MaQuyenNavigation?.TenQuyen
                 }).ToList();
 
                 // Cập nhật DataGridView
@@ -338,11 +338,16 @@ namespace FilmsManage.GUI.UserControls
             //Lấy giá trị MaQuyen từ combobox
             var selectedValue = cbbMaQuyen.SelectedItem.ToString();
             //Hiển thị Tên quyền tương ứng lên textbox
-            var selectedRole=(Quyen)cbbMaQuyen.SelectedItem;
-            if(selectedRole != null)
+            var selectedRole = (Quyen)cbbMaQuyen.SelectedItem;
+            if (selectedRole != null)
             {
                 txtTenQuyen.Text = selectedRole.TenQuyen;
             }
+
+        }
+
+        private void btnShowStaff_Click(object sender, EventArgs e)
+        {
 
         }
     }
