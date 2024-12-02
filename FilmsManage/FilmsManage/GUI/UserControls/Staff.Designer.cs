@@ -44,13 +44,13 @@
             txtStaffPhone = new TextBox();
             lblStaffEmail = new Label();
             grpStaff = new GroupBox();
+            txtTenQuyen = new TextBox();
             lblStaffRole = new Label();
             cbbMaQuyen = new ComboBox();
             lblStaffName = new Label();
             btnShowStaff = new Button();
             dtgvStaff = new DataGridView();
             lblTimKiem = new Label();
-            txtTenQuyen = new TextBox();
             grpStaff.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvStaff).BeginInit();
             SuspendLayout();
@@ -241,6 +241,13 @@
             grpStaff.TabStop = false;
             grpStaff.Text = "Thông tin nhân viên";
             // 
+            // txtTenQuyen
+            // 
+            txtTenQuyen.Location = new Point(1080, 178);
+            txtTenQuyen.Name = "txtTenQuyen";
+            txtTenQuyen.Size = new Size(234, 35);
+            txtTenQuyen.TabIndex = 7;
+            // 
             // lblStaffRole
             // 
             lblStaffRole.AutoSize = true;
@@ -283,6 +290,7 @@
             btnShowStaff.TabIndex = 17;
             btnShowStaff.Text = "Xem";
             btnShowStaff.UseVisualStyleBackColor = false;
+            btnShowStaff.Click += btnShowStaff_Click;
             // 
             // dtgvStaff
             // 
@@ -307,13 +315,6 @@
             lblTimKiem.Size = new Size(136, 27);
             lblTimKiem.TabIndex = 24;
             lblTimKiem.Text = "Tìm theo tên";
-            // 
-            // txtTenQuyen
-            // 
-            txtTenQuyen.Location = new Point(1080, 178);
-            txtTenQuyen.Name = "txtTenQuyen";
-            txtTenQuyen.Size = new Size(234, 35);
-            txtTenQuyen.TabIndex = 7;
             // 
             // Staff
             // 
