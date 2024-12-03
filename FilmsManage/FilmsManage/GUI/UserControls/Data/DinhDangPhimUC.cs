@@ -208,5 +208,51 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Tạo workbook mới
+                using (var workbook = new ClosedXML.Excel.XLWorkbook())
+                {
+                    // Tạo một worksheet
+                    var worksheet = workbook.Worksheets.Add("DinhDangPhim");
+
+                    // Ghi tiêu đề cột từ DataGridView vào file Excel
+                    for (int col = 0; col < dtgvFormat.Columns.Count; col++)
+                    {
+                        worksheet.Cell(1, col + 1).Value = dtgvFormat.Columns[col].HeaderText;
+                    }
+
+                    // Ghi dữ liệu từ DataGridView vào file Excel
+                    for (int row = 0; row < dtgvFormat.Rows.Count; row++)
+                    {
+                        for (int col = 0; col < dtgvFormat.Columns.Count; col++)
+                        {
+                            worksheet.Cell(row + 2, col + 1).Value = dtgvFormat.Rows[row].Cells[col].Value?.ToString();
+                        }
+                    }
+
+                    // Lưu file Excel
+                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                    {
+                        saveFileDialog.Filter = "Excel Files|*.xlsx";
+                        saveFileDialog.Title = "Save an Excel File";
+                        saveFileDialog.FileName = "DinhDangPhim.xlsx";
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            workbook.SaveAs(saveFileDialog.FileName);
+                            MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra khi xuất file Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

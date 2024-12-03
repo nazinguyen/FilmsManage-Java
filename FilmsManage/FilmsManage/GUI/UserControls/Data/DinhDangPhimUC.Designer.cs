@@ -43,6 +43,7 @@
             txtTenDangPhim = new TextBox();
             lblFormatID = new Label();
             txtFormatID = new TextBox();
+            btnExport = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvFormat).BeginInit();
@@ -51,6 +52,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnExport);
             panel1.Controls.Add(btnShowFormat);
             panel1.Controls.Add(btnUpdateFormat);
             panel1.Controls.Add(btnInsertFormat);
@@ -58,12 +60,12 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1548, 80);
+            panel1.Size = new Size(1548, 186);
             panel1.TabIndex = 0;
             // 
             // btnShowFormat
             // 
-            btnShowFormat.Location = new Point(284, 5);
+            btnShowFormat.Location = new Point(275, 110);
             btnShowFormat.Margin = new Padding(4, 5, 4, 5);
             btnShowFormat.Name = "btnShowFormat";
             btnShowFormat.Size = new Size(100, 71);
@@ -73,7 +75,7 @@
             // 
             // btnUpdateFormat
             // 
-            btnUpdateFormat.Location = new Point(142, 5);
+            btnUpdateFormat.Location = new Point(135, 110);
             btnUpdateFormat.Margin = new Padding(4, 5, 4, 5);
             btnUpdateFormat.Name = "btnUpdateFormat";
             btnUpdateFormat.Size = new Size(100, 71);
@@ -84,7 +86,7 @@
             // 
             // btnInsertFormat
             // 
-            btnInsertFormat.Location = new Point(4, 5);
+            btnInsertFormat.Location = new Point(0, 110);
             btnInsertFormat.Margin = new Padding(4, 5, 4, 5);
             btnInsertFormat.Name = "btnInsertFormat";
             btnInsertFormat.Size = new Size(100, 71);
@@ -98,10 +100,10 @@
             panel2.Controls.Add(dtgvFormat);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 80);
+            panel2.Location = new Point(0, 186);
             panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1548, 718);
+            panel2.Size = new Size(1548, 612);
             panel2.TabIndex = 1;
             // 
             // dtgvFormat
@@ -116,7 +118,7 @@
             dtgvFormat.Name = "dtgvFormat";
             dtgvFormat.ReadOnly = true;
             dtgvFormat.RowHeadersWidth = 51;
-            dtgvFormat.Size = new Size(1011, 718);
+            dtgvFormat.Size = new Size(1011, 612);
             dtgvFormat.TabIndex = 9;
             // 
             // panel3
@@ -133,14 +135,14 @@
             panel3.Location = new Point(1011, 0);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(537, 718);
+            panel3.Size = new Size(537, 612);
             panel3.TabIndex = 0;
             // 
             // cbMaMH
             // 
             cbMaMH.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMaMH.FormattingEnabled = true;
-            cbMaMH.Location = new Point(170, 131);
+            cbMaMH.Location = new Point(175, 119);
             cbMaMH.Margin = new Padding(3, 2, 3, 2);
             cbMaMH.Name = "cbMaMH";
             cbMaMH.Size = new Size(214, 28);
@@ -194,7 +196,7 @@
             // 
             lblFormatID.AutoSize = true;
             lblFormatID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblFormatID.Location = new Point(12, 21);
+            lblFormatID.Location = new Point(16, 21);
             lblFormatID.Name = "lblFormatID";
             lblFormatID.Size = new Size(130, 23);
             lblFormatID.TabIndex = 19;
@@ -202,11 +204,22 @@
             // 
             // txtFormatID
             // 
-            txtFormatID.Location = new Point(170, 20);
+            txtFormatID.Location = new Point(175, 19);
             txtFormatID.Margin = new Padding(3, 4, 3, 4);
             txtFormatID.Name = "txtFormatID";
             txtFormatID.Size = new Size(249, 27);
             txtFormatID.TabIndex = 14;
+            // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(411, 110);
+            btnExport.Margin = new Padding(4, 5, 4, 5);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 71);
+            btnExport.TabIndex = 12;
+            btnExport.Text = "Xuất File ";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
             // 
             // DinhDangPhimUC
             // 
@@ -243,5 +256,6 @@
         private Label label3;
         private TextBox txtTenMh;
         private ComboBox cbMaMH;
+        private Button btnExport;
     }
 }

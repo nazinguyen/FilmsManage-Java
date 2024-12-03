@@ -48,6 +48,7 @@
             lblAccountType = new Label();
             lblAccountID = new Label();
             dtgvAccount = new DataGridView();
+            btnExport = new Button();
             groupBox1.SuspendLayout();
             grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvAccount).BeginInit();
@@ -58,11 +59,11 @@
             groupBox1.Controls.Add(txtSearchAccount);
             groupBox1.Controls.Add(btnSearchAccount);
             groupBox1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            groupBox1.Location = new Point(1108, 44);
-            groupBox1.Margin = new Padding(4, 2, 4, 2);
+            groupBox1.Location = new Point(886, 35);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4, 2, 4, 2);
-            groupBox1.Size = new Size(296, 91);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(237, 73);
             groupBox1.TabIndex = 36;
             groupBox1.TabStop = false;
             groupBox1.Text = "Tìm theo tên";
@@ -71,20 +72,20 @@
             // txtSearchAccount
             // 
             txtSearchAccount.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearchAccount.Location = new Point(36, 39);
-            txtSearchAccount.Margin = new Padding(4, 2, 4, 2);
+            txtSearchAccount.Location = new Point(29, 31);
+            txtSearchAccount.Margin = new Padding(3, 2, 3, 2);
             txtSearchAccount.Name = "txtSearchAccount";
-            txtSearchAccount.Size = new Size(164, 35);
+            txtSearchAccount.Size = new Size(132, 30);
             txtSearchAccount.TabIndex = 18;
             // 
             // btnSearchAccount
             // 
             btnSearchAccount.BackgroundImageLayout = ImageLayout.Stretch;
             btnSearchAccount.Image = Properties.Resources.search_icon;
-            btnSearchAccount.Location = new Point(210, 39);
-            btnSearchAccount.Margin = new Padding(4, 2, 4, 2);
+            btnSearchAccount.Location = new Point(168, 31);
+            btnSearchAccount.Margin = new Padding(3, 2, 3, 2);
             btnSearchAccount.Name = "btnSearchAccount";
-            btnSearchAccount.Size = new Size(34, 40);
+            btnSearchAccount.Size = new Size(27, 32);
             btnSearchAccount.TabIndex = 19;
             btnSearchAccount.UseVisualStyleBackColor = true;
             btnSearchAccount.Click += btnSearchAccount_Click;
@@ -92,10 +93,10 @@
             // btnReset
             // 
             btnReset.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnReset.Location = new Point(1102, 158);
-            btnReset.Margin = new Padding(4, 2, 4, 2);
+            btnReset.Location = new Point(882, 126);
+            btnReset.Margin = new Padding(3, 2, 3, 2);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(303, 56);
+            btnReset.Size = new Size(242, 45);
             btnReset.TabIndex = 32;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
@@ -106,10 +107,10 @@
             btnDeleteAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnDeleteAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnDeleteAccount.ForeColor = Color.White;
-            btnDeleteAccount.Location = new Point(16, 621);
-            btnDeleteAccount.Margin = new Padding(4, 2, 4, 2);
+            btnDeleteAccount.Location = new Point(13, 439);
+            btnDeleteAccount.Margin = new Padding(3, 2, 3, 2);
             btnDeleteAccount.Name = "btnDeleteAccount";
-            btnDeleteAccount.Size = new Size(261, 71);
+            btnDeleteAccount.Size = new Size(209, 57);
             btnDeleteAccount.TabIndex = 33;
             btnDeleteAccount.Text = "Xóa";
             btnDeleteAccount.UseVisualStyleBackColor = false;
@@ -120,10 +121,10 @@
             btnUpdateAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnUpdateAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnUpdateAccount.ForeColor = Color.White;
-            btnUpdateAccount.Location = new Point(16, 505);
-            btnUpdateAccount.Margin = new Padding(4, 2, 4, 2);
+            btnUpdateAccount.Location = new Point(13, 360);
+            btnUpdateAccount.Margin = new Padding(3, 2, 3, 2);
             btnUpdateAccount.Name = "btnUpdateAccount";
-            btnUpdateAccount.Size = new Size(261, 71);
+            btnUpdateAccount.Size = new Size(209, 57);
             btnUpdateAccount.TabIndex = 34;
             btnUpdateAccount.Text = "Sửa";
             btnUpdateAccount.UseVisualStyleBackColor = false;
@@ -134,10 +135,10 @@
             btnInsertAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnInsertAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnInsertAccount.ForeColor = Color.White;
-            btnInsertAccount.Location = new Point(16, 393);
-            btnInsertAccount.Margin = new Padding(4, 2, 4, 2);
+            btnInsertAccount.Location = new Point(13, 290);
+            btnInsertAccount.Margin = new Padding(3, 2, 3, 2);
             btnInsertAccount.Name = "btnInsertAccount";
-            btnInsertAccount.Size = new Size(261, 71);
+            btnInsertAccount.Size = new Size(209, 57);
             btnInsertAccount.TabIndex = 35;
             btnInsertAccount.Text = "Thêm";
             btnInsertAccount.UseVisualStyleBackColor = false;
@@ -148,10 +149,10 @@
             btnShowAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnShowAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnShowAccount.ForeColor = Color.White;
-            btnShowAccount.Location = new Point(16, 272);
-            btnShowAccount.Margin = new Padding(4, 2, 4, 2);
+            btnShowAccount.Location = new Point(13, 218);
+            btnShowAccount.Margin = new Padding(3, 2, 3, 2);
             btnShowAccount.Name = "btnShowAccount";
-            btnShowAccount.Size = new Size(261, 71);
+            btnShowAccount.Size = new Size(209, 57);
             btnShowAccount.TabIndex = 31;
             btnShowAccount.Text = "Xem";
             btnShowAccount.UseVisualStyleBackColor = false;
@@ -170,11 +171,11 @@
             grpAccount.Controls.Add(lblAccountType);
             grpAccount.Controls.Add(lblAccountID);
             grpAccount.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            grpAccount.Location = new Point(24, 27);
-            grpAccount.Margin = new Padding(4, 2, 4, 2);
+            grpAccount.Location = new Point(19, 22);
+            grpAccount.Margin = new Padding(3, 2, 3, 2);
             grpAccount.Name = "grpAccount";
-            grpAccount.Padding = new Padding(4, 2, 4, 2);
-            grpAccount.Size = new Size(1027, 208);
+            grpAccount.Padding = new Padding(3, 2, 3, 2);
+            grpAccount.Size = new Size(822, 166);
             grpAccount.TabIndex = 30;
             grpAccount.TabStop = false;
             grpAccount.Text = "Thông tin tài khoản";
@@ -182,27 +183,30 @@
             // txtPassWord
             // 
             txtPassWord.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            txtPassWord.Location = new Point(731, 142);
+            txtPassWord.Location = new Point(585, 114);
+            txtPassWord.Margin = new Padding(2);
             txtPassWord.Name = "txtPassWord";
-            txtPassWord.Size = new Size(253, 35);
+            txtPassWord.Size = new Size(203, 30);
             txtPassWord.TabIndex = 8;
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
             lblPassword.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblPassword.Location = new Point(547, 146);
+            lblPassword.Location = new Point(438, 117);
+            lblPassword.Margin = new Padding(2, 0, 2, 0);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(126, 26);
+            lblPassword.Size = new Size(103, 23);
             lblPassword.TabIndex = 7;
             lblPassword.Text = "Mật khẩu :";
             // 
             // txtAccountName
             // 
-            txtAccountName.Location = new Point(731, 21);
+            txtAccountName.Location = new Point(585, 17);
+            txtAccountName.Margin = new Padding(2);
             txtAccountName.Name = "txtAccountName";
             txtAccountName.ReadOnly = true;
-            txtAccountName.Size = new Size(253, 35);
+            txtAccountName.Size = new Size(203, 30);
             txtAccountName.TabIndex = 6;
             // 
             // cbbAccountID
@@ -210,10 +214,10 @@
             cbbAccountID.DropDownStyle = ComboBoxStyle.DropDownList;
             cbbAccountID.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbbAccountID.FormattingEnabled = true;
-            cbbAccountID.Location = new Point(207, 128);
-            cbbAccountID.Margin = new Padding(4, 2, 4, 2);
+            cbbAccountID.Location = new Point(166, 102);
+            cbbAccountID.Margin = new Padding(3, 2, 3, 2);
             cbbAccountID.Name = "cbbAccountID";
-            cbbAccountID.Size = new Size(243, 35);
+            cbbAccountID.Size = new Size(195, 30);
             cbbAccountID.TabIndex = 5;
             cbbAccountID.SelectedIndexChanged += cbbAccountID_SelectedIndexChanged;
             // 
@@ -221,40 +225,38 @@
             // 
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUsername.Location = new Point(31, 60);
-            lblUsername.Margin = new Padding(4, 0, 4, 0);
+            lblUsername.Location = new Point(25, 48);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(157, 26);
+            lblUsername.Size = new Size(128, 23);
             lblUsername.TabIndex = 4;
             lblUsername.Text = "Mã tài khoản:";
             // 
             // txtMaTK
             // 
             txtMaTK.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtMaTK.Location = new Point(207, 56);
-            txtMaTK.Margin = new Padding(4, 2, 4, 2);
+            txtMaTK.Location = new Point(166, 45);
+            txtMaTK.Margin = new Padding(3, 2, 3, 2);
             txtMaTK.Name = "txtMaTK";
             txtMaTK.ReadOnly = true;
-            txtMaTK.Size = new Size(243, 35);
+            txtMaTK.Size = new Size(195, 30);
             txtMaTK.TabIndex = 2;
             // 
             // txtUserName
             // 
             txtUserName.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUserName.Location = new Point(731, 83);
-            txtUserName.Margin = new Padding(4, 2, 4, 2);
+            txtUserName.Location = new Point(585, 66);
+            txtUserName.Margin = new Padding(3, 2, 3, 2);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(256, 35);
+            txtUserName.Size = new Size(206, 30);
             txtUserName.TabIndex = 2;
             // 
             // lblStaffName_Account
             // 
             lblStaffName_Account.AutoSize = true;
             lblStaffName_Account.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffName_Account.Location = new Point(547, 92);
-            lblStaffName_Account.Margin = new Padding(4, 0, 4, 0);
+            lblStaffName_Account.Location = new Point(438, 74);
             lblStaffName_Account.Name = "lblStaffName_Account";
-            lblStaffName_Account.Size = new Size(176, 26);
+            lblStaffName_Account.Size = new Size(143, 23);
             lblStaffName_Account.TabIndex = 4;
             lblStaffName_Account.Text = "Tên Đăng nhập:";
             // 
@@ -262,10 +264,9 @@
             // 
             lblAccountType.AutoSize = true;
             lblAccountType.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAccountType.Location = new Point(547, 30);
-            lblAccountType.Margin = new Padding(4, 0, 4, 0);
+            lblAccountType.Location = new Point(438, 24);
             lblAccountType.Name = "lblAccountType";
-            lblAccountType.Size = new Size(103, 26);
+            lblAccountType.Size = new Size(83, 23);
             lblAccountType.TabIndex = 4;
             lblAccountType.Text = "Tên KH:";
             // 
@@ -273,10 +274,9 @@
             // 
             lblAccountID.AutoSize = true;
             lblAccountID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAccountID.Location = new Point(31, 131);
-            lblAccountID.Margin = new Padding(4, 0, 4, 0);
+            lblAccountID.Location = new Point(25, 105);
             lblAccountID.Name = "lblAccountID";
-            lblAccountID.Size = new Size(99, 26);
+            lblAccountID.Size = new Size(79, 23);
             lblAccountID.TabIndex = 4;
             lblAccountID.Text = "Mã KH:";
             // 
@@ -286,18 +286,33 @@
             dtgvAccount.AllowUserToDeleteRows = false;
             dtgvAccount.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvAccount.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvAccount.Location = new Point(296, 272);
-            dtgvAccount.Margin = new Padding(5, 6, 5, 6);
+            dtgvAccount.Location = new Point(237, 218);
+            dtgvAccount.Margin = new Padding(4, 5, 4, 5);
             dtgvAccount.Name = "dtgvAccount";
             dtgvAccount.ReadOnly = true;
             dtgvAccount.RowHeadersWidth = 51;
-            dtgvAccount.Size = new Size(1126, 454);
+            dtgvAccount.Size = new Size(901, 363);
             dtgvAccount.TabIndex = 29;
+            // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.FromArgb(133, 19, 33);
+            btnExport.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnExport.ForeColor = Color.White;
+            btnExport.Location = new Point(13, 512);
+            btnExport.Margin = new Padding(3, 2, 3, 2);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(209, 57);
+            btnExport.TabIndex = 37;
+            btnExport.Text = "Xuất File";
+            btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += btnExport_Click;
             // 
             // Account
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnExport);
             Controls.Add(groupBox1);
             Controls.Add(btnReset);
             Controls.Add(btnDeleteAccount);
@@ -306,8 +321,9 @@
             Controls.Add(btnShowAccount);
             Controls.Add(grpAccount);
             Controls.Add(dtgvAccount);
+            Margin = new Padding(2);
             Name = "Account";
-            Size = new Size(1440, 747);
+            Size = new Size(1152, 598);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             grpAccount.ResumeLayout(false);
@@ -339,5 +355,7 @@
         private TextBox txtAccountName;
         private TextBox txtPassWord;
         private Label lblPassword;
+        private Button button1;
+        private Button btnExport;
     }
 }

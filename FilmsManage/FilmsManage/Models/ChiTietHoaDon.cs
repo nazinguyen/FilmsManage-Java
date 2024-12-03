@@ -12,6 +12,7 @@ public partial class ChiTietHoaDon
     public int SoLuong { get; set; }
 
     public decimal ThanhTien { get; set; }
+    public DateTime TimeDatVe { get; set; }
 
     public virtual HoaDon MaHdNavigation { get; set; } = null!;
 

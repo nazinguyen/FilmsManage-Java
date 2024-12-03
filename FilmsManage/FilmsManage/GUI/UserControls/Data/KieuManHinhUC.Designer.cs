@@ -43,6 +43,7 @@
             lblScreenTypeID = new Label();
             panel3 = new Panel();
             dtgvScreenType = new DataGridView();
+            btnExport = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnExport);
             panel1.Controls.Add(btnShowScreenType);
             panel1.Controls.Add(btnUpdateScreenType);
             panel1.Controls.Add(btnDeleteScreenType);
@@ -68,7 +70,7 @@
             // 
             // btnShowScreenType
             // 
-            btnShowScreenType.Location = new Point(364, 122);
+            btnShowScreenType.Location = new Point(377, 191);
             btnShowScreenType.Margin = new Padding(4, 5, 4, 5);
             btnShowScreenType.Name = "btnShowScreenType";
             btnShowScreenType.Size = new Size(100, 71);
@@ -78,7 +80,7 @@
             // 
             // btnUpdateScreenType
             // 
-            btnUpdateScreenType.Location = new Point(256, 122);
+            btnUpdateScreenType.Location = new Point(256, 190);
             btnUpdateScreenType.Margin = new Padding(4, 5, 4, 5);
             btnUpdateScreenType.Name = "btnUpdateScreenType";
             btnUpdateScreenType.Size = new Size(100, 71);
@@ -89,7 +91,7 @@
             // 
             // btnDeleteScreenType
             // 
-            btnDeleteScreenType.Location = new Point(148, 122);
+            btnDeleteScreenType.Location = new Point(138, 190);
             btnDeleteScreenType.Margin = new Padding(4, 5, 4, 5);
             btnDeleteScreenType.Name = "btnDeleteScreenType";
             btnDeleteScreenType.Size = new Size(100, 71);
@@ -100,7 +102,7 @@
             // 
             // btnInsertScreenType
             // 
-            btnInsertScreenType.Location = new Point(40, 122);
+            btnInsertScreenType.Location = new Point(0, 190);
             btnInsertScreenType.Margin = new Padding(4, 5, 4, 5);
             btnInsertScreenType.Name = "btnInsertScreenType";
             btnInsertScreenType.Size = new Size(100, 71);
@@ -215,6 +217,17 @@
             dtgvScreenType.Size = new Size(779, 423);
             dtgvScreenType.TabIndex = 1;
             // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(506, 190);
+            btnExport.Margin = new Padding(4, 5, 4, 5);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 71);
+            btnExport.TabIndex = 8;
+            btnExport.Text = "Xuất File";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
+            // 
             // KieuManHinhUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -252,5 +265,6 @@
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.TextBox txtScreenTypeID;
         private System.Windows.Forms.Label lblScreenTypeID;
+        private Button btnExport;
     }
 }

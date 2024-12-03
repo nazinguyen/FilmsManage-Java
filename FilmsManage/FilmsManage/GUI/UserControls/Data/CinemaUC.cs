@@ -1,10 +1,13 @@
-﻿using FilmsAPI.Models;
+﻿using ClosedXML.Excel;
+using FilmsAPI.Models;
+using FilmsManage.GUI.DataUserControl;
 using FilmsManage.Services;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.PortableExecutable;
@@ -16,11 +19,13 @@ namespace FilmsManage.GUI.UserControls.Data
 {
     public partial class CinemaUC : UserControl
     {
+        private DataUC dataUC;
         private readonly DangPhimSV _PhongChieu;
-        public CinemaUC()
+        public CinemaUC(DataUC data)
         {
-            InitializeComponent();
             _PhongChieu = new DangPhimSV("https://localhost:7085");
+            InitializeComponent();
+            dataUC = data;
             LoadData();
             LoadComboBoxData();
             dtgvCinema.Columns.Add(new DataGridViewTextBoxColumn
@@ -117,19 +122,14 @@ namespace FilmsManage.GUI.UserControls.Data
             try
             {
                 // Lấy danh sách phòng chiếu từ API
-                List<PhongChieu> phongChieus = await _PhongChieu.GetAsync<List<PhongChieu>>("/api/PhongChieu");
+                var manHinh = await _PhongChieu.GetAsync<List<ManHinh>>("/api/ManHinh");
 
-                // Lọc danh sách tên màn hình, bỏ qua null
-                var screenTypes = phongChieus
-                    .Select(pc => pc.MaManHinhNavigation?.TenManHinh)
-                    .Where(tenManHinh => !string.IsNullOrEmpty(tenManHinh)) // Bỏ qua giá trị null hoặc chuỗi trống
-                    .Distinct() // Loại bỏ giá trị trùng lặp
-                    .ToList();
 
-                // Gán danh sách vào ComboBox
-                cboCinemaScreenType.DataSource = screenTypes;
-                cboCinemaScreenType.DisplayMember = ""; // Không cần vì DataSource là chuỗi
-                cboCinemaScreenType.ValueMember = "";   // Không cần vì DataSource là chuỗi
+
+                cboCinemaScreenType.DataSource = manHinh;
+                cboCinemaScreenType.DisplayMember = "TenManHinh";
+                cboCinemaScreenType.ValueMember = "MaManHinh";
+
             }
             catch (Exception ex)
             {
@@ -139,63 +139,25 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnInsertCinema_Click(object sender, EventArgs e)
         {
-            string tenPhong = txtCinemaName.Text;
-            string manHinh = cboCinemaScreenType.Text;
-
-            if (string.IsNullOrWhiteSpace(tenPhong))
+            var themSua = dataUC.pnData.Controls.OfType<ChucNang_PhongChieu.ThemSua>().FirstOrDefault();
+            if (themSua != null)
             {
-                MessageBox.Show("Vui lòng nhập tên phòng.");
-                return;
+                dataUC.pnData.Controls.Remove(themSua);
+                themSua.Dispose();
             }
 
-            if (string.IsNullOrWhiteSpace(manHinh))
+            Debug.WriteLine("ok");
+
+            // Ẩn tất cả các control khác
+            foreach (Control control in dataUC.pnData.Controls)
             {
-                MessageBox.Show("Vui lòng nhập tên màn hình.");
-                return;
+                control.Visible = false;
             }
 
-            if (!int.TryParse(txtCinemaID.Text, out int maPC))
-            {
-                MessageBox.Show("Mã phòng chiếu không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
-            {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang))
-            {
-                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            var phongChieu = new PhongChieu
-            {
-                MaPhongChieu = maPC,
-                TenPhongChieu = tenPhong,
-                SoGhe = soGhe,
-                SoGheMotHang = gheMoiHang,
-                MaManHinhNavigation = new ManHinh
-                {
-                    TenManHinh = manHinh
-                }
-            };
-
-            try
-            {
-                string endpoint = "/api/PhongChieu";
-                var response = await _PhongChieu.PostAsync<Models.ApiRespone>(endpoint, phongChieu);
-
-                MessageBox.Show(response.Message);
-                await LoadData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
-            }
+            // Khởi tạo control Them_Sua cho "Sửa"
+            themSua = new ChucNang_PhongChieu.ThemSua("Them", new PhongChieu(), dataUC);
+            themSua.Dock = DockStyle.Fill;
+            dataUC.pnData.Controls.Add(themSua);
         }
 
         private async void btnUpdateCinema_Click(object sender, EventArgs e)
@@ -258,5 +220,75 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dtgvCinema.DataSource is not null)
+            {
+                // Chuyển dữ liệu từ DataGridView sang DataTable
+                var dataTable = new DataTable();
+
+                foreach (DataGridViewColumn column in dtgvCinema.Columns)
+                {
+                    dataTable.Columns.Add(column.HeaderText);
+                }
+
+                foreach (DataGridViewRow row in dtgvCinema.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        var dataRow = dataTable.NewRow();
+                        foreach (DataGridViewColumn column in dtgvCinema.Columns)
+                        {
+                            dataRow[column.HeaderText] = row.Cells[column.Name].Value ?? DBNull.Value;
+                        }
+                        dataTable.Rows.Add(dataRow);
+                    }
+                }
+
+                // Chọn nơi lưu file Excel
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Lưu file Excel";
+                    saveFileDialog.FileName = "DanhSachPhongChieu.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+
+                        // Dùng ClosedXML để xuất ra file Excel với định dạng đẹp
+                        using (var workbook = new XLWorkbook())
+                        {
+                            var worksheet = workbook.AddWorksheet("Danh sách phòng chiếu");
+
+                            // Chèn dữ liệu từ DataTable vào Excel
+                            worksheet.Cell(1, 1).InsertTable(dataTable);
+
+                            // Định dạng tiêu đề cột (tô đậm, căn giữa, nền màu)
+                            var headerRow = worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, dataTable.Columns.Count));
+                            headerRow.Style.Font.Bold = true;
+                            headerRow.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            headerRow.Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                            // Căn chỉnh số liệu
+                            for (int col = 1; col <= dataTable.Columns.Count; col++)
+                            {
+                                worksheet.Column(col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
+
+                            // Lưu file Excel
+                            workbook.SaveAs(filePath);
+                            MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }
