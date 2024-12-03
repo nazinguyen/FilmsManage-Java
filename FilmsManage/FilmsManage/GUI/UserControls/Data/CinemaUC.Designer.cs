@@ -40,26 +40,26 @@
             lblSeatsPerRow = new Label();
             panel12 = new Panel();
             txtNumberOfRows = new TextBox();
-            panel31 = new Panel();
-            txtCinemaName = new TextBox();
-            lblCinemaName = new Label();
             panel8 = new Panel();
             txtCinemaSeats = new TextBox();
             lblCinemaSeats = new Label();
-            btnShowCinema = new Button();
-            btnUpdateCinema = new Button();
-            btnInsertCinema = new Button();
-            panel2 = new Panel();
+            panel31 = new Panel();
+            txtCinemaName = new TextBox();
+            lblCinemaName = new Label();
+            panel32 = new Panel();
+            txtCinemaID = new TextBox();
+            lblCinemaID = new Label();
             panel1 = new Panel();
             dtgvCinema = new DataGridView();
-            panel33.SuspendLayout();
-            panel32.SuspendLayout();
+            panel33 = new Panel();
+            btnExport = new Button();
+            panel2.SuspendLayout();
             panel6.SuspendLayout();
             panel15.SuspendLayout();
             panel12.SuspendLayout();
-            panel31.SuspendLayout();
             panel8.SuspendLayout();
-            panel2.SuspendLayout();
+            panel31.SuspendLayout();
+            panel32.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvCinema).BeginInit();
             panel33.SuspendLayout();
@@ -75,7 +75,7 @@
             btnShowCinema.Text = "Xem";
             btnShowCinema.UseVisualStyleBackColor = true;
             // 
-            // txtCinemaID
+            // btnUpdateCinema
             // 
             btnUpdateCinema.Location = new Point(121, 204);
             btnUpdateCinema.Margin = new Padding(4, 5, 4, 5);
@@ -86,7 +86,7 @@
             btnUpdateCinema.UseVisualStyleBackColor = true;
             btnUpdateCinema.Click += btnUpdateCinema_Click;
             // 
-            // lblCinemaID
+            // btnInsertCinema
             // 
             btnInsertCinema.Location = new Point(4, 204);
             btnInsertCinema.Margin = new Padding(4, 5, 4, 5);
@@ -147,7 +147,7 @@
             // 
             panel15.Controls.Add(txtSeatsPerRow);
             panel15.Controls.Add(lblSeatsPerRow);
-            panel15.Location = new Point(569, 95);
+            panel15.Location = new Point(17, 316);
             panel15.Margin = new Padding(4, 5, 4, 5);
             panel15.Name = "panel15";
             panel15.Size = new Size(412, 68);
@@ -175,7 +175,7 @@
             // panel12
             // 
             panel12.Controls.Add(txtNumberOfRows);
-            panel12.Location = new Point(569, 173);
+            panel12.Location = new Point(17, 394);
             panel12.Margin = new Padding(4, 5, 4, 5);
             panel12.Name = "panel12";
             panel12.Size = new Size(412, 68);
@@ -222,7 +222,7 @@
             // 
             panel31.Controls.Add(txtCinemaName);
             panel31.Controls.Add(lblCinemaName);
-            panel31.Location = new Point(40, 93);
+            panel31.Location = new Point(17, 81);
             panel31.Margin = new Padding(4, 5, 4, 5);
             panel31.Name = "panel31";
             panel31.Size = new Size(412, 68);
@@ -247,97 +247,44 @@
             lblCinemaName.TabIndex = 0;
             lblCinemaName.Text = "Tên phòng:";
             // 
-            // panel8
+            // panel32
             // 
-            panel8.Controls.Add(txtCinemaSeats);
-            panel8.Controls.Add(lblCinemaSeats);
-            panel8.Location = new Point(569, 17);
-            panel8.Margin = new Padding(4, 5, 4, 5);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(412, 68);
-            panel8.TabIndex = 8;
+            panel32.Controls.Add(txtCinemaID);
+            panel32.Controls.Add(lblCinemaID);
+            panel32.Location = new Point(17, 5);
+            panel32.Margin = new Padding(4, 5, 4, 5);
+            panel32.Name = "panel32";
+            panel32.Size = new Size(412, 68);
+            panel32.TabIndex = 3;
             // 
-            // txtCinemaSeats
+            // txtCinemaID
             // 
-            txtCinemaSeats.Location = new Point(176, 18);
-            txtCinemaSeats.Margin = new Padding(4, 5, 4, 5);
-            txtCinemaSeats.Name = "txtCinemaSeats";
-            txtCinemaSeats.Size = new Size(214, 27);
-            txtCinemaSeats.TabIndex = 1;
+            txtCinemaID.Location = new Point(176, 20);
+            txtCinemaID.Margin = new Padding(4, 5, 4, 5);
+            txtCinemaID.Name = "txtCinemaID";
+            txtCinemaID.Size = new Size(216, 27);
+            txtCinemaID.TabIndex = 1;
             // 
-            // lblCinemaSeats
+            // lblCinemaID
             // 
-            lblCinemaSeats.AutoSize = true;
-            lblCinemaSeats.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblCinemaSeats.Location = new Point(4, 14);
-            lblCinemaSeats.Margin = new Padding(4, 0, 4, 0);
-            lblCinemaSeats.Name = "lblCinemaSeats";
-            lblCinemaSeats.Size = new Size(130, 24);
-            lblCinemaSeats.TabIndex = 0;
-            lblCinemaSeats.Text = "Số chỗ ngồi:";
-            // 
-            // btnShowCinema
-            // 
-            btnShowCinema.BackColor = Color.Brown;
-            btnShowCinema.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnShowCinema.ForeColor = Color.White;
-            btnShowCinema.Location = new Point(37, 259);
-            btnShowCinema.Margin = new Padding(4, 5, 4, 5);
-            btnShowCinema.Name = "btnShowCinema";
-            btnShowCinema.Size = new Size(369, 71);
-            btnShowCinema.TabIndex = 3;
-            btnShowCinema.Text = "Xem";
-            btnShowCinema.UseVisualStyleBackColor = false;
-            // 
-            // btnUpdateCinema
-            // 
-            btnUpdateCinema.BackColor = Color.Brown;
-            btnUpdateCinema.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnUpdateCinema.ForeColor = Color.White;
-            btnUpdateCinema.Location = new Point(37, 158);
-            btnUpdateCinema.Margin = new Padding(4, 5, 4, 5);
-            btnUpdateCinema.Name = "btnUpdateCinema";
-            btnUpdateCinema.Size = new Size(369, 71);
-            btnUpdateCinema.TabIndex = 2;
-            btnUpdateCinema.Text = "Sửa";
-            btnUpdateCinema.UseVisualStyleBackColor = false;
-            btnUpdateCinema.Click += btnUpdateCinema_Click;
-            // 
-            // btnInsertCinema
-            // 
-            btnInsertCinema.BackColor = Color.Brown;
-            btnInsertCinema.Font = new Font("Arial", 12F, FontStyle.Bold);
-            btnInsertCinema.ForeColor = Color.White;
-            btnInsertCinema.Location = new Point(37, 54);
-            btnInsertCinema.Margin = new Padding(4, 5, 4, 5);
-            btnInsertCinema.Name = "btnInsertCinema";
-            btnInsertCinema.Size = new Size(369, 71);
-            btnInsertCinema.TabIndex = 0;
-            btnInsertCinema.Text = "Thêm";
-            btnInsertCinema.UseVisualStyleBackColor = false;
-            btnInsertCinema.Click += btnInsertCinema_Click;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnShowCinema);
-            panel2.Controls.Add(btnUpdateCinema);
-            panel2.Controls.Add(btnInsertCinema);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(1107, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(444, 556);
-            panel2.TabIndex = 0;
+            lblCinemaID.AutoSize = true;
+            lblCinemaID.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            lblCinemaID.Location = new Point(4, 18);
+            lblCinemaID.Margin = new Padding(4, 0, 4, 0);
+            lblCinemaID.Name = "lblCinemaID";
+            lblCinemaID.Size = new Size(111, 24);
+            lblCinemaID.TabIndex = 0;
+            lblCinemaID.Text = "Mã phòng:";
             // 
             // panel1
             // 
             panel1.Controls.Add(dtgvCinema);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 262);
+            panel1.Location = new Point(0, 280);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1551, 556);
+            panel1.Size = new Size(1451, 518);
             panel1.TabIndex = 11;
             // 
             // dtgvCinema
@@ -352,7 +299,7 @@
             dtgvCinema.Name = "dtgvCinema";
             dtgvCinema.ReadOnly = true;
             dtgvCinema.RowHeadersWidth = 51;
-            dtgvCinema.Size = new Size(1107, 556);
+            dtgvCinema.Size = new Size(1007, 518);
             dtgvCinema.TabIndex = 1;
             // 
             // panel33
@@ -387,21 +334,20 @@
             Controls.Add(panel33);
             Margin = new Padding(3, 2, 3, 2);
             Name = "CinemaUC";
-            Size = new Size(1551, 672);
-            panel33.ResumeLayout(false);
-            panel32.ResumeLayout(false);
-            panel32.PerformLayout();
+            Size = new Size(1451, 798);
+            panel2.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             panel12.ResumeLayout(false);
             panel12.PerformLayout();
-            panel31.ResumeLayout(false);
-            panel31.PerformLayout();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
-            panel2.ResumeLayout(false);
+            panel31.ResumeLayout(false);
+            panel31.PerformLayout();
+            panel32.ResumeLayout(false);
+            panel32.PerformLayout();
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvCinema).EndInit();
             panel33.ResumeLayout(false);
