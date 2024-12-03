@@ -43,6 +43,7 @@
             txtTenDangPhim = new TextBox();
             lblFormatID = new Label();
             txtFormatID = new TextBox();
+            btnExport = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvFormat).BeginInit();
@@ -51,32 +52,33 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnExport);
             panel1.Controls.Add(btnShowFormat);
             panel1.Controls.Add(btnUpdateFormat);
             panel1.Controls.Add(btnInsertFormat);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(4, 5, 4, 5);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1935, 232);
+            panel1.Size = new Size(1548, 186);
             panel1.TabIndex = 0;
             // 
             // btnShowFormat
             // 
-            btnShowFormat.Location = new Point(344, 137);
-            btnShowFormat.Margin = new Padding(5, 6, 5, 6);
+            btnShowFormat.Location = new Point(275, 110);
+            btnShowFormat.Margin = new Padding(4, 5, 4, 5);
             btnShowFormat.Name = "btnShowFormat";
-            btnShowFormat.Size = new Size(125, 89);
+            btnShowFormat.Size = new Size(100, 71);
             btnShowFormat.TabIndex = 11;
             btnShowFormat.Text = "Xem";
             btnShowFormat.UseVisualStyleBackColor = true;
             // 
             // btnUpdateFormat
             // 
-            btnUpdateFormat.Location = new Point(169, 137);
-            btnUpdateFormat.Margin = new Padding(5, 6, 5, 6);
+            btnUpdateFormat.Location = new Point(135, 110);
+            btnUpdateFormat.Margin = new Padding(4, 5, 4, 5);
             btnUpdateFormat.Name = "btnUpdateFormat";
-            btnUpdateFormat.Size = new Size(125, 89);
+            btnUpdateFormat.Size = new Size(100, 71);
             btnUpdateFormat.TabIndex = 10;
             btnUpdateFormat.Text = "Sửa";
             btnUpdateFormat.UseVisualStyleBackColor = true;
@@ -84,10 +86,10 @@
             // 
             // btnInsertFormat
             // 
-            btnInsertFormat.Location = new Point(0, 137);
-            btnInsertFormat.Margin = new Padding(5, 6, 5, 6);
+            btnInsertFormat.Location = new Point(0, 110);
+            btnInsertFormat.Margin = new Padding(4, 5, 4, 5);
             btnInsertFormat.Name = "btnInsertFormat";
-            btnInsertFormat.Size = new Size(125, 89);
+            btnInsertFormat.Size = new Size(100, 71);
             btnInsertFormat.TabIndex = 8;
             btnInsertFormat.Text = "Thêm";
             btnInsertFormat.UseVisualStyleBackColor = true;
@@ -98,10 +100,10 @@
             panel2.Controls.Add(dtgvFormat);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 232);
-            panel2.Margin = new Padding(4, 5, 4, 5);
+            panel2.Location = new Point(0, 186);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1935, 766);
+            panel2.Size = new Size(1548, 612);
             panel2.TabIndex = 1;
             // 
             // dtgvFormat
@@ -112,11 +114,11 @@
             dtgvFormat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvFormat.Dock = DockStyle.Fill;
             dtgvFormat.Location = new Point(0, 0);
-            dtgvFormat.Margin = new Padding(4, 5, 4, 5);
+            dtgvFormat.Margin = new Padding(3, 4, 3, 4);
             dtgvFormat.Name = "dtgvFormat";
             dtgvFormat.ReadOnly = true;
             dtgvFormat.RowHeadersWidth = 51;
-            dtgvFormat.Size = new Size(1264, 766);
+            dtgvFormat.Size = new Size(1011, 612);
             dtgvFormat.TabIndex = 9;
             // 
             // panel3
@@ -130,49 +132,46 @@
             panel3.Controls.Add(lblFormatID);
             panel3.Controls.Add(txtFormatID);
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1264, 0);
-            panel3.Margin = new Padding(4, 5, 4, 5);
+            panel3.Location = new Point(1011, 0);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(671, 766);
+            panel3.Size = new Size(537, 612);
             panel3.TabIndex = 0;
             // 
             // cbMaMH
             // 
             cbMaMH.DropDownStyle = ComboBoxStyle.DropDownList;
             cbMaMH.FormattingEnabled = true;
-            cbMaMH.Location = new Point(219, 149);
-            cbMaMH.Margin = new Padding(4, 2, 4, 2);
+            cbMaMH.Location = new Point(175, 119);
+            cbMaMH.Margin = new Padding(3, 2, 3, 2);
             cbMaMH.Name = "cbMaMH";
-            cbMaMH.Size = new Size(266, 33);
+            cbMaMH.Size = new Size(214, 28);
             cbMaMH.TabIndex = 27;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(20, 225);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(16, 180);
             label3.Name = "label3";
-            label3.Size = new Size(161, 26);
+            label3.Size = new Size(130, 23);
             label3.TabIndex = 26;
             label3.Text = "Tên màn hình:";
             // 
             // txtTenMh
             // 
-            txtTenMh.Location = new Point(219, 225);
-            txtTenMh.Margin = new Padding(4, 4, 4, 4);
+            txtTenMh.Location = new Point(175, 180);
             txtTenMh.Name = "txtTenMh";
-            txtTenMh.Size = new Size(304, 31);
+            txtTenMh.Size = new Size(244, 27);
             txtTenMh.TabIndex = 25;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(20, 151);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(16, 121);
             label2.Name = "label2";
-            label2.Size = new Size(157, 26);
+            label2.Size = new Size(126, 23);
             label2.TabIndex = 24;
             label2.Text = "Mã màn hình:";
             // 
@@ -180,49 +179,57 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(20, 79);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(16, 63);
             label1.Name = "label1";
-            label1.Size = new Size(173, 26);
+            label1.Size = new Size(139, 23);
             label1.TabIndex = 23;
             label1.Text = "Tên dạng phim:";
             // 
             // txtTenDangPhim
             // 
-            txtTenDangPhim.Location = new Point(219, 79);
-            txtTenDangPhim.Margin = new Padding(4, 4, 4, 4);
+            txtTenDangPhim.Location = new Point(175, 63);
             txtTenDangPhim.Name = "txtTenDangPhim";
-            txtTenDangPhim.Size = new Size(304, 31);
+            txtTenDangPhim.Size = new Size(244, 27);
             txtTenDangPhim.TabIndex = 22;
             // 
             // lblFormatID
             // 
             lblFormatID.AutoSize = true;
             lblFormatID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblFormatID.Location = new Point(20, 26);
-            lblFormatID.Margin = new Padding(4, 0, 4, 0);
+            lblFormatID.Location = new Point(16, 21);
             lblFormatID.Name = "lblFormatID";
-            lblFormatID.Size = new Size(163, 26);
+            lblFormatID.Size = new Size(130, 23);
             lblFormatID.TabIndex = 19;
             lblFormatID.Text = "Mã định dạng:";
             // 
             // txtFormatID
             // 
-            txtFormatID.Location = new Point(219, 24);
-            txtFormatID.Margin = new Padding(4, 5, 4, 5);
+            txtFormatID.Location = new Point(175, 19);
+            txtFormatID.Margin = new Padding(3, 4, 3, 4);
             txtFormatID.Name = "txtFormatID";
-            txtFormatID.Size = new Size(310, 31);
+            txtFormatID.Size = new Size(249, 27);
             txtFormatID.TabIndex = 14;
+            // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(411, 110);
+            btnExport.Margin = new Padding(4, 5, 4, 5);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 71);
+            btnExport.TabIndex = 12;
+            btnExport.Text = "Xuất File ";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
             // 
             // DinhDangPhimUC
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DinhDangPhimUC";
-            Size = new Size(1935, 998);
+            Size = new Size(1548, 798);
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvFormat).EndInit();
@@ -249,5 +256,6 @@
         private Label label3;
         private TextBox txtTenMh;
         private ComboBox cbMaMH;
+        private Button btnExport;
     }
 }
