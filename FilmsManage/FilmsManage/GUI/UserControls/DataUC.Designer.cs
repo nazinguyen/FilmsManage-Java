@@ -56,7 +56,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(349, 1028);
+            panel1.Size = new Size(286, 1028);
             panel1.TabIndex = 0;
             // 
             // SidePanel
@@ -78,7 +78,7 @@
             btnTicketsUC.Location = new Point(19, 734);
             btnTicketsUC.Margin = new Padding(5, 6, 5, 6);
             btnTicketsUC.Name = "btnTicketsUC";
-            btnTicketsUC.Size = new Size(329, 103);
+            btnTicketsUC.Size = new Size(267, 103);
             btnTicketsUC.TabIndex = 6;
             btnTicketsUC.Text = "       Vé";
             btnTicketsUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -95,7 +95,7 @@
             btnShowTimesUC.Location = new Point(19, 631);
             btnShowTimesUC.Margin = new Padding(5, 6, 5, 6);
             btnShowTimesUC.Name = "btnShowTimesUC";
-            btnShowTimesUC.Size = new Size(329, 103);
+            btnShowTimesUC.Size = new Size(267, 103);
             btnShowTimesUC.TabIndex = 7;
             btnShowTimesUC.Text = "      Lịch Chiếu";
             btnShowTimesUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -112,7 +112,7 @@
             btnFormatMovieUC.Location = new Point(19, 527);
             btnFormatMovieUC.Margin = new Padding(5, 6, 5, 6);
             btnFormatMovieUC.Name = "btnFormatMovieUC";
-            btnFormatMovieUC.Size = new Size(329, 103);
+            btnFormatMovieUC.Size = new Size(267, 103);
             btnFormatMovieUC.TabIndex = 8;
             btnFormatMovieUC.Text = "      Định Dạng";
             btnFormatMovieUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -129,7 +129,7 @@
             btnMovieUC.Location = new Point(19, 423);
             btnMovieUC.Margin = new Padding(5, 6, 5, 6);
             btnMovieUC.Name = "btnMovieUC";
-            btnMovieUC.Size = new Size(329, 103);
+            btnMovieUC.Size = new Size(267, 103);
             btnMovieUC.TabIndex = 9;
             btnMovieUC.Text = "       Phim";
             btnMovieUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -146,7 +146,7 @@
             btnGenreUC.Location = new Point(19, 320);
             btnGenreUC.Margin = new Padding(5, 6, 5, 6);
             btnGenreUC.Name = "btnGenreUC";
-            btnGenreUC.Size = new Size(329, 103);
+            btnGenreUC.Size = new Size(267, 103);
             btnGenreUC.TabIndex = 10;
             btnGenreUC.Text = "      Thể Loại";
             btnGenreUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -163,7 +163,7 @@
             btnCinemaUC.Location = new Point(19, 216);
             btnCinemaUC.Margin = new Padding(5, 6, 5, 6);
             btnCinemaUC.Name = "btnCinemaUC";
-            btnCinemaUC.Size = new Size(329, 103);
+            btnCinemaUC.Size = new Size(267, 103);
             btnCinemaUC.TabIndex = 11;
             btnCinemaUC.Text = "       Phòng Chiếu";
             btnCinemaUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -180,7 +180,7 @@
             btnScreenTypeUC.Location = new Point(19, 112);
             btnScreenTypeUC.Margin = new Padding(5, 6, 5, 6);
             btnScreenTypeUC.Name = "btnScreenTypeUC";
-            btnScreenTypeUC.Size = new Size(329, 103);
+            btnScreenTypeUC.Size = new Size(267, 103);
             btnScreenTypeUC.TabIndex = 12;
             btnScreenTypeUC.Text = "     Loại màn hình";
             btnScreenTypeUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -190,10 +190,10 @@
             // pnData
             // 
             pnData.Dock = DockStyle.Bottom;
-            pnData.Location = new Point(349, 5);
+            pnData.Location = new Point(286, 5);
             pnData.Margin = new Padding(4, 5, 4, 5);
             pnData.Name = "pnData";
-            pnData.Size = new Size(1939, 1023);
+            pnData.Size = new Size(2002, 1023);
             pnData.TabIndex = 1;
             pnData.Paint += pnData_Paint;
             // 
@@ -221,6 +221,6 @@
         private System.Windows.Forms.Button btnGenreUC;
         private System.Windows.Forms.Button btnCinemaUC;
         private System.Windows.Forms.Button btnScreenTypeUC;
-        private System.Windows.Forms.Panel pnData;
+        public System.Windows.Forms.Panel pnData;
     }
 }

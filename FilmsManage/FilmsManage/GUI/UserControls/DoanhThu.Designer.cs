@@ -28,148 +28,198 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblSelectMovie = new System.Windows.Forms.Label();
-            this.lblTongDoanhThu = new System.Windows.Forms.Label();
-            this.txtDoanhThu = new System.Windows.Forms.TextBox();
-            this.lblDenNgay = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dtgvRevenue = new System.Windows.Forms.DataGridView();
-            this.btnReportRevenue = new System.Windows.Forms.Button();
-            this.btnShowRevenue = new System.Windows.Forms.Button();
-            this.cboSelectMovie = new System.Windows.Forms.ComboBox();
-            this.dtmToDate = new System.Windows.Forms.DateTimePicker();
-            this.dtmFromDate = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvRevenue)).BeginInit();
-            this.SuspendLayout();
+            lblSelectMovie = new Label();
+            lblTongDoanhThu = new Label();
+            txtDoanhThu = new TextBox();
+            lblDenNgay = new Label();
+            label1 = new Label();
+            dtgvRevenue = new DataGridView();
+            tenPhim = new DataGridViewTextBoxColumn();
+            ngayKc = new DataGridViewTextBoxColumn();
+            Soveban = new DataGridViewTextBoxColumn();
+            tongDoanhThu = new DataGridViewTextBoxColumn();
+            btnReportRevenue = new Button();
+            btnShowRevenue = new Button();
+            cboSelectMovie = new ComboBox();
+            dtmToDate = new DateTimePicker();
+            dtmFromDate = new DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)dtgvRevenue).BeginInit();
+            SuspendLayout();
             // 
             // lblSelectMovie
             // 
-            this.lblSelectMovie.AutoSize = true;
-            this.lblSelectMovie.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectMovie.Location = new System.Drawing.Point(200, 23);
-            this.lblSelectMovie.Name = "lblSelectMovie";
-            this.lblSelectMovie.Size = new System.Drawing.Size(106, 23);
-            this.lblSelectMovie.TabIndex = 39;
-            this.lblSelectMovie.Text = "Chọn phim:";
+            lblSelectMovie.AutoSize = true;
+            lblSelectMovie.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSelectMovie.Location = new Point(250, 36);
+            lblSelectMovie.Margin = new Padding(4, 0, 4, 0);
+            lblSelectMovie.Name = "lblSelectMovie";
+            lblSelectMovie.Size = new Size(133, 26);
+            lblSelectMovie.TabIndex = 39;
+            lblSelectMovie.Text = "Chọn phim:";
             // 
             // lblTongDoanhThu
             // 
-            this.lblTongDoanhThu.AutoSize = true;
-            this.lblTongDoanhThu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTongDoanhThu.Location = new System.Drawing.Point(845, 553);
-            this.lblTongDoanhThu.Name = "lblTongDoanhThu";
-            this.lblTongDoanhThu.Size = new System.Drawing.Size(147, 23);
-            this.lblTongDoanhThu.TabIndex = 38;
-            this.lblTongDoanhThu.Text = "Tổng doanh thu:";
+            lblTongDoanhThu.AutoSize = true;
+            lblTongDoanhThu.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTongDoanhThu.Location = new Point(1056, 818);
+            lblTongDoanhThu.Margin = new Padding(4, 0, 4, 0);
+            lblTongDoanhThu.Name = "lblTongDoanhThu";
+            lblTongDoanhThu.Size = new Size(181, 26);
+            lblTongDoanhThu.TabIndex = 38;
+            lblTongDoanhThu.Text = "Tổng doanh thu:";
             // 
             // txtDoanhThu
             // 
-            this.txtDoanhThu.Enabled = false;
-            this.txtDoanhThu.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDoanhThu.Location = new System.Drawing.Point(998, 547);
-            this.txtDoanhThu.Name = "txtDoanhThu";
-            this.txtDoanhThu.Size = new System.Drawing.Size(235, 35);
-            this.txtDoanhThu.TabIndex = 37;
-            this.txtDoanhThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            txtDoanhThu.Enabled = false;
+            txtDoanhThu.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtDoanhThu.Location = new Point(1248, 809);
+            txtDoanhThu.Margin = new Padding(4, 5, 4, 5);
+            txtDoanhThu.Name = "txtDoanhThu";
+            txtDoanhThu.Size = new Size(293, 40);
+            txtDoanhThu.TabIndex = 37;
+            txtDoanhThu.TextAlign = HorizontalAlignment.Right;
             // 
             // lblDenNgay
             // 
-            this.lblDenNgay.AutoSize = true;
-            this.lblDenNgay.Location = new System.Drawing.Point(450, 70);
-            this.lblDenNgay.Name = "lblDenNgay";
-            this.lblDenNgay.Size = new System.Drawing.Size(73, 17);
-            this.lblDenNgay.TabIndex = 36;
-            this.lblDenNgay.Text = "Đến ngày:";
+            lblDenNgay.AutoSize = true;
+            lblDenNgay.Location = new Point(562, 109);
+            lblDenNgay.Margin = new Padding(4, 0, 4, 0);
+            lblDenNgay.Name = "lblDenNgay";
+            lblDenNgay.Size = new Size(92, 25);
+            lblDenNgay.TabIndex = 36;
+            lblDenNgay.Text = "Đến ngày:";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(196, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 17);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Từ ngày:";
+            label1.AutoSize = true;
+            label1.Location = new Point(245, 109);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 25);
+            label1.TabIndex = 35;
+            label1.Text = "Từ ngày:";
             // 
             // dtgvRevenue
             // 
-            this.dtgvRevenue.AllowUserToAddRows = false;
-            this.dtgvRevenue.AllowUserToDeleteRows = false;
-            this.dtgvRevenue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtgvRevenue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvRevenue.Location = new System.Drawing.Point(200, 122);
-            this.dtgvRevenue.Name = "dtgvRevenue";
-            this.dtgvRevenue.ReadOnly = true;
-            this.dtgvRevenue.Size = new System.Drawing.Size(1033, 421);
-            this.dtgvRevenue.TabIndex = 34;
+            dtgvRevenue.AllowUserToAddRows = false;
+            dtgvRevenue.AllowUserToDeleteRows = false;
+            dtgvRevenue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dtgvRevenue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvRevenue.Columns.AddRange(new DataGridViewColumn[] { tenPhim, ngayKc, Soveban, tongDoanhThu });
+            dtgvRevenue.Location = new Point(250, 191);
+            dtgvRevenue.Margin = new Padding(4, 5, 4, 5);
+            dtgvRevenue.Name = "dtgvRevenue";
+            dtgvRevenue.ReadOnly = true;
+            dtgvRevenue.RowHeadersWidth = 62;
+            dtgvRevenue.Size = new Size(1291, 577);
+            dtgvRevenue.TabIndex = 34;
+            // 
+            // tenPhim
+            // 
+            tenPhim.DataPropertyName = "TenPhim";
+            tenPhim.HeaderText = "Tên Phim";
+            tenPhim.MinimumWidth = 8;
+            tenPhim.Name = "tenPhim";
+            tenPhim.ReadOnly = true;
+            // 
+            // ngayKc
+            // 
+            ngayKc.DataPropertyName = "NgayKc";
+            ngayKc.HeaderText = "Ngày Khởi chiếu";
+            ngayKc.MinimumWidth = 8;
+            ngayKc.Name = "ngayKc";
+            ngayKc.ReadOnly = true;
+            // 
+            // Soveban
+            // 
+            Soveban.DataPropertyName = "SoVeBan";
+            Soveban.HeaderText = "Số vé bán";
+            Soveban.MinimumWidth = 8;
+            Soveban.Name = "Soveban";
+            Soveban.ReadOnly = true;
+            // 
+            // tongDoanhThu
+            // 
+            tongDoanhThu.DataPropertyName = "TongDoanhThu";
+            tongDoanhThu.HeaderText = "Tổng doanh thu";
+            tongDoanhThu.MinimumWidth = 8;
+            tongDoanhThu.Name = "tongDoanhThu";
+            tongDoanhThu.ReadOnly = true;
             // 
             // btnReportRevenue
             // 
-            this.btnReportRevenue.AutoSize = true;
-            this.btnReportRevenue.Location = new System.Drawing.Point(793, 65);
-            this.btnReportRevenue.Name = "btnReportRevenue";
-            this.btnReportRevenue.Size = new System.Drawing.Size(92, 32);
-            this.btnReportRevenue.TabIndex = 32;
-            this.btnReportRevenue.Text = "Báo Cáo";
-            this.btnReportRevenue.UseVisualStyleBackColor = true;
+            btnReportRevenue.AutoSize = true;
+            btnReportRevenue.Location = new Point(991, 102);
+            btnReportRevenue.Margin = new Padding(4, 5, 4, 5);
+            btnReportRevenue.Name = "btnReportRevenue";
+            btnReportRevenue.Size = new Size(115, 50);
+            btnReportRevenue.TabIndex = 32;
+            btnReportRevenue.Text = "Báo Cáo";
+            btnReportRevenue.UseVisualStyleBackColor = true;
             // 
             // btnShowRevenue
             // 
-            this.btnShowRevenue.AutoSize = true;
-            this.btnShowRevenue.Location = new System.Drawing.Point(679, 65);
-            this.btnShowRevenue.Name = "btnShowRevenue";
-            this.btnShowRevenue.Size = new System.Drawing.Size(97, 32);
-            this.btnShowRevenue.TabIndex = 33;
-            this.btnShowRevenue.Text = "Thống kê";
-            this.btnShowRevenue.UseVisualStyleBackColor = true;
+            btnShowRevenue.AutoSize = true;
+            btnShowRevenue.Location = new Point(849, 102);
+            btnShowRevenue.Margin = new Padding(4, 5, 4, 5);
+            btnShowRevenue.Name = "btnShowRevenue";
+            btnShowRevenue.Size = new Size(121, 50);
+            btnShowRevenue.TabIndex = 33;
+            btnShowRevenue.Text = "Thống kê";
+            btnShowRevenue.UseVisualStyleBackColor = true;
+            btnShowRevenue.Click += btnShowRevenue_Click;
             // 
             // cboSelectMovie
             // 
-            this.cboSelectMovie.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSelectMovie.FormattingEnabled = true;
-            this.cboSelectMovie.Location = new System.Drawing.Point(326, 25);
-            this.cboSelectMovie.Name = "cboSelectMovie";
-            this.cboSelectMovie.Size = new System.Drawing.Size(349, 24);
-            this.cboSelectMovie.TabIndex = 31;
+            cboSelectMovie.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboSelectMovie.FormattingEnabled = true;
+            cboSelectMovie.Location = new Point(408, 39);
+            cboSelectMovie.Margin = new Padding(4, 5, 4, 5);
+            cboSelectMovie.Name = "cboSelectMovie";
+            cboSelectMovie.Size = new Size(435, 33);
+            cboSelectMovie.TabIndex = 31;
             // 
             // dtmToDate
             // 
-            this.dtmToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtmToDate.Location = new System.Drawing.Point(529, 67);
-            this.dtmToDate.Name = "dtmToDate";
-            this.dtmToDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtmToDate.Size = new System.Drawing.Size(134, 22);
-            this.dtmToDate.TabIndex = 29;
+            dtmToDate.Format = DateTimePickerFormat.Custom;
+            dtmToDate.Location = new Point(661, 105);
+            dtmToDate.Margin = new Padding(4, 5, 4, 5);
+            dtmToDate.Name = "dtmToDate";
+            dtmToDate.RightToLeft = RightToLeft.No;
+            dtmToDate.Size = new Size(166, 31);
+            dtmToDate.TabIndex = 29;
             // 
             // dtmFromDate
             // 
-            this.dtmFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtmFromDate.Location = new System.Drawing.Point(268, 67);
-            this.dtmFromDate.Name = "dtmFromDate";
-            this.dtmFromDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtmFromDate.Size = new System.Drawing.Size(134, 22);
-            this.dtmFromDate.TabIndex = 30;
+            dtmFromDate.Format = DateTimePickerFormat.Custom;
+            dtmFromDate.Location = new Point(335, 105);
+            dtmFromDate.Margin = new Padding(4, 5, 4, 5);
+            dtmFromDate.Name = "dtmFromDate";
+            dtmFromDate.RightToLeft = RightToLeft.No;
+            dtmFromDate.Size = new Size(166, 31);
+            dtmFromDate.TabIndex = 30;
             // 
-            // RevenueUC
+            // DoanhThu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblSelectMovie);
-            this.Controls.Add(this.lblTongDoanhThu);
-            this.Controls.Add(this.txtDoanhThu);
-            this.Controls.Add(this.lblDenNgay);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dtgvRevenue);
-            this.Controls.Add(this.btnReportRevenue);
-            this.Controls.Add(this.btnShowRevenue);
-            this.Controls.Add(this.cboSelectMovie);
-            this.Controls.Add(this.dtmToDate);
-            this.Controls.Add(this.dtmFromDate);
-            this.Name = "RevenueUC";
-            this.Size = new System.Drawing.Size(1400, 650);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvRevenue)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lblSelectMovie);
+            Controls.Add(lblTongDoanhThu);
+            Controls.Add(txtDoanhThu);
+            Controls.Add(lblDenNgay);
+            Controls.Add(label1);
+            Controls.Add(dtgvRevenue);
+            Controls.Add(btnReportRevenue);
+            Controls.Add(btnShowRevenue);
+            Controls.Add(cboSelectMovie);
+            Controls.Add(dtmToDate);
+            Controls.Add(dtmFromDate);
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "DoanhThu";
+            Size = new Size(1750, 1016);
+            ((System.ComponentModel.ISupportInitialize)dtgvRevenue).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -185,5 +235,9 @@
         private System.Windows.Forms.ComboBox cboSelectMovie;
         private System.Windows.Forms.DateTimePicker dtmToDate;
         private System.Windows.Forms.DateTimePicker dtmFromDate;
+        private DataGridViewTextBoxColumn tenPhim;
+        private DataGridViewTextBoxColumn ngayKc;
+        private DataGridViewTextBoxColumn Soveban;
+        private DataGridViewTextBoxColumn tongDoanhThu;
     }
 }

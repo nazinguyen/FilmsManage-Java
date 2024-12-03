@@ -62,7 +62,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Font = new Font("Arial", 12F);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
             panel1.Size = new Size(1551, 182);
             panel1.TabIndex = 0;
@@ -127,7 +127,7 @@
             dtgvFormat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvFormat.Dock = DockStyle.Fill;
             dtgvFormat.Location = new Point(0, 0);
-            dtgvFormat.Margin = new Padding(3, 4, 3, 4);
+            dtgvFormat.Margin = new Padding(4, 5, 4, 5);
             dtgvFormat.Name = "dtgvFormat";
             dtgvFormat.ReadOnly = true;
             dtgvFormat.RowHeadersWidth = 51;
@@ -224,11 +224,11 @@
             // 
             // DinhDangPhimUC
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "DinhDangPhimUC";
             Size = new Size(1551, 672);
             panel1.ResumeLayout(false);

@@ -34,6 +34,7 @@
             btnUpdateCustomer = new Button();
             btnAddCustomer = new Button();
             grpCustomer = new GroupBox();
+            CusDate = new DateTimePicker();
             nudPoint = new NumericUpDown();
             lblCusID = new Label();
             txtCusID = new TextBox();
@@ -50,6 +51,14 @@
             lblCusName = new Label();
             btnShowCustomer = new Button();
             dtgvCustomer = new DataGridView();
+            maKH = new DataGridViewTextBoxColumn();
+            HoTen = new DataGridViewTextBoxColumn();
+            NgaySinh = new DataGridViewTextBoxColumn();
+            DiaChi = new DataGridViewTextBoxColumn();
+            Sdt = new DataGridViewTextBoxColumn();
+            CCCD = new DataGridViewTextBoxColumn();
+            DiemTichLuy = new DataGridViewTextBoxColumn();
+            btnClear = new Button();
             grpCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPoint).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvCustomer).BeginInit();
@@ -72,6 +81,7 @@
             txtSearchCus.Name = "txtSearchCus";
             txtSearchCus.Size = new Size(202, 31);
             txtSearchCus.TabIndex = 28;
+            txtSearchCus.TextChanged += txtSearchCus_TextChanged;
             // 
             // btnDeleteCustomer
             // 
@@ -85,6 +95,7 @@
             btnDeleteCustomer.TabIndex = 25;
             btnDeleteCustomer.Text = "Xóa";
             btnDeleteCustomer.UseVisualStyleBackColor = false;
+            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -98,6 +109,7 @@
             btnUpdateCustomer.TabIndex = 26;
             btnUpdateCustomer.Text = "Sửa";
             btnUpdateCustomer.UseVisualStyleBackColor = false;
+            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // btnAddCustomer
             // 
@@ -111,10 +123,13 @@
             btnAddCustomer.TabIndex = 27;
             btnAddCustomer.Text = "Thêm";
             btnAddCustomer.UseVisualStyleBackColor = false;
+            btnAddCustomer.Click += btnAddCustomer_Click;
             // 
             // grpCustomer
             // 
             grpCustomer.BackColor = Color.Transparent;
+            grpCustomer.Controls.Add(btnClear);
+            grpCustomer.Controls.Add(CusDate);
             grpCustomer.Controls.Add(nudPoint);
             grpCustomer.Controls.Add(lblCusID);
             grpCustomer.Controls.Add(txtCusID);
@@ -139,6 +154,13 @@
             grpCustomer.TabStop = false;
             grpCustomer.Text = "Thông tin khách hàng";
             // 
+            // CusDate
+            // 
+            CusDate.Location = new Point(285, 166);
+            CusDate.Name = "CusDate";
+            CusDate.Size = new Size(300, 35);
+            CusDate.TabIndex = 6;
+            // 
             // nudPoint
             // 
             nudPoint.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -149,6 +171,7 @@
             nudPoint.Size = new Size(94, 35);
             nudPoint.TabIndex = 5;
             nudPoint.TextAlign = HorizontalAlignment.Center;
+            nudPoint.ValueChanged += nudPoint_ValueChanged;
             // 
             // lblCusID
             // 
@@ -167,6 +190,7 @@
             txtCusID.Location = new Point(292, 58);
             txtCusID.Margin = new Padding(4);
             txtCusID.Name = "txtCusID";
+            txtCusID.ReadOnly = true;
             txtCusID.Size = new Size(238, 35);
             txtCusID.TabIndex = 2;
             // 
@@ -186,9 +210,9 @@
             lblCusINumber.Location = new Point(639, 170);
             lblCusINumber.Margin = new Padding(4, 0, 4, 0);
             lblCusINumber.Name = "lblCusINumber";
-            lblCusINumber.Size = new Size(94, 26);
+            lblCusINumber.Size = new Size(88, 26);
             lblCusINumber.TabIndex = 4;
-            lblCusINumber.Text = "CMND:";
+            lblCusINumber.Text = "CCCD:";
             // 
             // txtCusName
             // 
@@ -244,11 +268,12 @@
             // txtCusBirth
             // 
             txtCusBirth.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtCusBirth.Location = new Point(292, 169);
+            txtCusBirth.Location = new Point(1320, 62);
             txtCusBirth.Margin = new Padding(4);
             txtCusBirth.Name = "txtCusBirth";
-            txtCusBirth.Size = new Size(238, 35);
+            txtCusBirth.Size = new Size(60, 35);
             txtCusBirth.TabIndex = 2;
+            txtCusBirth.Visible = false;
             // 
             // lblCusAddress
             // 
@@ -295,6 +320,7 @@
             btnShowCustomer.TabIndex = 23;
             btnShowCustomer.Text = "Xem";
             btnShowCustomer.UseVisualStyleBackColor = false;
+            btnShowCustomer.Click += btnShowCustomer_Click;
             // 
             // dtgvCustomer
             // 
@@ -302,6 +328,7 @@
             dtgvCustomer.AllowUserToDeleteRows = false;
             dtgvCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvCustomer.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvCustomer.Columns.AddRange(new DataGridViewColumn[] { maKH, HoTen, NgaySinh, DiaChi, Sdt, CCCD, DiemTichLuy });
             dtgvCustomer.Location = new Point(361, 282);
             dtgvCustomer.Margin = new Padding(4);
             dtgvCustomer.Name = "dtgvCustomer";
@@ -310,6 +337,80 @@
             dtgvCustomer.RowTemplate.Height = 24;
             dtgvCustomer.Size = new Size(1126, 454);
             dtgvCustomer.TabIndex = 22;
+            dtgvCustomer.CellClick += dtgvCustomer_CellClick;
+            // 
+            // maKH
+            // 
+            maKH.DataPropertyName = "MaKH";
+            maKH.HeaderText = "Mã KH";
+            maKH.MinimumWidth = 8;
+            maKH.Name = "maKH";
+            maKH.ReadOnly = true;
+            // 
+            // HoTen
+            // 
+            HoTen.DataPropertyName = "TenKH";
+            HoTen.HeaderText = "Họ tên";
+            HoTen.MinimumWidth = 8;
+            HoTen.Name = "HoTen";
+            HoTen.ReadOnly = true;
+            // 
+            // NgaySinh
+            // 
+            NgaySinh.DataPropertyName = "NgaySinh";
+            NgaySinh.HeaderText = "Ngày sinh";
+            NgaySinh.MinimumWidth = 8;
+            NgaySinh.Name = "NgaySinh";
+            NgaySinh.ReadOnly = true;
+            // 
+            // DiaChi
+            // 
+            DiaChi.DataPropertyName = "DiaChi";
+            DiaChi.HeaderText = "Địa chỉ";
+            DiaChi.MinimumWidth = 8;
+            DiaChi.Name = "DiaChi";
+            DiaChi.ReadOnly = true;
+            // 
+            // Sdt
+            // 
+            Sdt.DataPropertyName = "SDT";
+            Sdt.HeaderText = "Số điện thoại";
+            Sdt.MinimumWidth = 8;
+            Sdt.Name = "Sdt";
+            Sdt.ReadOnly = true;
+            // 
+            // CCCD
+            // 
+            CCCD.DataPropertyName = "CCCD";
+            CCCD.HeaderText = "CCCD";
+            CCCD.MinimumWidth = 8;
+            CCCD.Name = "CCCD";
+            CCCD.ReadOnly = true;
+            // 
+            // DiemTichLuy
+            // 
+            DiemTichLuy.DataPropertyName = "DiemTichLuy";
+            DiemTichLuy.HeaderText = "Điểm tích lũy";
+            DiemTichLuy.MinimumWidth = 8;
+            DiemTichLuy.Name = "DiemTichLuy";
+            DiemTichLuy.ReadOnly = true;
+            DiemTichLuy.Visible = false;
+            // 
+            // btnClear
+            // 
+            btnClear.AccessibleRole = AccessibleRole.ScrollBar;
+            btnClear.BackColor = Color.FromArgb(133, 19, 33);
+            btnClear.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnClear.ForeColor = Color.White;
+            btnClear.ImageAlign = ContentAlignment.TopCenter;
+            btnClear.Location = new Point(1041, 166);
+            btnClear.Margin = new Padding(4);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(142, 48);
+            btnClear.TabIndex = 30;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            btnClear.Click += btnClear_Click;
             // 
             // Customer
             // 
@@ -357,5 +458,14 @@
         private Label lblCusName;
         private Button btnShowCustomer;
         private DataGridView dtgvCustomer;
+        private DataGridViewTextBoxColumn maKH;
+        private DataGridViewTextBoxColumn HoTen;
+        private DataGridViewTextBoxColumn NgaySinh;
+        private DataGridViewTextBoxColumn DiaChi;
+        private DataGridViewTextBoxColumn Sdt;
+        private DataGridViewTextBoxColumn CCCD;
+        private DataGridViewTextBoxColumn DiemTichLuy;
+        private DateTimePicker CusDate;
+        private Button btnClear;
     }
 }

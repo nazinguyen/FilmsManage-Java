@@ -1,4 +1,5 @@
-﻿using FilmsManage.GUI.UserControls;
+﻿using FilmsAPI.Models;
+using FilmsManage.GUI.UserControls;
 using FilmsManage.GUI.UserControls.Data;
 using FilmsManage.Models;
 using System;
@@ -50,7 +51,7 @@ namespace FilmsManage.GUI.DataUserControl
             if (!(pnData.Controls.OfType<LichChieuUC>().Any()))
             {
                 pnData.Controls.Clear();
-                CinemaUC phongChieu = new CinemaUC();
+                CinemaUC phongChieu = new CinemaUC(this);
                 phongChieu.Dock = DockStyle.Fill;
                 pnData.Controls.Add(phongChieu);
             }
@@ -63,7 +64,7 @@ namespace FilmsManage.GUI.DataUserControl
             if (!(pnData.Controls.OfType<TheLoaiPhimUC>().Any()))
             {
                 pnData.Controls.Clear();
-                TheLoaiPhimUC theLoai = new TheLoaiPhimUC();
+                TheLoaiPhimUC theLoai = new TheLoaiPhimUC(this);
                 theLoai.Dock = DockStyle.Fill;
                 pnData.Controls.Add(theLoai);
             }
@@ -76,12 +77,16 @@ namespace FilmsManage.GUI.DataUserControl
             if (!(pnData.Controls.OfType<PhimUC>().Any()))
             {
                 pnData.Controls.Clear();
-                PhimUC phim = new PhimUC();
-                phim.Dock = DockStyle.Fill;
-                pnData.Controls.Add(phim);
+                InitializePhimUC(); 
             }
         }
-
+        public void InitializePhimUC()
+        {
+            PhimUC phimUC = new PhimUC(this); // Truyền DataUC vào constructor của PhimUC
+            phimUC.Dock = DockStyle.Fill;
+            pnData.Controls.Add(phimUC); // Thêm PhimUC vào panel
+        }
+        
         private void btnFormatMovieUC_Click(object sender, EventArgs e)
         {
             this.Text = "Định dạng";
