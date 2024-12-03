@@ -43,6 +43,7 @@
             txtTenDangPhim = new TextBox();
             lblFormatID = new Label();
             txtFormatID = new TextBox();
+            btnExport = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvFormat).BeginInit();
@@ -51,18 +52,14 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(lblFormatID);
-            panel1.Controls.Add(cbMaMH);
-            panel1.Controls.Add(txtFormatID);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(txtTenDangPhim);
-            panel1.Controls.Add(label3);
-            panel1.Controls.Add(label2);
-            panel1.Controls.Add(txtTenMh);
+            panel1.Controls.Add(btnExport);
+            panel1.Controls.Add(btnShowFormat);
+            panel1.Controls.Add(btnUpdateFormat);
+            panel1.Controls.Add(btnInsertFormat);
             panel1.Dock = DockStyle.Top;
             panel1.Font = new Font("Arial", 12F);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(4, 5, 4, 5);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
             panel1.Size = new Size(1551, 182);
             panel1.TabIndex = 0;
@@ -127,7 +124,7 @@
             dtgvFormat.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvFormat.Dock = DockStyle.Fill;
             dtgvFormat.Location = new Point(0, 0);
-            dtgvFormat.Margin = new Padding(4, 5, 4, 5);
+            dtgvFormat.Margin = new Padding(3, 4, 3, 4);
             dtgvFormat.Name = "dtgvFormat";
             dtgvFormat.ReadOnly = true;
             dtgvFormat.RowHeadersWidth = 51;
@@ -222,13 +219,24 @@
             txtFormatID.Size = new Size(249, 30);
             txtFormatID.TabIndex = 14;
             // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(411, 110);
+            btnExport.Margin = new Padding(4, 5, 4, 5);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 71);
+            btnExport.TabIndex = 12;
+            btnExport.Text = "Xuất File ";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
+            // 
             // DinhDangPhimUC
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "DinhDangPhimUC";
             Size = new Size(1551, 672);
             panel1.ResumeLayout(false);
@@ -257,5 +265,6 @@
         private Label label3;
         private TextBox txtTenMh;
         private ComboBox cbMaMH;
+        private Button btnExport;
     }
 }

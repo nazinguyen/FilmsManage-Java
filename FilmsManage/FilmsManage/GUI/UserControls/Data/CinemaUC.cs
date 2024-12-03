@@ -1,4 +1,5 @@
-﻿using FilmsAPI.Models;
+﻿using ClosedXML.Excel;
+using FilmsAPI.Models;
 using FilmsManage.GUI.DataUserControl;
 using FilmsManage.Services;
 using Microsoft.VisualBasic;
@@ -219,5 +220,75 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dtgvCinema.DataSource is not null)
+            {
+                // Chuyển dữ liệu từ DataGridView sang DataTable
+                var dataTable = new DataTable();
+
+                foreach (DataGridViewColumn column in dtgvCinema.Columns)
+                {
+                    dataTable.Columns.Add(column.HeaderText);
+                }
+
+                foreach (DataGridViewRow row in dtgvCinema.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        var dataRow = dataTable.NewRow();
+                        foreach (DataGridViewColumn column in dtgvCinema.Columns)
+                        {
+                            dataRow[column.HeaderText] = row.Cells[column.Name].Value ?? DBNull.Value;
+                        }
+                        dataTable.Rows.Add(dataRow);
+                    }
+                }
+
+                // Chọn nơi lưu file Excel
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                    saveFileDialog.Title = "Lưu file Excel";
+                    saveFileDialog.FileName = "DanhSachPhongChieu.xlsx";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string filePath = saveFileDialog.FileName;
+
+                        // Dùng ClosedXML để xuất ra file Excel với định dạng đẹp
+                        using (var workbook = new XLWorkbook())
+                        {
+                            var worksheet = workbook.AddWorksheet("Danh sách phòng chiếu");
+
+                            // Chèn dữ liệu từ DataTable vào Excel
+                            worksheet.Cell(1, 1).InsertTable(dataTable);
+
+                            // Định dạng tiêu đề cột (tô đậm, căn giữa, nền màu)
+                            var headerRow = worksheet.Range(worksheet.Cell(1, 1), worksheet.Cell(1, dataTable.Columns.Count));
+                            headerRow.Style.Font.Bold = true;
+                            headerRow.Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            headerRow.Style.Fill.BackgroundColor = XLColor.LightGray;
+
+                            // Căn chỉnh số liệu
+                            for (int col = 1; col <= dataTable.Columns.Count; col++)
+                            {
+                                worksheet.Column(col).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                            }
+
+                            // Lưu file Excel
+                            workbook.SaveAs(filePath);
+                            MessageBox.Show("Xuất Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
     }
 }
