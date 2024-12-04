@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\csharp\\winforms\\filmsmanage\\filmsmanage\\filmsmanage\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\dto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\csharp\\winforms\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\csharp\\winforms\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\forms\\register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\csharp\\winforms\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\cinemauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\cinemauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -37,42 +29,21 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RegisterDTO.cs",
-              "DocumentMoniker": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\DTO\\RegisterDTO.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\DTO\\RegisterDTO.cs",
-              "ToolTip": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\DTO\\RegisterDTO.cs",
-              "RelativeToolTip": "FilmsManage\\DTO\\RegisterDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA1AAAAAAAAAA==",
+              "Title": "CinemaUC.cs",
+              "DocumentMoniker": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
+              "ToolTip": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwBEBAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T10:05:59.501Z",
+              "WhenOpened": "2024-12-04T01:04:21.884Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Register.cs",
-              "DocumentMoniker": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Register.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\Forms\\Register.cs",
-              "ToolTip": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Register.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\Forms\\Register.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAuwC0AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T10:05:27.483Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Register.cs [Design]",
-              "DocumentMoniker": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Register.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\Forms\\Register.cs",
-              "ToolTip": "D:\\CSharp\\Winforms\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Register.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\Forms\\Register.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T10:00:06.567Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },
