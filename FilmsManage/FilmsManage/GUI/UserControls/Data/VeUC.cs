@@ -150,7 +150,7 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 var selectedItem = lsvAllListShowTimes.SelectedItems[0];
 
-                int xuatChieuId = Convert.ToInt32( selectedItem.Tag);
+                int xuatChieuId = Convert.ToInt32(selectedItem.Tag);
                 var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/XuatChieu/{xuatChieuId}");
                 Debug.WriteLine(xuatChieuId);
                 if (xuatChieu != null && xuatChieu.Status)
@@ -221,12 +221,12 @@ namespace FilmsManage.GUI.UserControls.Data
                 }
 
 
-                Debug.WriteLine("pc "+phongChieu.MaPhongChieu);
+                Debug.WriteLine("pc " + phongChieu.MaPhongChieu);
 
                 var listGheFromApi = await _sv.GetAsync<List<Ghe>>($"/api/Ghe/{phongChieu.MaPhongChieu}");
                 Debug.WriteLine("ok list ghe");
                 var getLoaiVe = await _sv.GetAsync<List<LoaiVe>>("/api/LoaiVe");
-                                Debug.WriteLine("ok loai ghe");
+                Debug.WriteLine("ok loai ghe");
 
                 int maVeThuong = 0;
                 foreach (var item in getLoaiVe)
@@ -281,6 +281,12 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+            exporter.ExportDataGridViewToExcel(dtgvVe);
         }
     }
 }

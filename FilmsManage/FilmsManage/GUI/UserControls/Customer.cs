@@ -23,40 +23,8 @@ namespace FilmsManage.GUI.UserControls
 
             _customer = new DangPhimSV("https://localhost:7085");
             LoadData();
-<<<<<<< HEAD
-            dtgvCustomer.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "CustomerID",
-                HeaderText = "Mã khách hàng",
-                DataPropertyName = "MaKh" // Tên trường chính xác trong dữ liệu
-            });
-            dtgvCustomer.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "CustomerName",
-                HeaderText = "Họ tên",
-                DataPropertyName = "TenKh" // Tên trường chính xác trong dữ liệu
-            });
-            dtgvCustomer.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "CustomerPhone",
-                HeaderText = "Số điện thoại",
-                DataPropertyName = "Sdt" // Tên trường chính xác trong dữ liệu
-            });
-            dtgvCustomer.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "CustomerEmail",
-                HeaderText = "Email",//Tên cột
-                DataPropertyName = "Email" // Tên trường chính xác trong dữ liệu
-            });
-            //txtStaffId.Enabled = false;
-            //txtTenQuyen.Enabled = false;
-            //Thêm sự kiện CellClick
+
             dtgvCustomer.CellClick += dtgvCustomer_CellClick;
-            //cbbMaQuyen.SelectedIndexChanged += CbbMaQuyen_SelectedIndexChanged;
-            btnAddCustomer.Click += btnAddCustomer_Click;
-=======
-            dtgvCustomer.CellClick += dtgvCustomer_CellClick;
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
 
         }
 
@@ -64,31 +32,12 @@ namespace FilmsManage.GUI.UserControls
         {
             try
             {
-<<<<<<< HEAD
-                // Gọi API để lấy danh sách Khach hang
-=======
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
                 List<KhachHang> customerList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
                 var customerDisplayList = customerList.Select(d => new
                 {
                     d.MaKh,
                     d.TenKh,
                     d.Sdt,
-<<<<<<< HEAD
-                    d.Email,
-                    //MaQuyen = d.MaQuyenNavigation.MaQuyen,
-                    //TenQuyen = d.MaQuyenNavigation?.TenQuyen
-                }).ToList();
-                dtgvCustomer.DataSource = customerDisplayList;
-                dtgvCustomer.Refresh();
-                //Gọi Api để lấy danh sách quyền
-                //List<Quyen> roleList = await _customer.GetAsync<List<Quyen>>("api/Quyen");
-                ////Bind dữ liệu vào combobox
-                //cbbMaQuyen.DataSource = roleList;
-                //cbbMaQuyen.DisplayMember = "MaQuyen";
-                //cbbMaQuyen.ValueMember = "MaQuyen";
-                ////Bind dữ liệu vào combobox
-=======
                     d.CCCD,
                     d.NgaySinh,
                     d.DiaChi,
@@ -99,34 +48,20 @@ namespace FilmsManage.GUI.UserControls
 
                 dtgvCustomer.DataSource = customerDisplayList;
                 dtgvCustomer.Refresh();
-
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
         private void dtgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {
                 return;
             }
-<<<<<<< HEAD
-            //Gán giá trị từ hàng được chọn vào các ô nhập liệu
-            txtCusID.Text = dtgvCustomer.Rows[e.RowIndex].Cells["CustomerID"].Value.ToString();
-            txtCusName.Text = dtgvCustomer.Rows[e.RowIndex].Cells["CustomerName"].Value.ToString();
-            txtCusPhone.Text = dtgvCustomer.Rows[e.RowIndex].Cells["CustomerPhone"].Value.ToString();
-            //txt.Text = dtgvCustomer.Rows[e.RowIndex].Cells["CustomerName"].Value.ToString();
-            //txtStaffPass.Text = dtgvCustomer.Rows[e.RowIndex].Cells["StaffPassword"].Value.ToString();
-            //cbbMaQuyen.Text = dtgvCustomer.Rows[e.RowIndex].Cells["StaffRole"].Value.ToString();
-            //txtTenQuyen.Text = dtgvCustomer.Rows[e.RowIndex].Cells["StaffRoleName"].Value.ToString();
-=======
+
+
             txtCusID.Text = dtgvCustomer.Rows[e.RowIndex].Cells["maKH"].Value.ToString();
             txtCusName.Text = dtgvCustomer.Rows[e.RowIndex].Cells["HoTen"].Value.ToString();
             txtCusPhone.Text = dtgvCustomer.Rows[e.RowIndex].Cells["SDT"].Value.ToString();
@@ -153,22 +88,11 @@ namespace FilmsManage.GUI.UserControls
                 // Bật lại sự kiện ValueChanged
                 nudPoint.ValueChanged += nudPoint_ValueChanged;
             }
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
         }
 
         private async void btnAddCustomer_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            int newCusID = int.Parse(txtCusID.Text);
-            string newCusName = txtCusName.Text.Trim();
-            string newCusPhone = txtCusPhone.Text.Trim();
-            //string newCusEmail = txtCusEmail.Text.Trim();
-            string newCusBird = txtCusBirth.Text.Trim();
-            string newCusAdress = txtCusAddress.Text.Trim();
-            string newCusNumID = txtCusINumber.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(newCusName) || string.IsNullOrWhiteSpace(newCusPhone) || string.IsNullOrWhiteSpace(newCusBird) || string.IsNullOrWhiteSpace(newCusNumID))
-=======
             string newCusName = txtCusName.Text.Trim();
             string newCusPhone = txtCusPhone.Text.Trim();
             DateTime newCusBird = CusDate.Value;
@@ -176,32 +100,13 @@ namespace FilmsManage.GUI.UserControls
             string newCusNumID = txtCusINumber.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(newCusName) || string.IsNullOrWhiteSpace(newCusPhone) /*|| string.IsNullOrWhiteSpace(newCusBird)*/ || string.IsNullOrWhiteSpace(newCusNumID))
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             try
             {
-<<<<<<< HEAD
-                //Gọi API để kiểm tra danh sách tên kach hang
-                List<KhachHang> CusList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
 
-                if (CusList.Any(d => d.MaKh == newCusID))
-                {
-                    MessageBox.Show("Mã khach hang đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                //Gọi API để thêm nhân viên
-                var newCus = new KhachHang
-                {
-                    MaKh = newCusID,
-                    Sdt = newCusPhone,
-                    TenKh = newCusName,
-                };
-                string endpoint = "api/NhanVien";
-                var response = await _customer.PostAsync<string>(endpoint, newCus);
-=======
                 List<KhachHang> CusList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
 
 
@@ -221,7 +126,6 @@ namespace FilmsManage.GUI.UserControls
                 };
                 string endpoint = "api/KhachHang";
                 var response = await _customer.PostAsync<KhachHang>(endpoint, newCus);
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
                 if (response != null)
                 {
                     MessageBox.Show("Thêm khách hàng thành công");
@@ -237,8 +141,6 @@ namespace FilmsManage.GUI.UserControls
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-<<<<<<< HEAD
-=======
         }
 
         private void btnShowCustomer_Click(object sender, EventArgs e)
@@ -465,7 +367,6 @@ namespace FilmsManage.GUI.UserControls
                 // Bật lại sự kiện ValueChanged
                 nudPoint.ValueChanged += nudPoint_ValueChanged;
             }
->>>>>>> fc013bb3dbf08df9ba42174478ec69f383b25a61
         }
     }
     }

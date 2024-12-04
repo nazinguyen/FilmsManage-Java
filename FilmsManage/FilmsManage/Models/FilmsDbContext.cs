@@ -298,35 +298,27 @@ public partial class FilmsDbContext : DbContext
             entity.ToTable("Ve");
 
             entity.Property(e => e.GiaVe).HasColumnType("decimal(18, 0)");
-            entity.Property(e => e.MaKh).HasColumnName("MaKH");
-            entity.Property(e => e.MaNv).HasColumnName("MaNV");
+
 
             entity.HasOne(d => d.MaGheNavigation).WithMany(p => p.Ves)
                 .HasForeignKey(d => d.MaGhe)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Ve__MaGhe__00200768");
 
-            entity.HasOne(d => d.MaKhNavigation).WithMany(p => p.Ves)
-                .HasForeignKey(d => d.MaKh)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Ve__MaKH__02084FDA");
+
 
             entity.HasOne(d => d.MaLoaiVeNavigation).WithMany(p => p.Ves)
                 .HasForeignKey(d => d.MaLoaiVe)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Ve__MaLoaiVe__7F2BE32F");
 
-            entity.HasOne(d => d.MaNvNavigation).WithMany(p => p.Ves)
-                .HasForeignKey(d => d.MaNv)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Ve__MaNV__02FC7413");
+
 
             entity.HasOne(d => d.MaXuatChieuNavigation).WithMany(p => p.Ves)
                 .HasForeignKey(d => d.MaXuatChieu)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Ve__MaXuatChieu__01142BA1");
         });
-
         modelBuilder.Entity<XuatChieu>(entity =>
         {
             entity.HasKey(e => e.MaXuatChieu).HasName("PK__XuatChie__46080F55B873C3E2");

@@ -51,6 +51,7 @@
             btnShowStaff = new Button();
             dtgvStaff = new DataGridView();
             lblTimKiem = new Label();
+            btnExport = new Button();
             grpStaff.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvStaff).BeginInit();
             SuspendLayout();
@@ -69,7 +70,7 @@
             btnAddStaff.BackColor = Color.FromArgb(133, 19, 33);
             btnAddStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnAddStaff.ForeColor = Color.White;
-            btnAddStaff.Location = new Point(78, 429);
+            btnAddStaff.Location = new Point(78, 405);
             btnAddStaff.Margin = new Padding(3, 4, 3, 4);
             btnAddStaff.Name = "btnAddStaff";
             btnAddStaff.Size = new Size(171, 58);
@@ -172,7 +173,7 @@
             btnDeleteStaff.BackColor = Color.FromArgb(133, 19, 33);
             btnDeleteStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnDeleteStaff.ForeColor = Color.White;
-            btnDeleteStaff.Location = new Point(78, 632);
+            btnDeleteStaff.Location = new Point(78, 569);
             btnDeleteStaff.Margin = new Padding(3, 4, 3, 4);
             btnDeleteStaff.Name = "btnDeleteStaff";
             btnDeleteStaff.Size = new Size(171, 60);
@@ -186,7 +187,7 @@
             btnUpdateStaff.BackColor = Color.FromArgb(133, 19, 33);
             btnUpdateStaff.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnUpdateStaff.ForeColor = Color.White;
-            btnUpdateStaff.Location = new Point(78, 530);
+            btnUpdateStaff.Location = new Point(78, 487);
             btnUpdateStaff.Margin = new Padding(3, 4, 3, 4);
             btnUpdateStaff.Name = "btnUpdateStaff";
             btnUpdateStaff.Size = new Size(171, 64);
@@ -316,10 +317,25 @@
             lblTimKiem.TabIndex = 24;
             lblTimKiem.Text = "Tìm theo tên";
             // 
+            // btnExport
+            // 
+            btnExport.BackColor = Color.FromArgb(133, 19, 33);
+            btnExport.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnExport.ForeColor = Color.White;
+            btnExport.Location = new Point(78, 652);
+            btnExport.Margin = new Padding(3, 4, 3, 4);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(171, 60);
+            btnExport.TabIndex = 25;
+            btnExport.Text = "Xuất File";
+            btnExport.UseVisualStyleBackColor = false;
+            btnExport.Click += btnExport_Click;
+            // 
             // Staff
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnExport);
             Controls.Add(lblTimKiem);
             Controls.Add(btnAddStaff);
             Controls.Add(btnSearchStaff);
@@ -365,5 +381,6 @@
         private ComboBox cbbMaQuyen;
         private Label lblStaffRole;
         private TextBox txtTenQuyen;
+        private Button btnExport;
     }
 }

@@ -40,6 +40,7 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             dtgvVe = new DataGridView();
+            btnExport = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgvVe).BeginInit();
             SuspendLayout();
             // 
@@ -148,10 +149,22 @@
             dtgvVe.Size = new Size(831, 760);
             dtgvVe.TabIndex = 10;
             // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(1306, 175);
+            btnExport.Margin = new Padding(5, 6, 5, 6);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(129, 89);
+            btnExport.TabIndex = 165;
+            btnExport.Text = "Xuất file";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
+            // 
             // VeUC
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(btnExport);
             Controls.Add(dtgvVe);
             Controls.Add(btnAllListShowTimes);
             Controls.Add(btnShowAllTicketsByShowTime);
@@ -185,5 +198,6 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
+        private Button btnExport;
     }
 }
