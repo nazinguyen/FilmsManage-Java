@@ -37,9 +37,7 @@
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             dtgvVe = new DataGridView();
-
             btnExport = new Button();
-
             txtSearchShowtime = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtgvVe).BeginInit();
             SuspendLayout();
@@ -121,7 +119,6 @@
             dtgvVe.Size = new Size(831, 760);
             dtgvVe.TabIndex = 10;
             // 
-
             // btnExport
             // 
             btnExport.Location = new Point(1306, 175);
@@ -131,7 +128,8 @@
             btnExport.TabIndex = 165;
             btnExport.Text = "Xuất file";
             btnExport.UseVisualStyleBackColor = true;
-
+            btnExport.Click += btnExport_Click_1;
+            // 
             // txtSearchShowtime
             // 
             txtSearchShowtime.BackColor = SystemColors.ControlLightLight;
@@ -144,17 +142,13 @@
             txtSearchShowtime.TabIndex = 48;
             txtSearchShowtime.Text = "Tìm theo tên phim...";
             txtSearchShowtime.TextChanged += txtSearchShowtime_TextChanged;
-
             // 
             // VeUC
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-
             Controls.Add(btnExport);
-
             Controls.Add(txtSearchShowtime);
-
             Controls.Add(dtgvVe);
             Controls.Add(btnAllListShowTimes);
             Controls.Add(btnShowShowTimeNotCreateTickets);
