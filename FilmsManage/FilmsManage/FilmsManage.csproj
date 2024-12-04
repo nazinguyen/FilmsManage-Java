@@ -9,7 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GUI\DataUserControl\**" />
+    <EmbeddedResource Remove="GUI\DataUserControl\**" />
+    <None Remove="GUI\DataUserControl\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.104.2" />
+    <PackageReference Include="CredentialManager" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -27,7 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GUI\DataUserControl\" />
     <Folder Include="Resources\" />
   </ItemGroup>
 

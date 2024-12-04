@@ -28,41 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnShowAllTicketsByShowTime = new Button();
-            btnShowAllTicketsBoughtByShowTime = new Button();
             btnAddTicketsByShowTime = new Button();
             btnAllListShowTimes = new Button();
             btnShowShowTimeNotCreateTickets = new Button();
-            btnDeleteTicketsByShowTime = new Button();
             lsvAllListShowTimes = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
             columnHeader4 = new ColumnHeader();
             dtgvVe = new DataGridView();
+
             btnExport = new Button();
+
+            txtSearchShowtime = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dtgvVe).BeginInit();
             SuspendLayout();
-            // 
-            // btnShowAllTicketsByShowTime
-            // 
-            btnShowAllTicketsByShowTime.Location = new Point(653, 175);
-            btnShowAllTicketsByShowTime.Margin = new Padding(5, 6, 5, 6);
-            btnShowAllTicketsByShowTime.Name = "btnShowAllTicketsByShowTime";
-            btnShowAllTicketsByShowTime.Size = new Size(192, 89);
-            btnShowAllTicketsByShowTime.TabIndex = 5;
-            btnShowAllTicketsByShowTime.Text = "Xem Tất Cả Các Vé Theo Lịch Chiếu";
-            btnShowAllTicketsByShowTime.UseVisualStyleBackColor = true;
-            // 
-            // btnShowAllTicketsBoughtByShowTime
-            // 
-            btnShowAllTicketsBoughtByShowTime.Location = new Point(435, 175);
-            btnShowAllTicketsBoughtByShowTime.Margin = new Padding(5, 6, 5, 6);
-            btnShowAllTicketsBoughtByShowTime.Name = "btnShowAllTicketsBoughtByShowTime";
-            btnShowAllTicketsBoughtByShowTime.Size = new Size(192, 89);
-            btnShowAllTicketsBoughtByShowTime.TabIndex = 4;
-            btnShowAllTicketsBoughtByShowTime.Text = "Xem Các Vé Được Bán Theo Lịch Chiếu";
-            btnShowAllTicketsBoughtByShowTime.UseVisualStyleBackColor = true;
             // 
             // btnAddTicketsByShowTime
             // 
@@ -77,33 +57,25 @@
             // 
             // btnAllListShowTimes
             // 
-            btnAllListShowTimes.Location = new Point(1077, 175);
+            btnAllListShowTimes.Location = new Point(483, 175);
             btnAllListShowTimes.Margin = new Padding(5, 6, 5, 6);
             btnAllListShowTimes.Name = "btnAllListShowTimes";
             btnAllListShowTimes.Size = new Size(192, 89);
             btnAllListShowTimes.TabIndex = 3;
             btnAllListShowTimes.Text = "Xem Tất Cả Lịch Chiếu\r\n";
             btnAllListShowTimes.UseVisualStyleBackColor = true;
+            btnAllListShowTimes.Click += btnAllListShowTimes_Click;
             // 
             // btnShowShowTimeNotCreateTickets
             // 
-            btnShowShowTimeNotCreateTickets.Location = new Point(866, 175);
+            btnShowShowTimeNotCreateTickets.Location = new Point(240, 175);
             btnShowShowTimeNotCreateTickets.Margin = new Padding(5, 6, 5, 6);
             btnShowShowTimeNotCreateTickets.Name = "btnShowShowTimeNotCreateTickets";
             btnShowShowTimeNotCreateTickets.Size = new Size(192, 89);
             btnShowShowTimeNotCreateTickets.TabIndex = 3;
             btnShowShowTimeNotCreateTickets.Text = "Xem Lịch Chiếu Chưa Được Tạo Vé";
             btnShowShowTimeNotCreateTickets.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteTicketsByShowTime
-            // 
-            btnDeleteTicketsByShowTime.Location = new Point(220, 175);
-            btnDeleteTicketsByShowTime.Margin = new Padding(5, 6, 5, 6);
-            btnDeleteTicketsByShowTime.Name = "btnDeleteTicketsByShowTime";
-            btnDeleteTicketsByShowTime.Size = new Size(192, 89);
-            btnDeleteTicketsByShowTime.TabIndex = 1;
-            btnDeleteTicketsByShowTime.Text = "Xóa Vé Theo Lịch Chiếu";
-            btnDeleteTicketsByShowTime.UseVisualStyleBackColor = true;
+            btnShowShowTimeNotCreateTickets.Click += btnShowShowTimeNotCreateTickets_Click;
             // 
             // lsvAllListShowTimes
             // 
@@ -149,6 +121,7 @@
             dtgvVe.Size = new Size(831, 760);
             dtgvVe.TabIndex = 10;
             // 
+
             // btnExport
             // 
             btnExport.Location = new Point(1306, 175);
@@ -158,32 +131,46 @@
             btnExport.TabIndex = 165;
             btnExport.Text = "Xuất file";
             btnExport.UseVisualStyleBackColor = true;
-            btnExport.Click += btnExport_Click;
+
+            // txtSearchShowtime
+            // 
+            txtSearchShowtime.BackColor = SystemColors.ControlLightLight;
+            txtSearchShowtime.BorderStyle = BorderStyle.FixedSingle;
+            txtSearchShowtime.Location = new Point(749, 223);
+            txtSearchShowtime.Margin = new Padding(3, 4, 3, 4);
+            txtSearchShowtime.Multiline = true;
+            txtSearchShowtime.Name = "txtSearchShowtime";
+            txtSearchShowtime.Size = new Size(417, 41);
+            txtSearchShowtime.TabIndex = 48;
+            txtSearchShowtime.Text = "Tìm theo tên phim...";
+            txtSearchShowtime.TextChanged += txtSearchShowtime_TextChanged;
+
             // 
             // VeUC
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+
             Controls.Add(btnExport);
+
+            Controls.Add(txtSearchShowtime);
+
             Controls.Add(dtgvVe);
             Controls.Add(btnAllListShowTimes);
-            Controls.Add(btnShowAllTicketsByShowTime);
             Controls.Add(btnShowShowTimeNotCreateTickets);
             Controls.Add(lsvAllListShowTimes);
-            Controls.Add(btnShowAllTicketsBoughtByShowTime);
             Controls.Add(btnAddTicketsByShowTime);
-            Controls.Add(btnDeleteTicketsByShowTime);
             Margin = new Padding(4, 5, 4, 5);
             Name = "VeUC";
             Size = new Size(1663, 1067);
             ((System.ComponentModel.ISupportInitialize)dtgvVe).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panel61;
-        private System.Windows.Forms.Button btnShowAllTicketsByShowTime;
         private System.Windows.Forms.Button btnShowAllTicketsBoughtByShowTime;
         private System.Windows.Forms.Button btnAddTicketsByShowTime;
         private System.Windows.Forms.Button btnAllListShowTimes;
@@ -198,6 +185,10 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
+
         private Button btnExport;
+
+        private TextBox txtSearchShowtime;
+
     }
 }

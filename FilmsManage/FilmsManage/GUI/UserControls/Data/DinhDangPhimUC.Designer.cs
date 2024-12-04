@@ -60,13 +60,13 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1548, 186);
+            panel1.Size = new Size(1935, 336);
             panel1.TabIndex = 0;
             // 
             // btnShowFormat
             // 
-            btnShowFormat.Location = new Point(275, 110);
-            btnShowFormat.Margin = new Padding(4, 5, 4, 5);
+            btnShowFormat.Location = new Point(354, 236);
+            btnShowFormat.Margin = new Padding(5, 6, 5, 6);
             btnShowFormat.Name = "btnShowFormat";
             btnShowFormat.Size = new Size(100, 71);
             btnShowFormat.TabIndex = 11;
@@ -75,8 +75,8 @@
             // 
             // btnUpdateFormat
             // 
-            btnUpdateFormat.Location = new Point(135, 110);
-            btnUpdateFormat.Margin = new Padding(4, 5, 4, 5);
+            btnUpdateFormat.Location = new Point(187, 236);
+            btnUpdateFormat.Margin = new Padding(5, 6, 5, 6);
             btnUpdateFormat.Name = "btnUpdateFormat";
             btnUpdateFormat.Size = new Size(100, 71);
             btnUpdateFormat.TabIndex = 10;
@@ -86,8 +86,8 @@
             // 
             // btnInsertFormat
             // 
-            btnInsertFormat.Location = new Point(0, 110);
-            btnInsertFormat.Margin = new Padding(4, 5, 4, 5);
+            btnInsertFormat.Location = new Point(31, 236);
+            btnInsertFormat.Margin = new Padding(5, 6, 5, 6);
             btnInsertFormat.Name = "btnInsertFormat";
             btnInsertFormat.Size = new Size(100, 71);
             btnInsertFormat.TabIndex = 8;
@@ -100,10 +100,10 @@
             panel2.Controls.Add(dtgvFormat);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 186);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(0, 336);
+            panel2.Margin = new Padding(4, 5, 4, 5);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1548, 612);
+            panel2.Size = new Size(1935, 662);
             panel2.TabIndex = 1;
             // 
             // dtgvFormat
@@ -118,7 +118,7 @@
             dtgvFormat.Name = "dtgvFormat";
             dtgvFormat.ReadOnly = true;
             dtgvFormat.RowHeadersWidth = 51;
-            dtgvFormat.Size = new Size(1011, 612);
+            dtgvFormat.Size = new Size(1264, 662);
             dtgvFormat.TabIndex = 9;
             // 
             // panel3
@@ -135,7 +135,7 @@
             panel3.Location = new Point(1011, 0);
             panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(537, 612);
+            panel3.Size = new Size(671, 662);
             panel3.TabIndex = 0;
             // 
             // cbMaMH
@@ -160,7 +160,8 @@
             // 
             // txtTenMh
             // 
-            txtTenMh.Location = new Point(175, 180);
+            txtTenMh.Location = new Point(219, 225);
+            txtTenMh.Margin = new Padding(4);
             txtTenMh.Name = "txtTenMh";
             txtTenMh.Size = new Size(244, 27);
             txtTenMh.TabIndex = 25;
@@ -187,7 +188,8 @@
             // 
             // txtTenDangPhim
             // 
-            txtTenDangPhim.Location = new Point(175, 63);
+            txtTenDangPhim.Location = new Point(219, 79);
+            txtTenDangPhim.Margin = new Padding(4);
             txtTenDangPhim.Name = "txtTenDangPhim";
             txtTenDangPhim.Size = new Size(244, 27);
             txtTenDangPhim.TabIndex = 22;
