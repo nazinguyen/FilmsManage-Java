@@ -45,6 +45,7 @@
             panel39 = new Panel();
             txtGenreID = new TextBox();
             lblGenreID = new Label();
+            btnExport = new Button();
             panel40.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvGenre).BeginInit();
@@ -58,23 +59,24 @@
             // panel40
             // 
             panel40.BackColor = Color.LightSteelBlue;
+            panel40.Controls.Add(btnExport);
             panel40.Controls.Add(btnUpdateGenre);
             panel40.Controls.Add(btnDeleteGenre);
             panel40.Controls.Add(btnInsertGenre);
             panel40.Dock = DockStyle.Top;
             panel40.Location = new Point(0, 0);
-            panel40.Margin = new Padding(4, 5, 4, 5);
+            panel40.Margin = new Padding(5, 6, 5, 6);
             panel40.Name = "panel40";
-            panel40.Size = new Size(1935, 288);
+            panel40.Size = new Size(1935, 360);
             panel40.TabIndex = 10;
             panel40.Paint += panel40_Paint;
             // 
             // btnUpdateGenre
             // 
-            btnUpdateGenre.Location = new Point(345, 173);
-            btnUpdateGenre.Margin = new Padding(5, 6, 5, 6);
+            btnUpdateGenre.Location = new Point(431, 216);
+            btnUpdateGenre.Margin = new Padding(6, 8, 6, 8);
             btnUpdateGenre.Name = "btnUpdateGenre";
-            btnUpdateGenre.Size = new Size(100, 71);
+            btnUpdateGenre.Size = new Size(125, 89);
             btnUpdateGenre.TabIndex = 2;
             btnUpdateGenre.Text = "Sửa";
             btnUpdateGenre.UseVisualStyleBackColor = true;
@@ -82,10 +84,10 @@
             // 
             // btnDeleteGenre
             // 
-            btnDeleteGenre.Location = new Point(181, 173);
-            btnDeleteGenre.Margin = new Padding(5, 6, 5, 6);
+            btnDeleteGenre.Location = new Point(226, 216);
+            btnDeleteGenre.Margin = new Padding(6, 8, 6, 8);
             btnDeleteGenre.Name = "btnDeleteGenre";
-            btnDeleteGenre.Size = new Size(100, 71);
+            btnDeleteGenre.Size = new Size(125, 89);
             btnDeleteGenre.TabIndex = 1;
             btnDeleteGenre.Text = "Xóa";
             btnDeleteGenre.UseVisualStyleBackColor = true;
@@ -93,10 +95,10 @@
             // 
             // btnInsertGenre
             // 
-            btnInsertGenre.Location = new Point(22, 173);
-            btnInsertGenre.Margin = new Padding(5, 6, 5, 6);
+            btnInsertGenre.Location = new Point(28, 216);
+            btnInsertGenre.Margin = new Padding(6, 8, 6, 8);
             btnInsertGenre.Name = "btnInsertGenre";
-            btnInsertGenre.Size = new Size(100, 71);
+            btnInsertGenre.Size = new Size(125, 89);
             btnInsertGenre.TabIndex = 0;
             btnInsertGenre.Text = "Thêm";
             btnInsertGenre.UseVisualStyleBackColor = true;
@@ -107,10 +109,10 @@
             panel1.Controls.Add(dtgvGenre);
             panel1.Controls.Add(panel2);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 288);
-            panel1.Margin = new Padding(4, 5, 4, 5);
+            panel1.Location = new Point(0, 360);
+            panel1.Margin = new Padding(5, 6, 5, 6);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1935, 709);
+            panel1.Size = new Size(1935, 638);
             panel1.TabIndex = 11;
             // 
             // dtgvGenre
@@ -121,11 +123,11 @@
             dtgvGenre.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvGenre.Dock = DockStyle.Fill;
             dtgvGenre.Location = new Point(0, 0);
-            dtgvGenre.Margin = new Padding(4, 5, 4, 5);
+            dtgvGenre.Margin = new Padding(5, 6, 5, 6);
             dtgvGenre.Name = "dtgvGenre";
             dtgvGenre.ReadOnly = true;
             dtgvGenre.RowHeadersWidth = 62;
-            dtgvGenre.Size = new Size(1267, 709);
+            dtgvGenre.Size = new Size(1100, 638);
             dtgvGenre.TabIndex = 1;
             dtgvGenre.CellClick += dtgvGenre_CellClick;
             dtgvGenre.CellContentClick += dtgvGenre_CellContentClick;
@@ -137,20 +139,21 @@
             panel2.Controls.Add(panel38);
             panel2.Controls.Add(panel39);
             panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(1014, 0);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(1100, 0);
+            panel2.Margin = new Padding(4, 5, 4, 5);
             panel2.Name = "panel2";
-            panel2.Size = new Size(668, 709);
+            panel2.Size = new Size(835, 638);
             panel2.TabIndex = 0;
             // 
             // dtgvPhim
             // 
             dtgvPhim.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvPhim.ContextMenuStrip = contextMenuStrip1;
-            dtgvPhim.Location = new Point(67, 286);
+            dtgvPhim.Location = new Point(84, 358);
+            dtgvPhim.Margin = new Padding(4, 4, 4, 4);
             dtgvPhim.Name = "dtgvPhim";
             dtgvPhim.RowHeadersWidth = 62;
-            dtgvPhim.Size = new Size(568, 420);
+            dtgvPhim.Size = new Size(710, 525);
             dtgvPhim.TabIndex = 5;
             // 
             // contextMenuStrip1
@@ -171,28 +174,28 @@
             // 
             panel38.Controls.Add(txtGenreName);
             panel38.Controls.Add(lblGenreName);
-            panel38.Location = new Point(4, 86);
-            panel38.Margin = new Padding(4, 5, 4, 5);
+            panel38.Location = new Point(5, 108);
+            panel38.Margin = new Padding(5, 6, 5, 6);
             panel38.Name = "panel38";
-            panel38.Size = new Size(526, 67);
+            panel38.Size = new Size(658, 84);
             panel38.TabIndex = 4;
             // 
             // txtGenreName
             // 
-            txtGenreName.Location = new Point(167, 13);
-            txtGenreName.Margin = new Padding(4, 5, 4, 5);
+            txtGenreName.Location = new Point(209, 16);
+            txtGenreName.Margin = new Padding(5, 6, 5, 6);
             txtGenreName.Name = "txtGenreName";
-            txtGenreName.Size = new Size(329, 27);
+            txtGenreName.Size = new Size(410, 31);
             txtGenreName.TabIndex = 1;
             // 
             // lblGenreName
             // 
             lblGenreName.AutoSize = true;
             lblGenreName.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblGenreName.Location = new Point(4, 14);
-            lblGenreName.Margin = new Padding(4, 0, 4, 0);
+            lblGenreName.Location = new Point(5, 18);
+            lblGenreName.Margin = new Padding(5, 0, 5, 0);
             lblGenreName.Name = "lblGenreName";
-            lblGenreName.Size = new Size(134, 24);
+            lblGenreName.Size = new Size(162, 29);
             lblGenreName.TabIndex = 0;
             lblGenreName.Text = "Tên thể loại :";
             // 
@@ -200,18 +203,18 @@
             // 
             panel39.Controls.Add(txtGenreID);
             panel39.Controls.Add(lblGenreID);
-            panel39.Location = new Point(4, 10);
-            panel39.Margin = new Padding(4, 5, 4, 5);
+            panel39.Location = new Point(5, 12);
+            panel39.Margin = new Padding(5, 6, 5, 6);
             panel39.Name = "panel39";
-            panel39.Size = new Size(526, 67);
+            panel39.Size = new Size(658, 84);
             panel39.TabIndex = 3;
             // 
             // txtGenreID
             // 
-            txtGenreID.Location = new Point(167, 25);
-            txtGenreID.Margin = new Padding(4, 5, 4, 5);
+            txtGenreID.Location = new Point(209, 31);
+            txtGenreID.Margin = new Padding(5, 6, 5, 6);
             txtGenreID.Name = "txtGenreID";
-            txtGenreID.Size = new Size(329, 27);
+            txtGenreID.Size = new Size(410, 31);
             txtGenreID.TabIndex = 1;
             txtGenreID.TextChanged += txtGenreID_TextChanged;
             // 
@@ -219,22 +222,33 @@
             // 
             lblGenreID.AutoSize = true;
             lblGenreID.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblGenreID.Location = new Point(4, 25);
-            lblGenreID.Margin = new Padding(4, 0, 4, 0);
+            lblGenreID.Location = new Point(5, 31);
+            lblGenreID.Margin = new Padding(5, 0, 5, 0);
             lblGenreID.Name = "lblGenreID";
-            lblGenreID.Size = new Size(126, 24);
+            lblGenreID.Size = new Size(153, 29);
             lblGenreID.TabIndex = 0;
             lblGenreID.Text = "Mã thể loại :";
             // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(644, 216);
+            btnExport.Margin = new Padding(6, 8, 6, 8);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(125, 89);
+            btnExport.TabIndex = 3;
+            btnExport.Text = "Xuất File";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
+            // 
             // TheLoaiPhimUC
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Controls.Add(panel40);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "TheLoaiPhimUC";
-            Size = new Size(1548, 798);
+            Size = new Size(1935, 998);
             panel40.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvGenre).EndInit();
@@ -266,5 +280,6 @@
         private DataGridView dtgvPhim;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem chiTiếtPhimToolStripMenuItem;
+        private Button btnExport;
     }
 }

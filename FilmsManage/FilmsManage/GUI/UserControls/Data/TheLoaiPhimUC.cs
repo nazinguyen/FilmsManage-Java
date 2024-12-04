@@ -15,6 +15,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FilmsManage.GUI.UserControls.Data
 {
@@ -328,13 +329,21 @@ namespace FilmsManage.GUI.UserControls.Data
                         MessageBox.Show("Không thể xóa thể loại này! Vui lòng liên hệ với bộ phận IT");
                     }
                 }
-            
+
             }
             else
             {
                 MessageBox.Show("Hãy chọn một thể loại để xóa");
                 return;
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+
+            // Gọi hàm ExportListViewToExcel và truyền vào ListView
+            exporter.ExportDataGridViewToExcel(dtgvGenre);
         }
     }
 }

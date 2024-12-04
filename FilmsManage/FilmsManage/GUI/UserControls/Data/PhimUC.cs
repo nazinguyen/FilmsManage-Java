@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FilmsManage.GUI.UserControls.Data
 {
@@ -267,8 +268,8 @@ namespace FilmsManage.GUI.UserControls.Data
             dataUC.pnData.Controls.Add(themSua);
         }
 
-       
-        
+
+
 
         private async void btnUpdateMovie_Click(object sender, EventArgs e)
         {
@@ -356,7 +357,7 @@ namespace FilmsManage.GUI.UserControls.Data
                             LoadData();
                         }
                     }
-                 
+
                 }
 
 
@@ -366,6 +367,14 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show("Hãy chọn một phim để xóa");
                 return;
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+
+            // Gọi hàm ExportListViewToExcel và truyền vào ListView
+            exporter.ExportListViewToExcel(lwShow);
         }
     }
 }
