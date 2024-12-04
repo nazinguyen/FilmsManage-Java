@@ -54,10 +54,10 @@
             // pnAdmin
             // 
             pnAdmin.Dock = DockStyle.Fill;
-            pnAdmin.Location = new Point(0, 182);
+            pnAdmin.Location = new Point(0, 178);
             pnAdmin.Margin = new Padding(3, 2, 3, 2);
             pnAdmin.Name = "pnAdmin";
-            pnAdmin.Size = new Size(1924, 868);
+            pnAdmin.Size = new Size(1924, 872);
             pnAdmin.TabIndex = 2;
             pnAdmin.Paint += pnAdmin_Paint;
             // 
@@ -73,7 +73,7 @@
             panel3.Location = new Point(0, 0);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1924, 182);
+            panel3.Size = new Size(1924, 178);
             panel3.TabIndex = 1;
             // 
             // btnAccountUC
@@ -187,6 +187,7 @@
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin";
+            FormClosed += MainForm_FormClosed;
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             ResumeLayout(false);

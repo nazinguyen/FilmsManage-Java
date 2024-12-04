@@ -1,5 +1,6 @@
 ﻿using FilmsManage.GUI.DataUserControl;
 using FilmsManage.GUI.UserControls;
+using FilmsManage.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -87,6 +88,12 @@ namespace FilmsManage.GUI.Forms
                 doanhThu.Dock = DockStyle.Fill;
                 pnAdmin.Controls.Add(doanhThu);
             }
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            TokenStorage.DeleteLoginResponse();
+
         }
     }
 }

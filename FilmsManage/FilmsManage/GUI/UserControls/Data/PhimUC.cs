@@ -23,7 +23,7 @@ namespace FilmsManage.GUI.UserControls.Data
         private DataUC dataUC;
         public PhimUC(DataUC data)
         {
-            _dangPhimSV = new DangPhimSV("http://localhost:5206");
+            _dangPhimSV = new DangPhimSV("https://localhost:7085");
             dataUC = data;
 
             InitializeComponent();
@@ -206,7 +206,7 @@ namespace FilmsManage.GUI.UserControls.Data
         {
             try
             {
-                var listDangPhim = await _dangPhimSV.GetAsync<List<DangPhim>>("DangPhim");
+                var listDangPhim = await _dangPhimSV.GetAsync<List<DangPhim>>("/DangPhim");
 
                 if (listDangPhim == null || listDangPhim.Count == 0)
                 {
