@@ -1,4 +1,5 @@
-﻿using FilmsAPI.Models;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using FilmsAPI.Models;
 using FilmsManage.Services;
 using System;
 using System.Collections.Generic;
@@ -349,6 +350,14 @@ namespace FilmsManage.GUI.UserControls
         private void btnShowStaff_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            // Khởi tạo đối tượng ExcelExporter
+            var exporter = new ExcelExporter();
+            // Gọi hàm ExportDataGridViewToExcel và truyền vào DataGridView
+            exporter.ExportDataGridViewToExcel(dtgvStaff);
         }
     }
 }

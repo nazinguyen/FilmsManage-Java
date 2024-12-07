@@ -81,7 +81,7 @@
             txtSearchCus.Name = "txtSearchCus";
             txtSearchCus.Size = new Size(202, 31);
             txtSearchCus.TabIndex = 28;
-            txtSearchCus.TextChanged += txtSearchCus_TextChanged;
+            //txtSearchCus.TextChanged += txtSearchCus_TextChanged;
             // 
             // btnDeleteCustomer
             // 
@@ -95,7 +95,7 @@
             btnDeleteCustomer.TabIndex = 25;
             btnDeleteCustomer.Text = "Xóa";
             btnDeleteCustomer.UseVisualStyleBackColor = false;
-            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
+            //btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -109,7 +109,7 @@
             btnUpdateCustomer.TabIndex = 26;
             btnUpdateCustomer.Text = "Sửa";
             btnUpdateCustomer.UseVisualStyleBackColor = false;
-            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
+            //btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // btnAddCustomer
             // 
@@ -170,8 +170,8 @@
             nudPoint.Name = "nudPoint";
             nudPoint.Size = new Size(94, 35);
             nudPoint.TabIndex = 5;
-            nudPoint.TextAlign = HorizontalAlignment.Center;
-            nudPoint.ValueChanged += nudPoint_ValueChanged;
+            //nudPoint.TextAlign = HorizontalAlignment.Center;
+            //nudPoint.ValueChanged += nudPoint_ValueChanged;
             // 
             // lblCusID
             // 
@@ -320,7 +320,7 @@
             btnShowCustomer.TabIndex = 23;
             btnShowCustomer.Text = "Xem";
             btnShowCustomer.UseVisualStyleBackColor = false;
-            btnShowCustomer.Click += btnShowCustomer_Click;
+            //btnShowCustomer.Click += btnShowCustomer_Click;
             // 
             // dtgvCustomer
             // 
@@ -410,7 +410,7 @@
             btnClear.TabIndex = 30;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
-            btnClear.Click += btnClear_Click;
+            //btnClear.Click += btnClear_Click;
             // 
             // Customer
             // 

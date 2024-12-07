@@ -289,6 +289,13 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+            exporter.ExportDataGridViewToExcel(dtgvVe);
+
+        }
         private async void btnDeleteTicketsByShowTime_Click(object sender, EventArgs e)
         {
             if (lsvAllListShowTimes.SelectedItems.Count == 0)
@@ -395,6 +402,15 @@ namespace FilmsManage.GUI.UserControls.Data
 
                 lsvAllListShowTimes.Items.Add(item);
             }
+
+        }
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+
+            // Gọi hàm ExportListViewToExcel và truyền vào ListView
+            exporter.ExportDataGridViewToExcel(dtgvVe);
         }
     }
 }

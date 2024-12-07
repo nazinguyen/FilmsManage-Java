@@ -57,6 +57,7 @@
             txtGhiChu = new TextBox();
             label2 = new Label();
             txtNoiDung = new TextBox();
+            btnExport = new Button();
             ((System.ComponentModel.ISupportInitialize)picFilm).BeginInit();
             SuspendLayout();
             // 
@@ -347,11 +348,23 @@
             txtNoiDung.Size = new Size(254, 32);
             txtNoiDung.TabIndex = 162;
             // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(591, 686);
+            btnExport.Margin = new Padding(5, 6, 5, 6);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(129, 51);
+            btnExport.TabIndex = 164;
+            btnExport.Text = "Xuất file";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
+            // 
             // PhimUC
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
+            Controls.Add(btnExport);
             Controls.Add(ccbDangPhim);
             Controls.Add(txtNoiDung);
             Controls.Add(label2);
@@ -420,5 +433,6 @@
         private TextBox txtGhiChu;
         private Label label2;
         private TextBox txtNoiDung;
+        private Button btnExport;
     }
 }
