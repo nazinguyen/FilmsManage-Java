@@ -116,7 +116,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnInsertFormat_Click(object sender, EventArgs e)
+        private async void btnInsertFormat_Click_1(object sender, EventArgs e)
         {
             string genreName = txtTenDangPhim.Text;
             if (!int.TryParse(cbMaMH.Text, out int maManHinh))
@@ -166,7 +166,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateFormat_Click(object sender, EventArgs e)
+        private async void btnUpdateFormat_Click_1(object sender, EventArgs e)
         {
             string tenDP = txtTenDangPhim.Text.Trim();
 
@@ -209,7 +209,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
             try
             {
