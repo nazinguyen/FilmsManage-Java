@@ -194,7 +194,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
 
 
-        private async void btnInsertShowtime_Click_1(object sender, EventArgs e)
+        private async void btnInsertShowtime_Click(object sender, EventArgs e)
         {
             var maPhim = Convert.ToInt32(cbbPhim.SelectedValue);
             var maPhong = Convert.ToInt32(cbbPhongChieu.SelectedValue);
@@ -222,7 +222,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateShowtime_Click(object sender, EventArgs e)
+        private async void btnUpdateShowtime_Click_1(object sender, EventArgs e)
         {
             if (dtgvShowLichChieu.SelectedRows.Count == 0)
             {
@@ -264,7 +264,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnDeleteShowtime_Click(object sender, EventArgs e)
+        private async void btnDeleteShowtime_Click_1(object sender, EventArgs e)
         {
             if (dtgvShowLichChieu.SelectedRows.Count == 0)
             {
@@ -309,10 +309,10 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private async void txtSearchShowtime_TextChanged(object sender, EventArgs e)
+        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
         {
             string searchText = txtSearchShowtime.Text.ToLower();
-            if(searchText == "")
+            if (searchText == "")
             {
                 LoadData();
             }
@@ -343,6 +343,10 @@ namespace FilmsManage.GUI.UserControls.Data
             dtgvShowLichChieu.DataSource = filteredShowtimes; //
         }
 
-       
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+            exporter.ExportDataGridViewToExcel(dtgvShowLichChieu);
+        }
     }
 }

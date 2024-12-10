@@ -34,6 +34,7 @@
             btnUpdateCustomer = new Button();
             btnAddCustomer = new Button();
             grpCustomer = new GroupBox();
+            btnClear = new Button();
             CusDate = new DateTimePicker();
             nudPoint = new NumericUpDown();
             lblCusID = new Label();
@@ -58,7 +59,6 @@
             Sdt = new DataGridViewTextBoxColumn();
             CCCD = new DataGridViewTextBoxColumn();
             DiemTichLuy = new DataGridViewTextBoxColumn();
-            btnClear = new Button();
             grpCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudPoint).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgvCustomer).BeginInit();
@@ -67,6 +67,7 @@
             // btnSearchCus
             // 
             btnSearchCus.BackgroundImageLayout = ImageLayout.Stretch;
+            btnSearchCus.Image = Properties.Resources.search_icon;
             btnSearchCus.Location = new Point(281, 275);
             btnSearchCus.Margin = new Padding(4);
             btnSearchCus.Name = "btnSearchCus";
@@ -81,7 +82,6 @@
             txtSearchCus.Name = "txtSearchCus";
             txtSearchCus.Size = new Size(202, 31);
             txtSearchCus.TabIndex = 28;
-            //txtSearchCus.TextChanged += txtSearchCus_TextChanged;
             // 
             // btnDeleteCustomer
             // 
@@ -95,7 +95,6 @@
             btnDeleteCustomer.TabIndex = 25;
             btnDeleteCustomer.Text = "Xóa";
             btnDeleteCustomer.UseVisualStyleBackColor = false;
-            //btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -109,7 +108,6 @@
             btnUpdateCustomer.TabIndex = 26;
             btnUpdateCustomer.Text = "Sửa";
             btnUpdateCustomer.UseVisualStyleBackColor = false;
-            //btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // btnAddCustomer
             // 
@@ -154,6 +152,21 @@
             grpCustomer.TabStop = false;
             grpCustomer.Text = "Thông tin khách hàng";
             // 
+            // btnClear
+            // 
+            btnClear.AccessibleRole = AccessibleRole.ScrollBar;
+            btnClear.BackColor = Color.FromArgb(133, 19, 33);
+            btnClear.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnClear.ForeColor = Color.White;
+            btnClear.ImageAlign = ContentAlignment.TopCenter;
+            btnClear.Location = new Point(1041, 166);
+            btnClear.Margin = new Padding(4);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(142, 48);
+            btnClear.TabIndex = 30;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = false;
+            // 
             // CusDate
             // 
             CusDate.Location = new Point(285, 166);
@@ -170,8 +183,6 @@
             nudPoint.Name = "nudPoint";
             nudPoint.Size = new Size(94, 35);
             nudPoint.TabIndex = 5;
-            //nudPoint.TextAlign = HorizontalAlignment.Center;
-            //nudPoint.ValueChanged += nudPoint_ValueChanged;
             // 
             // lblCusID
             // 
@@ -320,7 +331,6 @@
             btnShowCustomer.TabIndex = 23;
             btnShowCustomer.Text = "Xem";
             btnShowCustomer.UseVisualStyleBackColor = false;
-            //btnShowCustomer.Click += btnShowCustomer_Click;
             // 
             // dtgvCustomer
             // 
@@ -395,22 +405,6 @@
             DiemTichLuy.Name = "DiemTichLuy";
             DiemTichLuy.ReadOnly = true;
             DiemTichLuy.Visible = false;
-            // 
-            // btnClear
-            // 
-            btnClear.AccessibleRole = AccessibleRole.ScrollBar;
-            btnClear.BackColor = Color.FromArgb(133, 19, 33);
-            btnClear.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnClear.ForeColor = Color.White;
-            btnClear.ImageAlign = ContentAlignment.TopCenter;
-            btnClear.Location = new Point(1041, 166);
-            btnClear.Margin = new Padding(4);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(142, 48);
-            btnClear.TabIndex = 30;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = false;
-            //btnClear.Click += btnClear_Click;
             // 
             // Customer
             // 
