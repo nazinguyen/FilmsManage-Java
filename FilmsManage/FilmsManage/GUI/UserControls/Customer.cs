@@ -23,6 +23,7 @@ namespace FilmsManage.GUI.UserControls
 
             _customer = new DangPhimSV("https://localhost:7085");
             LoadData();
+
             dtgvCustomer.CellClick += dtgvCustomer_CellClick;
 
         }
@@ -47,20 +48,20 @@ namespace FilmsManage.GUI.UserControls
 
                 dtgvCustomer.DataSource = customerDisplayList;
                 dtgvCustomer.Refresh();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void dtgvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {
                 return;
             }
+
+
             txtCusID.Text = dtgvCustomer.Rows[e.RowIndex].Cells["maKH"].Value.ToString();
             txtCusName.Text = dtgvCustomer.Rows[e.RowIndex].Cells["HoTen"].Value.ToString();
             txtCusPhone.Text = dtgvCustomer.Rows[e.RowIndex].Cells["SDT"].Value.ToString();
@@ -91,6 +92,7 @@ namespace FilmsManage.GUI.UserControls
 
         private async void btnAddCustomer_Click(object sender, EventArgs e)
         {
+
             string newCusName = txtCusName.Text.Trim();
             string newCusPhone = txtCusPhone.Text.Trim();
             DateTime newCusBird = CusDate.Value;
@@ -104,6 +106,7 @@ namespace FilmsManage.GUI.UserControls
             }
             try
             {
+
                 List<KhachHang> CusList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
 
 
@@ -366,4 +369,4 @@ namespace FilmsManage.GUI.UserControls
             }
         }
     }
-}
+    }

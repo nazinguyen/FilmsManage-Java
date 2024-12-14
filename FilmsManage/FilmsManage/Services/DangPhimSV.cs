@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FilmsManage.Helper;
+using Newtonsoft.Json;
 using RestSharp;
 using System.Diagnostics;
 using System.Linq;
@@ -18,10 +19,23 @@ namespace FilmsManage.Services
             _client = new RestClient(baseUrl);
         }
 
+
+
+        // Thêm token vào mỗi request
+        private void AddToken(RestRequest request)
+        {
+            var loginResponse = TokenStorage.GetLoginResponse(); // Lấy thông tin đăng nhập
+            if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.Token))
+            {
+                request.AddHeader("Authorization", $"Bearer {loginResponse.Token}"); // Thêm token vào header
+            }
+        }
+
         // GET
         public async Task<T> GetAsync<T>(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.Get);
+            AddToken(request); // Thêm token vào request
             var response = await _client.ExecuteAsync(request);
 
             if (response.IsSuccessful && response.Content != null)
@@ -37,6 +51,7 @@ namespace FilmsManage.Services
         public async Task<T> GetAsync<T>(string endpoint, int id)
         {
             var request = new RestRequest($"{endpoint}/{id}", Method.Get);
+            AddToken(request); // Thêm token vào request
             var response = await _client.ExecuteAsync(request);
 
             if (response.IsSuccessful && response.Content != null)
@@ -52,6 +67,7 @@ namespace FilmsManage.Services
         public async Task<T> PostAsync<T>(string endpoint, object data)
         {
             var request = new RestRequest(endpoint, Method.Post);
+            AddToken(request); // Thêm token vào request
             request.AddJsonBody(data);
 
             var response = await _client.ExecuteAsync(request);
@@ -73,6 +89,7 @@ namespace FilmsManage.Services
         public async Task<T> PutAsync<T>(string endpoint, object data)
         {
             var request = new RestRequest(endpoint, Method.Put);
+            AddToken(request); // Thêm token vào request
             request.AddJsonBody(data);
 
             Debug.WriteLine("Request: " + request.ToString());
@@ -113,6 +130,7 @@ namespace FilmsManage.Services
         public async Task<bool> DeleteAsync(string endpoint, object body = null)
         {
             var request = new RestRequest(endpoint, Method.Delete);
+            AddToken(request); // Thêm token vào request
 
             if (body != null)
             {

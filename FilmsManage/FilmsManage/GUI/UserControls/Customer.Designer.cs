@@ -70,6 +70,7 @@
             // btnSearchCus
             // 
             btnSearchCus.BackgroundImageLayout = ImageLayout.Stretch;
+            btnSearchCus.Image = Properties.Resources.search_icon;
             btnSearchCus.Location = new Point(281, 275);
             btnSearchCus.Margin = new Padding(4);
             btnSearchCus.Name = "btnSearchCus";
@@ -84,7 +85,6 @@
             txtSearchCus.Name = "txtSearchCus";
             txtSearchCus.Size = new Size(202, 31);
             txtSearchCus.TabIndex = 28;
-            txtSearchCus.TextChanged += txtSearchCus_TextChanged;
             // 
             // btnDeleteCustomer
             // 
@@ -98,7 +98,6 @@
             btnDeleteCustomer.TabIndex = 25;
             btnDeleteCustomer.Text = "Xóa";
             btnDeleteCustomer.UseVisualStyleBackColor = false;
-            btnDeleteCustomer.Click += btnDeleteCustomer_Click;
             // 
             // btnUpdateCustomer
             // 
@@ -112,7 +111,6 @@
             btnUpdateCustomer.TabIndex = 26;
             btnUpdateCustomer.Text = "Sửa";
             btnUpdateCustomer.UseVisualStyleBackColor = false;
-            btnUpdateCustomer.Click += btnUpdateCustomer_Click;
             // 
             // btnAddCustomer
             // 
@@ -281,8 +279,6 @@
             nudPoint.Name = "nudPoint";
             nudPoint.Size = new Size(94, 35);
             nudPoint.TabIndex = 5;
-            nudPoint.TextAlign = HorizontalAlignment.Center;
-            nudPoint.ValueChanged += nudPoint_ValueChanged;
             // 
             // lblCusID
             // 
@@ -431,7 +427,6 @@
             btnShowCustomer.TabIndex = 23;
             btnShowCustomer.Text = "Xem";
             btnShowCustomer.UseVisualStyleBackColor = false;
-            btnShowCustomer.Click += btnShowCustomer_Click;
             // 
             // dtgvCustomer
             // 

@@ -1,4 +1,5 @@
-﻿using FilmsAPI.Models;
+﻿using ClosedXML.Excel;
+using FilmsAPI.Models;
 using FilmsManage.Models;
 using FilmsManage.Services;
 using System;
@@ -71,11 +72,11 @@ namespace FilmsManage.GUI.UserControls.Data
 
                 // Gán giá trị từ hàng được chọn vào các ô nhập liệu
                 txtScreenTypeID.Text = selectedRow.Cells["TitleId"].Value?.ToString();
-                txtScreenTypeName.Text = selectedRow.Cells["GenreName"].Value?.ToString(); 
+                txtScreenTypeName.Text = selectedRow.Cells["GenreName"].Value?.ToString();
             }
         }
 
-        private async void btnInsertScreenType_Click(object sender, EventArgs e)
+        private async void btnInsertScreenType_Click_1(object sender, EventArgs e)
         {
             string newScreenTypeName = txtScreenTypeName.Text.Trim();
 
@@ -123,7 +124,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateScreenType_Click(object sender, EventArgs e)
+        private async void btnUpdateScreenType_Click_1(object sender, EventArgs e)
         {
             string newScreenTypeName = txtScreenTypeName.Text.Trim();
 
@@ -178,7 +179,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnDeleteScreenType_Click(object sender, EventArgs e)
+        private async void btnDeleteScreenType_Click_1(object sender, EventArgs e)
         {
             string genreId = txtScreenTypeID.Text;
 
@@ -206,6 +207,49 @@ namespace FilmsManage.GUI.UserControls.Data
             catch (Exception ex)
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+            }
+        }
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Tạo SaveFileDialog để người dùng chọn vị trí lưu file
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*";
+                    saveFileDialog.FileName = "ManHinh"; // Tên mặc định cho file Excel
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        // Tạo workbook và worksheet
+                        var workbook = new XLWorkbook();
+                        var worksheet = workbook.Worksheets.Add("Màn Hình");
+
+                        // Thêm header vào worksheet (dòng đầu tiên là tên cột)
+                        for (int colIndex = 0; colIndex < dtgvScreenType.Columns.Count; colIndex++)
+                        {
+                            worksheet.Cell(1, colIndex + 1).Value = dtgvScreenType.Columns[colIndex].HeaderText;
+                        }
+
+                        // Thêm dữ liệu vào worksheet, bắt đầu từ dòng thứ 2
+                        for (int rowIndex = 0; rowIndex < dtgvScreenType.Rows.Count; rowIndex++)
+                        {
+                            for (int colIndex = 0; colIndex < dtgvScreenType.Columns.Count; colIndex++)
+                            {
+                                worksheet.Cell(rowIndex + 2, colIndex + 1).Value = dtgvScreenType.Rows[rowIndex].Cells[colIndex].Value?.ToString();
+                            }
+                        }
+
+                        // Lưu workbook vào file được chọn
+                        workbook.SaveAs(saveFileDialog.FileName);
+                        MessageBox.Show("Dữ liệu đã được xuất thành công ra file Excel.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra khi xuất file: {ex.Message}");
             }
         }
     }

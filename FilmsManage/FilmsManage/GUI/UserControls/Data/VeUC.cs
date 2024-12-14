@@ -33,12 +33,13 @@ namespace FilmsManage.GUI.UserControls.Data
             try
             {
                 var xuatChieu = await _sv.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+                var xuatChieuHopLe = xuatChieu.Where(x => x.ThoiGianBatDau >= DateTime.Now);
 
-                if (xuatChieu != null && xuatChieu.Any())
+                if (xuatChieuHopLe != null && xuatChieuHopLe.Any())
                 {
 
 
-                    foreach (var item in xuatChieu)
+                    foreach (var item in xuatChieuHopLe)
                     {
                         ListViewItem listViewItem = new ListViewItem(item.MaPhongNavigation?.TenPhongChieu);
                         listViewItem.SubItems.Add(item.MaPhimNavigation?.TenPhim);
@@ -150,7 +151,7 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 var selectedItem = lsvAllListShowTimes.SelectedItems[0];
 
-                int xuatChieuId = Convert.ToInt32( selectedItem.Tag);
+                int xuatChieuId = Convert.ToInt32(selectedItem.Tag);
                 var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/XuatChieu/{xuatChieuId}");
                 Debug.WriteLine(xuatChieuId);
                 if (xuatChieu != null && xuatChieu.Status)
@@ -170,7 +171,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private async void btnAddTicketsByShowTime_Click(object sender, EventArgs e)
+        private async void btnAddTicketsByShowTime_Click_1(object sender, EventArgs e)
         {
             if (lsvAllListShowTimes.SelectedItems.Count == 0)
             {
@@ -184,6 +185,11 @@ namespace FilmsManage.GUI.UserControls.Data
             try
             {
                 var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/XuatChieu/{maXuatChieu}");
+                if (xuatChieu.Status == true)
+                {
+                    MessageBox.Show("Xuất chiếu đã được tạo vé.");
+                    return;
+                }
                 if (xuatChieu == null)
                 {
                     MessageBox.Show("Không tìm thấy suất chiếu.");
@@ -221,12 +227,12 @@ namespace FilmsManage.GUI.UserControls.Data
                 }
 
 
-                Debug.WriteLine("pc "+phongChieu.MaPhongChieu);
+                Debug.WriteLine("pc " + phongChieu.MaPhongChieu);
 
                 var listGheFromApi = await _sv.GetAsync<List<Ghe>>($"/api/Ghe/{phongChieu.MaPhongChieu}");
                 Debug.WriteLine("ok list ghe");
                 var getLoaiVe = await _sv.GetAsync<List<LoaiVe>>("/api/LoaiVe");
-                                Debug.WriteLine("ok loai ghe");
+                Debug.WriteLine("ok loai ghe");
 
                 int maVeThuong = 0;
                 foreach (var item in getLoaiVe)
@@ -281,6 +287,126 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+
+
+        private async void btnDeleteTicketsByShowTime_Click(object sender, EventArgs e)
+        {
+            if (lsvAllListShowTimes.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một xuất chiếu!");
+                return;
+            }
+
+            var selectedItem = lsvAllListShowTimes.SelectedItems[0];
+            int maXuatChieu = (int)selectedItem.Tag;
+
+            var getXuatChieu = await _sv.GetAsync<XuatChieu>($"/api/XuatChieu/{maXuatChieu}");
+
+            if (getXuatChieu.ThoiGianKetThuc >= DateTime.Now)
+            {
+                MessageBox.Show("Không thể xóa lịch vé theo lịch chiếu này");
+                return;
+            }
+
+            var getVe = await _sv.GetAsync<List<Ve>>($"/api/Ve/{getXuatChieu.MaXuatChieu}");
+            if (getVe == null)
+            {
+                MessageBox.Show("Có lỗi xảy ra");
+            }
+            var deleteVe = await _sv.DeleteAsync("/api/Ve/DeleteRangeAsync", getVe ?? new List<Ve>());
+
+        }
+
+        private async void btnShowTimeNotCreateTickets_Click(object sender, EventArgs e)
+        {
+            lsvAllListShowTimes.Items.Clear();
+
+            try
+            {
+                var xuatChieu = await _sv.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+                var xuatChieuHopLe = xuatChieu.Where(x => x.ThoiGianBatDau >= DateTime.Now && x.Status == false);
+
+                if (xuatChieuHopLe != null && xuatChieuHopLe.Any())
+                {
+
+
+                    foreach (var item in xuatChieuHopLe)
+                    {
+                        ListViewItem listViewItem = new ListViewItem(item.MaPhongNavigation?.TenPhongChieu);
+                        listViewItem.SubItems.Add(item.MaPhimNavigation?.TenPhim);
+                        listViewItem.SubItems.Add(item.ThoiGianBatDau.ToString() + " - " + item.ThoiGianKetThuc.ToString("hh-mm-ss tt")); // Định dạng thời gian
+                        listViewItem.SubItems.Add(item.Status ? "Đã tạo vé" : "Chưa tạo vé");
+                        listViewItem.Tag = item.MaXuatChieu;
+                        lsvAllListShowTimes.Items.Add(listViewItem);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnAllListShowTimes_Click_1(object sender, EventArgs e)
+        {
+            LoadXuatChieu();
+        }
+
+        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
+        {
+            string searchText = txtSearchShowtime.Text.ToLower();
+            if (searchText == "")
+            {
+                LoadXuatChieu();
+                return; // Thêm return để tránh gọi lại API khi searchText rỗng
+            }
+            var xuatChieus = await _sv.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+            if (xuatChieus == null || !xuatChieus.Any())
+            {
+                MessageBox.Show("Không có dữ liệu.");
+                return;
+            }
+
+            // Lọc dữ liệu và chuyển đổi thành đối tượng ẩn danh
+            var filteredShowtimes = xuatChieus
+                .Where(s => s.MaPhimNavigation != null &&
+                            s.MaPhimNavigation.TenPhim != null &&
+                            s.MaPhimNavigation.TenPhim.ToLower().Contains(searchText) && s.ThoiGianBatDau >= DateTime.Now)
+                .Select(p => new
+                {
+                    p.MaXuatChieu,
+                    TenPhongChieu = p.MaPhongNavigation?.TenPhongChieu,
+                    TenPhim = p.MaPhimNavigation?.TenPhim,
+                    ThoiGianBatDau = p.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm"),
+                    ThoiGianKetThuc = p.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")
+                })
+                .ToList();
+
+            // Hiển thị danh sách đã lọc trong ListView
+            lsvAllListShowTimes.Items.Clear(); // Xóa các mục cũ
+            foreach (var showtime in filteredShowtimes)
+            {
+                // Tạo một ListViewItem cho mỗi dòng dữ liệu
+                var item = new ListViewItem(showtime.MaXuatChieu.ToString());
+                item.SubItems.Add(showtime.TenPhongChieu ?? "N/A");
+                item.SubItems.Add(showtime.TenPhim ?? "N/A");
+                item.SubItems.Add(showtime.ThoiGianBatDau);
+                item.SubItems.Add(showtime.ThoiGianKetThuc);
+
+                lsvAllListShowTimes.Items.Add(item);
+            }
+
+        }
+
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+
+            // Gọi hàm ExportListViewToExcel và truyền vào ListView
+            exporter.ExportDataGridViewToExcel(dtgvVe);
         }
     }
 }

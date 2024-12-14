@@ -1,4 +1,5 @@
-﻿using FilmsAPI.Models;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using FilmsAPI.Models;
 using FilmsManage.Services;
 using System;
 using System.Collections.Generic;
@@ -124,7 +125,79 @@ namespace FilmsManage.GUI.UserControls
             txtTenQuyen.Text = dtgvStaff.Rows[e.RowIndex].Cells["StaffRoleName"].Value.ToString();
         }
 
-        private async void btnAddStaff_Click(object sender, EventArgs e)
+
+        private void cbbMaQuyen_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            //Lấy giá trị MaQuyen từ combobox
+            var selectedValue = cbbMaQuyen.SelectedItem.ToString();
+            //Hiển thị Tên quyền tương ứng lên textbox
+            var selectedRole = (Quyen)cbbMaQuyen.SelectedItem;
+            if (selectedRole != null)
+            {
+                txtTenQuyen.Text = selectedRole.TenQuyen;
+            }
+
+        }
+
+        private void btnShowStaff_Click(object sender, EventArgs e)
+        {
+
+        }    
+
+        private async void btnSearchStaff_Click_1(object sender, EventArgs e)
+        {
+            string searchValue = txtSearchStaff.Text.Trim();
+            if (string.IsNullOrWhiteSpace(searchValue))
+            {
+                MessageBox.Show("Vui lòng nhập thông tin tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Gọi API để lấy danh sách nhân viên
+                var staffList = await _staff.GetAsync<List<NhanVien>>("api/NhanVien");
+
+                if (staffList == null || !staffList.Any())
+                {
+                    MessageBox.Show("Không có dữ liệu nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Tìm kiếm theo tên
+                var searchResult = staffList
+                    .Where(d => !string.IsNullOrEmpty(d.TenNv) && d.TenNv.Contains(searchValue, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+
+                if (searchResult.Count == 0)
+                {
+                    MessageBox.Show("Không tìm thấy nhân viên phù hợp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Chuẩn bị dữ liệu để hiển thị
+                var staffDisplayList = searchResult.Select(d => new
+                {
+                    d.MaNv,
+                    d.TenNv,
+                    d.Sdt,
+                    d.Email,
+                    d.MatKhau,
+                    d.MaQuyen,
+                    TenQuyen = d.MaQuyenNavigation?.TenQuyen
+                }).ToList();
+
+                // Cập nhật DataGridView
+                dtgvStaff.DataSource = staffDisplayList;
+                dtgvStaff.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnAddStaff_Click_1(object sender, EventArgs e)
         {
             string newStaffName = txtStaffName.Text.Trim();
             string newStaffPhone = txtStaffPhone.Text.Trim();
@@ -175,7 +248,7 @@ namespace FilmsManage.GUI.UserControls
             }
         }
 
-        private async void btnUpdateStaff_Click(object sender, EventArgs e)
+        private async void btnUpdateStaff_Click_1(object sender, EventArgs e)
         {
             string newStaffName = txtStaffName.Text.Trim();
             string newStaffPhone = txtStaffPhone.Text.Trim();
@@ -249,7 +322,7 @@ namespace FilmsManage.GUI.UserControls
             }
         }
 
-        private async void btnDeleteStaff_Click(object sender, EventArgs e)
+        private async void btnDeleteStaff_Click_1(object sender, EventArgs e)
         {
             string staffId = txtStaffId.Text.Trim();
             if (string.IsNullOrWhiteSpace(staffId))
@@ -279,76 +352,12 @@ namespace FilmsManage.GUI.UserControls
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private async void btnSearchStaff_Click(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
-            string searchValue = txtSearchStaff.Text.Trim();
-            if (string.IsNullOrWhiteSpace(searchValue))
-            {
-                MessageBox.Show("Vui lòng nhập thông tin tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                // Gọi API để lấy danh sách nhân viên
-                var staffList = await _staff.GetAsync<List<NhanVien>>("api/NhanVien");
-
-                if (staffList == null || !staffList.Any())
-                {
-                    MessageBox.Show("Không có dữ liệu nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Tìm kiếm theo tên
-                var searchResult = staffList
-                    .Where(d => !string.IsNullOrEmpty(d.TenNv) && d.TenNv.Contains(searchValue, StringComparison.OrdinalIgnoreCase))
-                    .ToList();
-
-                if (searchResult.Count == 0)
-                {
-                    MessageBox.Show("Không tìm thấy nhân viên phù hợp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                // Chuẩn bị dữ liệu để hiển thị
-                var staffDisplayList = searchResult.Select(d => new
-                {
-                    d.MaNv,
-                    d.TenNv,
-                    d.Sdt,
-                    d.Email,
-                    d.MatKhau,
-                    d.MaQuyen,
-                    TenQuyen = d.MaQuyenNavigation?.TenQuyen
-                }).ToList();
-
-                // Cập nhật DataGridView
-                dtgvStaff.DataSource = staffDisplayList;
-                dtgvStaff.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cbbMaQuyen_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            //Lấy giá trị MaQuyen từ combobox
-            var selectedValue = cbbMaQuyen.SelectedItem.ToString();
-            //Hiển thị Tên quyền tương ứng lên textbox
-            var selectedRole = (Quyen)cbbMaQuyen.SelectedItem;
-            if (selectedRole != null)
-            {
-                txtTenQuyen.Text = selectedRole.TenQuyen;
-            }
-
-        }
-
-        private void btnShowStaff_Click(object sender, EventArgs e)
-        {
-
+            // Khởi tạo đối tượng ExcelExporter
+            var exporter = new ExcelExporter();
+            // Gọi hàm ExportDataGridViewToExcel và truyền vào DataGridView
+            exporter.ExportDataGridViewToExcel(dtgvStaff);
         }
     }
 }

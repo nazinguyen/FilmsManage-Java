@@ -107,7 +107,7 @@ namespace FilmsManage.GUI.Forms
             txtPassWord.Text = row.Cells["Password"].Value.ToString();
         }
 
-   
+
 
         private async void btnSearchAccount_Click(object sender, EventArgs e)
         {
@@ -359,6 +359,51 @@ namespace FilmsManage.GUI.Forms
             txtPassWord.Clear();
         }
 
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Chuyển dữ liệu trong DataGridView sang DataTable
+                DataTable dataTable = new DataTable();
 
+                // Thêm các cột vào DataTable từ DataGridView
+                foreach (DataGridViewColumn column in dtgvAccount.Columns)
+                {
+                    dataTable.Columns.Add(column.HeaderText);
+                }
+
+                // Thêm các dòng dữ liệu vào DataTable
+                foreach (DataGridViewRow row in dtgvAccount.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        DataRow dataRow = dataTable.NewRow();
+                        for (int i = 0; i < dtgvAccount.Columns.Count; i++)
+                        {
+                            dataRow[i] = row.Cells[i].Value;
+                        }
+                        dataTable.Rows.Add(dataRow);
+                    }
+                }
+
+                // Sử dụng dịch vụ ExportSV để xuất dữ liệu ra file Excel
+                string filePath = "C:\\path_to_your_file\\AccountData.xlsx"; // Đường dẫn lưu file Excel
+                ExportSV exportSV = new ExportSV();
+                bool isExported = exportSV.ExportToExcel(dataTable, filePath);
+
+                if (isExported)
+                {
+                    MessageBox.Show("Dữ liệu đã được xuất ra Excel thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

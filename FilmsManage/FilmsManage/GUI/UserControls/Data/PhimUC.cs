@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FilmsManage.GUI.UserControls.Data
 {
@@ -23,7 +24,7 @@ namespace FilmsManage.GUI.UserControls.Data
         private DataUC dataUC;
         public PhimUC(DataUC data)
         {
-            _dangPhimSV = new DangPhimSV("http://localhost:5206");
+            _dangPhimSV = new DangPhimSV("https://localhost:7085");
             dataUC = data;
 
             InitializeComponent();
@@ -206,7 +207,7 @@ namespace FilmsManage.GUI.UserControls.Data
         {
             try
             {
-                var listDangPhim = await _dangPhimSV.GetAsync<List<DangPhim>>("DangPhim");
+                var listDangPhim = await _dangPhimSV.GetAsync<List<DangPhim>>("/DangPhim");
 
                 if (listDangPhim == null || listDangPhim.Count == 0)
                 {
@@ -243,7 +244,7 @@ namespace FilmsManage.GUI.UserControls.Data
                 return null;
             }
         }
-        private void btnAddMovie_Click(object sender, EventArgs e)
+        private void btnAddMovie_Click_1(object sender, EventArgs e)
         {
 
             var themSua = dataUC.pnData.Controls.OfType<ChucNang_Phim.Them_Sua>().FirstOrDefault();
@@ -267,10 +268,10 @@ namespace FilmsManage.GUI.UserControls.Data
             dataUC.pnData.Controls.Add(themSua);
         }
 
-       
-        
 
-        private async void btnUpdateMovie_Click(object sender, EventArgs e)
+
+
+        private async void btnUpdate_Click(object sender, EventArgs e)
         {
             if (lwShow.SelectedItems.Count > 0)
             {
@@ -317,7 +318,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private async void btnDeleteMovie_Click(object sender, EventArgs e)
+        private async void btnDeleteMovie_Click_1(object sender, EventArgs e)
         {
             if (lwShow.SelectedItems.Count > 0)
             {
@@ -356,7 +357,7 @@ namespace FilmsManage.GUI.UserControls.Data
                             LoadData();
                         }
                     }
-                 
+
                 }
 
 
@@ -367,5 +368,15 @@ namespace FilmsManage.GUI.UserControls.Data
                 return;
             }
         }
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+
+            // Gọi hàm ExportListViewToExcel và truyền vào ListView
+            exporter.ExportListViewToExcel(lwShow);
+        }
+
+       
     }
 }
