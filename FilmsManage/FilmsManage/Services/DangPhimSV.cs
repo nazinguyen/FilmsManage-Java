@@ -40,6 +40,8 @@ namespace FilmsManage.Services
 
             if (response.IsSuccessful && response.Content != null)
             {
+                Console.WriteLine(response.Content); // In ra dữ liệu nhận được từ API
+
                 return JsonConvert.DeserializeObject<T>(response.Content) ?? throw new InvalidOperationException("Received null content from the API.");
             }
 
