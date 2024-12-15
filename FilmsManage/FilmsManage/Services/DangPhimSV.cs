@@ -27,11 +27,75 @@ namespace FilmsManage.Services
             var loginResponse = TokenStorage.GetLoginResponse(); // Lấy thông tin đăng nhập
             if (loginResponse != null && !string.IsNullOrEmpty(loginResponse.Token))
             {
+                Debug.WriteLine(loginResponse.Token);
+
                 request.AddHeader("Authorization", $"Bearer {loginResponse.Token}"); // Thêm token vào header
             }
         }
 
         // GET
+
+      public async Task<T> GetByObjectAsync<T>(string endpoint, object data)
+{
+    var request = new RestRequest(endpoint, Method.Get);
+
+    // Thêm dữ liệu vào query parameters
+    if (data != null)
+    {
+        foreach (var property in data.GetType().GetProperties())
+        {
+            var value = property.GetValue(data);
+            if (value != null)
+            {
+                request.AddQueryParameter(property.Name, value.ToString());
+            }
+        }
+    }
+
+    // Thêm token vào request
+    AddToken(request);
+
+    // Gửi request
+    var response = await _client.ExecuteAsync(request);
+
+    // Xử lý kết quả trả về
+    if (response.IsSuccessful && !string.IsNullOrEmpty(response.Content))
+    {
+        try
+        {
+            return JsonConvert.DeserializeObject<T>(response.Content) 
+                   ?? throw new InvalidOperationException("Received null or invalid content from the API.");
+        }
+        catch (JsonException ex)
+        {
+            throw new InvalidOperationException($"Failed to deserialize response content: {ex.Message}");
+        }
+    }
+
+    // Xử lý lỗi nếu request thất bại
+    var errorMessage = string.IsNullOrEmpty(response.Content)
+        ? "Đã xảy ra lỗi không xác định."
+        : ExtractErrorMessage(response.Content);
+
+    throw new HttpRequestException($"Request failed with status code {response.StatusCode}: {errorMessage}");
+}
+
+// Phương thức trích xuất thông báo lỗi từ JSON
+private string ExtractErrorMessage(string content)
+{
+    try
+    {
+        var errorResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(content);
+        return errorResponse != null && errorResponse.ContainsKey("message")
+            ? errorResponse["message"]
+            : "Đã xảy ra lỗi không xác định.";
+    }
+    catch
+    {
+        return "Đã xảy ra lỗi không xác định.";
+    }
+}
+
         public async Task<T> GetAsync<T>(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.Get);

@@ -67,7 +67,7 @@
             flpSeat.Anchor = AnchorStyles.Top;
             flpSeat.AutoScroll = true;
             flpSeat.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            flpSeat.Location = new Point(74, 136);
+            flpSeat.Location = new Point(79, 154);
             flpSeat.Name = "flpSeat";
             flpSeat.Size = new Size(810, 700);
             flpSeat.TabIndex = 0;
@@ -290,6 +290,7 @@
             btnTiepTuc.TabIndex = 26;
             btnTiepTuc.Text = "Tiếp tục";
             btnTiepTuc.UseVisualStyleBackColor = false;
+            btnTiepTuc.Click += btnTiepTuc_Click_1;
             // 
             // btnHuy
             // 
