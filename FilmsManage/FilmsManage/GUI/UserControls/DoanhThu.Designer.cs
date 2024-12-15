@@ -82,20 +82,22 @@
             // lblDenNgay
             // 
             lblDenNgay.AutoSize = true;
-            lblDenNgay.Location = new Point(562, 109);
+            lblDenNgay.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            lblDenNgay.Location = new Point(572, 109);
             lblDenNgay.Margin = new Padding(4, 0, 4, 0);
             lblDenNgay.Name = "lblDenNgay";
-            lblDenNgay.Size = new Size(92, 25);
+            lblDenNgay.Size = new Size(115, 26);
             lblDenNgay.TabIndex = 36;
             lblDenNgay.Text = "Đến ngày:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(245, 109);
+            label1.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            label1.Location = new Point(250, 108);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(80, 25);
+            label1.Size = new Size(105, 26);
             label1.TabIndex = 35;
             label1.Text = "Từ ngày:";
             // 
@@ -149,24 +151,30 @@
             // btnReportRevenue
             // 
             btnReportRevenue.AutoSize = true;
-            btnReportRevenue.Location = new Point(991, 102);
+            btnReportRevenue.BackColor = Color.FromArgb(133, 19, 33);
+            btnReportRevenue.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnReportRevenue.ForeColor = Color.White;
+            btnReportRevenue.Location = new Point(1426, 105);
             btnReportRevenue.Margin = new Padding(4, 5, 4, 5);
             btnReportRevenue.Name = "btnReportRevenue";
             btnReportRevenue.Size = new Size(115, 50);
             btnReportRevenue.TabIndex = 32;
             btnReportRevenue.Text = "Báo Cáo";
-            btnReportRevenue.UseVisualStyleBackColor = true;
+            btnReportRevenue.UseVisualStyleBackColor = false;
             // 
             // btnShowRevenue
             // 
             btnShowRevenue.AutoSize = true;
-            btnShowRevenue.Location = new Point(849, 102);
+            btnShowRevenue.BackColor = Color.FromArgb(133, 19, 33);
+            btnShowRevenue.Font = new Font("Arial", 10.8F, FontStyle.Bold);
+            btnShowRevenue.ForeColor = Color.White;
+            btnShowRevenue.Location = new Point(1194, 105);
             btnShowRevenue.Margin = new Padding(4, 5, 4, 5);
             btnShowRevenue.Name = "btnShowRevenue";
-            btnShowRevenue.Size = new Size(121, 50);
+            btnShowRevenue.Size = new Size(149, 50);
             btnShowRevenue.TabIndex = 33;
             btnShowRevenue.Text = "Thống kê";
-            btnShowRevenue.UseVisualStyleBackColor = true;
+            btnShowRevenue.UseVisualStyleBackColor = false;
             btnShowRevenue.Click += btnShowRevenue_Click;
             // 
             // cboSelectMovie
@@ -176,13 +184,13 @@
             cboSelectMovie.Location = new Point(408, 39);
             cboSelectMovie.Margin = new Padding(4, 5, 4, 5);
             cboSelectMovie.Name = "cboSelectMovie";
-            cboSelectMovie.Size = new Size(435, 33);
+            cboSelectMovie.Size = new Size(452, 33);
             cboSelectMovie.TabIndex = 31;
             // 
             // dtmToDate
             // 
             dtmToDate.Format = DateTimePickerFormat.Custom;
-            dtmToDate.Location = new Point(661, 105);
+            dtmToDate.Location = new Point(694, 105);
             dtmToDate.Margin = new Padding(4, 5, 4, 5);
             dtmToDate.Name = "dtmToDate";
             dtmToDate.RightToLeft = RightToLeft.No;
@@ -192,7 +200,7 @@
             // dtmFromDate
             // 
             dtmFromDate.Format = DateTimePickerFormat.Custom;
-            dtmFromDate.Location = new Point(335, 105);
+            dtmFromDate.Location = new Point(398, 104);
             dtmFromDate.Margin = new Padding(4, 5, 4, 5);
             dtmFromDate.Name = "dtmFromDate";
             dtmFromDate.RightToLeft = RightToLeft.No;

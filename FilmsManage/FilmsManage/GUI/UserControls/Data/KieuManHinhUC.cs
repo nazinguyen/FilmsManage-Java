@@ -76,7 +76,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnInsertScreenType_Click(object sender, EventArgs e)
+        private async void btnInsertScreenType_Click_1(object sender, EventArgs e)
         {
             string newScreenTypeName = txtScreenTypeName.Text.Trim();
 
@@ -124,7 +124,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateScreenType_Click(object sender, EventArgs e)
+        private async void btnUpdateScreenType_Click_1(object sender, EventArgs e)
         {
             string newScreenTypeName = txtScreenTypeName.Text.Trim();
 
@@ -179,7 +179,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnDeleteScreenType_Click(object sender, EventArgs e)
+        private async void btnDeleteScreenType_Click_1(object sender, EventArgs e)
         {
             string genreId = txtScreenTypeID.Text;
 
@@ -210,7 +210,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
             try
             {

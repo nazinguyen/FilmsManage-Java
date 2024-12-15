@@ -301,6 +301,7 @@
             btnHuy.TabIndex = 27;
             btnHuy.Text = "Quay lại";
             btnHuy.UseVisualStyleBackColor = false;
+            btnHuy.Click += btnHuy_Click;
             // 
             // button5
             // 

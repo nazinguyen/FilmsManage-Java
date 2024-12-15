@@ -26,15 +26,17 @@ namespace FilmsManage
         private int soGheMotHang;
         private XuatChieu thongTinXuatChieu;
         private List<Ve> veDaMua;
+        private int maXuatChieu;
 
-        public BanVe()
+        public BanVe(int maXuatChieuFromLichChieu)
         {
             gheChon = new List<Ghe>();
             _sv = new DangPhimSV("https://localhost:7085");
             InitializeComponent();
+            maXuatChieu = maXuatChieuFromLichChieu;
             GenerateButtons();
         }
-       
+
         private Image LoadImageFromFileSystem(string filePath)
         {
             // Kiểm tra nếu đường dẫn hợp lệ và file tồn tại
@@ -70,7 +72,7 @@ namespace FilmsManage
             try
             {
                 // Gọi API để lấy thông tin Xuất Chiếu
-                var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/BanVe/GetXuatChieu/{64}");
+                var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/BanVe/GetXuatChieu/{maXuatChieu}");
                 thongTinXuatChieu = xuatChieu;
                 var listTicketByTimeShow = await _sv.GetAsync<List<Ve>>($"/api/BanVe/GetVeBySuatchieu/{xuatChieu.MaXuatChieu}");
                 veDaMua = listTicketByTimeShow.Where(v => v.TrangThai == true).ToList();
@@ -101,7 +103,7 @@ namespace FilmsManage
                     MessageBox.Show("Phòng không có ghế!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                await ShowGhe(listGhe, xuatChieu.MaPhongNavigation ?? new PhongChieu(), veDaMua?? new List<Ve>());
+                await ShowGhe(listGhe, xuatChieu.MaPhongNavigation ?? new PhongChieu(), veDaMua ?? new List<Ve>());
 
             }
             catch (Exception ex)
@@ -155,7 +157,7 @@ namespace FilmsManage
 
                     // Kiểm tra vé đã mua
                     var veDaMua = danhSachVeDaMua.Where(v => v.MaGhe == ghe.MaGhe).FirstOrDefault();
-                    
+
 
                     if (veDaMua != null)
                     {
@@ -263,12 +265,12 @@ namespace FilmsManage
             }
 
             // Hiển thị form thanh toán và truyền danh sách ghế đã chọn
-            ThanhToan thanhToanForm = new ThanhToan(gheChon,thongTinXuatChieu);
+            ThanhToan thanhToanForm = new ThanhToan(gheChon, thongTinXuatChieu);
             thanhToanForm.ShowDialog(); // Mở form dưới dạng modal
 
 
         }
-        
+
 
         bool KtraViPham(List<Ghe> danhSach, List<Ghe> gheDaChon, int SoGheMotHang)
         {
@@ -375,8 +377,16 @@ namespace FilmsManage
             {
                 return;
             }
-            ThanhToan thanhToanForm = new ThanhToan(gheChon,thongTinXuatChieu);
+            ThanhToan thanhToanForm = new ThanhToan(gheChon, thongTinXuatChieu);
             thanhToanForm.ShowDialog(); // Mở form dưới dạng modal
+            GenerateButtons();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            LichChieu lichChieu = new LichChieu();
+            lichChieu.Show();
+            this.Close();
         }
     }
 }

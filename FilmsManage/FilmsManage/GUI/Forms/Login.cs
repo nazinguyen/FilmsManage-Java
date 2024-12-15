@@ -73,7 +73,7 @@ namespace FilmsManage
                     }
                     else // Nhân viên
                     {
-                        var nhanVienForm = new BanVe(); // Form nhân viên
+                        var nhanVienForm = new LichChieu(); // Form nhân viên
                         nhanVienForm.Show();
                     }
 

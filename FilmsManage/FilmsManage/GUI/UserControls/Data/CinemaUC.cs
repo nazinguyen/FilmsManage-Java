@@ -136,8 +136,12 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show($"Có lỗi khi tải dữ liệu ComboBox: {ex.Message}");
             }
         }
+        private void dtgvCinema_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-        private async void btnInsertCinema_Click(object sender, EventArgs e)
+        }
+
+        private async void btnInsertCinema_Click_1(object sender, EventArgs e)
         {
             string tenPhong = txtCinemaName.Text;
             string manHinh = cboCinemaScreenType.Text;
@@ -262,7 +266,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateCinema_Click(object sender, EventArgs e)
+        private async void btnUpdateCinema_Click_1(object sender, EventArgs e)
         {
             string tenPC = txtCinemaName.Text.Trim();
             string tenMH = cboCinemaScreenType.Text.Trim();
@@ -323,12 +327,8 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void dtgvCinema_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-
-        private void btnExport_Click(object sender, EventArgs e)
+        private async void btnExport_Click_1(object sender, EventArgs e)
         {
             if (dtgvCinema.DataSource is not null)
             {

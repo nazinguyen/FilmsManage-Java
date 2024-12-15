@@ -229,7 +229,11 @@ namespace FilmsManage.GUI.Forms
                 txtHoTen.Visible = true; // Ẩn trường nhập tên khách hàng
             }
         }
-
+        public void CloseDialog()
+        {
+            MessageBox.Show("Đặt thành công");
+            this.Close();
+        }
         private async void btnThanhToan_Click(object sender, EventArgs e)
         {
             var loginResponse = TokenStorage.GetLoginResponse();
@@ -248,11 +252,9 @@ namespace FilmsManage.GUI.Forms
                 Console.WriteLine($"Lưu hóa đơn thành công: {saveBill.MaHd}");
                 await addDetailBills(saveBill.MaHd, listVe);
 
+                CloseDialog();
 
 
-                // Khách hàng vãng lai
-                txtDienThoai.Visible = false; // Ẩn trường nhập mã khách hàng
-                txtHoTen.Visible = false; // Hiện trường nhập tên khách hàng
             }
             else
             {
@@ -263,7 +265,7 @@ namespace FilmsManage.GUI.Forms
                     return;
                 }
                 var veDoi = khachHang.DiemTichluy / 8;
-                if(veDoi >= 1)
+                if (veDoi >= 1)
                 {
 
                 }
@@ -280,7 +282,7 @@ namespace FilmsManage.GUI.Forms
 
                 Console.WriteLine($"Lưu hóa đơn thành công: {saveBill.MaHd}");
                 await addDetailBills(saveBill.MaHd, listVe);
-               
+                CloseDialog();
             }
         }
 
@@ -296,7 +298,7 @@ namespace FilmsManage.GUI.Forms
                     SoLuong = 1,
                     ThanhTien = item.GiaVe,
                 };
-                
+
 
                 chiTietHoaDons.Add(ct);
                 item.TrangThai = true;
@@ -313,12 +315,17 @@ namespace FilmsManage.GUI.Forms
 
                 Debug.WriteLine("ok");
 
-                
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi hệ thống: {ex.Message}");
             }
+        }
+
+        private void btnQuayLai_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
