@@ -10,6 +10,8 @@ public partial class Ghe
     public bool TrangThai { get; set; }
 
     public int MaPhong { get; set; }
+    public string TenGhe { get; set; } = "Không xác định";
+
 
     public int MaLoaiGhe { get; set; }
 

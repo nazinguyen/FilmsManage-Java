@@ -28,7 +28,6 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_PhongChieu
             InitializeComponent();
             LoadComboBoxData();
             CheckChucNang(chucNang);
-            txtCinemaID.Visible = false;
         }
 
         public async Task CheckChucNang(string chucNang)
@@ -37,7 +36,6 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_PhongChieu
             {
                 btnThem.Visible = true;
                 btnSua.Visible = false;
-                txtCinemaID.Enabled = false;
             }
         }
 
@@ -144,12 +142,15 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_PhongChieu
                 }
                 for (int i = 1; i <= phong.SoHangGhe; i++)
                 {
+                    char rowChar = (char)('A' + i);
                     for (int j = 1; j <= phong.SoGheMotHang; j++)
                     {
                         Debug.WriteLine("ok");
+                        string seatCode = $"{rowChar}{j + 1}";
 
                         Ghe ghe = new Ghe
                         {
+                            TenGhe = seatCode,
                             TrangThai = false,
                             MaPhong = idPhong,
                             MaLoaiGhe = (i >= 4) ? loaiGheVIP : loaiGheThuong // Ghế VIP bắt đầu từ hàng số 4, ghế Thường cho các hàng còn lại
@@ -205,6 +206,11 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_PhongChieu
         private void btnHuy_Click(object sender, EventArgs e)
         {
             BackPage();
+        }
+
+        private void panel6_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

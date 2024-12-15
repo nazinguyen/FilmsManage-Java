@@ -7,6 +7,9 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\Forms\ThanhToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\UserControls\Customer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -67,5 +70,10 @@
     <Compile Update="GUI\Forms\LichChieu.cs">
       <SubType>Form</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="GUI\UserControls\Account.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
