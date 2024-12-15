@@ -17,6 +17,7 @@ namespace FilmsManage
         // Danh sách phim
         private List<XuatChieu> films = new List<XuatChieu>();
         private readonly DangPhimSV _lichChieuService;
+        private int maXuatChieu;
 
         public LichChieu()
         {
@@ -37,9 +38,9 @@ namespace FilmsManage
                 {
                     //if (item.NgayKc > DateTime.Now)
                     //{
-                        // Tạo đối tượng phim mới từ dữ liệu nhận được
-                        films.Add(item);
-                        LoadFilmToTextBox(item);
+                    // Tạo đối tượng phim mới từ dữ liệu nhận được
+                    films.Add(item);
+                    LoadFilmToTextBox(item);
                     //}
                 }
             }
@@ -143,7 +144,7 @@ namespace FilmsManage
                 ForeColor = Color.DimGray,
                 Size = new Size(340, 25)
             };
-            foreach(var item in phim.MaPhimNavigation.TheLoaiCuaPhims)
+            foreach (var item in phim.MaPhimNavigation.TheLoaiCuaPhims)
             {
                 genreLabel.Text = $"Thể loại: {item.MaTheLoaiNavigation.TenTheLoai}";
             }
@@ -176,9 +177,10 @@ namespace FilmsManage
                 FlatStyle = FlatStyle.Flat,
                 ForeColor = Color.White,
                 Font = new Font("Arial", 12, FontStyle.Bold),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand 
             };
             buyTicketButton.Click += (s, e) => BuyTicket(phim.MaXuatChieu);
+            maXuatChieu = phim.MaXuatChieu;
             // Thêm hiệu ứng hover
             buyTicketButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(34, 153, 157);
             buyTicketButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(34, 143, 145);
@@ -190,13 +192,18 @@ namespace FilmsManage
 
             return panelInfo;
         }
-
+                     
         private void BuyTicket(int xuatChieuId)
         {
             MessageBox.Show($"Bạn đã chọn mua vé cho xuất chiếu có ID: {xuatChieuId}",
                             "Thông báo",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+
+            FilmsManage.BanVe banVe = new FilmsManage.BanVe(xuatChieuId);
+            banVe.Show();
+
+            this.Close();
         }
 
 
@@ -207,6 +214,7 @@ namespace FilmsManage
         {
             try
             {
+                
                 // Gọi API để lấy danh sách thể loại
                 var genreList = await _lichChieuService.GetAsync<List<LoaiPhimDTO.TheLoaiDTO>>("/api/LichChieu/GetAllTheLoai");
 
@@ -263,7 +271,7 @@ namespace FilmsManage
         {
             if (textBox1.Text == "Tìm kiếm ...")
             {
-                textBox1.Text = ""; 
+                textBox1.Text = "";
                 textBox1.ForeColor = Color.Black; // Đổi màu chữ nếu cần
             }
         }
@@ -273,7 +281,7 @@ namespace FilmsManage
             if (string.IsNullOrEmpty(textBox1.Text))
             {
                 textBox1.Text = "Tìm kiếm ...";
-                textBox1.ForeColor = Color.Gray; 
+                textBox1.ForeColor = Color.Gray;
             }
         }
 
