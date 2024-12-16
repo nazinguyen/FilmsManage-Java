@@ -257,7 +257,7 @@
             panel1.Location = new Point(0, 350);
             panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1814, 648);
+            panel1.Size = new Size(1814, 648); 
             panel1.TabIndex = 11;
             // 
             // dtgvCinema
@@ -274,7 +274,6 @@
             dtgvCinema.RowHeadersWidth = 51;
             dtgvCinema.Size = new Size(1259, 648);
             dtgvCinema.TabIndex = 1;
-            dtgvCinema.CellContentClick += dtgvCinema_CellContentClick;
             // 
             // panel33
             // 
@@ -378,7 +377,6 @@
             btnExport.TextMarginLeft = 0;
             btnExport.TextPadding = new Padding(0);
             btnExport.UseDefaultRadiusAndThickness = true;
-            btnExport.Click += btnExport_Click_1;
             // 
             // btnShowCinema
             // 

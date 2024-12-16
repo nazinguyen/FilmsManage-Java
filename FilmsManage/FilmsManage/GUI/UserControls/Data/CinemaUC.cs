@@ -23,8 +23,8 @@ namespace FilmsManage.GUI.UserControls.Data
         private readonly DangPhimSV _PhongChieu;
         public CinemaUC(DataUC data)
         {
-            _PhongChieu = new DangPhimSV("https://localhost:7085");
             InitializeComponent();
+            _PhongChieu = new DangPhimSV("https://localhost:7085");
             dataUC = data;
             LoadData();
             LoadComboBoxData();
@@ -141,27 +141,129 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private void btnInsertCinema_Click_1(object sender, EventArgs e)
+        private async void btnInsertCinema_Click_1(object sender, EventArgs e)
         {
-            var themSua = dataUC.pnData.Controls.OfType<ChucNang_PhongChieu.ThemSua>().FirstOrDefault();
-            if (themSua != null)
+            string tenPhong = txtCinemaName.Text;
+            string manHinh = cboCinemaScreenType.Text;
+
+            if (string.IsNullOrWhiteSpace(tenPhong))
             {
-                dataUC.pnData.Controls.Remove(themSua);
-                themSua.Dispose();
+                MessageBox.Show("Vui lòng nhập tên phòng.");
+                return;
             }
 
-            Debug.WriteLine("ok");
-
-            // Ẩn tất cả các control khác
-            foreach (Control control in dataUC.pnData.Controls)
+            if (string.IsNullOrWhiteSpace(manHinh))
             {
-                control.Visible = false;
+                MessageBox.Show("Vui lòng nhập tên màn hình.");
+                return;
             }
 
-            // Khởi tạo control Them_Sua cho "Sửa"
-            themSua = new ChucNang_PhongChieu.ThemSua("Them", new PhongChieu(), dataUC);
-            themSua.Dock = DockStyle.Fill;
-            dataUC.pnData.Controls.Add(themSua);
+
+
+            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
+            {
+                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            if (!int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang))
+            {
+                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
+                return;
+            }
+
+            var phongChieu = new PhongChieu
+            {
+                TenPhongChieu = tenPhong,
+                SoGhe = soGhe,
+                SoGheMotHang = gheMoiHang,
+                MaManHinh = Convert.ToInt32(cboCinemaScreenType.SelectedValue),
+            };
+
+            try
+            {
+                string endpoint = "/api/PhongChieu";
+                var response = await _PhongChieu.PostAsync<Models.ApiRespone>(endpoint, phongChieu);
+
+                //them ghe tu phong chieu
+                var loaiGheList = await _PhongChieu.GetAsync<List<LoaiGhe>>("/api/LoaiGhe");
+                if (loaiGheList == null || !loaiGheList.Any())
+                {
+                    MessageBox.Show("Dữ liệu loại ghế không có!");
+                    return;
+                }
+
+                int loaiGheVIP = 0;
+                int loaiGheThuong = 0;
+                foreach (var item in loaiGheList)
+                {
+                    if (item.TenLoaiGhe == "VIP")
+                    {
+                        loaiGheVIP = item.MaLoai;
+                        Debug.WriteLine(loaiGheVIP);
+                    }
+                    else
+                    {
+                        loaiGheThuong = item.MaLoai;
+                        Debug.WriteLine(loaiGheThuong);
+                    }
+                }
+
+                var listGhe = new List<Ghe>();
+
+                // Tạo ghế
+                var getPhong = await _PhongChieu.GetAsync<List<PhongChieu>>("/api/PhongChieu");
+                var phong = new PhongChieu();
+                int idPhong = 0;
+                foreach (var item in getPhong)
+                {
+                    if (item.TenPhongChieu == tenPhong)
+                    {
+                        idPhong = item.MaPhongChieu;
+                        phong = item;
+                        Debug.WriteLine(idPhong);
+                        break;
+                    }
+                }
+                for (int i = 0; i < phong.SoHangGhe; i++)
+                {
+                    char rowChar = (char)('A' + i); // 'A' là mã ASCII của A, cộng thêm i để tạo chữ cái kế tiếp
+
+                    for (int j = 0; j < phong.SoGheMotHang; j++)
+                    {
+                        Debug.WriteLine("ok");
+                        string seatCode = $"{rowChar}{j + 1}";  // ghế 1, 2, 3, ... trong hàng A, B, C,...
+
+                        Ghe ghe = new Ghe
+                        {
+                            TenGhe = seatCode,
+                            TrangThai = false,
+                            MaPhong = idPhong,
+                            MaLoaiGhe = (i >= 4) ? loaiGheVIP : loaiGheThuong // Ghế VIP bắt đầu từ hàng số 4, ghế Thường cho các hàng còn lại
+                        };
+                        Debug.WriteLine("hang " + i);
+                        var addGhe = await _PhongChieu.PostAsync<Models.ApiRespone>("/api/Ghe", ghe);
+                        listGhe.Add(ghe);
+
+                        if (listGhe.Count >= phong.SoGhe)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (listGhe.Count >= phong.SoGhe)
+                    {
+                        break;
+                    }
+                }
+
+                MessageBox.Show(response.Message);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+            }
         }
 
         private async void btnUpdateCinema_Click_1(object sender, EventArgs e)
@@ -225,7 +327,8 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnExport_Click_1(object sender, EventArgs e)
+
+        private async void btnExport_Click_1(object sender, EventArgs e)
         {
             if (dtgvCinema.DataSource is not null)
             {
