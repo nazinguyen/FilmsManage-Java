@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnExport = new Button();
             btnShowScreenType = new Button();
             btnUpdateScreenType = new Button();
             btnDeleteScreenType = new Button();
@@ -43,7 +44,6 @@
             lblScreenTypeID = new Label();
             panel3 = new Panel();
             dtgvScreenType = new DataGridView();
-            btnExport = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel4.SuspendLayout();
@@ -55,6 +55,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.White;
             panel1.Controls.Add(btnExport);
             panel1.Controls.Add(btnShowScreenType);
             panel1.Controls.Add(btnUpdateScreenType);
@@ -67,6 +68,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1539, 271);
             panel1.TabIndex = 2;
+            // 
+            // btnExport
+            // 
+            btnExport.Location = new Point(506, 190);
+            btnExport.Margin = new Padding(4, 5, 4, 5);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(100, 71);
+            btnExport.TabIndex = 8;
+            btnExport.Text = "Xuất File";
+            btnExport.UseVisualStyleBackColor = true;
+            btnExport.Click += btnExport_Click;
             // 
             // btnShowScreenType
             // 
@@ -124,6 +136,7 @@
             // 
             // panel4
             // 
+            panel4.BackColor = Color.White;
             panel4.Controls.Add(panel20);
             panel4.Controls.Add(panel21);
             panel4.Dock = DockStyle.Fill;
@@ -216,17 +229,6 @@
             dtgvScreenType.RowHeadersWidth = 51;
             dtgvScreenType.Size = new Size(779, 423);
             dtgvScreenType.TabIndex = 1;
-            // 
-            // btnExport
-            // 
-            btnExport.Location = new Point(506, 190);
-            btnExport.Margin = new Padding(4, 5, 4, 5);
-            btnExport.Name = "btnExport";
-            btnExport.Size = new Size(100, 71);
-            btnExport.TabIndex = 8;
-            btnExport.Text = "Xuất File";
-            btnExport.UseVisualStyleBackColor = true;
-            btnExport.Click += btnExport_Click;
             // 
             // KieuManHinhUC
             // 
