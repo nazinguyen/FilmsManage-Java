@@ -124,7 +124,8 @@ namespace FilmsManage
             int count = 0;
 
             // Sắp xếp danh sách ghế theo thứ tự bảng chữ cái (hàng) và số ghế
-            listGhe = listGhe.OrderBy(g => g.TenGhe[0]) // Sắp xếp theo hàng (chữ cái đầu tiên)
+            listGhe = listGhe
+                .OrderBy(g => g.TenGhe[0]) // Sắp xếp theo hàng (chữ cái đầu tiên)
                              .ThenByDescending(g => int.Parse(g.TenGhe.Substring(1))) // Sắp xếp số ghế giảm dần
                              .ToList();
 
