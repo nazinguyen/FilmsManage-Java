@@ -145,30 +145,13 @@ namespace FilmsManage.GUI.UserControls.Data
         {
             string tenPhong = txtCinemaName.Text;
             string manHinh = cboCinemaScreenType.Text;
+            int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang);
+            int.TryParse(txtCinemaSeats.Text, out int soGhe);
 
-            if (string.IsNullOrWhiteSpace(tenPhong))
+            if (!ValidateInput(out string errorMessage))
             {
-                MessageBox.Show("Vui lòng nhập tên phòng.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(manHinh))
-            {
-                MessageBox.Show("Vui lòng nhập tên màn hình.");
-                return;
-            }
-
-
-
-            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
-            {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang))
-            {
-                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
+                // Hiển thị thông báo lỗi nếu nhập sai
+                MessageBox.Show(errorMessage, "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -270,34 +253,13 @@ namespace FilmsManage.GUI.UserControls.Data
         {
             string tenPC = txtCinemaName.Text.Trim();
             string tenMH = cboCinemaScreenType.Text.Trim();
-
-            if (!int.TryParse(txtCinemaID.Text, out int maPC))
+            int.TryParse(txtSeatsPerRow.Text, out int soGheMoiHang);
+            int.TryParse(txtCinemaSeats.Text, out int soGhe);
+            int.TryParse(txtCinemaID.Text, out int maPC);
+            if (!ValidateInput(out string errorMessage))
             {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
-            {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtSeatsPerRow.Text, out int soGheMoiHang))
-            {
-                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(tenPC))
-            {
-                MessageBox.Show("Vui lòng nhập tên phòng chiếu.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(tenMH))
-            {
-                MessageBox.Show("Vui lòng nhập tên màn hình.");
+                // Hiển thị thông báo lỗi nếu nhập sai
+                MessageBox.Show(errorMessage, "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -327,6 +289,67 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
+        private bool ValidateInput(out string errorMessage)
+        {
+            // Lấy giá trị từ các control
+            string tenPhong = txtCinemaName.Text.Trim();
+            string manHinh = cboCinemaScreenType.Text.Trim();
+            string soGheText = txtCinemaSeats.Text.Trim();
+            string gheMoiHangText = txtSeatsPerRow.Text.Trim();
+
+            // Kiểm tra tên phòng chiếu (không được bỏ trống, không chứa ký tự đặc biệt)
+            if (string.IsNullOrWhiteSpace(tenPhong))
+            {
+                errorMessage = "Vui lòng nhập tên phòng chiếu.";
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(tenPhong, @"^[a-zA-Z0-9\s]+$"))
+            {
+                errorMessage = "Vui lòng nhập tên phòng chiếu hợp lệ (không có ký tự đặc biệt).";
+                return false;
+            }
+
+            // Kiểm tra loại màn hình (phải được chọn)
+            if (string.IsNullOrWhiteSpace(manHinh))
+            {
+                errorMessage = "Vui lòng chọn loại màn hình.";
+                return false;
+            }
+
+            // Kiểm tra số ghế (phải là số nguyên dương, nằm trong khoảng hợp lệ)
+            if (!int.TryParse(soGheText, out int soGhe) || soGhe <= 0)
+            {
+                errorMessage = "Số ghế phải là số nguyên dương.";
+                return false;
+            }
+            if (soGhe < 10 || soGhe > 500)
+            {
+                errorMessage = "Số ghế phải nằm trong khoảng từ 10 đến 500.";
+                return false;
+            }
+
+            // Kiểm tra số ghế mỗi hàng (phải là số nguyên dương và không vượt quá tổng số ghế)
+            if (!int.TryParse(gheMoiHangText, out int gheMoiHang) || gheMoiHang <= 0)
+            {
+                errorMessage = "Số ghế mỗi hàng phải là số nguyên dương.";
+                return false;
+            }
+            if (gheMoiHang > soGhe)
+            {
+                errorMessage = "Số ghế mỗi hàng không được lớn hơn tổng số ghế.";
+                return false;
+            }
+            if (soGhe % gheMoiHang != 0)
+            {
+                errorMessage = "Tổng số ghế phải chia hết cho số ghế mỗi hàng.";
+                return false;
+            }
+
+            // Nếu tất cả đều hợp lệ
+            errorMessage = null;
+            return true;
+        }
 
         private async void btnExport_Click_1(object sender, EventArgs e)
         {
