@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
         /// <summary>
         /// Required method for Designer support - do not modify
@@ -466,8 +466,8 @@
             ResumeLayout(false);
         }
 
-        #endregion
-        private Panel panel1;
+		#endregion
+		private Panel panel1;
         private Label label1;
         private Panel panel2;
         private Label label2;

@@ -209,6 +209,7 @@ namespace FilmsManage.GUI.UserControls.Data
                     }
                 }
                 for (int i = 0; i < phong.SoHangGhe; i++)
+                //for (int i = 0; i < 10; i++)
                 {
                     char rowChar = (char)('A' + i); // 'A' là mã ASCII của A, cộng thêm i để tạo chữ cái kế tiếp
 
