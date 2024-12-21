@@ -7,6 +7,21 @@
     <Compile Update="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\Forms\BanVe_Form\Main_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GUI\Forms\BanVe_Form\UserControl_BanVe\BanVe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\Forms\BanVe_Form\UserControl_BanVe\Food.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\Forms\BanVe_Form\UserControl_BanVe\LichChieu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="GUI\Forms\BanVe_Form\UserControl_BanVe\ThanhToan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="GUI\Forms\ThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>

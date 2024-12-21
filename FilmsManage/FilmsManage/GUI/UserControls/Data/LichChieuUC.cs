@@ -201,6 +201,26 @@ namespace FilmsManage.GUI.UserControls.Data
             DateTime thoiGianBd = dateStart.Value.Add(timeStart.Value.TimeOfDay);
             DateTime thoiGianKt = dateStart.Value.Add(timeEnd.Value.TimeOfDay);
 
+            // Lấy danh sách phòng chiếu
+            var phongChieuList = await _dangPhimSV.GetAsync<List<PhongChieu>>("/api/PhongChieu");
+            var phongChieu = phongChieuList.FirstOrDefault(p => p.MaPhongChieu == maPhong);
+
+            // Kiểm tra nếu phòng không có ghế
+            if (phongChieu == null || phongChieu.SoGhe <= 0)
+            {
+                MessageBox.Show("Phòng chiếu này không có ghế. Vui lòng chọn phòng khác.");
+                return;
+            }
+
+            // Kiểm tra nếu suất chiếu với tên phim và phòng chiếu đã tồn tại chưa
+            var existingShowtimes = await _dangPhimSV.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+            if (existingShowtimes.Any(x => x.MaPhim == maPhim && x.MaPhong == maPhong &&
+                                            x.ThoiGianBatDau == thoiGianBd))
+            {
+                MessageBox.Show("Suất chiếu này đã tồn tại. Vui lòng chọn lại.");
+                return;
+            }
+
             XuatChieu newXuatChieu = new XuatChieu()
             {
                 MaPhim = maPhim,
@@ -238,6 +258,15 @@ namespace FilmsManage.GUI.UserControls.Data
             DateTime thoiGianBd = dateStart.Value.Add(timeStart.Value.TimeOfDay);
             DateTime thoiGianKt = dateStart.Value.Add(timeEnd.Value.TimeOfDay);
 
+            // Kiểm tra nếu suất chiếu với tên phim và phòng chiếu đã tồn tại chưa
+            var existingShowtimes = await _dangPhimSV.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+            if (existingShowtimes.Any(x => x.MaPhim == maPhim && x.MaPhong == maPhong &&
+                                            x.ThoiGianBatDau == thoiGianBd && x.MaXuatChieu != maXuatChieu))
+            {
+                MessageBox.Show("Suất chiếu này đã tồn tại. Vui lòng chọn lại.");
+                return;
+            }
+
             // Gán các giá trị vào object XuatChieu
             XuatChieu xuatChieu = new XuatChieu()
             {
@@ -252,10 +281,8 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 Debug.WriteLine("Bắt đầu cập nhật...");
                 var response = await _dangPhimSV.PutAsync<Models.ApiRespone>("/api/XuatChieu", xuatChieu);
-
-
                 MessageBox.Show(response.Message);
-                LoadData(); // Tải lại danh sách suất chiếu vào DataGridView
+                LoadData();
 
             }
             catch (Exception ex)

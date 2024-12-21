@@ -86,6 +86,12 @@ namespace FilmsManage.GUI.UserControls.Data
                 return;
             }
 
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newScreenTypeName, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Vui lòng nhập tên màn hình hợp lệ (không có ký tự đặc biệt).");
+                return;
+            }
+
             try
             {
                 // Gọi API để kiểm tra danh sách tên màn hình
@@ -127,16 +133,17 @@ namespace FilmsManage.GUI.UserControls.Data
         private async void btnUpdateScreenType_Click_1(object sender, EventArgs e)
         {
             string newScreenTypeName = txtScreenTypeName.Text.Trim();
-
-            if (!int.TryParse(txtScreenTypeID.Text, out int maManHinh))
-            {
-                MessageBox.Show("Mã màn hình không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
+            int.TryParse(txtScreenTypeID.Text, out int maManHinh);
 
             if (string.IsNullOrWhiteSpace(newScreenTypeName))
             {
                 MessageBox.Show("Vui lòng nhập tên màn hình.");
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newScreenTypeName, @"^[\w\s]+$"))
+            {
+                MessageBox.Show("Vui lòng nhập tên màn hình hợp lệ.");
                 return;
             }
 
