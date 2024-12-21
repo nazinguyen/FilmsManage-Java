@@ -60,12 +60,20 @@
             lblPhim = new Label();
             label4 = new Label();
             label3 = new Label();
+            panel7 = new Panel();
+            panel8 = new Panel();
+            label15 = new Label();
+            label16 = new Label();
+            label31 = new Label();
+            flpBillFood = new FlowLayoutPanel();
             panel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
+            panel7.SuspendLayout();
+            panel8.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -376,12 +384,67 @@
             label3.TextAlign = ContentAlignment.MiddleCenter;
             label3.Paint += label3_Paint;
             // 
+            // panel7
+            // 
+            panel7.BackColor = SystemColors.ButtonHighlight;
+            panel7.Controls.Add(flpBillFood);
+            panel7.Controls.Add(panel8);
+            panel7.Controls.Add(label31);
+            panel7.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            panel7.Location = new Point(1294, 111);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(522, 621);
+            panel7.TabIndex = 3;
+            // 
+            // panel8
+            // 
+            panel8.Controls.Add(label15);
+            panel8.Controls.Add(label16);
+            panel8.Location = new Point(19, 528);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(487, 53);
+            panel8.TabIndex = 15;
+            // 
+            // label15
+            // 
+            label15.Location = new Point(280, 9);
+            label15.Name = "label15";
+            label15.Size = new Size(204, 30);
+            label15.TabIndex = 1;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(3, 9);
+            label16.Name = "label16";
+            label16.Size = new Size(109, 30);
+            label16.TabIndex = 0;
+            label16.Text = "Tổng tiền";
+            // 
+            // label31
+            // 
+            label31.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label31.Location = new Point(19, 12);
+            label31.Name = "label31";
+            label31.Size = new Size(473, 67);
+            label31.TabIndex = 0;
+            label31.Text = "Đồ ăn";
+            label31.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // flpBillFood
+            // 
+            flpBillFood.Location = new Point(19, 84);
+            flpBillFood.Name = "flpBillFood";
+            flpBillFood.Size = new Size(484, 429);
+            flpBillFood.TabIndex = 16;
+            // 
             // ThanhToan
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(1479, 799);
+            ClientSize = new Size(1890, 799);
+            Controls.Add(panel7);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -397,6 +460,9 @@
             panel3.ResumeLayout(false);
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel8.ResumeLayout(false);
+            panel8.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -436,5 +502,11 @@
         private Panel panel5;
         private Panel panel6;
         private TextBox txtHoTen;
+        private Panel panel7;
+        private FlowLayoutPanel flpBillFood;
+        private Panel panel8;
+        private Label label15;
+        private Label label16;
+        private Label label31;
     }
 }

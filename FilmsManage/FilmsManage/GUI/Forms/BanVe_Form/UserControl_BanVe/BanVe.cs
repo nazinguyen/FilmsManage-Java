@@ -1,22 +1,19 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using FilmsAPI.Models;
-using FilmsManage.GUI.Forms;
+﻿using FilmsAPI.Models;
 using FilmsManage.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FilmsManage
+namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 {
-    public partial class BanVe : Form
+    public partial class BanVe : UserControl
     {
         private DangPhimSV _sv;
         private int selectedSeats = 0; // Số lượng ghế đang chọn
@@ -27,9 +24,11 @@ namespace FilmsManage
         private XuatChieu thongTinXuatChieu;
         private List<Ve> veDaMua;
         private int maXuatChieu;
+        private Main_Form mainForm;
 
-        public BanVe(int maXuatChieuFromLichChieu)
+        public BanVe(int maXuatChieuFromLichChieu, Main_Form lichChieu)
         {
+            mainForm = lichChieu;
             gheChon = new List<Ghe>();
             _sv = new DangPhimSV("https://localhost:7085");
             InitializeComponent();
@@ -186,12 +185,14 @@ namespace FilmsManage
                                 // Bỏ chọn ghế
                                 clickedButton.BackColor = ghe.MaLoaiGheNavigation?.TenLoaiGhe != "VIP" ? Color.Blue : Color.White;
                                 gheChon.Remove(clickedGhe); // Loại ghế khỏi danh sách đã chọn
+                                lblVeChon.Text = gheChon.Count().ToString();
                             }
                             else
                             {
                                 // Chọn ghế
                                 clickedButton.BackColor = Color.Yellow;
                                 gheChon.Add(clickedGhe); // Thêm ghế vào danh sách đã chọn
+                                lblVeChon.Text = gheChon.Count().ToString();
                             }
                         }
                     };
@@ -264,9 +265,21 @@ namespace FilmsManage
                 return;
             }
 
-            // Hiển thị form thanh toán và truyền danh sách ghế đã chọn
-            ThanhToan thanhToanForm = new ThanhToan(gheChon, thongTinXuatChieu);
-            thanhToanForm.ShowDialog(); // Mở form dưới dạng modal
+            var themSua = mainForm.panel4.Controls.OfType<UserControl_BanVe.BanVe>().FirstOrDefault();
+
+            if (themSua != null)
+            {
+                mainForm.panel4.Controls.Remove(themSua);
+                themSua.Dispose();
+            }
+            foreach (Control control in mainForm.panel4.Controls)
+            {
+                control.Visible = false;
+            }
+
+            themSua = new UserControl_BanVe.BanVe(maXuatChieu, mainForm);
+            themSua.Dock = DockStyle.Fill;
+            mainForm.panel4.Controls.Add(themSua);
 
 
         }
@@ -368,6 +381,22 @@ namespace FilmsManage
         }
         private void btnTiepTuc_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            //LichChieu lichChieu = new LichChieu();
+            //lichChieu.Show();
+        }
+
+        private void BanVe_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTiepTuc_Click_2(object sender, EventArgs e)
+        {
             if (gheChon == null || gheChon.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn ít nhất một ghế trước khi thanh toán.", "Thông báo");
@@ -377,21 +406,133 @@ namespace FilmsManage
             {
                 return;
             }
-            ThanhToan thanhToanForm = new ThanhToan(gheChon, thongTinXuatChieu);
-            thanhToanForm.ShowDialog(); // Mở form dưới dạng modal
-            GenerateButtons();
+            var themSua = mainForm.panel4.Controls.OfType<UserControl_BanVe.Food>().FirstOrDefault();
+
+            if (themSua != null)
+            {
+                mainForm.panel4.Controls.Remove(themSua);
+                themSua.Dispose();
+            }
+            foreach (Control control in mainForm.panel4.Controls)
+            {
+                control.Visible = false;
+            }
+
+            themSua = new UserControl_BanVe.Food(mainForm, gheChon, thongTinXuatChieu);
+            themSua.Dock = DockStyle.Fill;
+            mainForm.panel4.Controls.Add(themSua);
         }
 
-        private void btnHuy_Click(object sender, EventArgs e)
+        private void btnTiepTuc_Paint(object sender, PaintEventArgs e)
         {
-            LichChieu lichChieu = new LichChieu();
-            lichChieu.Show();
-            this.Close();
+
+            Button btn = sender as Button;
+
+            if (btn == null)
+                return;
+
+            // Kích thước và bo góc
+            Rectangle rect = new Rectangle(0, 0, btn.Width, btn.Height);
+            int borderRadius = 20; // Độ bo góc
+
+            // Tạo hiệu ứng nền gradient
+            using (LinearGradientBrush brush = new LinearGradientBrush(rect, Color.FromArgb(72, 201, 176), Color.FromArgb(46, 134, 193), LinearGradientMode.Vertical))
+            using (GraphicsPath path = GetRoundedRectangle(rect, borderRadius))
+            {
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                // Vẽ nền gradient bo góc
+                e.Graphics.FillPath(brush, path);
+
+                // Viền xung quanh nút
+                using (Pen borderPen = new Pen(Color.FromArgb(0, 123, 255), 2))
+                {
+                    e.Graphics.DrawPath(borderPen, path);
+                }
+            }
+
+            // Vẽ chữ nổi bật ở giữa button
+            string buttonText = btn.Text;
+            using (StringFormat sf = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            })
+            using (SolidBrush textBrush = new SolidBrush(Color.White))
+            {
+                e.Graphics.DrawString(buttonText, btn.Font, textBrush, rect, sf);
+            }
         }
 
-        private void BanVe_Load(object sender, EventArgs e)
+        private void btnHuy_Paint(object sender, PaintEventArgs e)
         {
+            Button btn = sender as Button;
 
+            if (btn == null)
+                return;
+
+            // Kích thước và bo góc
+            Rectangle rect = new Rectangle(0, 0, btn.Width, btn.Height);
+            int borderRadius = 20; // Độ bo góc
+
+            // Tạo hiệu ứng nền gradient (Danger)
+            using (LinearGradientBrush brush = new LinearGradientBrush(rect, Color.FromArgb(235, 77, 75), Color.FromArgb(192, 57, 43), LinearGradientMode.Vertical))
+            using (GraphicsPath path = GetRoundedRectangle(rect, borderRadius))
+            {
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                // Vẽ nền gradient bo góc
+                e.Graphics.FillPath(brush, path);
+
+                // Viền xung quanh nút
+                using (Pen borderPen = new Pen(Color.FromArgb(242, 38, 19), 2))
+                {
+                    e.Graphics.DrawPath(borderPen, path);
+                }
+            }
+
+            // Vẽ chữ nổi bật ở giữa button
+            string buttonText = btn.Text;
+            using (StringFormat sf = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            })
+            using (SolidBrush textBrush = new SolidBrush(Color.White))
+            {
+                e.Graphics.DrawString(buttonText, btn.Font, textBrush, rect, sf);
+            }
+        }
+        private GraphicsPath GetRoundedRectangle(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90); // Góc trên trái
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 90); // Góc trên phải
+            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90); // Góc dưới phải
+            path.AddArc(rect.X, rect.Bottom - radius, radius, radius, 90, 90); // Góc dưới trái
+            path.CloseFigure();
+            return path;
+        }
+
+        private void btnHuy_Click_1(object sender, EventArgs e)
+        {
+           
+            var themSua = mainForm.panel4.Controls.OfType<UserControl_BanVe.LichChieu>().FirstOrDefault();
+
+            if (themSua != null)
+            {
+                mainForm.panel4.Controls.Remove(themSua);
+                themSua.Dispose();
+            }
+            foreach (Control control in mainForm.panel4.Controls)
+            {
+                control.Visible = false;
+            }
+
+            themSua = new UserControl_BanVe.LichChieu(mainForm);
+            themSua.Dock = DockStyle.Fill;
+            mainForm.panel4.Controls.Add(themSua);
         }
     }
 }

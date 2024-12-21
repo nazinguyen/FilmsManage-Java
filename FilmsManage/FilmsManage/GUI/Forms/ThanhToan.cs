@@ -55,6 +55,8 @@ namespace FilmsManage.GUI.Forms
 
                 // Tính tổng tiền
                 lblTongTien.Text = listVe.Sum(v => v.GiaVe).ToString("N0"); // Định dạng số nếu cần
+
+                AddBillItemToFlowLayout("abc",2,1000 );
             }
             catch (Exception ex)
             {
@@ -105,7 +107,40 @@ namespace FilmsManage.GUI.Forms
                 }
             }
         }
+        private void AddBillItemToFlowLayout(string productName, int quantity, decimal price)
+        {
+            // Tạo một Panel để chứa hai Label (trái và phải)
+            Panel itemPanel = new Panel();
+            itemPanel.Size = new Size(flpBillFood.Width - 20, 30); // Chiều rộng vừa đủ FlowLayoutPanel, chiều cao cố định
+            itemPanel.BackColor = Color.Transparent; // Hoặc màu nền tùy chỉnh
+            itemPanel.Dock = DockStyle.Top;
 
+            // Label trái: hiển thị số lượng và tên sản phẩm
+            Label lblProductInfo = new Label();
+            lblProductInfo.AutoSize = false; // Để canh chỉnh kích thước
+            lblProductInfo.Text = $"{quantity} x {productName}";
+            lblProductInfo.TextAlign = ContentAlignment.MiddleLeft;
+            lblProductInfo.Size = new Size(itemPanel.Width / 2, itemPanel.Height);
+            lblProductInfo.Font = new Font("Arial", 10, FontStyle.Regular);
+
+            // Label phải: hiển thị thành tiền
+            Label lblTotalPrice = new Label();
+            lblTotalPrice.AutoSize = false;
+            lblTotalPrice.Text = $"{(price * quantity):C}"; // Định dạng tiền tệ
+            lblTotalPrice.TextAlign = ContentAlignment.MiddleRight;
+            lblTotalPrice.Size = new Size(itemPanel.Width / 2, itemPanel.Height);
+            lblTotalPrice.Font = new Font("Arial", 10, FontStyle.Regular);
+            lblTotalPrice.Dock = DockStyle.Right;
+
+            // Thêm các Label vào Panel
+            itemPanel.Controls.Add(lblProductInfo);
+            itemPanel.Controls.Add(lblTotalPrice);
+
+            // Thêm Panel vào FlowLayoutPanel
+            flpBillFood.Controls.Add(itemPanel);
+        }
+
+  
         private void label3_Paint(object sender, PaintEventArgs e)
         {
             Label label = sender as Label;
