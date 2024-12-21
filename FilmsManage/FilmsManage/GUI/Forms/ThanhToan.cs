@@ -54,6 +54,7 @@ namespace FilmsManage.GUI.Forms
 				lblGheVIP.Text = gheChon.Count(g => g.MaLoaiGheNavigation.TenLoaiGhe == "VIP").ToString();
 				lblGheThuong.Text = gheChon.Count(g => g.MaLoaiGheNavigation.TenLoaiGhe == "Normal").ToString();
 
+
                 // Tính tổng tiền
                 lblTongTien.Text = listVe.Sum(v => v.GiaVe).ToString("N0"); // Định dạng số nếu cần
 
@@ -103,11 +104,12 @@ namespace FilmsManage.GUI.Forms
 					// Vẽ viền trên
 					g.DrawLine(pen, 0, 0, panel.Width, 0);
 
-                    // Vẽ viền dưới
-                    g.DrawLine(pen, 0, panel.Height - 1, panel.Width, panel.Height - 1);
-                }
-            }
-        }
+					// Vẽ viền dưới
+					g.DrawLine(pen, 0, panel.Height - 1, panel.Width, panel.Height - 1);
+				}
+			}
+		}
+    
         private void AddBillItemToFlowLayout(string productName, int quantity, decimal price)
         {
             // Tạo một Panel để chứa hai Label (trái và phải)
