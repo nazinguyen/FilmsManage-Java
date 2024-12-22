@@ -90,11 +90,12 @@ namespace FilmsManage.GUI.UserControls
                     d.TenNv,
                     d.Sdt,
                     d.Email,
-                    d.MatKhau,
+                    MatKhau = "********",
                     MaQuyen = d.MaQuyenNavigation.MaQuyen,
                     TenQuyen = d.MaQuyenNavigation?.TenQuyen
                 }).ToList();
                 dtgvStaff.DataSource = staffDisplayList;
+
                 dtgvStaff.Refresh();
                 //Gọi Api để lấy danh sách quyền
                 List<Quyen> roleList = await _staff.GetAsync<List<Quyen>>("api/Quyen");
@@ -142,7 +143,7 @@ namespace FilmsManage.GUI.UserControls
         private void btnShowStaff_Click(object sender, EventArgs e)
         {
 
-        }    
+        }
 
         private async void btnSearchStaff_Click_1(object sender, EventArgs e)
         {
@@ -205,14 +206,46 @@ namespace FilmsManage.GUI.UserControls
             string newStaffPass = txtStaffPass.Text.Trim();
             string newStaffRoleId = cbbMaQuyen.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(newStaffName) || string.IsNullOrWhiteSpace(newStaffPhone) || string.IsNullOrWhiteSpace(newStaffEmail) || string.IsNullOrWhiteSpace(newStaffPass))
+            if (string.IsNullOrWhiteSpace(newStaffName) ||
+                string.IsNullOrWhiteSpace(newStaffPhone) ||
+                string.IsNullOrWhiteSpace(newStaffEmail) ||
+                string.IsNullOrWhiteSpace(newStaffPass))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            // Kiểm tra định dạng số điện thoại
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newStaffPhone, @"^\d{10}$"))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại có 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra định dạng email
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newStaffEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ. Vui lòng nhập lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra độ dài mật khẩu
+            if (newStaffPass.Length < 8)
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string selectedRole = cbbMaQuyen.SelectedValue?.ToString() ?? cbbMaQuyen.Text.Trim();
+
+            if (selectedRole == "1")
+            {
+                MessageBox.Show("Không thể thêm hoặc chỉnh sửa nhân viên có mã quyền là Admin. Vui lòng chọn quyền khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
-                //Gọi API để kiểm tra danh sách tên nhân viên
+                // Gọi API để kiểm tra danh sách tên nhân viên
                 List<NhanVien> staffList = await _staff.GetAsync<List<NhanVien>>("api/NhanVien");
 
                 if (staffList.Any(d => d.TenNv == newStaffName))
@@ -220,7 +253,8 @@ namespace FilmsManage.GUI.UserControls
                     MessageBox.Show("Tên nhân viên đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                //Gọi API để thêm nhân viên
+
+                // Gọi API để thêm nhân viên
                 NhanVien newStaff = new NhanVien
                 {
                     TenNv = newStaffName,
@@ -239,7 +273,6 @@ namespace FilmsManage.GUI.UserControls
                 else
                 {
                     MessageBox.Show("Không thể thêm nhân viên, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
                 }
             }
             catch (Exception ex)
@@ -256,18 +289,49 @@ namespace FilmsManage.GUI.UserControls
             string newStaffPass = txtStaffPass.Text.Trim();
             string newStaffRole = cbbMaQuyen.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(newStaffName) || string.IsNullOrWhiteSpace(newStaffPhone) || string.IsNullOrWhiteSpace(newStaffEmail) || string.IsNullOrWhiteSpace(newStaffPass))
+            if (string.IsNullOrWhiteSpace(newStaffName) ||
+                string.IsNullOrWhiteSpace(newStaffPhone) ||
+                string.IsNullOrWhiteSpace(newStaffEmail) ||
+                string.IsNullOrWhiteSpace(newStaffPass))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Kiểm tra định dạng số điện thoại
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newStaffPhone, @"^\d{10}$"))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ. Vui lòng nhập số điện thoại có 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra định dạng email
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newStaffEmail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Địa chỉ email không hợp lệ. Vui lòng nhập lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra độ dài mật khẩu
+            if (newStaffPass.Length < 8)
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Kiểm tra mã nhân viên
             if (!int.TryParse(txtStaffId.Text, out int manhanvien))
             {
                 MessageBox.Show("Mã nhân viên không hợp lệ. Vui lòng nhập một số nguyên.");
                 return;
             }
+            string selectedRole = cbbMaQuyen.SelectedValue?.ToString() ?? cbbMaQuyen.Text.Trim();
 
+            if (selectedRole == "1")
+            {
+                MessageBox.Show("Không thể thêm hoặc chỉnh sửa nhân viên có mã quyền là Admin. Vui lòng chọn quyền khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 // Lấy thông tin nhân viên hiện tại từ API
@@ -358,6 +422,11 @@ namespace FilmsManage.GUI.UserControls
             var exporter = new ExcelExporter();
             // Gọi hàm ExportDataGridViewToExcel và truyền vào DataGridView
             exporter.ExportDataGridViewToExcel(dtgvStaff);
+        }
+
+        private void btnShowStaff_Click_1(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }
