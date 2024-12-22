@@ -437,6 +437,7 @@
             btnShowStaff.TextMarginLeft = 0;
             btnShowStaff.TextPadding = new Padding(0);
             btnShowStaff.UseDefaultRadiusAndThickness = true;
+            btnShowStaff.Click += btnShowStaff_Click_1;
             // 
             // btnAddStaff
             // 
