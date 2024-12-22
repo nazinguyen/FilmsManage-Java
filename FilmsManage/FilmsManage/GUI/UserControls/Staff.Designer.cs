@@ -127,6 +127,7 @@
             txtStaffPass.Location = new Point(651, 169);
             txtStaffPass.Margin = new Padding(3, 4, 3, 4);
             txtStaffPass.Name = "txtStaffPass";
+            txtStaffPass.PasswordChar = '*';
             txtStaffPass.Size = new Size(237, 35);
             txtStaffPass.TabIndex = 2;
             // 
@@ -436,6 +437,7 @@
             btnShowStaff.TextMarginLeft = 0;
             btnShowStaff.TextPadding = new Padding(0);
             btnShowStaff.UseDefaultRadiusAndThickness = true;
+            btnShowStaff.Click += btnShowStaff_Click_1;
             // 
             // btnAddStaff
             // 

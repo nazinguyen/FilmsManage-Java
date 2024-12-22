@@ -90,60 +90,86 @@ namespace FilmsManage.GUI.UserControls
 			}
 		}
 
-		private async void btnAddCustomer_Click(object sender, EventArgs e)
-		{
+        private async void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            string newCusName = txtCusName.Text.Trim();
+            string newCusPhone = txtCusPhone.Text.Trim();
+            DateTime newCusBird = CusDate.Value;
+            string newCusAdress = txtCusAddress.Text.Trim();
+            string newCusNumID = txtCusINumber.Text.Trim();
 
-			string newCusName = txtCusName.Text.Trim();
-			string newCusPhone = txtCusPhone.Text.Trim();
-			DateTime newCusBird = CusDate.Value;
-			string newCusAdress = txtCusAddress.Text.Trim();
-			string newCusNumID = txtCusINumber.Text.Trim();
+            if (string.IsNullOrWhiteSpace(newCusName) ||
+                string.IsNullOrWhiteSpace(newCusPhone) ||
+                string.IsNullOrWhiteSpace(newCusNumID))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-			if (string.IsNullOrWhiteSpace(newCusName) || string.IsNullOrWhiteSpace(newCusPhone) /*|| string.IsNullOrWhiteSpace(newCusBird)*/ || string.IsNullOrWhiteSpace(newCusNumID))
-			{
-				MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-			try
-			{
+            // Kiểm tra định dạng số điện thoại
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newCusPhone, @"^\d{10}$"))
+            {
+                MessageBox.Show("Số điện thoại phải là 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-				List<KhachHang> CusList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
+            // Kiểm tra định dạng CCCD
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newCusNumID, @"^\d{12}$"))
+            {
+                MessageBox.Show("CCCD phải là 12 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            try
+            {
+                // Lấy danh sách khách hàng hiện có từ API
+                List<KhachHang> CusList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
 
-				var newCus = new KhachHang
-				{
+                // Kiểm tra trùng số điện thoại
+                if (CusList.Any(c => c.Sdt == newCusPhone))
+                {
+                    MessageBox.Show("Số điện thoại đã tồn tại, vui lòng nhập số khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-					Sdt = newCusPhone,
-					TenKh = newCusName,
-					NgaySinh = newCusBird,
-					DiaChi = newCusAdress,
-					CCCD = newCusNumID,
-					DiemTichluy = 1,
-					Email = null
+                // Kiểm tra trùng CCCD
+                if (CusList.Any(c => c.CCCD == newCusNumID))
+                {
+                    MessageBox.Show("CCCD đã tồn tại, vui lòng nhập số khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                // Tạo khách hàng mới
+                var newCus = new KhachHang
+                {
+                    Sdt = newCusPhone,
+                    TenKh = newCusName,
+                    NgaySinh = newCusBird,
+                    DiaChi = newCusAdress,
+                    CCCD = newCusNumID,
+                    DiemTichluy = 1, // Điểm tích lũy mặc định >= 1
+                    Email = null
+                };
 
+                string endpoint = "api/KhachHang";
+                var response = await _customer.PostAsync<KhachHang>(endpoint, newCus);
 
-				};
-				string endpoint = "api/KhachHang";
-				var response = await _customer.PostAsync<KhachHang>(endpoint, newCus);
-				if (response != null)
-				{
-					MessageBox.Show("Thêm khách hàng thành công");
-					await LoadData();
-				}
-				else
-				{
-					MessageBox.Show("Không thể thêm khách hàng, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		private void btnShowCustomer_Click(object sender, EventArgs e)
+                if (response != null)
+                {
+                    MessageBox.Show("Thêm khách hàng thành công");
+                    await LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể thêm khách hàng, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btnShowCustomer_Click(object sender, EventArgs e)
 		{
 			LoadData();
 		}
@@ -306,72 +332,105 @@ namespace FilmsManage.GUI.UserControls
 			}
 		}
 
-		private async void btnUpdateCustomer_Click_1(object sender, EventArgs e)
-		{
-			int newCusID = int.Parse(txtCusID.Text);
-			string newCusName = txtCusName.Text.Trim();
-			string newCusPhone = txtCusPhone.Text.Trim();
-			DateTime newCusBird = CusDate.Value;
-			string newCusAdress = txtCusAddress.Text.Trim();
-			string newCusNumID = txtCusINumber.Text.Trim();
+        private async void btnUpdateCustomer_Click_1(object sender, EventArgs e)
+        {
+            int newCusID = int.Parse(txtCusID.Text);
+            string newCusName = txtCusName.Text.Trim();
+            string newCusPhone = txtCusPhone.Text.Trim();
+            DateTime newCusBird = CusDate.Value;
+            string newCusAdress = txtCusAddress.Text.Trim();
+            string newCusNumID = txtCusINumber.Text.Trim();
 
-			if (string.IsNullOrWhiteSpace(newCusName) || string.IsNullOrWhiteSpace(newCusNumID) || string.IsNullOrWhiteSpace(newCusAdress) || string.IsNullOrWhiteSpace(newCusPhone))
-			{
-				MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
+            if (string.IsNullOrWhiteSpace(newCusName) ||
+                string.IsNullOrWhiteSpace(newCusNumID) ||
+                string.IsNullOrWhiteSpace(newCusAdress) ||
+                string.IsNullOrWhiteSpace(newCusPhone))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-			try
-			{
-				string endpointGet = $"api/KhachHang/{newCusID}";
-				KhachHang currentCus = await _customer.GetAsync<KhachHang>(endpointGet);
+            // Kiểm tra định dạng số điện thoại
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newCusPhone, @"^\d{10}$"))
+            {
+                MessageBox.Show("Số điện thoại phải là 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-				if (currentCus == null)
-				{
-					MessageBox.Show("Khach hang không tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
-				bool isChanged = !(currentCus.Sdt.Equals(newCusPhone, StringComparison.OrdinalIgnoreCase) &&
-								   currentCus.DiaChi.Equals(newCusAdress, StringComparison.OrdinalIgnoreCase)
-								   );
+            // Kiểm tra định dạng CCCD
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newCusNumID, @"^\d{12}$"))
+            {
+                MessageBox.Show("CCCD phải là 12 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            try
+            {
+                string endpointGet = $"api/KhachHang/{newCusID}";
+                KhachHang currentCus = await _customer.GetAsync<KhachHang>(endpointGet);
 
-				if (!isChanged)
-				{
-					MessageBox.Show("Vui lòng nhập thông tin cần chỉnh sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-					return;
-				}
+                if (currentCus == null)
+                {
+                    MessageBox.Show("Khách hàng không tồn tại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-				// Cập nhật thông tin nếu có thay đổi
-				var Customer = new KhachHang
-				{
-					MaKh = newCusID,
-					Sdt = newCusPhone,
-					TenKh = newCusName,
-					NgaySinh = newCusBird,
-					DiaChi = newCusAdress,
-					CCCD = newCusNumID,
-					DiemTichluy = int.Parse(nudPoint.Value.ToString()),
-					Email = null
-				};
+                // Kiểm tra thay đổi thông tin khách hàng
+                bool isChanged = !(currentCus.Sdt.Equals(newCusPhone, StringComparison.OrdinalIgnoreCase) &&
+                                   currentCus.DiaChi.Equals(newCusAdress, StringComparison.OrdinalIgnoreCase) &&
+                                   currentCus.CCCD.Equals(newCusNumID, StringComparison.OrdinalIgnoreCase));
 
-				string endpointUpdate = $"api/KhachHang";
-				var response = await _customer.PutAsync<string>(endpointUpdate, Customer);
+                if (!isChanged)
+                {
+                    MessageBox.Show("Vui lòng nhập thông tin cần chỉnh sửa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-				if (response != null)
-				{
-					MessageBox.Show("Cập nhật khach hàng  thành công");
-					await LoadData();
-				}
-				else
-				{
-					MessageBox.Show("Không thể cập nhật khách hàng, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				}
-			}
-			catch (HttpRequestException ex)
-			{
-				MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-	}
+                // Kiểm tra trùng số điện thoại
+                List<KhachHang> CusList = await _customer.GetAsync<List<KhachHang>>("api/KhachHang");
+                if (CusList.Any(c => c.Sdt == newCusPhone && c.MaKh != newCusID))
+                {
+                    MessageBox.Show("Số điện thoại đã tồn tại, vui lòng nhập số khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Kiểm tra trùng CCCD
+                if (CusList.Any(c => c.CCCD == newCusNumID && c.MaKh != newCusID))
+                {
+                    MessageBox.Show("CCCD đã tồn tại, vui lòng nhập số khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Cập nhật thông tin khách hàng
+                var updatedCus = new KhachHang
+                {
+                    MaKh = newCusID,
+                    Sdt = newCusPhone,
+                    TenKh = newCusName,
+                    NgaySinh = newCusBird,
+                    DiaChi = newCusAdress,
+                    CCCD = newCusNumID,
+                    DiemTichluy = int.Parse(nudPoint.Value.ToString()),
+                    Email = null
+                };
+
+                string endpointUpdate = $"api/KhachHang";
+                var response = await _customer.PutAsync<string>(endpointUpdate, updatedCus);
+
+                if (response != null)
+                {
+                    MessageBox.Show("Cập nhật khách hàng thành công");
+                    await LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể cập nhật khách hàng, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
 }

@@ -717,10 +717,47 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                     MessageBox.Show("Không tìm thấy khách hàng tương ứng với số điện thoại " + txtDienThoai.Text);
                     return;
                 }
-                var veDoi = khachHang.DiemTichluy / 8;
-                if (veDoi >= 1)
-                {
+                //var veDoi = khachHang.DiemTichluy / 8;
+                //if (veDoi >= 1)
+                //{
 
+                //}
+                var point = khachHang.DiemTichluy;
+
+                if (khachHang != null && khachHang.DiemTichluy >= listVe.Count * 5)
+                {
+                    DialogResult result = MessageBox.Show("Khách hàng " + khachHang.TenKh + " hiện đang có " + khachHang.DiemTichluy + "điểm . Xác nhận đổi vé", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        point -= listVe.Count * 5 - 1;
+                        MessageBox.Show("Đổi điểm khách hàng thành công");
+
+                    }
+                    else
+                    {
+                        point += 1;
+                    }
+
+                    var Customer = new KhachHang
+                    {
+                        MaKh = khachHang.MaKh,
+                        Sdt = khachHang.Sdt,
+                        TenKh = khachHang.TenKh,
+                        NgaySinh = khachHang.NgaySinh,
+                        DiaChi = khachHang.DiaChi,
+                        CCCD = khachHang.CCCD,
+                        DiemTichluy = point,
+                        Email = khachHang.Email
+                    };
+
+                    string endpointUpdate = $"api/KhachHang";
+                    var response = await _sv.PutAsync<string>(endpointUpdate, Customer);
+
+                    if (response == null)
+                    {
+                        MessageBox.Show("Có lỗi trong quá trình đổi điểm, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
 
                 HoaDon hoaDon = new HoaDon()
@@ -743,7 +780,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 
         private void btnQuayLai_Click_1(object sender, EventArgs e)
         {
-           
+
             var themSua = mainForm.panel4.Controls.OfType<UserControl_BanVe.LichChieu>().FirstOrDefault();
 
             if (themSua != null)
