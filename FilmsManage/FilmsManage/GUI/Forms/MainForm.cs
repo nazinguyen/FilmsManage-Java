@@ -13,87 +13,108 @@ using System.Windows.Forms;
 
 namespace FilmsManage.GUI.Forms
 {
-    public partial class MainForm : Form
-    {
-        public MainForm()
-        {
-            InitializeComponent();
-        }
+	public partial class MainForm : Form
+	{
+		public MainForm()
+		{
+			InitializeComponent();
+			TimerClock.Start();
 
-        private void btnAccountUC_Click(object sender, EventArgs e)
-        {
-            this.Text = "Tài Khoản";
+		}
 
-            if (!(pnAdmin.Controls.OfType<Account>().Any()))
-            {
-                pnAdmin.Controls.Clear();
-                Account accountUc = new Account();
-                accountUc.Dock = DockStyle.Fill;
-                pnAdmin.Controls.Add(accountUc);
-            }
-        }
+		private void btnAccountUC_Click(object sender, EventArgs e)
+		{
+			this.Text = "Tài Khoản";
 
-        private void pnAdmin_Paint(object sender, PaintEventArgs e)
-        {
+			if (!(pnAdmin.Controls.OfType<Account>().Any()))
+			{
+				pnAdmin.Controls.Clear();
+				Account accountUc = new Account();
+				accountUc.Dock = DockStyle.Fill;
+				pnAdmin.Controls.Add(accountUc);
+			}
+		}
 
-        }
+		private void pnAdmin_Paint(object sender, PaintEventArgs e)
+		{
 
-        private void btnCustomerUC_Click(object sender, EventArgs e)
-        {
-            this.Text = "Khách hàng";
+		}
 
-            if (!(pnAdmin.Controls.OfType<Customer>().Any()))
-            {
-                pnAdmin.Controls.Clear();
-                Customer customerUc = new Customer();
-                customerUc.Dock = DockStyle.Fill;
-                pnAdmin.Controls.Add(customerUc);
-            }
-        }
+		private void btnCustomerUC_Click(object sender, EventArgs e)
+		{
+			this.Text = "Khách hàng";
 
-        private void btnStaffUC_Click(object sender, EventArgs e)
-        {
-            this.Text = "Nhân viên";
+			if (!(pnAdmin.Controls.OfType<Customer>().Any()))
+			{
+				pnAdmin.Controls.Clear();
+				Customer customerUc = new Customer();
+				customerUc.Dock = DockStyle.Fill;
+				pnAdmin.Controls.Add(customerUc);
+			}
+		}
 
-            if (!(pnAdmin.Controls.OfType<Staff>().Any()))
-            {
-                pnAdmin.Controls.Clear();
-                Staff staffUc = new Staff();
-                staffUc.Dock = DockStyle.Fill;
-                pnAdmin.Controls.Add(staffUc);
-            }
-        }
+		private void btnStaffUC_Click(object sender, EventArgs e)
+		{
+			this.Text = "Nhân viên";
 
-        private void btnDataUC_Click(object sender, EventArgs e)
-        {
-            this.Text = "Dữ liệu";
+			if (!(pnAdmin.Controls.OfType<Staff>().Any()))
+			{
+				pnAdmin.Controls.Clear();
+				Staff staffUc = new Staff();
+				staffUc.Dock = DockStyle.Fill;
+				pnAdmin.Controls.Add(staffUc);
+			}
+		}
 
-            if (!(pnAdmin.Controls.OfType<DataUC>().Any()))
-            {
-                pnAdmin.Controls.Clear();
-                DataUC dataUc = new DataUC();
-                dataUc.Dock = DockStyle.Fill;
-                pnAdmin.Controls.Add(dataUc);
-            }
-        }
+		private void btnDataUC_Click(object sender, EventArgs e)
+		{
+			this.Text = "Dữ liệu";
 
-        private void btnRevenueUC_Click(object sender, EventArgs e)
-        {
-            this.Text = "Doanh thu";
+			if (!(pnAdmin.Controls.OfType<DataUC>().Any()))
+			{
+				pnAdmin.Controls.Clear();
+				DataUC dataUc = new DataUC();
+				dataUc.Dock = DockStyle.Fill;
+				pnAdmin.Controls.Add(dataUc);
+			}
+		}
 
-            if (!(pnAdmin.Controls.OfType<DoanhThu>().Any()))
-            {
-                pnAdmin.Controls.Clear();
-                DoanhThu doanhThu = new DoanhThu();
-                doanhThu.Dock = DockStyle.Fill;
-                pnAdmin.Controls.Add(doanhThu);
-            }
-        }
+		private void btnRevenueUC_Click(object sender, EventArgs e)
+		{
+			this.Text = "Doanh thu";
 
-        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            TokenStorage.DeleteLoginResponse();
+			if (!(pnAdmin.Controls.OfType<DoanhThu>().Any()))
+			{
+				pnAdmin.Controls.Clear();
+				DoanhThu doanhThu = new DoanhThu();
+				doanhThu.Dock = DockStyle.Fill;
+				pnAdmin.Controls.Add(doanhThu);
+			}
+		}
 
-        }
-    }
+		private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			TokenStorage.DeleteLoginResponse();
+
+		}
+
+		private void MainForm_Load(object sender, EventArgs e)
+		{
+			userNameAlias.Text = "Chào mừng, " + Helper.TokenStorage.GetLoginResponse().User.TenAlias;
+
+		}
+
+		private void TimerClock_Tick(object sender, EventArgs e)
+		{
+			lblTime.Text = DateTime.Now.ToString("HH:mm:ss  tt");
+		}
+
+		private void btnLogout_Click(object sender, EventArgs e)
+		{
+			Helper.TokenStorage.DeleteLoginResponse();
+			var loginForm = new Login();
+			loginForm.Show();
+			this.Hide();
+		}
+	}
 }

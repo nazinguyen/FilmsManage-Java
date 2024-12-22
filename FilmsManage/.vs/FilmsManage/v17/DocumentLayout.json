@@ -3,40 +3,80 @@
   "WorkspaceRootPath": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\phimuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\phimuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\phimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\phimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\services\\excelexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\services\\excelexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\datauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\datauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\staff.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\staff.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\models\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\chucnang_phim\\them_sua.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\chucnang_phim\\them_sua.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\forms\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\phimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\phimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\phimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\phimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\cinemauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\cinemauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\theloaiphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\theloaiphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\dinhdangphimuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\phimuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\phimuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\services\\excelexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\services\\excelexporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\theloaiphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\theloaiphimuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\cinemauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\cinemauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\lichchieuuc.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,7 +99,7 @@
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\kieumanhinhuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\kieumanhinhuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\kieumanhinhuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\kieumanhinhuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -67,36 +107,12 @@
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\veuc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\datauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\datauc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\doanhthu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\doanhthu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\doanhthu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\forms\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\account.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -111,20 +127,12 @@
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\chucnang_phim\\them_sua.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\data\\chucnang_phim\\them_sua.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\chucnang_phim\\them_sua.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\filmsmanage\\gui\\usercontrols\\data\\chucnang_phongchieu\\themsua.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\data\\chucnang_phongchieu\\themsua.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|d:\\h\u1ECDc k\u1EF3 1 2024-2025\\l\u1EADp tr\u00ECnh tr\u1EF1c quan\\baitaplonc#\\filmsmanage\\filmsmanage\\filmsmanage\\gui\\usercontrols\\staff.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29924D3D-B783-4016-8B31-CACB36CEC80E}|FilmsManage\\FilmsManage.csproj|solutionrelative:filmsmanage\\gui\\usercontrols\\staff.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -134,11 +142,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 14,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 11,
               "Title": "Customer.cs [Design]",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Customer.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Customer.cs",
@@ -146,8 +154,44 @@
               "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Customer.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-18T12:57:30.451Z",
-              "IsPinned": true,
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DinhDangPhimUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T19:02:45.37Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PhimUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T19:02:21.339Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NhanVien.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Models\\NhanVien.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\Models\\NhanVien.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Models\\NhanVien.cs",
+              "RelativeToolTip": "FilmsManage\\Models\\NhanVien.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T18:59:05.54Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -175,69 +219,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ExcelExporter.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Services\\ExcelExporter.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\Services\\ExcelExporter.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Services\\ExcelExporter.cs",
-              "RelativeToolTip": "FilmsManage\\Services\\ExcelExporter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "PhimUC.Designer.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
+              "ViewState": "AgIAAA4BAAAAAAAAAAAYwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T18:30:48.747Z",
+              "WhenOpened": "2024-12-22T17:58:01.238Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CinemaUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T18:27:19.603Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PhimUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T04:18:46.365Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DinhDangPhimUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T15:19:58.615Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 16,
               "Title": "DinhDangPhimUC.Designer.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.Designer.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.Designer.cs",
               "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.Designer.cs",
               "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.Designer.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwE8CAABNAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAqwBcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T18:20:31.385Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 2,
               "Title": "Account.cs [Design]",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Account.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Account.cs",
@@ -249,29 +257,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PhimUC.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
-              "ViewState": "AgIAAFEBAAAAAAAAAADwv3IBAAAzAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "Staff.Designer.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAE0DAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T04:19:05.15Z",
+              "WhenOpened": "2024-12-17T15:21:35.446Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DinhDangPhimUC.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
-              "ViewState": "AgIAALUAAAAAAAAAAAAgwHQAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "DataUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DataUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\DataUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DataUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\DataUC.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T03:36:35.367Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-22T17:27:45.387Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",
@@ -279,19 +286,92 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Staff.cs [Design]",
+              "DocumentIndex": 8,
+              "Title": "Them_Sua.Designer.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T04:21:05.488Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PhimUC.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.cs",
+              "ViewState": "AgIAAFUBAAAAAAAAAAAuwHUBAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T04:19:05.15Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Staff.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Staff.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Staff.cs [Design]",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Staff.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsBAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T04:32:15.807Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-12-17T15:21:02.553Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Login.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\Forms\\Login.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Login.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\Forms\\Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T14:19:30.061Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\MainForm.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\Forms\\MainForm.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\MainForm.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\Forms\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T18:51:12.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DinhDangPhimUC.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\DinhDangPhimUC.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAYwHoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T03:36:35.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ExcelExporter.cs",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Services\\ExcelExporter.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\Services\\ExcelExporter.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Services\\ExcelExporter.cs",
+              "RelativeToolTip": "FilmsManage\\Services\\ExcelExporter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-22T18:30:48.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "Account.Designer.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Account.Designer.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Account.Designer.cs",
@@ -304,32 +384,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TheLoaiPhimUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T15:20:27.08Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PhimUC.Designer.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\PhimUC.Designer.cs",
-              "ViewState": "AgIAAIcBAAAAAAAAAAAYwOcCAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:58:01.238Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 19,
               "Title": "LichChieuUC.Designer.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.Designer.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.Designer.cs",
@@ -337,49 +392,11 @@
               "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.Designer.cs",
               "ViewState": "AgIAANsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:58:30.618Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-22T17:58:30.618Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Staff.Designer.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Staff.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T15:21:35.446Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "LichChieuUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T15:20:23.447Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "KieuManHinhUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:32:56.14Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 22,
               "Title": "TheLoaiPhimUC.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
@@ -387,12 +404,11 @@
               "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
               "ViewState": "AgIAALIAAAAAAAAAAADwv8cAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:28:03.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-22T17:28:03.646Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 23,
               "Title": "KieuManHinhUC.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
@@ -400,49 +416,11 @@
               "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
               "ViewState": "AgIAAIIAAAAAAAAAAAAkwIgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:33:01.799Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-22T17:33:01.799Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Staff.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Staff.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Staff.cs",
-              "ViewState": "AgIAAN8AAAAAAAAAAAAYwFgBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T15:21:02.553Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "DataUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DataUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\DataUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DataUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\DataUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:27:45.387Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "VeUC.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-17T15:20:28.706Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 28,
               "Title": "Account.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Account.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Account.cs",
@@ -450,36 +428,11 @@
               "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Account.cs",
               "ViewState": "AgIAADwAAAAAAAAAAAAYwEYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T12:50:03.795Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-18T12:50:03.795Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Them_Sua.Designer.cs",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T04:21:05.488Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "DoanhThu.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DoanhThu.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\DoanhThu.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DoanhThu.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\DoanhThu.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:26:25.609Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "Them_Sua.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.cs",
@@ -492,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "Login.cs",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Login.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\Forms\\Login.cs",
@@ -500,23 +453,89 @@
               "RelativeToolTip": "FilmsManage\\GUI\\Forms\\Login.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAA3wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T14:19:32.373Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-22T14:19:32.373Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Login.cs [Design]",
-              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Login.cs",
-              "RelativeDocumentMoniker": "FilmsManage\\GUI\\Forms\\Login.cs",
-              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\Forms\\Login.cs [Design]",
-              "RelativeToolTip": "FilmsManage\\GUI\\Forms\\Login.cs [Design]",
+              "DocumentIndex": 14,
+              "Title": "Staff.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Staff.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Staff.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Staff.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T14:19:30.061Z"
+              "WhenOpened": "2024-12-22T04:32:15.807Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TheLoaiPhimUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\TheLoaiPhimUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T15:20:27.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CinemaUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\CinemaUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-12-22T18:27:19.603Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "LichChieuUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\LichChieuUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-12-17T15:20:23.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "KieuManHinhUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\KieuManHinhUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-12-22T17:32:56.14Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "VeUC.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\Data\\VeUC.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-12-17T15:20:28.706Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 26,
+              "Title": "DoanhThu.cs [Design]",
+              "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DoanhThu.cs",
+              "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\DoanhThu.cs",
+              "ToolTip": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\DoanhThu.cs [Design]",
+              "RelativeToolTip": "FilmsManage\\GUI\\UserControls\\DoanhThu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003302|",
+              "WhenOpened": "2024-12-22T17:26:25.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
               "Title": "Them_Sua.cs [Design]",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_Phim\\Them_Sua.cs",
@@ -527,7 +546,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\Form1.cs",
               "RelativeDocumentMoniker": "FilmsManage\\Form1.cs",
@@ -538,7 +557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "ThemSua.cs [Design]",
               "DocumentMoniker": "D:\\H\u1ECCC K\u1EF2 1 2024-2025\\L\u1EADp tr\u00ECnh tr\u1EF1c quan\\BaiTapLonC#\\FilmsManage\\FilmsManage\\FilmsManage\\GUI\\UserControls\\Data\\ChucNang_PhongChieu\\ThemSua.cs",
               "RelativeDocumentMoniker": "FilmsManage\\GUI\\UserControls\\Data\\ChucNang_PhongChieu\\ThemSua.cs",

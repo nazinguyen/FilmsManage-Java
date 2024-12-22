@@ -20,7 +20,8 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+		#region Component Designer generated code
+
 
         /// <summary> 
         /// Required method for Designer support - do not modify 
@@ -731,8 +732,9 @@
             PerformLayout();
         }
 
-        #endregion
-        private ListView lwShow;
+
+		#endregion
+		private ListView lwShow;
         private Label lblMovieID;
         private ComboBox ccbDangPhim;
         private Label lblMovieName;
@@ -758,9 +760,13 @@
         private TextBox txtGhiChu;
         private Label label2;
         private TextBox txtNoiDung;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnAddMovie;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateMovie;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnDeleteMovie;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnExport;
-    }
+        //private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnAddMovie;
+        //private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateMovie;
+        //private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnDeleteMovie;
+        //private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnExport;
+		private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnAddMovie;
+		private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateMovie;
+		private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnDeleteMovie;
+		private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnExport;
+	}
 }

@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
         /// <summary> 
         /// Required method for Designer support - do not modify 
@@ -571,9 +571,10 @@
             ResumeLayout(false);
         }
 
-        #endregion
 
-        private System.Windows.Forms.Panel panel1;
+		#endregion
+
+		private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnDeleteFormat;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -591,4 +592,5 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateFormat;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnInsertFormat;
     }
+
 }

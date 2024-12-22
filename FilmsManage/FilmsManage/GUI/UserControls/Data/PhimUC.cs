@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FilmsManage.GUI.UserControls.Data
 {
+
     public partial class PhimUC : UserControl
     {
 
