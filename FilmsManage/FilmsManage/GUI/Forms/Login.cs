@@ -1,6 +1,8 @@
-﻿using FilmsManage.DTO;
+﻿using FilmsAPI.Models;
+using FilmsManage.DTO;
 using FilmsManage.GUI.Forms;
 using FilmsManage.GUI.Forms.BanVe_Form;
+using FilmsManage.GUI.UserControls;
 using FilmsManage.Helper;
 using FilmsManage.Models;
 using FilmsManage.Services;
@@ -43,11 +45,16 @@ namespace FilmsManage
         public string USER_NAME = "";
 
         private async void registrationButton_Click(object sender, EventArgs e)
-        {
-            string userName = txtUsername.Text;
-            string passWord = txtPassword.Text;
+		{
 
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
+
+
+			string userName = txtUsername.Text;
+			NhanVien account = await _sv.GetAsync<NhanVien>($"api/NhanVien/byPhone/{userName}");
+
+			string passWord = txtPassword.Text.ToMd5Hash(account.RandomKey);
+
+			if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
                 return;
