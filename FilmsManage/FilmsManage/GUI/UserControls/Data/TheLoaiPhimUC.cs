@@ -118,65 +118,105 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnInsertGenre_Click_1(object sender, EventArgs e)
         {
-            string genreName = txtGenreName.Text;
+            string genreName = txtGenreName.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(genreName))
             {
-                MessageBox.Show("Vui lòng nhập tên thể loại phim.");
+                MessageBox.Show("Vui lòng nhập tên thể loại phim.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var loaiPhim = new LoaiPhim
-            {
-                MaTheLoai = 0,
-                TenTheLoai = genreName,
-
-            };
 
             try
             {
-                string endpoint = "/api/LoaiPhim"; // Đảm bảo đường dẫn API đúng
-                var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, loaiPhim);
+                // Gọi API để kiểm tra danh sách tên màn hình
+                List<LoaiPhim> theLoaiList = await _dangPhimSV.GetAsync<List<LoaiPhim>>("api/LoaiPhim");
 
-                MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
-                await LoadData();                   // Tải lại dữ liệu sau khi thêm mới thành công
+                bool isDuplicateName = theLoaiList.Any(tl => tl.TenTheLoai.Equals(genreName, StringComparison.OrdinalIgnoreCase));
+
+                if (isDuplicateName)
+                {
+                    MessageBox.Show("Tên thể loại đã tồn tại. Vui lòng nhập một tên khác.");
+                    return;
+                }
+                // Nếu tên không trùng, thực hiện thêm mới
+                var theLoai = new LoaiPhim
+                {
+                    TenTheLoai = genreName
+                };
+
+                string endpoint = "/api/LoaiPhim";
+                var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, theLoai);
+
+                if (response != null) // Giả sử ApiRespone có thuộc tính xác định thành công
+                {
+                    MessageBox.Show("Thêm Thể Loại thành công!");
+                    await LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể thêm thể loại. Vui lòng thử lại.");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
             }
         }
+
 
         private async void btnUpdateGenre_Click_1(object sender, EventArgs e)
         {
-            string genreId = txtGenreID.Text;
-            string genreName = txtGenreName.Text;
+            int.TryParse(txtGenreID.Text, out int id);
+            string genreName = txtGenreName.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(genreId) || string.IsNullOrWhiteSpace(genreName))
+            if (string.IsNullOrWhiteSpace(genreName))
             {
-                MessageBox.Show("Vui lòng nhập mã và tên thể loại phim.");
+                MessageBox.Show("Vui lòng nhập tên thể loại phim.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            var loaiPhim = new LoaiPhim
-            {
-                MaTheLoai = int.Parse(genreId),
-                TenTheLoai = genreName,
-            };
-
             try
             {
-                string endpoint = $"/api/LoaiPhim/{int.Parse(genreId)}"; // Đảm bảo rằng endpoint là đúng
+                // Gọi API để lấy danh sách thể loại
+                List<LoaiPhim> theLoaiList = await _dangPhimSV.GetAsync<List<LoaiPhim>>("api/LoaiPhim");
+
+                // Kiểm tra tên thể loại có trùng lặp không, nhưng phải khác chính nó (tránh trùng khi không đổi tên)
+                bool isDuplicateName = theLoaiList.Any(tl =>
+                    tl.TenTheLoai.Equals(genreName, StringComparison.OrdinalIgnoreCase) &&
+                    tl.MaTheLoai != id);
+
+                if (isDuplicateName)
+                {
+                    MessageBox.Show("Tên thể loại đã tồn tại. Vui lòng nhập một tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Tạo đối tượng LoaiPhim để cập nhật
+                var loaiPhim = new LoaiPhim
+                {
+                    MaTheLoai = id,
+                    TenTheLoai = genreName,
+                };
+
+                string endpoint = $"/api/LoaiPhim/{id}"; // Endpoint phải đúng với API
                 var response = await _dangPhimSV.PutAsync<Models.ApiRespone>(endpoint, loaiPhim);
 
-                MessageBox.Show(response.Message);  // Hiển thị thông báo từ API
-                await LoadData();  // Tải lại dữ liệu sau khi cập nhật thành công
+                if (response != null) // Giả sử ApiRespone có thuộc tính xác định thành công
+                {
+                    MessageBox.Show("Cập nhật thể loại thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    await LoadData(); // Tải lại dữ liệu
+                }
+                else
+                {
+                    MessageBox.Show("Không thể cập nhật thể loại. Vui lòng thử lại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private async void dtgvGenre_CellClick(object sender, DataGridViewCellEventArgs e)
         {

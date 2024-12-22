@@ -108,18 +108,29 @@ namespace FilmsManage.GUI.UserControls.Data
 			{
 				DataGridViewRow selectedRow = dtgvFormat.Rows[e.RowIndex];
 
-				// Gán giá trị từ hàng được chọn vào các ô nhập liệu
-				txtFormatID.Text = selectedRow.Cells["TitleId"].Value?.ToString(); // Mã định dạng
-				txtTenDangPhim.Text = selectedRow.Cells["TitleName"].Value?.ToString(); // Mã định dạng
-				cbMaMH.Text = selectedRow.Cells["MaMH"].Value?.ToString();
-				txtTenMh.Text = selectedRow.Cells["TenMH"].Value?.ToString(); // Mã định dạng
-			}
-		}
 
-		private async void btnInsertFormat_Click_1(object sender, EventArgs e)
-		{
-			string genreName = txtTenDangPhim.Text;
-			int.TryParse(cbMaMH.Text, out int maManHinh);
+                // Gán giá trị từ hàng được chọn vào các ô nhập liệu
+                txtFormatID.Text = selectedRow.Cells["TitleId"].Value?.ToString(); // Mã định dạng
+                txtTenDangPhim.Text = selectedRow.Cells["TitleName"].Value?.ToString(); // Mã định dạng
+                cbMaMH.Text = selectedRow.Cells["MaMH"].Value?.ToString();
+                txtTenMh.Text = selectedRow.Cells["TenMH"].Value?.ToString(); // Mã định dạng
+            }
+        }
+        private void dtgvFormat_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnShowFormat_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private async void btnInsertFormat_Click(object sender, EventArgs e)
+        {
+            string genreName = txtTenDangPhim.Text;
+            int.TryParse(cbMaMH.Text, out int maManHinh);
+
 
 			if (string.IsNullOrWhiteSpace(genreName))
 			{
@@ -144,36 +155,36 @@ namespace FilmsManage.GUI.UserControls.Data
 				string endpoint = "/DangPhim";
 				var response = await _dangPhimSV.PostAsync<Models.ApiRespone>(endpoint, dangPhim);
 
-				if (response != null)
-				{
-					if (!string.IsNullOrWhiteSpace(response.Message))
-					{
-						MessageBox.Show(response.Message);
-						await LoadData(); // Tải lại dữ liệu sau khi thêm thành công
-					}
-					else
-					{
-						MessageBox.Show("Phản hồi không chứa thông báo.");
-					}
-				}
-				else
-				{
-					MessageBox.Show("Phản hồi null từ API.");
-				}
-			}
-			catch (Exception ex)
-			{
-				// Log lỗi chi tiết
-				MessageBox.Show($"Có lỗi xảy ra: {ex.Message}\n{ex.StackTrace}");
-			}
-		}
+                if (response != null)
+                {
+                    if (!string.IsNullOrWhiteSpace(response.Message))
+                    {
+                        MessageBox.Show(response.Message);
+                        await LoadData(); // Tải lại dữ liệu sau khi thêm thành công
+                    }
+                    else
+                    {
+                        MessageBox.Show("Phản hồi không chứa thông báo.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Phản hồi null từ API.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi chi tiết
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}\n{ex.StackTrace}");
+            }
 
-		private async void btnUpdateFormat_Click_1(object sender, EventArgs e)
-		{
-			string tenDP = txtTenDangPhim.Text.Trim();
-			int.TryParse(cbMaMH.Text, out int maManHinh);
-			int.TryParse(txtFormatID.Text, out int maDangPhim);
+        }
 
+        private async void btnUpdateFormat_Click(object sender, EventArgs e)
+        {
+            string tenDP = txtTenDangPhim.Text.Trim();
+            int.TryParse(cbMaMH.Text, out int maManHinh);
+            int.TryParse(txtFormatID.Text, out int maDangPhim);
 			if (string.IsNullOrWhiteSpace(tenDP))
 			{
 				MessageBox.Show("Vui lòng nhập tên dạng phim.");
@@ -207,55 +218,11 @@ namespace FilmsManage.GUI.UserControls.Data
 			}
 		}
 
-		private void btnExport_Click_1(object sender, EventArgs e)
-		{
-			try
-			{
-				// Tạo workbook mới
-				using (var workbook = new ClosedXML.Excel.XLWorkbook())
-				{
-					// Tạo một worksheet
-					var worksheet = workbook.Worksheets.Add("DinhDangPhim");
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            var exporter = new ExcelExporter();
+            exporter.ExportDataGridViewToExcel(dtgvFormat);
+        }
+    }
 
-					// Ghi tiêu đề cột từ DataGridView vào file Excel
-					for (int col = 0; col < dtgvFormat.Columns.Count; col++)
-					{
-						worksheet.Cell(1, col + 1).Value = dtgvFormat.Columns[col].HeaderText;
-					}
-
-					// Ghi dữ liệu từ DataGridView vào file Excel
-					for (int row = 0; row < dtgvFormat.Rows.Count; row++)
-					{
-						for (int col = 0; col < dtgvFormat.Columns.Count; col++)
-						{
-							worksheet.Cell(row + 2, col + 1).Value = dtgvFormat.Rows[row].Cells[col].Value?.ToString();
-						}
-					}
-
-					// Lưu file Excel
-					using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-					{
-						saveFileDialog.Filter = "Excel Files|*.xlsx";
-						saveFileDialog.Title = "Save an Excel File";
-						saveFileDialog.FileName = "DinhDangPhim.xlsx";
-
-						if (saveFileDialog.ShowDialog() == DialogResult.OK)
-						{
-							workbook.SaveAs(saveFileDialog.FileName);
-							MessageBox.Show("Xuất file Excel thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-						}
-					}
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show($"Có lỗi xảy ra khi xuất file Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
-
-		private void dtgvFormat_CellContentClick(object sender, DataGridViewCellEventArgs e)
-		{
-
-		}	
-	}
 }
