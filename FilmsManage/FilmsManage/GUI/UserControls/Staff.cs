@@ -89,12 +89,13 @@ namespace FilmsManage.GUI.UserControls
                     d.MaNv,
                     d.TenNv,
                     d.Sdt,
-                    d.Email,
-                    d.MatKhau,
+                    d.Email,                  
+                    MatKhau = "********",
                     MaQuyen = d.MaQuyenNavigation.MaQuyen,
                     TenQuyen = d.MaQuyenNavigation?.TenQuyen
                 }).ToList();
                 dtgvStaff.DataSource = staffDisplayList;
+                
                 dtgvStaff.Refresh();
                 //Gọi Api để lấy danh sách quyền
                 List<Quyen> roleList = await _staff.GetAsync<List<Quyen>>("api/Quyen");

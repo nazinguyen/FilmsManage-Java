@@ -77,7 +77,7 @@ namespace FilmsManage.GUI.Forms
                     x.MaKh,
                     TenKH = x.MaKhNavigation?.TenKh,
                     x.TenDangNhap,
-                    x.MatKhau
+                    MatKhau="********"
                 }).ToList();
                 dtgvAccount.DataSource = accountDisplayList;
                 dtgvAccount.Refresh();
@@ -160,7 +160,7 @@ namespace FilmsManage.GUI.Forms
             }
         }
 
-        private async void btnInsertAccount_Click(object sender, EventArgs e)
+        private async void btnInsertAccount_Click_1(object sender, EventArgs e)
         {
             string maKh = cbbAccountID.Text;
             string tenDangNhap = txtUserName.Text;
@@ -215,7 +215,7 @@ namespace FilmsManage.GUI.Forms
             }
         }
 
-        private void btnDeleteAccount_Click(object sender, EventArgs e)
+        private void btnDeleteAccount_Click_1(object sender, EventArgs e)
         {
             string accountId = txtMaTK.Text.Trim();
             if (string.IsNullOrWhiteSpace(accountId))
@@ -247,7 +247,7 @@ namespace FilmsManage.GUI.Forms
             }
         }
 
-        private async void btnUpdateAccount_Click(object sender, EventArgs e)
+        private async void btnUpdateAccount_Click_1(object sender, EventArgs e)
         {
             string newAccountID = txtMaTK.Text.Trim();
             string newCustomerID = cbbAccountID.Text.Trim(); // Mã Khách Hàng mới
@@ -341,25 +341,7 @@ namespace FilmsManage.GUI.Forms
             }
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            txtMaTK.Clear();
-
-            // Đặt lại ComboBox nếu không null và có mục
-            if (cbbAccountID != null && cbbAccountID.Items.Count > 0)
-            {
-                cbbAccountID.SelectedIndex = -1;
-            }
-            else
-            {
-                cbbAccountID.Text = string.Empty; // Đặt trạng thái trống
-            }
-
-            txtUserName.Clear();
-            txtPassWord.Clear();
-        }
-
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -404,6 +386,30 @@ namespace FilmsManage.GUI.Forms
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnReset_Click_1(object sender, EventArgs e)
+        {
+
+            txtMaTK.Clear();
+
+            // Đặt lại ComboBox nếu không null và có mục
+            if (cbbAccountID != null && cbbAccountID.Items.Count > 0)
+            {
+                cbbAccountID.SelectedIndex = -1;
+            }
+            else
+            {
+                cbbAccountID.Text = string.Empty; // Đặt trạng thái trống
+            }
+
+            txtUserName.Clear();
+            txtPassWord.Clear();
+        }
+
+        private void btnShowAccount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
