@@ -367,6 +367,7 @@
             Margin = new Padding(4);
             Name = "BanVe";
             Text = "Bán Vé";
+            Load += BanVe_Load;
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picFilm).EndInit();

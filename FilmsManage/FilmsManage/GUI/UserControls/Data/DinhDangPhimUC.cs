@@ -119,15 +119,17 @@ namespace FilmsManage.GUI.UserControls.Data
         private async void btnInsertFormat_Click_1(object sender, EventArgs e)
         {
             string genreName = txtTenDangPhim.Text;
-            if (!int.TryParse(cbMaMH.Text, out int maManHinh))
-            {
-                MessageBox.Show("Mã màn hình không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
+            int.TryParse(cbMaMH.Text, out int maManHinh);
 
             if (string.IsNullOrWhiteSpace(genreName))
             {
-                MessageBox.Show("Vui lòng nhập tên thể loại phim.");
+                MessageBox.Show("Vui lòng nhập tên dạng phim.");
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(genreName, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Vui lòng nhập tên dạng phim hợp lệ (không có ký tự đặc biệt).");
                 return;
             }
 
@@ -169,22 +171,18 @@ namespace FilmsManage.GUI.UserControls.Data
         private async void btnUpdateFormat_Click_1(object sender, EventArgs e)
         {
             string tenDP = txtTenDangPhim.Text.Trim();
-
-            if (!int.TryParse(txtFormatID.Text, out int maDangPhim))
-            {
-                MessageBox.Show("Mã dạng phim không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(cbMaMH.Text, out int maManHinh))
-            {
-                MessageBox.Show("Mã màn hình không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
+            int.TryParse(cbMaMH.Text, out int maManHinh);
+            int.TryParse(txtFormatID.Text, out int maDangPhim);
 
             if (string.IsNullOrWhiteSpace(tenDP))
             {
                 MessageBox.Show("Vui lòng nhập tên dạng phim.");
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(tenDP, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Vui lòng nhập tên dạng phim hợp lệ (không có ký tự đặc biệt).");
                 return;
             }
 
