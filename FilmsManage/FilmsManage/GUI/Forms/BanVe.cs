@@ -1,5 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
+using DocumentFormat.OpenXml.Drawing.Diagrams;
 using FilmsAPI.Models;
+using FilmsManage.GUI.Forms;
 using FilmsManage.Services;
 using System;
 using System.Collections.Generic;
@@ -19,14 +21,22 @@ namespace FilmsManage
         private DangPhimSV _sv;
         private int selectedSeats = 0; // Số lượng ghế đang chọn
         private List<Ghe> gheChon;
+        private List<Ghe> danhSachGheDaMua;
+        private List<Ghe> danhSachGhe;
+        private int soGheMotHang;
+        private XuatChieu thongTinXuatChieu;
+        private List<Ve> veDaMua;
+        private int maXuatChieu;
 
-        public BanVe()
+        public BanVe(int maXuatChieuFromLichChieu)
         {
             gheChon = new List<Ghe>();
             _sv = new DangPhimSV("https://localhost:7085");
             InitializeComponent();
+            maXuatChieu = maXuatChieuFromLichChieu;
             GenerateButtons();
         }
+
         private Image LoadImageFromFileSystem(string filePath)
         {
             // Kiểm tra nếu đường dẫn hợp lệ và file tồn tại
@@ -62,8 +72,10 @@ namespace FilmsManage
             try
             {
                 // Gọi API để lấy thông tin Xuất Chiếu
-                var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/BanVe/GetXuatChieu/{58}");
-
+                var xuatChieu = await _sv.GetAsync<XuatChieu>($"/api/BanVe/GetXuatChieu/{maXuatChieu}");
+                thongTinXuatChieu = xuatChieu;
+                var listTicketByTimeShow = await _sv.GetAsync<List<Ve>>($"/api/BanVe/GetVeBySuatchieu/{xuatChieu.MaXuatChieu}");
+                veDaMua = listTicketByTimeShow.Where(v => v.TrangThai == true).ToList();
                 // Kiểm tra dữ liệu trả về
                 if (xuatChieu == null)
                 {
@@ -75,7 +87,7 @@ namespace FilmsManage
                     MessageBox.Show("Phim không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                soGheMotHang = xuatChieu.MaPhongNavigation.SoGheMotHang;
                 GennerateFilm(xuatChieu);
 
                 if (xuatChieu.MaPhongNavigation == null)
@@ -85,13 +97,13 @@ namespace FilmsManage
                 }
 
                 var listGhe = xuatChieu.MaPhongNavigation?.Ghes?.ToList();
-
+                danhSachGheDaMua = listGhe.Where(x => x.TrangThai == true).ToList();
                 if (listGhe == null || !listGhe.Any())
                 {
                     MessageBox.Show("Phòng không có ghế!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                await ShowGhe(listGhe, xuatChieu.MaPhongNavigation ?? new PhongChieu());
+                await ShowGhe(listGhe, xuatChieu.MaPhongNavigation ?? new PhongChieu(), veDaMua ?? new List<Ve>());
 
             }
             catch (Exception ex)
@@ -100,122 +112,96 @@ namespace FilmsManage
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public async Task ShowGhe(List<Ghe> listGhe, PhongChieu phongChieu)
+        public async Task ShowGhe(List<Ghe> listGhe, PhongChieu phongChieu, List<Ve> danhSachVeDaMua)
         {
-            flpSeat.Controls.Clear();  // Xóa các button cũ trong panel ghế
+            danhSachGhe = listGhe;
+
+            // Khởi tạo danh sách ghế được chọn nếu chưa có
+            if (gheChon == null)
+                gheChon = new List<Ghe>();
+
+            flpSeat.Controls.Clear(); // Xóa các button cũ trong panel ghế
             int count = 0;
 
-            // Sắp xếp danh sách ghế theo bảng chữ cái và số ghế
-            listGhe = listGhe.OrderBy(g => g.MaGhe).ToList();
+            // Sắp xếp danh sách ghế theo thứ tự bảng chữ cái (hàng) và số ghế
+            listGhe = listGhe
+                .OrderBy(g => g.TenGhe[0]) // Sắp xếp theo hàng (chữ cái đầu tiên)
+                             .ThenByDescending(g => int.Parse(g.TenGhe.Substring(1))) // Sắp xếp số ghế giảm dần
+                             .ToList();
 
             // Lặp qua từng hàng ghế
             for (int i = 0; i < phongChieu.SoHangGhe; i++)
             {
-                // Tạo một FlowLayoutPanel mới cho mỗi hàng ghế
                 FlowLayoutPanel rowPanel = new FlowLayoutPanel
                 {
                     FlowDirection = FlowDirection.LeftToRight, // Các button trong hàng sẽ nằm ngang
-                    WrapContents = false,  // Không cho phép gói dòng mới
-                    AutoSize = true,       // Tự động điều chỉnh kích thước
+                    WrapContents = false, // Không cho phép gói dòng mới
+                    AutoSize = true,      // Tự động điều chỉnh kích thước
                     AutoSizeMode = AutoSizeMode.GrowAndShrink // Tự động thay đổi kích thước panel theo số lượng ghế
                 };
 
-                // Tính toán ký tự chữ cái cho hàng ghế (A, B, C,...)
-                char rowChar = (char)('A' + i); // 'A' là mã ASCII của A, cộng thêm i để tạo chữ cái kế tiếp
+                var hang = (char)('A' + i); // Xác định ký tự hàng (A, B, C,...)
+                var gheTrongHang = listGhe.Where(g => g.TenGhe.StartsWith(hang.ToString()))
+                                          .OrderByDescending(g => int.Parse(g.TenGhe.Substring(1))) // Đảo ngược số ghế
+                                          .ToList();
 
-                // Lặp qua các ghế trong mỗi hàng, nhưng theo thứ tự đảo ngược
-                for (int j = phongChieu.SoGheMotHang - 1; j >= 0; j--)  // Đảo ngược từ cuối xuống đầu
+                foreach (var ghe in gheTrongHang)
                 {
-                    if (count < listGhe.Count)  // Đảm bảo không vượt quá số ghế
+                    Button button = new Button
                     {
-                        var ghe = listGhe[count];
+                        Name = ghe.TenGhe,
+                        Text = ghe.TenGhe,
+                        Width = 60,
+                        Height = 40,
+                        Tag = ghe
+                    };
 
-                        // Tạo mã ghế theo dạng "A11", "A10", "A9", ..., "A1"
-                        string seatCode = $"{rowChar}{j + 1}";  // ghế 1, 2, 3, ... trong hàng A, B, C,...
+                    // Kiểm tra vé đã mua
+                    var veDaMua = danhSachVeDaMua.Where(v => v.MaGhe == ghe.MaGhe).FirstOrDefault();
 
-                        Button button = new Button
-                        {
-                            Name = $"btnGhe{seatCode}",            // Đặt tên cho button là mã ghế
-                            Text = seatCode,                       // Hiển thị mã ghế trên button
-                            Width = 60,                             // Chiều rộng button
-                            Height = 40,                            // Chiều cao button
-                            Tag = ghe                                // Gắn dữ liệu ghế vào Tag
-                        };
 
-                        // Xử lý màu sắc của ghế theo hàng
-                        if (ghe.MaLoaiGheNavigation?.TenLoaiGhe != "VIP")  // Nếu là 4 hàng đầu tiên
-                        {
-                            if (ghe.TrangThai)  // Ghế đã bán
-                            {
-                                button.BackColor = Color.Red;
-                            }
-                            else  // Ghế chưa bán
-                            {
-                                button.BackColor = Color.Blue;  // Màu xanh cho ghế chưa bán
-                            }
-                        }
-                        else  // Các hàng sau
-                        {
-                            if (ghe.TrangThai)  // Ghế đã bán
-                            {
-                                button.BackColor = Color.Red;
-                            }
-                            else  // Ghế chưa bán
-                            {
-                                button.BackColor = Color.White;  // Màu trắng cho ghế chưa bán
-                            }
-                        }
-
-                        // Xử lý sự kiện Click cho button
-                        button.Click += (sender, e) =>
-                        {
-                            var clickedButton = sender as Button;
-                            var clickedGhe = clickedButton?.Tag as Ghe;
-
-                            if (clickedGhe != null)
-                            {
-                                if (clickedGhe.TrangThai == true)
-                                {
-                                    // Ghế đã bán, không thể chọn
-                                    clickedButton.BackColor = Color.Red;
-                                    MessageBox.Show($"Vé đã được bán.", "Thông báo");
-                                }
-                                else
-                                {
-                                    // Nếu ghế đang là vàng (đã chọn trước đó), bỏ chọn
-                                    if (clickedButton.BackColor == Color.Yellow)
-                                    {
-                                        // Trở lại màu gốc tùy theo hàng ghế
-                                        clickedButton.BackColor = (ghe.MaLoaiGheNavigation?.TenLoaiGhe != "VIP") ? Color.Blue : Color.White;
-
-                                        selectedSeats--;     // Giảm số ghế đang chọn
-                                        gheChon.Remove(clickedGhe); // Xóa ghế khỏi danh sách đã chọn
-                                    }
-                                    else
-                                    {
-                                        // Chọn ghế mới
-                                        clickedButton.BackColor = Color.Yellow;
-                                        selectedSeats++;            // Tăng số ghế đang chọn
-                                        gheChon.Add(clickedGhe);     // Thêm ghế vào danh sách đã chọn
-                                    }
-
-                                    // Cập nhật số lượng ghế đang chọn
-                                    lblVeChon.Text = selectedSeats.ToString();
-                                }
-                            }
-                        };
-                        count++;
-
-                        // Thêm button vào FlowLayoutPanel của hàng
-                        rowPanel.Controls.Add(button);
+                    if (veDaMua != null)
+                    {
+                        // Ghế đã có vé mua
+                        button.BackColor = Color.Red;
+                        button.Enabled = false; // Không cho phép click
                     }
+                    else
+                    {
+                        // Ghế chưa mua
+                        button.BackColor = ghe.MaLoaiGheNavigation?.TenLoaiGhe != "VIP"
+                                           ? Color.Blue
+                                           : Color.White;
+                    }
+
+                    // Xử lý sự kiện Click cho ghế chưa mua
+                    button.Click += (sender, e) =>
+                    {
+                        var clickedButton = sender as Button;
+                        var clickedGhe = clickedButton?.Tag as Ghe;
+
+                        if (clickedGhe != null)
+                        {
+                            if (clickedButton.BackColor == Color.Yellow)
+                            {
+                                // Bỏ chọn ghế
+                                clickedButton.BackColor = ghe.MaLoaiGheNavigation?.TenLoaiGhe != "VIP" ? Color.Blue : Color.White;
+                                gheChon.Remove(clickedGhe); // Loại ghế khỏi danh sách đã chọn
+                            }
+                            else
+                            {
+                                // Chọn ghế
+                                clickedButton.BackColor = Color.Yellow;
+                                gheChon.Add(clickedGhe); // Thêm ghế vào danh sách đã chọn
+                            }
+                        }
+                    };
+
+                    rowPanel.Controls.Add(button);
                 }
 
-                // Sau khi đã tạo các ghế trong hàng, thêm FlowLayoutPanel vào panel chính
                 flpSeat.Controls.Add(rowPanel);
             }
-
-            Debug.WriteLine(count);
         }
 
 
@@ -268,6 +254,144 @@ namespace FilmsManage
             {
                 graphics.DrawPath(pen, path);
             }
+
+        }
+
+        private void btnTiepTuc_Click(object sender, EventArgs e)
+        {
+            if (gheChon == null || gheChon.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một ghế trước khi thanh toán.", "Thông báo");
+                return;
+            }
+
+            // Hiển thị form thanh toán và truyền danh sách ghế đã chọn
+            ThanhToan thanhToanForm = new ThanhToan(gheChon, thongTinXuatChieu);
+            thanhToanForm.ShowDialog(); // Mở form dưới dạng modal
+
+
+        }
+
+
+        bool KtraViPham(List<Ghe> danhSach, List<Ghe> gheDaChon, int SoGheMotHang)
+        {
+            if (danhSach == null || gheDaChon == null || danhSach.Count == 0 || gheDaChon.Count == 0)
+                return false;
+
+            // Nhóm ghế theo hàng
+            var hangGheChon = gheDaChon
+                .Where(g => !string.IsNullOrEmpty(g.TenGhe) && g.TenGhe.Length > 1)
+                .GroupBy(g => g.TenGhe[0])
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .Select(x => int.TryParse(x.TenGhe.Substring(1), out int soGhe) ? soGhe : 0)
+                        .Where(n => n > 0)
+                        .OrderBy(n => n)
+                        .ToList()
+                );
+
+            var danhSachGhe = danhSach
+                .Where(g => !string.IsNullOrEmpty(g.TenGhe) && g.TenGhe.Length > 1)
+                .GroupBy(g => g.TenGhe[0])
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .Select(x => new
+                        {
+                            SoGhe = int.TryParse(x.TenGhe.Substring(1), out int soGhe) ? soGhe : 0,
+                            TrangThai = x.TrangThai
+                        })
+                        .Where(n => n.SoGhe > 0)
+                        .OrderBy(n => n.SoGhe)
+                        .ToList()
+                );
+
+            foreach (var hang in hangGheChon)
+            {
+                var tenHang = hang.Key;
+                var soGheDaChon = hang.Value;
+
+                if (!danhSachGhe.ContainsKey(tenHang)) continue;
+
+                var gheTrongHang = danhSachGhe[tenHang];
+
+                // Kiểm tra khoảng trống giữa các ghế đã chọn
+                for (int i = 0; i < soGheDaChon.Count - 1; i++)
+                {
+                    int khoangCach = soGheDaChon[i + 1] - soGheDaChon[i];
+
+                    // Nếu khoảng cách là 2 (chỉ có một ghế trống giữa)
+                    if (khoangCach == 2)
+                    {
+                        int gheTrong = soGheDaChon[i] + 1;
+
+                        // Kiểm tra ghế này trống và chưa được mua
+                        if (gheTrongHang.Any(g => g.SoGhe == gheTrong && !g.TrangThai))
+                        {
+                            MessageBox.Show($"Vi phạm: Ghế {tenHang}{gheTrong} bị bỏ trống giữa ghế {tenHang}{soGheDaChon[i]} và {tenHang}{soGheDaChon[i + 1]}.");
+                            return true;
+                        }
+                    }
+                }
+
+                // Kiểm tra ghế đầu tiên trong dãy chọn
+                if (soGheDaChon.First() > 1)
+                {
+                    int gheTruoc = soGheDaChon.First() - 1;
+                    int gheTruocSau = gheTruoc - 1;
+
+                    // Ghế trước dãy trống và không có ghế nào lân cận phía sau
+                    if (gheTrongHang.Any(g => g.SoGhe == gheTruoc && !g.TrangThai) &&
+                        (gheTruocSau < 1 || gheTrongHang.Any(g => g.SoGhe == gheTruocSau && g.TrangThai)))
+                    {
+                        MessageBox.Show($"Vi phạm hàng {tenHang}: ghế {gheTruoc} bị bỏ trống trước dãy chọn.");
+                        return true;
+                    }
+                }
+
+                // Kiểm tra ghế cuối cùng trong dãy chọn
+                if (soGheDaChon.Last() < SoGheMotHang)
+                {
+                    int gheSau = soGheDaChon.Last() + 1;
+                    int gheSauSau = gheSau + 1;
+
+                    // Ghế sau dãy trống và không có ghế nào lân cận phía sau
+                    if (gheTrongHang.Any(g => g.SoGhe == gheSau && !g.TrangThai) &&
+                        (gheSauSau > SoGheMotHang || gheTrongHang.Any(g => g.SoGhe == gheSauSau && g.TrangThai)))
+                    {
+                        MessageBox.Show($"Vi phạm hàng {tenHang}: ghế {gheSau} bị bỏ trống sau dãy chọn.");
+                        return true;
+                    }
+                }
+            }
+            return false; // Không có vi phạm
+        }
+        private void btnTiepTuc_Click_1(object sender, EventArgs e)
+        {
+            if (gheChon == null || gheChon.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một ghế trước khi thanh toán.", "Thông báo");
+                return;
+            }
+            if (KtraViPham(danhSachGhe, gheChon, soGheMotHang))
+            {
+                return;
+            }
+            ThanhToan thanhToanForm = new ThanhToan(gheChon, thongTinXuatChieu);
+            thanhToanForm.ShowDialog(); // Mở form dưới dạng modal
+            GenerateButtons();
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            LichChieu lichChieu = new LichChieu();
+            lichChieu.Show();
+            this.Close();
+        }
+
+        private void BanVe_Load(object sender, EventArgs e)
+        {
 
         }
     }

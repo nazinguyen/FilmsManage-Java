@@ -23,8 +23,8 @@ namespace FilmsManage.GUI.UserControls.Data
         private readonly DangPhimSV _PhongChieu;
         public CinemaUC(DataUC data)
         {
-            _PhongChieu = new DangPhimSV("https://localhost:7085");
             InitializeComponent();
+            _PhongChieu = new DangPhimSV("https://localhost:7085");
             dataUC = data;
             LoadData();
             LoadComboBoxData();
@@ -136,62 +136,131 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show($"Có lỗi khi tải dữ liệu ComboBox: {ex.Message}");
             }
         }
-
-        private async void btnInsertCinema_Click(object sender, EventArgs e)
+        private void dtgvCinema_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var themSua = dataUC.pnData.Controls.OfType<ChucNang_PhongChieu.ThemSua>().FirstOrDefault();
-            if (themSua != null)
-            {
-                dataUC.pnData.Controls.Remove(themSua);
-                themSua.Dispose();
-            }
 
-            Debug.WriteLine("ok");
-
-            // Ẩn tất cả các control khác
-            foreach (Control control in dataUC.pnData.Controls)
-            {
-                control.Visible = false;
-            }
-
-            // Khởi tạo control Them_Sua cho "Sửa"
-            themSua = new ChucNang_PhongChieu.ThemSua("Them", new PhongChieu(), dataUC);
-            themSua.Dock = DockStyle.Fill;
-            dataUC.pnData.Controls.Add(themSua);
         }
 
-        private async void btnUpdateCinema_Click(object sender, EventArgs e)
+        private async void btnInsertCinema_Click_1(object sender, EventArgs e)
+        {
+            string tenPhong = txtCinemaName.Text;
+            string manHinh = cboCinemaScreenType.Text;
+            int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang);
+            int.TryParse(txtCinemaSeats.Text, out int soGhe);
+
+            if (!ValidateInput(out string errorMessage))
+            {
+                // Hiển thị thông báo lỗi nếu nhập sai
+                MessageBox.Show(errorMessage, "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var phongChieu = new PhongChieu
+            {
+                TenPhongChieu = tenPhong,
+                SoGhe = soGhe,
+                SoGheMotHang = gheMoiHang,
+                MaManHinh = Convert.ToInt32(cboCinemaScreenType.SelectedValue),
+            };
+
+            try
+            {
+                string endpoint = "/api/PhongChieu";
+                var response = await _PhongChieu.PostAsync<Models.ApiRespone>(endpoint, phongChieu);
+
+                //them ghe tu phong chieu
+                var loaiGheList = await _PhongChieu.GetAsync<List<LoaiGhe>>("/api/LoaiGhe");
+                if (loaiGheList == null || !loaiGheList.Any())
+                {
+                    MessageBox.Show("Dữ liệu loại ghế không có!");
+                    return;
+                }
+
+                int loaiGheVIP = 0;
+                int loaiGheThuong = 0;
+                foreach (var item in loaiGheList)
+                {
+                    if (item.TenLoaiGhe == "VIP")
+                    {
+                        loaiGheVIP = item.MaLoai;
+                        Debug.WriteLine(loaiGheVIP);
+                    }
+                    else
+                    {
+                        loaiGheThuong = item.MaLoai;
+                        Debug.WriteLine(loaiGheThuong);
+                    }
+                }
+
+                var listGhe = new List<Ghe>();
+
+                // Tạo ghế
+                var getPhong = await _PhongChieu.GetAsync<List<PhongChieu>>("/api/PhongChieu");
+                var phong = new PhongChieu();
+                int idPhong = 0;
+                foreach (var item in getPhong)
+                {
+                    if (item.TenPhongChieu == tenPhong)
+                    {
+                        idPhong = item.MaPhongChieu;
+                        phong = item;
+                        Debug.WriteLine(idPhong);
+                        break;
+                    }
+                }
+                for (int i = 0; i < phong.SoHangGhe; i++)
+                //for (int i = 0; i < 10; i++)
+                {
+                    char rowChar = (char)('A' + i); // 'A' là mã ASCII của A, cộng thêm i để tạo chữ cái kế tiếp
+
+                    for (int j = 0; j < phong.SoGheMotHang; j++)
+                    {
+                        Debug.WriteLine("ok");
+                        string seatCode = $"{rowChar}{j + 1}";  // ghế 1, 2, 3, ... trong hàng A, B, C,...
+
+                        Ghe ghe = new Ghe
+                        {
+                            TenGhe = seatCode,
+                            TrangThai = false,
+                            MaPhong = idPhong,
+                            MaLoaiGhe = (i >= 4) ? loaiGheVIP : loaiGheThuong // Ghế VIP bắt đầu từ hàng số 4, ghế Thường cho các hàng còn lại
+                        };
+                        Debug.WriteLine("hang " + i);
+                        var addGhe = await _PhongChieu.PostAsync<Models.ApiRespone>("/api/Ghe", ghe);
+                        listGhe.Add(ghe);
+
+                        if (listGhe.Count >= phong.SoGhe)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (listGhe.Count >= phong.SoGhe)
+                    {
+                        break;
+                    }
+                }
+
+                MessageBox.Show(response.Message);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+            }
+        }
+
+        private async void btnUpdateCinema_Click_1(object sender, EventArgs e)
         {
             string tenPC = txtCinemaName.Text.Trim();
             string tenMH = cboCinemaScreenType.Text.Trim();
-
-            if (!int.TryParse(txtCinemaID.Text, out int maPC))
+            int.TryParse(txtSeatsPerRow.Text, out int soGheMoiHang);
+            int.TryParse(txtCinemaSeats.Text, out int soGhe);
+            int.TryParse(txtCinemaID.Text, out int maPC);
+            if (!ValidateInput(out string errorMessage))
             {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtCinemaSeats.Text, out int soGhe))
-            {
-                MessageBox.Show("Số ghế không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (!int.TryParse(txtSeatsPerRow.Text, out int soGheMoiHang))
-            {
-                MessageBox.Show("Số ghế mỗi hàng không hợp lệ. Vui lòng nhập một số nguyên.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(tenPC))
-            {
-                MessageBox.Show("Vui lòng nhập tên phòng chiếu.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(tenMH))
-            {
-                MessageBox.Show("Vui lòng nhập tên màn hình.");
+                // Hiển thị thông báo lỗi nếu nhập sai
+                MessageBox.Show(errorMessage, "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -221,7 +290,69 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private bool ValidateInput(out string errorMessage)
+        {
+            // Lấy giá trị từ các control
+            string tenPhong = txtCinemaName.Text.Trim();
+            string manHinh = cboCinemaScreenType.Text.Trim();
+            string soGheText = txtCinemaSeats.Text.Trim();
+            string gheMoiHangText = txtSeatsPerRow.Text.Trim();
+
+            // Kiểm tra tên phòng chiếu (không được bỏ trống, không chứa ký tự đặc biệt)
+            if (string.IsNullOrWhiteSpace(tenPhong))
+            {
+                errorMessage = "Vui lòng nhập tên phòng chiếu.";
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(tenPhong, @"^[a-zA-Z0-9\s]+$"))
+            {
+                errorMessage = "Vui lòng nhập tên phòng chiếu hợp lệ (không có ký tự đặc biệt).";
+                return false;
+            }
+
+            // Kiểm tra loại màn hình (phải được chọn)
+            if (string.IsNullOrWhiteSpace(manHinh))
+            {
+                errorMessage = "Vui lòng chọn loại màn hình.";
+                return false;
+            }
+
+            // Kiểm tra số ghế (phải là số nguyên dương, nằm trong khoảng hợp lệ)
+            if (!int.TryParse(soGheText, out int soGhe) || soGhe <= 0)
+            {
+                errorMessage = "Số ghế phải là số nguyên dương.";
+                return false;
+            }
+            if (soGhe < 10 || soGhe > 500)
+            {
+                errorMessage = "Số ghế phải nằm trong khoảng từ 10 đến 500.";
+                return false;
+            }
+
+            // Kiểm tra số ghế mỗi hàng (phải là số nguyên dương và không vượt quá tổng số ghế)
+            if (!int.TryParse(gheMoiHangText, out int gheMoiHang) || gheMoiHang <= 0)
+            {
+                errorMessage = "Số ghế mỗi hàng phải là số nguyên dương.";
+                return false;
+            }
+            if (gheMoiHang > soGhe)
+            {
+                errorMessage = "Số ghế mỗi hàng không được lớn hơn tổng số ghế.";
+                return false;
+            }
+            if (soGhe % gheMoiHang != 0)
+            {
+                errorMessage = "Tổng số ghế phải chia hết cho số ghế mỗi hàng.";
+                return false;
+            }
+
+            // Nếu tất cả đều hợp lệ
+            errorMessage = null;
+            return true;
+        }
+
+        private async void btnExport_Click_1(object sender, EventArgs e)
         {
             if (dtgvCinema.DataSource is not null)
             {
@@ -289,6 +420,5 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
     }
 }

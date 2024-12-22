@@ -116,7 +116,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private async void btnInsertGenre_Click(object sender, EventArgs e)
+        private async void btnInsertGenre_Click_1(object sender, EventArgs e)
         {
             string genreName = txtGenreName.Text;
 
@@ -147,7 +147,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateGenre_Click(object sender, EventArgs e)
+        private async void btnUpdateGenre_Click_1(object sender, EventArgs e)
         {
             string genreId = txtGenreID.Text;
             string genreName = txtGenreName.Text;
@@ -302,7 +302,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnDeleteGenre_Click(object sender, EventArgs e)
+        private async void btnDeleteGenre_Click_1(object sender, EventArgs e)
         {
             if (dtgvGenre.SelectedRows.Count > 0)
             {
@@ -338,7 +338,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
             var exporter = new ExcelExporter();
 

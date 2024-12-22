@@ -1,5 +1,6 @@
 ﻿using FilmsManage.DTO;
 using FilmsManage.GUI.Forms;
+using FilmsManage.GUI.Forms.BanVe_Form;
 using FilmsManage.Helper;
 using FilmsManage.Models;
 using FilmsManage.Services;
@@ -73,7 +74,7 @@ namespace FilmsManage
                     }
                     else // Nhân viên
                     {
-                        var nhanVienForm = new BanVe(); // Form nhân viên
+                        var nhanVienForm = new Main_Form(); // Form nhân viên
                         nhanVienForm.Show();
                     }
 

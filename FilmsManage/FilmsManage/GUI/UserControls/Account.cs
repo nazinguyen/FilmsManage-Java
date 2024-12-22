@@ -170,6 +170,24 @@ namespace FilmsManage.GUI.Forms
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (tenDangNhap.Length < 6)
+            {
+                MessageBox.Show("Tên đăng nhập phải có ít nhất 6 ký tự", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(tenDangNhap, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Vui lòng nhập tên đăng nhập hợp lệ (không có ký tự đặc biệt).");
+                return;
+            }
+
+            if (matKhau.Length < 8)
+            {
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 //Gọi api để kiểm tra danh sách tài khoản
@@ -185,11 +203,13 @@ namespace FilmsManage.GUI.Forms
                     MessageBox.Show("Tên Đăng nhập đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 if (staffAccount.Any(d => d.MatKhau == matKhau))
                 {
                     MessageBox.Show("Mật Khẩu đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 var account = new TaiKhoan
                 {
                     MaKh = int.Parse(maKh),
@@ -258,6 +278,12 @@ namespace FilmsManage.GUI.Forms
                 string.IsNullOrWhiteSpace(newUserName) || string.IsNullOrWhiteSpace(newPassword))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(newUserName, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Vui lòng nhập tên đăng nhập hợp lệ (không có ký tự đặc biệt).");
                 return;
             }
 

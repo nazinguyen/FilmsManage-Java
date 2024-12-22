@@ -171,7 +171,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private async void btnAddTicketsByShowTime_Click(object sender, EventArgs e)
+        private async void btnAddTicketsByShowTime_Click_1(object sender, EventArgs e)
         {
             if (lsvAllListShowTimes.SelectedItems.Count == 0)
             {
@@ -243,7 +243,7 @@ namespace FilmsManage.GUI.UserControls.Data
                 //Tạo vé cho mỗi ghế trong phòng chiếu
                 foreach (var ghe in listGheFromApi)
                 {
-                    decimal giaVe = (ghe.MaLoaiGheNavigation.MaLoai == loaiGheVIP) ? 200000 : 100000;
+                    decimal giaVe = (ghe.MaLoaiGhe == loaiGheVIP) ? 200000 : 100000;
                     Debug.WriteLine(giaVe);
                     Debug.WriteLine(maXuatChieu);
                     Debug.WriteLine(ghe.MaGhe);
@@ -290,12 +290,7 @@ namespace FilmsManage.GUI.UserControls.Data
         }
 
 
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-            var exporter = new ExcelExporter();
-            exporter.ExportDataGridViewToExcel(dtgvVe);
 
-        }
         private async void btnDeleteTicketsByShowTime_Click(object sender, EventArgs e)
         {
             if (lsvAllListShowTimes.SelectedItems.Count == 0)
@@ -324,7 +319,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private async void btnShowShowTimeNotCreateTickets_Click(object sender, EventArgs e)
+        private async void btnShowTimeNotCreateTickets_Click(object sender, EventArgs e)
         {
             lsvAllListShowTimes.Items.Clear();
 
@@ -354,12 +349,12 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnAllListShowTimes_Click(object sender, EventArgs e)
+        private void btnAllListShowTimes_Click_1(object sender, EventArgs e)
         {
             LoadXuatChieu();
         }
 
-        private async void txtSearchShowtime_TextChanged(object sender, EventArgs e)
+        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
         {
             string searchText = txtSearchShowtime.Text.ToLower();
             if (searchText == "")
@@ -405,7 +400,8 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-        private void btnExport_Click_1(object sender, EventArgs e)
+
+        private void btnExport_Click(object sender, EventArgs e)
         {
             var exporter = new ExcelExporter();
 
