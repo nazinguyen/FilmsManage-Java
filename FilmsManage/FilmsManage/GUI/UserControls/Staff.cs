@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml.Bibliography;
 using FilmsAPI.Models;
+using FilmsManage.Helper;
 using FilmsManage.Services;
 using System;
 using System.Collections.Generic;
@@ -206,6 +207,11 @@ namespace FilmsManage.GUI.UserControls
             string newStaffPass = txtStaffPass.Text.Trim();
             string newStaffRoleId = cbbMaQuyen.Text.Trim();
 
+
+            string lastName = Helper.GenerateRamdomKey.GetLastWord(newStaffName);
+
+			if (string.IsNullOrWhiteSpace(newStaffName) || string.IsNullOrWhiteSpace(newStaffPhone) || string.IsNullOrWhiteSpace(newStaffEmail) || string.IsNullOrWhiteSpace(newStaffPass))
+
             if (string.IsNullOrWhiteSpace(newStaffName) ||
                 string.IsNullOrWhiteSpace(newStaffPhone) ||
                 string.IsNullOrWhiteSpace(newStaffEmail) ||
@@ -254,14 +260,19 @@ namespace FilmsManage.GUI.UserControls
                     return;
                 }
 
-                // Gọi API để thêm nhân viên
+                string key = GenerateRamdomKey.GenerateRamdomKeyFunc();
+                //Gọi API để thêm nhân viên
                 NhanVien newStaff = new NhanVien
                 {
+
                     TenNv = newStaffName,
                     Sdt = newStaffPhone,
                     Email = newStaffEmail,
-                    MatKhau = newStaffPass,
-                    MaQuyen = int.Parse(newStaffRoleId)
+                    MatKhau = newStaffPass.ToMd5Hash(key),
+                    MaQuyen = int.Parse(newStaffRoleId),
+                    RandomKey = key,
+                   TenAlias = lastName,
+
                 };
                 string endpoint = "api/NhanVien";
                 var response = await _staff.PostAsync<string>(endpoint, newStaff);

@@ -165,7 +165,7 @@ namespace FilmsManage.GUI.Forms
             string maKh = cbbAccountID.Text;
             string tenDangNhap = txtUserName.Text;
             string matKhau = txtPassWord.Text;
-            if (string.IsNullOrWhiteSpace(maKh) || string.IsNullOrWhiteSpace(tenDangNhap) || string.IsNullOrWhiteSpace(matKhau))
+			if (string.IsNullOrWhiteSpace(maKh) || string.IsNullOrWhiteSpace(tenDangNhap) || string.IsNullOrWhiteSpace(matKhau))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
