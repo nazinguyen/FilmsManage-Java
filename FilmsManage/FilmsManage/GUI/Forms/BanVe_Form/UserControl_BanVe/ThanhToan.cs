@@ -138,7 +138,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                 // Label phải: hiển thị thành tiền
                 Label lblTotalPrice = new Label();
                 lblTotalPrice.AutoSize = false;
-                lblTotalPrice.Text = $"{(item.Price * item.Quantity):C}"; // Định dạng tiền tệ
+                lblTotalPrice.Text = $"{(item.Price * item.Quantity):N0}"; // Định dạng tiền tệ
                 lblTotalPrice.TextAlign = ContentAlignment.MiddleRight;
                 lblTotalPrice.Size = new Size(itemPanel.Width / 2, itemPanel.Height);
                 lblTotalPrice.Font = new Font("Arial", 10, FontStyle.Regular);
@@ -151,7 +151,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                 // Thêm Panel vào FlowLayoutPanel
                 flpBillFood.Controls.Add(itemPanel);
             }
-            lblTotalPriceFood.Text = foods.Sum(f => (f.Price * f.Quantity)).ToString();
+            lblTotalPriceFood.Text = foods.Sum(f => (f.Price * f.Quantity)).ToString("N0");
 
         }
 
