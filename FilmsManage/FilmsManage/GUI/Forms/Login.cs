@@ -50,7 +50,8 @@ namespace FilmsManage
 
 
 			string userName = txtUsername.Text;
-			NhanVien account = await _sv.GetAsync<NhanVien>($"api/NhanVien/byPhone/{userName}");
+            NhanVien account = await _sv.GetAsync<NhanVien>($"api/NhanVien/byPhone/{userName}");
+            //NhanVien account = await _sv.GetAsync<NhanVien>($"api/NhanVien/{2}");
 
 			string passWord = txtPassword.Text.ToMd5Hash(account.RandomKey);
 
