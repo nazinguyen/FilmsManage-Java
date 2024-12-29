@@ -47,9 +47,14 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                     return;
                 }
                 // Lấy danh sách vé từ API
+                Console.WriteLine(string.Join(", ", gheChon));
+                var endpoint = $"/api/BanVe/GetVeTheoGhe/{xuatChieu.MaXuatChieu}";
+                Console.WriteLine(endpoint);
+                var res = await _sv.GetAsync<XuatChieu>($"/api/BanVe/GetXuatChieu/{70}");
+
                 listVe = await _sv.PostAsync<List<Ve>>($"/api/BanVe/GetVeTheoGhe/{xuatChieu.MaXuatChieu}", gheChon)
                          ?? new List<Ve>(); // Đảm bảo không null
-
+                    
                 // Hiển thị thông tin xuất chiếu
                 lblPhim.Text = xuatChieu.MaPhimNavigation?.TenPhim ?? "N/A";
                 lblNgayChieu.Text = xuatChieu.ThoiGianBatDau.ToString("dd/MM/yyyy");
