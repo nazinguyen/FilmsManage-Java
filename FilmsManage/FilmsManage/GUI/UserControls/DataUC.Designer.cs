@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            SidePanel = new Panel();
+            btnFood = new Button();
             btnTicketsUC = new Button();
             btnShowTimesUC = new Button();
             btnFormatMovieUC = new Button();
@@ -44,7 +44,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(41, 39, 40);
-            panel1.Controls.Add(SidePanel);
+            panel1.Controls.Add(btnFood);
             panel1.Controls.Add(btnTicketsUC);
             panel1.Controls.Add(btnShowTimesUC);
             panel1.Controls.Add(btnFormatMovieUC);
@@ -58,15 +58,24 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(286, 1028);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
             // 
-            // SidePanel
+            // btnFood
             // 
-            SidePanel.BackColor = Color.FromArgb(178, 8, 55);
-            SidePanel.Location = new Point(0, 116);
-            SidePanel.Margin = new Padding(5, 6, 5, 6);
-            SidePanel.Name = "SidePanel";
-            SidePanel.Size = new Size(16, 103);
-            SidePanel.TabIndex = 5;
+            btnFood.FlatAppearance.BorderSize = 0;
+            btnFood.FlatStyle = FlatStyle.Flat;
+            btnFood.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnFood.ForeColor = Color.White;
+            btnFood.ImageAlign = ContentAlignment.MiddleLeft;
+            btnFood.Location = new Point(67, 742);
+            btnFood.Margin = new Padding(5, 6, 5, 6);
+            btnFood.Name = "btnFood";
+            btnFood.Size = new Size(214, 103);
+            btnFood.TabIndex = 13;
+            btnFood.Text = "Đồ ăn";
+            btnFood.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnFood.UseVisualStyleBackColor = true;
+            btnFood.Click += btnFood_Click;
             // 
             // btnTicketsUC
             // 
@@ -75,7 +84,7 @@
             btnTicketsUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnTicketsUC.ForeColor = Color.White;
             btnTicketsUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTicketsUC.Location = new Point(19, 734);
+            btnTicketsUC.Location = new Point(19, 627);
             btnTicketsUC.Margin = new Padding(5, 6, 5, 6);
             btnTicketsUC.Name = "btnTicketsUC";
             btnTicketsUC.Size = new Size(267, 103);
@@ -92,7 +101,7 @@
             btnShowTimesUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnShowTimesUC.ForeColor = Color.White;
             btnShowTimesUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnShowTimesUC.Location = new Point(19, 631);
+            btnShowTimesUC.Location = new Point(19, 524);
             btnShowTimesUC.Margin = new Padding(5, 6, 5, 6);
             btnShowTimesUC.Name = "btnShowTimesUC";
             btnShowTimesUC.Size = new Size(267, 103);
@@ -109,7 +118,7 @@
             btnFormatMovieUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFormatMovieUC.ForeColor = Color.White;
             btnFormatMovieUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFormatMovieUC.Location = new Point(19, 527);
+            btnFormatMovieUC.Location = new Point(19, 420);
             btnFormatMovieUC.Margin = new Padding(5, 6, 5, 6);
             btnFormatMovieUC.Name = "btnFormatMovieUC";
             btnFormatMovieUC.Size = new Size(267, 103);
@@ -126,7 +135,7 @@
             btnMovieUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMovieUC.ForeColor = Color.White;
             btnMovieUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMovieUC.Location = new Point(19, 423);
+            btnMovieUC.Location = new Point(19, 316);
             btnMovieUC.Margin = new Padding(5, 6, 5, 6);
             btnMovieUC.Name = "btnMovieUC";
             btnMovieUC.Size = new Size(267, 103);
@@ -143,7 +152,7 @@
             btnGenreUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnGenreUC.ForeColor = Color.White;
             btnGenreUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGenreUC.Location = new Point(19, 320);
+            btnGenreUC.Location = new Point(19, 213);
             btnGenreUC.Margin = new Padding(5, 6, 5, 6);
             btnGenreUC.Name = "btnGenreUC";
             btnGenreUC.Size = new Size(267, 103);
@@ -160,7 +169,7 @@
             btnCinemaUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCinemaUC.ForeColor = Color.White;
             btnCinemaUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCinemaUC.Location = new Point(19, 216);
+            btnCinemaUC.Location = new Point(19, 109);
             btnCinemaUC.Margin = new Padding(5, 6, 5, 6);
             btnCinemaUC.Name = "btnCinemaUC";
             btnCinemaUC.Size = new Size(267, 103);
@@ -177,7 +186,7 @@
             btnScreenTypeUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnScreenTypeUC.ForeColor = Color.White;
             btnScreenTypeUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnScreenTypeUC.Location = new Point(19, 112);
+            btnScreenTypeUC.Location = new Point(19, 5);
             btnScreenTypeUC.Margin = new Padding(5, 6, 5, 6);
             btnScreenTypeUC.Name = "btnScreenTypeUC";
             btnScreenTypeUC.Size = new Size(267, 103);
@@ -213,7 +222,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel SidePanel;
         private System.Windows.Forms.Button btnTicketsUC;
         private System.Windows.Forms.Button btnShowTimesUC;
         private System.Windows.Forms.Button btnFormatMovieUC;
@@ -222,5 +230,6 @@
         private System.Windows.Forms.Button btnCinemaUC;
         private System.Windows.Forms.Button btnScreenTypeUC;
         public System.Windows.Forms.Panel pnData;
+        private Button btnFood;
     }
 }

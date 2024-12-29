@@ -47,9 +47,14 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                     return;
                 }
                 // Lấy danh sách vé từ API
+                Console.WriteLine(string.Join(", ", gheChon));
+                var endpoint = $"/api/BanVe/GetVeTheoGhe/{xuatChieu.MaXuatChieu}";
+                Console.WriteLine(endpoint);
+                var res = await _sv.GetAsync<XuatChieu>($"/api/BanVe/GetXuatChieu/{70}");
+
                 listVe = await _sv.PostAsync<List<Ve>>($"/api/BanVe/GetVeTheoGhe/{xuatChieu.MaXuatChieu}", gheChon)
                          ?? new List<Ve>(); // Đảm bảo không null
-
+                    
                 // Hiển thị thông tin xuất chiếu
                 lblPhim.Text = xuatChieu.MaPhimNavigation?.TenPhim ?? "N/A";
                 lblNgayChieu.Text = xuatChieu.ThoiGianBatDau.ToString("dd/MM/yyyy");
@@ -138,7 +143,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                 // Label phải: hiển thị thành tiền
                 Label lblTotalPrice = new Label();
                 lblTotalPrice.AutoSize = false;
-                lblTotalPrice.Text = $"{(item.Price * item.Quantity):C}"; // Định dạng tiền tệ
+                lblTotalPrice.Text = $"{(item.Price * item.Quantity):N0}"; // Định dạng tiền tệ
                 lblTotalPrice.TextAlign = ContentAlignment.MiddleRight;
                 lblTotalPrice.Size = new Size(itemPanel.Width / 2, itemPanel.Height);
                 lblTotalPrice.Font = new Font("Arial", 10, FontStyle.Regular);
@@ -151,7 +156,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                 // Thêm Panel vào FlowLayoutPanel
                 flpBillFood.Controls.Add(itemPanel);
             }
-            lblTotalPriceFood.Text = foods.Sum(f => (f.Price * f.Quantity)).ToString();
+            lblTotalPriceFood.Text = foods.Sum(f => (f.Price * f.Quantity)).ToString("N0");
 
         }
 

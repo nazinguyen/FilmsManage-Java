@@ -61,6 +61,9 @@
     <Compile Update="GUI\UserControls\Data\DinhDangPhimUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="GUI\UserControls\Data\FoodUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="GUI\UserControls\Data\KieuManHinhUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

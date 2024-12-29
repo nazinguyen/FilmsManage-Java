@@ -77,7 +77,7 @@ namespace FilmsManage.GUI.DataUserControl
             if (!(pnData.Controls.OfType<PhimUC>().Any()))
             {
                 pnData.Controls.Clear();
-                InitializePhimUC(); 
+                InitializePhimUC();
             }
         }
         public void InitializePhimUC()
@@ -86,7 +86,7 @@ namespace FilmsManage.GUI.DataUserControl
             phimUC.Dock = DockStyle.Fill;
             pnData.Controls.Add(phimUC); // Thêm PhimUC vào panel
         }
-        
+
         private void btnFormatMovieUC_Click(object sender, EventArgs e)
         {
             this.Text = "Định dạng";
@@ -124,6 +124,24 @@ namespace FilmsManage.GUI.DataUserControl
                 ve.Dock = DockStyle.Fill;
                 pnData.Controls.Add(ve);
             }
+        }
+
+        private void btnFood_Click(object sender, EventArgs e)
+        {
+            this.Text = "Đồ ăn";
+
+            if (!(pnData.Controls.OfType<FoodUC>().Any()))
+            {
+                pnData.Controls.Clear();
+                FoodUC ve = new FoodUC();
+                ve.Dock = DockStyle.Fill;
+                pnData.Controls.Add(ve);
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
