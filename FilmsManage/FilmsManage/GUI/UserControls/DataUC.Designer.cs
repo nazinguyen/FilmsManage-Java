@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             btnFood = new Button();
-            SidePanel = new Panel();
             btnTicketsUC = new Button();
             btnShowTimesUC = new Button();
             btnFormatMovieUC = new Button();
@@ -46,7 +45,6 @@
             // 
             panel1.BackColor = Color.FromArgb(41, 39, 40);
             panel1.Controls.Add(btnFood);
-            panel1.Controls.Add(SidePanel);
             panel1.Controls.Add(btnTicketsUC);
             panel1.Controls.Add(btnShowTimesUC);
             panel1.Controls.Add(btnFormatMovieUC);
@@ -69,24 +67,15 @@
             btnFood.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFood.ForeColor = Color.White;
             btnFood.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFood.Location = new Point(14, 742);
+            btnFood.Location = new Point(67, 742);
             btnFood.Margin = new Padding(5, 6, 5, 6);
             btnFood.Name = "btnFood";
-            btnFood.Size = new Size(267, 103);
+            btnFood.Size = new Size(214, 103);
             btnFood.TabIndex = 13;
             btnFood.Text = "Đồ ăn";
             btnFood.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnFood.UseVisualStyleBackColor = true;
             btnFood.Click += btnFood_Click;
-            // 
-            // SidePanel
-            // 
-            SidePanel.BackColor = Color.FromArgb(178, 8, 55);
-            SidePanel.Location = new Point(0, 6);
-            SidePanel.Margin = new Padding(5, 6, 5, 6);
-            SidePanel.Name = "SidePanel";
-            SidePanel.Size = new Size(16, 103);
-            SidePanel.TabIndex = 5;
             // 
             // btnTicketsUC
             // 
@@ -233,7 +222,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel SidePanel;
         private System.Windows.Forms.Button btnTicketsUC;
         private System.Windows.Forms.Button btnShowTimesUC;
         private System.Windows.Forms.Button btnFormatMovieUC;
