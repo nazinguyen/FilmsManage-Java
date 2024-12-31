@@ -1,4 +1,6 @@
-﻿namespace FilmsManage.GUI.Forms
+using FilmsManage.Properties;
+
+namespace FilmsManage.GUI.Forms
 {
     partial class Account
     {
@@ -28,27 +30,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             groupBox1 = new GroupBox();
-            txtSearchAccount = new TextBox();
+            txtSearchAccount = new Guna.UI2.WinForms.Guna2TextBox();
             btnSearchAccount = new Button();
-            btnReset = new Button();
             btnDeleteAccount = new Button();
             btnUpdateAccount = new Button();
             btnInsertAccount = new Button();
-            btnShowAccount = new Button();
             grpAccount = new GroupBox();
-            txtPassWord = new TextBox();
-            lblPassword = new Label();
-            txtAccountName = new TextBox();
-            cbbAccountID = new ComboBox();
-            lblUsername = new Label();
-            txtMaTK = new TextBox();
-            txtUserName = new TextBox();
-            lblStaffName_Account = new Label();
-            lblAccountType = new Label();
-            lblAccountID = new Label();
+            cbbAccountID = new Guna.UI2.WinForms.Guna2ComboBox();
+            txtPassWord = new Guna.UI2.WinForms.Guna2TextBox();
+            txtUserName = new Guna.UI2.WinForms.Guna2TextBox();
+            txtAccountName = new Guna.UI2.WinForms.Guna2TextBox();
+            txtMaTK = new Guna.UI2.WinForms.Guna2TextBox();
             dtgvAccount = new DataGridView();
             btnExport = new Button();
+            btnReset = new Guna.UI2.WinForms.Guna2Button();
             groupBox1.SuspendLayout();
             grpAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvAccount).BeginInit();
@@ -59,6 +69,7 @@
             groupBox1.Controls.Add(txtSearchAccount);
             groupBox1.Controls.Add(btnSearchAccount);
             groupBox1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(886, 35);
             groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
@@ -71,17 +82,34 @@
             // 
             // txtSearchAccount
             // 
-            txtSearchAccount.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtSearchAccount.Location = new Point(29, 31);
-            txtSearchAccount.Margin = new Padding(3, 2, 3, 2);
+            txtSearchAccount.Animated = true;
+            txtSearchAccount.BorderColor = Color.FromArgb(234, 153, 149);
+            txtSearchAccount.BorderRadius = 6;
+            txtSearchAccount.Cursor = Cursors.IBeam;
+            txtSearchAccount.CustomizableEdges = customizableEdges1;
+            txtSearchAccount.DefaultText = "";
+            txtSearchAccount.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSearchAccount.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSearchAccount.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSearchAccount.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSearchAccount.FillColor = Color.FromArgb(0, 9, 43);
+            txtSearchAccount.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearchAccount.Font = new Font("Segoe UI", 9F);
+            txtSearchAccount.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearchAccount.Location = new Point(18, 25);
+            txtSearchAccount.Margin = new Padding(4, 6, 4, 6);
             txtSearchAccount.Name = "txtSearchAccount";
-            txtSearchAccount.Size = new Size(132, 30);
-            txtSearchAccount.TabIndex = 18;
+            txtSearchAccount.PasswordChar = '\0';
+            txtSearchAccount.PlaceholderText = "";
+            txtSearchAccount.SelectedText = "";
+            txtSearchAccount.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            txtSearchAccount.Size = new Size(133, 38);
+            txtSearchAccount.TabIndex = 14;
             // 
             // btnSearchAccount
             // 
             btnSearchAccount.BackgroundImageLayout = ImageLayout.Stretch;
-            btnSearchAccount.Image = Properties.Resources.search_icon;
+            btnSearchAccount.Image = Resources.search_icon;
             btnSearchAccount.Location = new Point(168, 31);
             btnSearchAccount.Margin = new Padding(3, 2, 3, 2);
             btnSearchAccount.Name = "btnSearchAccount";
@@ -90,24 +118,12 @@
             btnSearchAccount.UseVisualStyleBackColor = true;
             btnSearchAccount.Click += btnSearchAccount_Click;
             // 
-            // btnReset
-            // 
-            btnReset.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnReset.Location = new Point(882, 126);
-            btnReset.Margin = new Padding(3, 2, 3, 2);
-            btnReset.Name = "btnReset";
-            btnReset.Size = new Size(242, 45);
-            btnReset.TabIndex = 32;
-            btnReset.Text = "Reset";
-            btnReset.UseVisualStyleBackColor = true;
-            btnReset.Click += btnReset_Click;
-            // 
             // btnDeleteAccount
             // 
             btnDeleteAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnDeleteAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnDeleteAccount.ForeColor = Color.White;
-            btnDeleteAccount.Location = new Point(13, 439);
+            btnDeleteAccount.Location = new Point(19, 394);
             btnDeleteAccount.Margin = new Padding(3, 2, 3, 2);
             btnDeleteAccount.Name = "btnDeleteAccount";
             btnDeleteAccount.Size = new Size(209, 57);
@@ -121,7 +137,7 @@
             btnUpdateAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnUpdateAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnUpdateAccount.ForeColor = Color.White;
-            btnUpdateAccount.Location = new Point(13, 360);
+            btnUpdateAccount.Location = new Point(19, 315);
             btnUpdateAccount.Margin = new Padding(3, 2, 3, 2);
             btnUpdateAccount.Name = "btnUpdateAccount";
             btnUpdateAccount.Size = new Size(209, 57);
@@ -135,7 +151,7 @@
             btnInsertAccount.BackColor = Color.FromArgb(133, 19, 33);
             btnInsertAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnInsertAccount.ForeColor = Color.White;
-            btnInsertAccount.Location = new Point(13, 290);
+            btnInsertAccount.Location = new Point(19, 245);
             btnInsertAccount.Margin = new Padding(3, 2, 3, 2);
             btnInsertAccount.Name = "btnInsertAccount";
             btnInsertAccount.Size = new Size(209, 57);
@@ -144,141 +160,148 @@
             btnInsertAccount.UseVisualStyleBackColor = false;
             btnInsertAccount.Click += btnInsertAccount_Click;
             // 
-            // btnShowAccount
-            // 
-            btnShowAccount.BackColor = Color.FromArgb(133, 19, 33);
-            btnShowAccount.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnShowAccount.ForeColor = Color.White;
-            btnShowAccount.Location = new Point(13, 218);
-            btnShowAccount.Margin = new Padding(3, 2, 3, 2);
-            btnShowAccount.Name = "btnShowAccount";
-            btnShowAccount.Size = new Size(209, 57);
-            btnShowAccount.TabIndex = 31;
-            btnShowAccount.Text = "Xem";
-            btnShowAccount.UseVisualStyleBackColor = false;
-            // 
             // grpAccount
             // 
-            grpAccount.BackColor = Color.Transparent;
-            grpAccount.Controls.Add(txtPassWord);
-            grpAccount.Controls.Add(lblPassword);
-            grpAccount.Controls.Add(txtAccountName);
+            grpAccount.BackColor = Color.FromArgb(0, 9, 43);
             grpAccount.Controls.Add(cbbAccountID);
-            grpAccount.Controls.Add(lblUsername);
-            grpAccount.Controls.Add(txtMaTK);
+            grpAccount.Controls.Add(txtPassWord);
             grpAccount.Controls.Add(txtUserName);
-            grpAccount.Controls.Add(lblStaffName_Account);
-            grpAccount.Controls.Add(lblAccountType);
-            grpAccount.Controls.Add(lblAccountID);
+            grpAccount.Controls.Add(txtAccountName);
+            grpAccount.Controls.Add(txtMaTK);
             grpAccount.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            grpAccount.ForeColor = Color.White;
             grpAccount.Location = new Point(19, 22);
             grpAccount.Margin = new Padding(3, 2, 3, 2);
             grpAccount.Name = "grpAccount";
             grpAccount.Padding = new Padding(3, 2, 3, 2);
-            grpAccount.Size = new Size(822, 166);
+            grpAccount.Size = new Size(849, 175);
             grpAccount.TabIndex = 30;
             grpAccount.TabStop = false;
             grpAccount.Text = "Thông tin tài khoản";
             // 
-            // txtPassWord
-            // 
-            txtPassWord.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            txtPassWord.Location = new Point(585, 114);
-            txtPassWord.Margin = new Padding(2);
-            txtPassWord.Name = "txtPassWord";
-            txtPassWord.Size = new Size(203, 30);
-            txtPassWord.TabIndex = 8;
-            // 
-            // lblPassword
-            // 
-            lblPassword.AutoSize = true;
-            lblPassword.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lblPassword.Location = new Point(438, 117);
-            lblPassword.Margin = new Padding(2, 0, 2, 0);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(103, 23);
-            lblPassword.TabIndex = 7;
-            lblPassword.Text = "Mật khẩu :";
-            // 
-            // txtAccountName
-            // 
-            txtAccountName.Location = new Point(585, 17);
-            txtAccountName.Margin = new Padding(2);
-            txtAccountName.Name = "txtAccountName";
-            txtAccountName.ReadOnly = true;
-            txtAccountName.Size = new Size(203, 30);
-            txtAccountName.TabIndex = 6;
-            // 
             // cbbAccountID
             // 
+            cbbAccountID.BackColor = Color.Transparent;
+            cbbAccountID.BorderColor = Color.FromArgb(234, 153, 149);
+            cbbAccountID.BorderRadius = 10;
+            cbbAccountID.CustomizableEdges = customizableEdges3;
+            cbbAccountID.DrawMode = DrawMode.OwnerDrawFixed;
             cbbAccountID.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbbAccountID.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cbbAccountID.FormattingEnabled = true;
-            cbbAccountID.Location = new Point(166, 102);
-            cbbAccountID.Margin = new Padding(3, 2, 3, 2);
+            cbbAccountID.FillColor = Color.FromArgb(0, 9, 43);
+            cbbAccountID.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbbAccountID.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbbAccountID.Font = new Font("Segoe UI", 10F);
+            cbbAccountID.ForeColor = Color.FromArgb(68, 88, 112);
+            cbbAccountID.ItemHeight = 30;
+            cbbAccountID.Location = new Point(60, 108);
             cbbAccountID.Name = "cbbAccountID";
-            cbbAccountID.Size = new Size(195, 30);
-            cbbAccountID.TabIndex = 5;
-            cbbAccountID.SelectedIndexChanged += cbbAccountID_SelectedIndexChanged;
+            cbbAccountID.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            cbbAccountID.Size = new Size(175, 36);
+            cbbAccountID.TabIndex = 14;
             // 
-            // lblUsername
+            // txtPassWord
             // 
-            lblUsername.AutoSize = true;
-            lblUsername.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblUsername.Location = new Point(25, 48);
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(128, 23);
-            lblUsername.TabIndex = 4;
-            lblUsername.Text = "Mã tài khoản:";
-            // 
-            // txtMaTK
-            // 
-            txtMaTK.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtMaTK.Location = new Point(166, 45);
-            txtMaTK.Margin = new Padding(3, 2, 3, 2);
-            txtMaTK.Name = "txtMaTK";
-            txtMaTK.ReadOnly = true;
-            txtMaTK.Size = new Size(195, 30);
-            txtMaTK.TabIndex = 2;
+            txtPassWord.Animated = true;
+            txtPassWord.BorderColor = Color.FromArgb(234, 153, 149);
+            txtPassWord.BorderRadius = 6;
+            txtPassWord.Cursor = Cursors.IBeam;
+            txtPassWord.CustomizableEdges = customizableEdges5;
+            txtPassWord.DefaultText = "";
+            txtPassWord.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPassWord.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPassWord.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPassWord.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPassWord.FillColor = Color.FromArgb(0, 9, 43);
+            txtPassWord.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassWord.Font = new Font("Segoe UI", 9F);
+            txtPassWord.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassWord.Location = new Point(619, 44);
+            txtPassWord.Margin = new Padding(4, 6, 4, 6);
+            txtPassWord.Name = "txtPassWord";
+            txtPassWord.PasswordChar = '\0';
+            txtPassWord.PlaceholderText = "Mật khẩu";
+            txtPassWord.SelectedText = "";
+            txtPassWord.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPassWord.Size = new Size(185, 46);
+            txtPassWord.TabIndex = 13;
             // 
             // txtUserName
             // 
-            txtUserName.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtUserName.Location = new Point(585, 66);
-            txtUserName.Margin = new Padding(3, 2, 3, 2);
+            txtUserName.Animated = true;
+            txtUserName.BorderColor = Color.FromArgb(234, 153, 149);
+            txtUserName.BorderRadius = 6;
+            txtUserName.Cursor = Cursors.IBeam;
+            txtUserName.CustomizableEdges = customizableEdges7;
+            txtUserName.DefaultText = "";
+            txtUserName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtUserName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtUserName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtUserName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtUserName.FillColor = Color.FromArgb(0, 9, 43);
+            txtUserName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtUserName.Font = new Font("Segoe UI", 9F);
+            txtUserName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtUserName.Location = new Point(339, 108);
+            txtUserName.Margin = new Padding(4, 6, 4, 6);
             txtUserName.Name = "txtUserName";
-            txtUserName.Size = new Size(206, 30);
-            txtUserName.TabIndex = 2;
+            txtUserName.PasswordChar = '\0';
+            txtUserName.PlaceholderText = "Tên đăng nhập";
+            txtUserName.SelectedText = "";
+            txtUserName.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtUserName.Size = new Size(210, 44);
+            txtUserName.TabIndex = 12;
             // 
-            // lblStaffName_Account
+            // txtAccountName
             // 
-            lblStaffName_Account.AutoSize = true;
-            lblStaffName_Account.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStaffName_Account.Location = new Point(438, 74);
-            lblStaffName_Account.Name = "lblStaffName_Account";
-            lblStaffName_Account.Size = new Size(143, 23);
-            lblStaffName_Account.TabIndex = 4;
-            lblStaffName_Account.Text = "Tên Đăng nhập:";
+            txtAccountName.Animated = true;
+            txtAccountName.BorderColor = Color.FromArgb(234, 153, 149);
+            txtAccountName.BorderRadius = 6;
+            txtAccountName.Cursor = Cursors.IBeam;
+            txtAccountName.CustomizableEdges = customizableEdges9;
+            txtAccountName.DefaultText = "";
+            txtAccountName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtAccountName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtAccountName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtAccountName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtAccountName.FillColor = Color.FromArgb(0, 9, 43);
+            txtAccountName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtAccountName.Font = new Font("Segoe UI", 9F);
+            txtAccountName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtAccountName.Location = new Point(339, 44);
+            txtAccountName.Margin = new Padding(4, 6, 4, 6);
+            txtAccountName.Name = "txtAccountName";
+            txtAccountName.PasswordChar = '\0';
+            txtAccountName.PlaceholderText = "Tên khách hàng";
+            txtAccountName.SelectedText = "";
+            txtAccountName.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txtAccountName.Size = new Size(210, 46);
+            txtAccountName.TabIndex = 11;
             // 
-            // lblAccountType
+            // txtMaTK
             // 
-            lblAccountType.AutoSize = true;
-            lblAccountType.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAccountType.Location = new Point(438, 24);
-            lblAccountType.Name = "lblAccountType";
-            lblAccountType.Size = new Size(83, 23);
-            lblAccountType.TabIndex = 4;
-            lblAccountType.Text = "Tên KH:";
-            // 
-            // lblAccountID
-            // 
-            lblAccountID.AutoSize = true;
-            lblAccountID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAccountID.Location = new Point(25, 105);
-            lblAccountID.Name = "lblAccountID";
-            lblAccountID.Size = new Size(79, 23);
-            lblAccountID.TabIndex = 4;
-            lblAccountID.Text = "Mã KH:";
+            txtMaTK.Animated = true;
+            txtMaTK.BorderColor = Color.FromArgb(234, 153, 149);
+            txtMaTK.BorderRadius = 6;
+            txtMaTK.Cursor = Cursors.IBeam;
+            txtMaTK.CustomizableEdges = customizableEdges11;
+            txtMaTK.DefaultText = "";
+            txtMaTK.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtMaTK.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtMaTK.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtMaTK.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtMaTK.FillColor = Color.FromArgb(0, 9, 43);
+            txtMaTK.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtMaTK.Font = new Font("Segoe UI", 9F);
+            txtMaTK.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtMaTK.Location = new Point(60, 44);
+            txtMaTK.Margin = new Padding(4, 6, 4, 6);
+            txtMaTK.Name = "txtMaTK";
+            txtMaTK.PasswordChar = '\0';
+            txtMaTK.PlaceholderText = "Mã tài khoản";
+            txtMaTK.SelectedText = "";
+            txtMaTK.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtMaTK.Size = new Size(175, 46);
+            txtMaTK.TabIndex = 9;
             // 
             // dtgvAccount
             // 
@@ -291,7 +314,7 @@
             dtgvAccount.Name = "dtgvAccount";
             dtgvAccount.ReadOnly = true;
             dtgvAccount.RowHeadersWidth = 51;
-            dtgvAccount.Size = new Size(901, 363);
+            dtgvAccount.Size = new Size(901, 351);
             dtgvAccount.TabIndex = 29;
             // 
             // btnExport
@@ -299,7 +322,7 @@
             btnExport.BackColor = Color.FromArgb(133, 19, 33);
             btnExport.Font = new Font("Arial", 10.8F, FontStyle.Bold);
             btnExport.ForeColor = Color.White;
-            btnExport.Location = new Point(13, 512);
+            btnExport.Location = new Point(19, 467);
             btnExport.Margin = new Padding(3, 2, 3, 2);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(209, 57);
@@ -308,26 +331,43 @@
             btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
             // 
+            // btnReset
+            // 
+            btnReset.Animated = true;
+            btnReset.BackColor = Color.Transparent;
+            btnReset.BorderRadius = 10;
+            btnReset.CustomizableEdges = customizableEdges13;
+            btnReset.FillColor = Color.FromArgb(193, 20, 137);
+            btnReset.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReset.ForeColor = Color.White;
+            btnReset.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnReset.Location = new Point(921, 116);
+            btnReset.Margin = new Padding(4, 5, 4, 5);
+            btnReset.Name = "btnReset";
+            btnReset.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnReset.Size = new Size(160, 52);
+            btnReset.TabIndex = 38;
+            btnReset.Text = "Reset";
+            btnReset.UseTransparentBackground = true;
+            // 
             // Account
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(0, 9, 43);
+            Controls.Add(btnReset);
             Controls.Add(btnExport);
             Controls.Add(groupBox1);
-            Controls.Add(btnReset);
             Controls.Add(btnDeleteAccount);
             Controls.Add(btnUpdateAccount);
             Controls.Add(btnInsertAccount);
-            Controls.Add(btnShowAccount);
             Controls.Add(grpAccount);
             Controls.Add(dtgvAccount);
             Margin = new Padding(2);
             Name = "Account";
             Size = new Size(1152, 598);
             groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             grpAccount.ResumeLayout(false);
-            grpAccount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvAccount).EndInit();
             ResumeLayout(false);
         }
@@ -335,27 +375,21 @@
         #endregion
 
         private GroupBox groupBox1;
-        private TextBox txtSearchAccount;
         private Button btnSearchAccount;
-        private Button btnReset;
         private Button btnDeleteAccount;
         private Button btnUpdateAccount;
         private Button btnInsertAccount;
-        private Button btnShowAccount;
         private GroupBox grpAccount;
         private NumericUpDown nudAccountType;
-        private ComboBox cbbAccountID;
-        private Label lblUsername;
-        private TextBox txtMaTK;
-        private TextBox txtUserName;
-        private Label lblStaffName_Account;
-        private Label lblAccountType;
-        private Label lblAccountID;
         private DataGridView dtgvAccount;
-        private TextBox txtAccountName;
-        private TextBox txtPassWord;
-        private Label lblPassword;
         private Button button1;
         private Button btnExport;
+        private Guna.UI2.WinForms.Guna2TextBox txtMaTK;
+        private Guna.UI2.WinForms.Guna2TextBox txtPassWord;
+        private Guna.UI2.WinForms.Guna2TextBox txtUserName;
+        private Guna.UI2.WinForms.Guna2TextBox txtAccountName;
+        private Guna.UI2.WinForms.Guna2Button btnReset;
+        private Guna.UI2.WinForms.Guna2TextBox txtSearchAccount;
+        private Guna.UI2.WinForms.Guna2ComboBox cbbAccountID;
     }
 }
