@@ -238,10 +238,6 @@ namespace FilmsManage.GUI.Forms
             txtAccountName.ForeColor = Color.Black;
             txtAccountName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             txtAccountName.Location = new Point(339, 44);
-            txtAccountName.Margin = new Padding(4, 6, 4, 6);
-            txtAccountName.Name = "txtAccountName";
-            txtAccountName.PasswordChar = '\0';
-            txtAccountName.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             txtAccountName.PlaceholderText = "Tên khách hàng";
             txtAccountName.SelectedText = "";
             txtAccountName.ShadowDecoration.CustomizableEdges = customizableEdges32;
@@ -389,6 +385,23 @@ namespace FilmsManage.GUI.Forms
             btnUpdateAccount.TabIndex = 42;
             btnUpdateAccount.Text = "Sửa";
             btnUpdateAccount.UseTransparentBackground = true;
+            // 
+            // btnReset
+            // 
+            btnReset.Animated = true;
+            btnReset.BackColor = Color.Transparent;
+            btnReset.BorderRadius = 10;
+            btnReset.FillColor = Color.FromArgb(193, 20, 137);
+            btnReset.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReset.ForeColor = Color.White;
+            btnReset.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnReset.Location = new Point(921, 116);
+            btnReset.Margin = new Padding(4, 5, 4, 5);
+            btnReset.Name = "btnReset";
+            btnReset.Size = new Size(160, 52);
+            btnReset.TabIndex = 38;
+            btnReset.Text = "Reset";
+            btnReset.UseTransparentBackground = true;
             // 
             // Account
             // 

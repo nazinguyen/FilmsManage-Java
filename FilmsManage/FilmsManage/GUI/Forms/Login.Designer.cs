@@ -1,4 +1,4 @@
-﻿namespace FilmsManage
+namespace FilmsManage
 {
     partial class Login
     {
