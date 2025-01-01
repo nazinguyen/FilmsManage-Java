@@ -305,7 +305,7 @@ namespace FilmsManage.GUI.UserControls.Data
                 return false;
             }
 
-            if (!System.Text.RegularExpressions.Regex.IsMatch(tenPhong, @"^[a-zA-Z0-9\s]+$"))
+            if (!System.Text.RegularExpressions.Regex.IsMatch(tenPhong, @"^[\p{L}\s0-9]+$"))
             {
                 errorMessage = "Vui lòng nhập tên phòng chiếu hợp lệ (không có ký tự đặc biệt).";
                 return false;

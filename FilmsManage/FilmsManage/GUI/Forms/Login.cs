@@ -17,7 +17,7 @@ namespace FilmsManage
         {
             InitializeComponent();
             _sv = new DangPhimSV("https://localhost:7085");
-            //cbPassword.CheckedChanged += cbPassword_CheckedChanged;
+            cbPassword.CheckedChanged += cbPassword_CheckedChanged;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace FilmsManage
 
         public string USER_NAME = "";
 
-        private async void registrationButton_Click(object sender, EventArgs e)
+        private async void btn_Login_Click(object sender, EventArgs e)
         {
             string userName = txtUsername.Text;
             string passWord = txtPassword.Text;
@@ -91,20 +91,24 @@ namespace FilmsManage
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-
-
-
-        private void cbPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            txtPassword.PasswordChar = cbPassword.Checked ? '\0' : '*';
-        }
-
         private void btn_Register_Click(object sender, EventArgs e)
         {
             Register registerForm = new Register();
             registerForm.Show();
             this.Hide();
         }
-
+        private void cbPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPassword.Checked)
+            {
+                // Hiển thị mật khẩu khi Checked = true
+                txtPassword.PasswordChar = '\0'; // Không có ký tự thay thế
+            }
+            else
+            {
+                // Ẩn mật khẩu khi Checked = false
+                txtPassword.PasswordChar = '*'; // Mật khẩu bị ẩn với dấu *
+            }
+        }
     }
 }

@@ -431,5 +431,10 @@ namespace FilmsManage.GUI.Forms
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnInsertAccount_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -139,11 +139,6 @@ namespace FilmsManage.GUI.UserControls
 
         }
 
-        private void btnShowStaff_Click(object sender, EventArgs e)
-        {
-
-        }    
-
         private async void btnSearchStaff_Click_1(object sender, EventArgs e)
         {
             string searchValue = txtSearchStaff.Text.Trim();
