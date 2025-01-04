@@ -173,6 +173,103 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnAddTicketsByShowTime_Click_1(object sender, EventArgs e)
         {
+            
+        }
+
+
+
+        private async void btnDeleteTicketsByShowTime_Click(object sender, EventArgs e)
+        {
+            if (lsvAllListShowTimes.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn một xuất chiếu!");
+                return;
+            }
+
+            var selectedItem = lsvAllListShowTimes.SelectedItems[0];
+            int maXuatChieu = (int)selectedItem.Tag;
+
+            var getXuatChieu = await _sv.GetAsync<XuatChieu>($"/api/XuatChieu/{maXuatChieu}");
+
+            if (getXuatChieu.ThoiGianKetThuc >= DateTime.Now)
+            {
+                MessageBox.Show("Không thể xóa lịch vé theo lịch chiếu này");
+                return;
+            }
+
+            var getVe = await _sv.GetAsync<List<Ve>>($"/api/Ve/{getXuatChieu.MaXuatChieu}");
+            if (getVe == null)
+            {
+                MessageBox.Show("Có lỗi xảy ra");
+            }
+            var deleteVe = await _sv.DeleteAsync("/api/Ve/DeleteRangeAsync", getVe ?? new List<Ve>());
+
+        }
+
+        private async void btnShowTimeNotCreateTickets_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void btnAllListShowTimes_Click_1(object sender, EventArgs e)
+        {
+            LoadXuatChieu();
+        }
+
+        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
+        {
+            string searchText = txtSearchShowtime.Text.ToLower();
+            if (searchText == "")
+            {
+                LoadXuatChieu();
+                return; // Thêm return để tránh gọi lại API khi searchText rỗng
+            }
+            var xuatChieus = await _sv.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+            if (xuatChieus == null || !xuatChieus.Any())
+            {
+                MessageBox.Show("Không có dữ liệu.");
+                return;
+            }
+
+            // Lọc dữ liệu và chuyển đổi thành đối tượng ẩn danh
+            var filteredShowtimes = xuatChieus
+                .Where(s => s.MaPhimNavigation != null &&
+                            s.MaPhimNavigation.TenPhim != null &&
+                            s.MaPhimNavigation.TenPhim.ToLower().Contains(searchText) && s.ThoiGianBatDau >= DateTime.Now)
+                .Select(p => new
+                {
+                    p.MaXuatChieu,
+                    TenPhongChieu = p.MaPhongNavigation?.TenPhongChieu,
+                    TenPhim = p.MaPhimNavigation?.TenPhim,
+                    ThoiGianBatDau = p.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm"),
+                    ThoiGianKetThuc = p.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")
+                })
+                .ToList();
+
+            // Hiển thị danh sách đã lọc trong ListView
+            lsvAllListShowTimes.Items.Clear(); // Xóa các mục cũ
+            foreach (var showtime in filteredShowtimes)
+            {
+                // Tạo một ListViewItem cho mỗi dòng dữ liệu
+                var item = new ListViewItem(showtime.MaXuatChieu.ToString());
+                item.SubItems.Add(showtime.TenPhongChieu ?? "N/A");
+                item.SubItems.Add(showtime.TenPhim ?? "N/A");
+                item.SubItems.Add(showtime.ThoiGianBatDau);
+                item.SubItems.Add(showtime.ThoiGianKetThuc);
+
+                lsvAllListShowTimes.Items.Add(item);
+            }
+
+        }
+
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private async void btnAddTicketsByShowTime_Click(object sender, EventArgs e)
+        {
             if (lsvAllListShowTimes.SelectedItems.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn một xuất chiếu!");
@@ -243,7 +340,9 @@ namespace FilmsManage.GUI.UserControls.Data
                 //Tạo vé cho mỗi ghế trong phòng chiếu
                 foreach (var ghe in listGheFromApi)
                 {
-                    decimal giaVe = (ghe.MaLoaiGhe == loaiGheVIP) ? 200000 : 100000;
+                    decimal giaVe = (ghe.MaLoaiGhe == loaiGheVIP)
+                        ? ((xuatChieu.GiaCoBan ?? 0) * 0.5m)
+                        : (xuatChieu.GiaCoBan ?? 0);
                     Debug.WriteLine(giaVe);
                     Debug.WriteLine(maXuatChieu);
                     Debug.WriteLine(ghe.MaGhe);
@@ -289,37 +388,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         }
 
-
-
-        private async void btnDeleteTicketsByShowTime_Click(object sender, EventArgs e)
-        {
-            if (lsvAllListShowTimes.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Vui lòng chọn một xuất chiếu!");
-                return;
-            }
-
-            var selectedItem = lsvAllListShowTimes.SelectedItems[0];
-            int maXuatChieu = (int)selectedItem.Tag;
-
-            var getXuatChieu = await _sv.GetAsync<XuatChieu>($"/api/XuatChieu/{maXuatChieu}");
-
-            if (getXuatChieu.ThoiGianKetThuc >= DateTime.Now)
-            {
-                MessageBox.Show("Không thể xóa lịch vé theo lịch chiếu này");
-                return;
-            }
-
-            var getVe = await _sv.GetAsync<List<Ve>>($"/api/Ve/{getXuatChieu.MaXuatChieu}");
-            if (getVe == null)
-            {
-                MessageBox.Show("Có lỗi xảy ra");
-            }
-            var deleteVe = await _sv.DeleteAsync("/api/Ve/DeleteRangeAsync", getVe ?? new List<Ve>());
-
-        }
-
-        private async void btnShowTimeNotCreateTickets_Click(object sender, EventArgs e)
+        private async void btnShowTimeNotCreateTickets_Click_1(object sender, EventArgs e)
         {
             lsvAllListShowTimes.Items.Clear();
 
@@ -349,59 +418,13 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnAllListShowTimes_Click_1(object sender, EventArgs e)
+        private void btnAllListShowTimes_Click(object sender, EventArgs e)
         {
             LoadXuatChieu();
-        }
-
-        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
-        {
-            string searchText = txtSearchShowtime.Text.ToLower();
-            if (searchText == "")
-            {
-                LoadXuatChieu();
-                return; // Thêm return để tránh gọi lại API khi searchText rỗng
-            }
-            var xuatChieus = await _sv.GetAsync<List<XuatChieu>>("/api/XuatChieu");
-            if (xuatChieus == null || !xuatChieus.Any())
-            {
-                MessageBox.Show("Không có dữ liệu.");
-                return;
-            }
-
-            // Lọc dữ liệu và chuyển đổi thành đối tượng ẩn danh
-            var filteredShowtimes = xuatChieus
-                .Where(s => s.MaPhimNavigation != null &&
-                            s.MaPhimNavigation.TenPhim != null &&
-                            s.MaPhimNavigation.TenPhim.ToLower().Contains(searchText) && s.ThoiGianBatDau >= DateTime.Now)
-                .Select(p => new
-                {
-                    p.MaXuatChieu,
-                    TenPhongChieu = p.MaPhongNavigation?.TenPhongChieu,
-                    TenPhim = p.MaPhimNavigation?.TenPhim,
-                    ThoiGianBatDau = p.ThoiGianBatDau.ToString("dd/MM/yyyy HH:mm"),
-                    ThoiGianKetThuc = p.ThoiGianKetThuc.ToString("dd/MM/yyyy HH:mm")
-                })
-                .ToList();
-
-            // Hiển thị danh sách đã lọc trong ListView
-            lsvAllListShowTimes.Items.Clear(); // Xóa các mục cũ
-            foreach (var showtime in filteredShowtimes)
-            {
-                // Tạo một ListViewItem cho mỗi dòng dữ liệu
-                var item = new ListViewItem(showtime.MaXuatChieu.ToString());
-                item.SubItems.Add(showtime.TenPhongChieu ?? "N/A");
-                item.SubItems.Add(showtime.TenPhim ?? "N/A");
-                item.SubItems.Add(showtime.ThoiGianBatDau);
-                item.SubItems.Add(showtime.ThoiGianKetThuc);
-
-                lsvAllListShowTimes.Items.Add(item);
-            }
 
         }
 
-
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExport_Click_1(object sender, EventArgs e)
         {
             var exporter = new ExcelExporter();
 

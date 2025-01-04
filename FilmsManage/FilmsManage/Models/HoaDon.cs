@@ -8,8 +8,10 @@ public partial class HoaDon
     public int MaHd { get; set; }
 
     public decimal TongTien { get; set; }
-
+    public DateTime? NgayTao { get; set; }
+    
     public int MaNv { get; set; }
+
     public int? MaKh { get; set; } = null;
     public virtual ICollection<ChiTietHoaDon>? ChiTietHoaDons { get; set; } = new List<ChiTietHoaDon>();
 

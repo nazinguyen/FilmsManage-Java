@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataUC));
             panel1 = new Panel();
-            btnFood = new Button();
+            button1 = new Button();
+            panel2 = new Panel();
             btnTicketsUC = new Button();
             btnShowTimesUC = new Button();
             btnFormatMovieUC = new Button();
@@ -44,7 +46,8 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(41, 39, 40);
-            panel1.Controls.Add(btnFood);
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(panel2);
             panel1.Controls.Add(btnTicketsUC);
             panel1.Controls.Add(btnShowTimesUC);
             panel1.Controls.Add(btnFormatMovieUC);
@@ -56,26 +59,36 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(286, 1028);
+            panel1.Size = new Size(264, 1028);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
             // 
-            // btnFood
+            // button1
             // 
-            btnFood.FlatAppearance.BorderSize = 0;
-            btnFood.FlatStyle = FlatStyle.Flat;
-            btnFood.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnFood.ForeColor = Color.White;
-            btnFood.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFood.Location = new Point(67, 742);
-            btnFood.Margin = new Padding(5, 6, 5, 6);
-            btnFood.Name = "btnFood";
-            btnFood.Size = new Size(214, 103);
-            btnFood.TabIndex = 13;
-            btnFood.Text = "Đồ ăn";
-            btnFood.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnFood.UseVisualStyleBackColor = true;
-            btnFood.Click += btnFood_Click;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(5, 775);
+            button1.Margin = new Padding(5, 6, 5, 6);
+            button1.Name = "button1";
+            button1.Size = new Size(238, 63);
+            button1.TabIndex = 14;
+            button1.Text = "  Thức ăn";
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // panel2
+            // 
+            panel2.BackgroundImage = (Image)resources.GetObject("panel2.BackgroundImage");
+            panel2.Location = new Point(6, 0);
+            panel2.Margin = new Padding(4);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(329, 240);
+            panel2.TabIndex = 13;
             // 
             // btnTicketsUC
             // 
@@ -83,13 +96,14 @@
             btnTicketsUC.FlatStyle = FlatStyle.Flat;
             btnTicketsUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnTicketsUC.ForeColor = Color.White;
+            btnTicketsUC.Image = (Image)resources.GetObject("btnTicketsUC.Image");
             btnTicketsUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnTicketsUC.Location = new Point(19, 627);
+            btnTicketsUC.Location = new Point(5, 700);
             btnTicketsUC.Margin = new Padding(5, 6, 5, 6);
             btnTicketsUC.Name = "btnTicketsUC";
-            btnTicketsUC.Size = new Size(267, 103);
+            btnTicketsUC.Size = new Size(238, 63);
             btnTicketsUC.TabIndex = 6;
-            btnTicketsUC.Text = "       Vé";
+            btnTicketsUC.Text = "     Vé";
             btnTicketsUC.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnTicketsUC.UseVisualStyleBackColor = true;
             btnTicketsUC.Click += btnTicketsUC_Click;
@@ -100,13 +114,14 @@
             btnShowTimesUC.FlatStyle = FlatStyle.Flat;
             btnShowTimesUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnShowTimesUC.ForeColor = Color.White;
+            btnShowTimesUC.Image = (Image)resources.GetObject("btnShowTimesUC.Image");
             btnShowTimesUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnShowTimesUC.Location = new Point(19, 524);
+            btnShowTimesUC.Location = new Point(5, 625);
             btnShowTimesUC.Margin = new Padding(5, 6, 5, 6);
             btnShowTimesUC.Name = "btnShowTimesUC";
-            btnShowTimesUC.Size = new Size(267, 103);
+            btnShowTimesUC.Size = new Size(238, 63);
             btnShowTimesUC.TabIndex = 7;
-            btnShowTimesUC.Text = "      Lịch Chiếu";
+            btnShowTimesUC.Text = "     Lịch Chiếu";
             btnShowTimesUC.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnShowTimesUC.UseVisualStyleBackColor = true;
             btnShowTimesUC.Click += btnShowTimesUC_Click;
@@ -117,13 +132,14 @@
             btnFormatMovieUC.FlatStyle = FlatStyle.Flat;
             btnFormatMovieUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnFormatMovieUC.ForeColor = Color.White;
+            btnFormatMovieUC.Image = (Image)resources.GetObject("btnFormatMovieUC.Image");
             btnFormatMovieUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnFormatMovieUC.Location = new Point(19, 420);
+            btnFormatMovieUC.Location = new Point(6, 550);
             btnFormatMovieUC.Margin = new Padding(5, 6, 5, 6);
             btnFormatMovieUC.Name = "btnFormatMovieUC";
-            btnFormatMovieUC.Size = new Size(267, 103);
+            btnFormatMovieUC.Size = new Size(238, 63);
             btnFormatMovieUC.TabIndex = 8;
-            btnFormatMovieUC.Text = "      Định Dạng";
+            btnFormatMovieUC.Text = "     Định Dạng";
             btnFormatMovieUC.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnFormatMovieUC.UseVisualStyleBackColor = true;
             btnFormatMovieUC.Click += btnFormatMovieUC_Click;
@@ -134,13 +150,14 @@
             btnMovieUC.FlatStyle = FlatStyle.Flat;
             btnMovieUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnMovieUC.ForeColor = Color.White;
+            btnMovieUC.Image = (Image)resources.GetObject("btnMovieUC.Image");
             btnMovieUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnMovieUC.Location = new Point(19, 316);
+            btnMovieUC.Location = new Point(6, 475);
             btnMovieUC.Margin = new Padding(5, 6, 5, 6);
             btnMovieUC.Name = "btnMovieUC";
-            btnMovieUC.Size = new Size(267, 103);
+            btnMovieUC.Size = new Size(238, 63);
             btnMovieUC.TabIndex = 9;
-            btnMovieUC.Text = "       Phim";
+            btnMovieUC.Text = "     Phim";
             btnMovieUC.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnMovieUC.UseVisualStyleBackColor = true;
             btnMovieUC.Click += btnMovieUC_Click;
@@ -151,13 +168,14 @@
             btnGenreUC.FlatStyle = FlatStyle.Flat;
             btnGenreUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnGenreUC.ForeColor = Color.White;
+            btnGenreUC.Image = (Image)resources.GetObject("btnGenreUC.Image");
             btnGenreUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGenreUC.Location = new Point(19, 213);
+            btnGenreUC.Location = new Point(6, 400);
             btnGenreUC.Margin = new Padding(5, 6, 5, 6);
             btnGenreUC.Name = "btnGenreUC";
-            btnGenreUC.Size = new Size(267, 103);
+            btnGenreUC.Size = new Size(238, 63);
             btnGenreUC.TabIndex = 10;
-            btnGenreUC.Text = "      Thể Loại";
+            btnGenreUC.Text = "     Thể Loại";
             btnGenreUC.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnGenreUC.UseVisualStyleBackColor = true;
             btnGenreUC.Click += btnGenreUC_Click;
@@ -168,13 +186,14 @@
             btnCinemaUC.FlatStyle = FlatStyle.Flat;
             btnCinemaUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCinemaUC.ForeColor = Color.White;
+            btnCinemaUC.Image = (Image)resources.GetObject("btnCinemaUC.Image");
             btnCinemaUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCinemaUC.Location = new Point(19, 109);
+            btnCinemaUC.Location = new Point(6, 325);
             btnCinemaUC.Margin = new Padding(5, 6, 5, 6);
             btnCinemaUC.Name = "btnCinemaUC";
-            btnCinemaUC.Size = new Size(267, 103);
+            btnCinemaUC.Size = new Size(238, 63);
             btnCinemaUC.TabIndex = 11;
-            btnCinemaUC.Text = "       Phòng Chiếu";
+            btnCinemaUC.Text = "     Phòng Chiếu";
             btnCinemaUC.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCinemaUC.UseVisualStyleBackColor = true;
             btnCinemaUC.Click += btnCinemaUC_Click;
@@ -185,11 +204,11 @@
             btnScreenTypeUC.FlatStyle = FlatStyle.Flat;
             btnScreenTypeUC.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnScreenTypeUC.ForeColor = Color.White;
-            btnScreenTypeUC.ImageAlign = ContentAlignment.MiddleLeft;
-            btnScreenTypeUC.Location = new Point(19, 5);
+            btnScreenTypeUC.Image = (Image)resources.GetObject("btnScreenTypeUC.Image");
+            btnScreenTypeUC.Location = new Point(6, 250);
             btnScreenTypeUC.Margin = new Padding(5, 6, 5, 6);
             btnScreenTypeUC.Name = "btnScreenTypeUC";
-            btnScreenTypeUC.Size = new Size(267, 103);
+            btnScreenTypeUC.Size = new Size(238, 63);
             btnScreenTypeUC.TabIndex = 12;
             btnScreenTypeUC.Text = "     Loại màn hình";
             btnScreenTypeUC.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -199,10 +218,10 @@
             // pnData
             // 
             pnData.Dock = DockStyle.Bottom;
-            pnData.Location = new Point(286, 5);
+            pnData.Location = new Point(264, 6);
             pnData.Margin = new Padding(4, 5, 4, 5);
             pnData.Name = "pnData";
-            pnData.Size = new Size(2002, 1023);
+            pnData.Size = new Size(2024, 1022);
             pnData.TabIndex = 1;
             pnData.Paint += pnData_Paint;
             // 
@@ -230,6 +249,7 @@
         private System.Windows.Forms.Button btnCinemaUC;
         private System.Windows.Forms.Button btnScreenTypeUC;
         public System.Windows.Forms.Panel pnData;
-        private Button btnFood;
+        private Panel panel2;
+        private Button button1;
     }
 }

@@ -24,7 +24,7 @@ namespace FilmsManage.GUI.UserControls
             _context = new DangPhimSV("https://localhost:7085");
 
             InitializeComponent();
-            LoadRevenue();          
+            LoadRevenue();
         }
         void LoadRevenue()
         {
@@ -34,11 +34,11 @@ namespace FilmsManage.GUI.UserControls
         }
         async void LoadMovieIntoCombobox()
         {
-            List<LoaiPhim> phimList = await _context.GetAsync<List<LoaiPhim>>("api/LoaiPhim");
+            var films = await _context.GetAsync<List<Phim>>("/api/Phim");
             //Bind dữ liệu vào combobox
-            cboSelectMovie.DataSource = phimList;
-            cboSelectMovie.DisplayMember = "TenTheLoai";
-            cboSelectMovie.ValueMember = "TenTheLoai";     
+            cboSelectMovie.DataSource = films;
+            cboSelectMovie.DisplayMember = "TenPhim";
+            cboSelectMovie.ValueMember = "MaPhim";
         }
         void LoadDateTimePickerRevenue()
         {
@@ -49,7 +49,10 @@ namespace FilmsManage.GUI.UserControls
         {
             CultureInfo culture = new CultureInfo("vi-VN");
 
-            var tenPhim = idMovie; // Tên phim cần tìm
+            if (!int.TryParse(idMovie, out var idPhim))
+            {
+                return;
+            }
             var ngayBatDau = fromDate;
             var ngayKetThuc = toDate;
 
@@ -59,61 +62,100 @@ namespace FilmsManage.GUI.UserControls
             //var maPhim  = phimList.Find(p => p.TenPhim == idMovie);
 
             List<XuatChieu> xuatChieuList = await _context.GetAsync<List<XuatChieu>>("api/XuatChieu");
-            List<Ve> veList = await _context.GetAsync<List<Ve>>("api/Ve");
             List<HoaDon> hoaDonList = await _context.GetAsync<List<HoaDon>>("api/HoaDon");
             List<LoaiPhim> LoaiPhim = await _context.GetAsync<List<LoaiPhim>>("api/LoaiPhim");
             List<TheLoaiCuaPhim> TheLoaiPhim = await _context.GetAsync<List<TheLoaiCuaPhim>>("api/LoaiCuaPhim");
-            List<ChiTietHoaDon> chiTietHoaDonList = await _context.GetAsync<List<ChiTietHoaDon>>($"api/CTHD");
+            List<ChiTietHoaDon> chiTietHoaDonList = await _context.GetAsync<List<ChiTietHoaDon>>($"api/CTHD/AllHD");
+            List<Ve> veList = await _context.GetAsync<List<Ve>>("api/Ve/VeDaBan");
+
+            var xuatChieuByPhim = xuatChieuList.Where(s => s.MaPhim == idPhim).ToList();
+            var maXuatChieuList = xuatChieuByPhim.Select(s => s.MaXuatChieu).ToList();
+
+            var maVeByXuatChieu = veList.Where(s => maXuatChieuList.Contains(s.MaXuatChieu))
+                .Select(s => s.MaVe)
+                .ToList();
 
 
-            var maLoaiPhim = LoaiPhim.Find(p => p.TenTheLoai == tenPhim) ;
-            if (maLoaiPhim != null)
+            var maHdByVe = chiTietHoaDonList
+                .Where(s => maVeByXuatChieu.Contains(s.MaVe))
+                .Select(s => s.MaHd)
+                .Distinct()
+                .ToList();
+
+            var listHdByMaHD = hoaDonList
+                .Where(s => maHdByVe.Contains(s.MaHd) && s.NgayTao >= fromDate && s.NgayTao <= toDate)
+                .ToList();
+
+            var doanhThuList = new List<dynamic>();
+            foreach (var item in listHdByMaHD)
             {
-
-
-
-                var maloai = maLoaiPhim.MaTheLoai;
-
-                // Truy vấn LINQ trên dữ liệu lấy từ API
-                var doanhThu = (from p in phimList
-                                join xc in xuatChieuList on p.MaPhim equals xc.MaPhim
-                                join v in veList on xc.MaXuatChieu equals v.MaXuatChieu
-                                join cthd in chiTietHoaDonList on v.MaVe equals cthd.MaVe
-                                join hd in hoaDonList on cthd.MaHd equals hd.MaHd
-                                join tlp in TheLoaiPhim on p.MaPhim equals tlp.Maphim
-                                join lp in LoaiPhim on tlp.MaTheLoai equals lp.MaTheLoai
-                                where lp.MaTheLoai == maloai &&
-                                      cthd.TimeDatVe >= ngayBatDau &&
-                                      cthd.TimeDatVe <= ngayKetThuc
-                                group cthd by new { p.TenPhim, p.NgayKc } into g
-                                select new DoanhThuPhim
-                                {
-                                    TenPhim = g.Key.TenPhim,
-                                    NgayKc = g.Key.NgayKc,
-                                    SoVeBan = g.Sum(x => x.SoLuong),
-                                    TongDoanhThu = g.Sum(x => x.MaVeNavigation.GiaVe * x.SoLuong)
-                                }).ToList();
-
-
-                List<DoanhThuPhim> doanhthuphim = (doanhThu);
-                dtgvRevenue.DataSource = doanhthuphim;
+                var doanhthuphim = new
+                {
+                    MaHd = item.MaHd,
+                    TenPhim = phimList.Find(p => p.MaPhim == idPhim)?.TenPhim,
+                    NgayKc = phimList.Find(p => p.MaPhim == idPhim)?.NgayKc,
+                    Soveban = chiTietHoaDonList.Where(s => s.MaHd == item.MaHd).ToList().Count(),
+                    TongDoanhThu = item.TongTien.ToString("N0")
+                };
+                doanhThuList.Add(doanhthuphim);
             }
+            dtgvRevenue.DataSource = doanhThuList;
+            //var maLoaiPhim = LoaiPhim.Find(p => p.TenTheLoai == tenPhim) ;
+            //if (maLoaiPhim != null)
+            //{
+
+
+
+            //    var maloai = maLoaiPhim.MaTheLoai;
+
+
+
+            //    // Truy vấn LINQ trên dữ liệu lấy từ API
+            //    var doanhThu = (from p in phimList
+            //                    join xc in xuatChieuList on p.MaPhim equals xc.MaPhim
+            //                    join v in veList on xc.MaXuatChieu equals v.MaXuatChieu
+            //                    join cthd in chiTietHoaDonList on v.MaVe equals cthd.MaVe
+            //                    join hd in hoaDonList on cthd.MaHd equals hd.MaHd
+            //                    join tlp in TheLoaiPhim on p.MaPhim equals tlp.Maphim
+            //                    join lp in LoaiPhim on tlp.MaTheLoai equals lp.MaTheLoai
+            //                    where lp.MaTheLoai == maloai &&
+            //                          cthd.TimeDatVe >= ngayBatDau &&
+            //                          cthd.TimeDatVe <= ngayKetThuc
+            //                    group cthd by new { p.TenPhim, p.NgayKc } into g
+            //                    select new DoanhThuPhim
+            //                    {
+            //                        TenPhim = g.Key.TenPhim,
+            //                        NgayKc = g.Key.NgayKc,
+            //                        SoVeBan = g.Sum(x => x.SoLuong),
+            //                        TongDoanhThu = g.Sum(x => x.MaVeNavigation.GiaVe * x.SoLuong)
+            //                    }).ToList();
+
+
+            //    List<DoanhThuPhim> doanhthuphim = (doanhThu);
+            //    dtgvRevenue.DataSource = doanhthuphim;
+            //}
             txtDoanhThu.Text = GetSumRevenue().ToString("c", culture);
 
         }
         decimal GetSumRevenue()
         {
-            decimal sum = 0;
-            foreach (DataGridViewRow row in dtgvRevenue.Rows)
-            {
-                sum += Convert.ToDecimal(row.Cells["tongDoanhThu"].Value);
-            }
-            return sum;
-        }       
+            return dtgvRevenue.Rows
+                .Cast<DataGridViewRow>()
+                .Sum(row => Convert.ToDecimal(row.Cells["tongDoanhThu"].Value));
+        }
+
         private void btnShowRevenue_Click(object sender, EventArgs e)
         {
             LoadRevenue(cboSelectMovie.SelectedValue.ToString(), dtmFromDate.Value, dtmToDate.Value);
 
-        }      
+        }
+
+        private void btnReportRevenue_Click(object sender, EventArgs e)
+        {
+            // Khởi tạo đối tượng ExcelExporter
+            var exporter = new ExcelExporter();
+            // Gọi hàm ExportDataGridViewToExcel và truyền vào DataGridView
+            exporter.ExportDataGridViewToExcel(dtgvRevenue);
+        }
     }
 }

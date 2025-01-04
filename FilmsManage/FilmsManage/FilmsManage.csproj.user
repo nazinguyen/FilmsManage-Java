@@ -52,9 +52,6 @@
     <Compile Update="GUI\UserControls\Data\ChucNang_Phim\Them_Sua.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="GUI\UserControls\Data\ChucNang_PhongChieu\ThemSua.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="GUI\UserControls\Data\CinemaUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -37,7 +37,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
         {
             try
             {
-                var phimList = await _lichChieuService.GetAsync<List<XuatChieu>>("/api/LichChieu/GetXuatChieu");
+                var phimList = await _lichChieuService.GetAsync<List<XuatChieu>>("/api/LichChieu/GetXuatChieuByTime");
                 var filteredPhimList = phimList.Where(item => item.ThoiGianBatDau > DateTime.Now).ToList();
                 foreach (var item in filteredPhimList)
                 {
@@ -200,7 +200,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 
         private void BuyTicket(int xuatChieuId)
         {
-           
+
             var themSua = mainForm.panel4.Controls.OfType<UserControl_BanVe.BanVe>().FirstOrDefault();
 
             if (themSua != null)
@@ -217,7 +217,7 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
             themSua.Dock = DockStyle.Fill;
             mainForm.panel4.Controls.Add(themSua);
 
-           
+
 
         }
 
@@ -334,6 +334,50 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
             foreach (var film in filmsToDisplay)
             {
                 LoadFilmToTextBox(film);
+            }
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+            var searchText = textBox1.Text.Trim().ToLower(); // Lấy giá trị tìm kiếm và chuyển thành chữ thường
+            var filteredFilms = films;
+
+            // Nếu có từ khóa tìm kiếm
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                filteredFilms = filteredFilms
+                    .Where(f => f.MaPhimNavigation.TenPhim.ToLower().Contains(searchText))
+                    .ToList();
+            }
+
+            // Kiểm tra nếu có thể loại đã chọn
+            if (comboBox1.SelectedValue is int selectedGenreId && selectedGenreId != 0)
+            {
+                filteredFilms = filteredFilms
+                    .Where(f => f.MaPhimNavigation.TheLoaiCuaPhims.Any(tl => tl.MaTheLoai == selectedGenreId))
+                    .ToList();
+            }
+
+            // Hiển thị các phim phù hợp với điều kiện tìm kiếm và thể loại
+            DisplayFilms(filteredFilms);
+        }
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+            if (comboBox1.SelectedValue is int selectedGenreId && selectedGenreId == 0)
+            {
+                DisplayFilms(films);
+            }
+            else if (comboBox1.SelectedValue is int validGenreId)
+            {
+                // Lọc danh sách phim theo thể loại được chọn
+                var filteredFilms = films.Where(f =>
+                    f.MaPhimNavigation.TheLoaiCuaPhims.Any(tl => tl.MaTheLoai == validGenreId)
+                ).ToList();
+
+                // Hiển thị các phim phù hợp với thể loại
+                DisplayFilms(filteredFilms);
             }
         }
     }

@@ -17,7 +17,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FilmsManage.GUI.UserControls.Data
 {
-
     public partial class PhimUC : UserControl
     {
 
@@ -244,9 +243,33 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show("Lỗi khi tải ảnh: " + ex.Message);
                 return null;
             }
-        }    
-        private void btnAddMovie_Click(object sender, EventArgs e)
+        }
+        private void btnAddMovie_Click_1(object sender, EventArgs e)
         {
+
+        }
+
+
+
+
+        private async void btnUpdate_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private async void btnDeleteMovie_Click_1(object sender, EventArgs e)
+        {
+         
+        }
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnInsertGenre_Click(object sender, EventArgs e)
+        {
+
             var themSua = dataUC.pnData.Controls.OfType<ChucNang_Phim.Them_Sua>().FirstOrDefault();
             if (themSua != null)
             {
@@ -268,7 +291,7 @@ namespace FilmsManage.GUI.UserControls.Data
             dataUC.pnData.Controls.Add(themSua);
         }
 
-        private async void btnUpdateMovie_Click(object sender, EventArgs e)
+        private async void btnUpdateGenre_Click(object sender, EventArgs e)
         {
             if (lwShow.SelectedItems.Count > 0)
             {
@@ -312,9 +335,10 @@ namespace FilmsManage.GUI.UserControls.Data
             {
                 MessageBox.Show("Vui lòng chọn phim để cập nhật");
             }
+
         }
 
-        private async void btnDeleteMovie_Click(object sender, EventArgs e)
+        private async void btnDeleteGenre_Click(object sender, EventArgs e)
         {
             if (lwShow.SelectedItems.Count > 0)
             {
@@ -355,6 +379,7 @@ namespace FilmsManage.GUI.UserControls.Data
                     }
 
                 }
+
 
             }
             else

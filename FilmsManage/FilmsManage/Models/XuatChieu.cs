@@ -12,6 +12,8 @@ public partial class XuatChieu
     public DateTime ThoiGianKetThuc { get; set; }
 
     public int MaPhong { get; set; }
+    public decimal? GiaCoBan { get; set; }
+
 
     public int MaPhim { get; set; }
     public bool Status { get; set; } = false;

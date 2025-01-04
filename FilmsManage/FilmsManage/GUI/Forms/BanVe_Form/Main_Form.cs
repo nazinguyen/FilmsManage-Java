@@ -110,14 +110,36 @@ namespace FilmsManage.GUI.Forms.BanVe_Form
 
         private void Main_Form_Load_1(object sender, EventArgs e)
         {
-            var token = TokenStorage.GetLoginResponse();
+            //var token = TokenStorage.GetLoginResponse();
 
-            userNameAlias.Text = "Xin chào, " + token.User.TenAlias;
+            //if (token != null && token.User != null)
+            //{
+            //    string fullName = token.User.TenNv;
+            //    int lastSpaceIndex = fullName.LastIndexOf(' ');
+
+            //    string lastName = (lastSpaceIndex != -1)
+            //        ? fullName.Substring(lastSpaceIndex + 1)
+            //        : fullName; // Nếu không có dấu cách, trả về toàn bộ chuỗi.
+
+            //    if (userNameAlias != null)
+            //    {
+            //        userNameAlias.Text = "Xin chào, " + lastName;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("userNameAlias chưa được khởi tạo.");
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Không có thông tin người dùng.");
+            //}
+
         }
 
         private void TimerLock_Tick(object sender, EventArgs e)
         {
-            lblTime.Text = DateTime.Now.ToString("HH:mm:ss  tt");
+            //lblTime.Text = DateTime.Now.ToString("HH:mm:ss  tt");
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -147,17 +169,17 @@ namespace FilmsManage.GUI.Forms.BanVe_Form
             if (btn == null) return;
 
             // Xóa vùng vẽ hiện tại
-            e.Graphics.Clear(Color.DarkSlateGray);
+            e.Graphics.Clear(Color.MidnightBlue);
 
             // Vẽ nền gradient
             using (LinearGradientBrush brush = new LinearGradientBrush(btn.ClientRectangle,
-                Color.Teal, Color.DarkSlateGray, 90F)) // Gradient theo góc 90 độ
+                Color.RoyalBlue, Color.MidnightBlue, 45F))
             {
                 e.Graphics.FillRectangle(brush, btn.ClientRectangle);
             }
 
             // Vẽ viền
-            using (Pen pen = new Pen(Color.LightSeaGreen, 3)) // Viền dày 3 pixel
+            using (Pen pen = new Pen(Color.LightSteelBlue, 2))
             {
                 e.Graphics.DrawRectangle(pen, 0, 0, btn.Width - 1, btn.Height - 1);
             }
@@ -167,5 +189,12 @@ namespace FilmsManage.GUI.Forms.BanVe_Form
                 Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Helper.TokenStorage.DeleteLoginResponse();
+            var loginForm = new Login();
+            loginForm.Show();
+            this.Hide();
+        }
     }
 }

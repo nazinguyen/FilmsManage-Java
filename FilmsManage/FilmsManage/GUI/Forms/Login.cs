@@ -2,7 +2,6 @@
 using FilmsManage.DTO;
 using FilmsManage.GUI.Forms;
 using FilmsManage.GUI.Forms.BanVe_Form;
-using FilmsManage.GUI.UserControls;
 using FilmsManage.Helper;
 using FilmsManage.Models;
 using FilmsManage.Services;
@@ -19,7 +18,7 @@ namespace FilmsManage
         {
             InitializeComponent();
             _sv = new DangPhimSV("https://localhost:7085");
-            //cbPassword.CheckedChanged += cbPassword_CheckedChanged;
+
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -44,18 +43,16 @@ namespace FilmsManage
 
         public string USER_NAME = "";
 
-        private async void registrationButton_Click(object sender, EventArgs e)
-		{
+        private async void btn_Login_Click(object sender, EventArgs e)
+        {
+          
+            string userName = txtUsername.Text;
 
-
-
-			string userName = txtUsername.Text;
+        
             NhanVien account = await _sv.GetAsync<NhanVien>($"api/NhanVien/byPhone/{userName}");
-            //NhanVien account = await _sv.GetAsync<NhanVien>($"api/NhanVien/{2}");
+            string passWord = txtPassword.Text.ToMd5Hash(account.RandomKey);
 
-			string passWord = txtPassword.Text.ToMd5Hash(account.RandomKey);
-
-			if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(passWord))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!");
                 return;
@@ -99,20 +96,16 @@ namespace FilmsManage
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-
-
-
-        private void cbPassword_CheckedChanged(object sender, EventArgs e)
-        {
-            txtPassword.PasswordChar = cbPassword.Checked ? '\0' : '*';
-        }
-
         private void btn_Register_Click(object sender, EventArgs e)
         {
             Register registerForm = new Register();
             registerForm.Show();
             this.Hide();
         }
+        private void cbPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !cbPassword.Checked;
 
+        }
     }
 }

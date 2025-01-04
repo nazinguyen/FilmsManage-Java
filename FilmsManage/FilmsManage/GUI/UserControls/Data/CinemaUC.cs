@@ -143,6 +143,88 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnInsertCinema_Click_1(object sender, EventArgs e)
         {
+          
+        }
+
+        private async void btnUpdateCinema_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private bool ValidateInput(out string errorMessage)
+        {
+            // Lấy giá trị từ các control
+            string tenPhong = txtCinemaName.Text.Trim();
+            string manHinh = cboCinemaScreenType.Text.Trim();
+            string soGheText = txtCinemaSeats.Text.Trim();
+            string gheMoiHangText = txtSeatsPerRow.Text.Trim();
+
+            // Kiểm tra tên phòng chiếu (không được bỏ trống, không chứa ký tự đặc biệt)
+            if (string.IsNullOrWhiteSpace(tenPhong))
+            {
+                errorMessage = "Vui lòng nhập tên phòng chiếu.";
+                return false;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(tenPhong, @"^[\p{L}\s0-9]+$"))
+            {
+                errorMessage = "Vui lòng nhập tên phòng chiếu hợp lệ (không có ký tự đặc biệt).";
+                return false;
+            }
+
+            // Kiểm tra loại màn hình (phải được chọn)
+            if (string.IsNullOrWhiteSpace(manHinh))
+            {
+                errorMessage = "Vui lòng chọn loại màn hình.";
+                return false;
+            }
+
+            // Kiểm tra số ghế (phải là số nguyên dương, nằm trong khoảng hợp lệ)
+            if (!int.TryParse(soGheText, out int soGhe) || soGhe <= 0)
+            {
+                errorMessage = "Số ghế phải là số nguyên dương.";
+                return false;
+            }
+            if (soGhe < 10 || soGhe > 500)
+            {
+                errorMessage = "Số ghế phải nằm trong khoảng từ 10 đến 500.";
+                return false;
+            }
+
+            // Kiểm tra số ghế mỗi hàng (phải là số nguyên dương và không vượt quá tổng số ghế)
+            if (!int.TryParse(gheMoiHangText, out int gheMoiHang) || gheMoiHang <= 0)
+            {
+                errorMessage = "Số ghế mỗi hàng phải là số nguyên dương.";
+                return false;
+            }
+            if (gheMoiHang > soGhe)
+            {
+                errorMessage = "Số ghế mỗi hàng không được lớn hơn tổng số ghế.";
+                return false;
+            }
+            if (soGhe % gheMoiHang != 0)
+            {
+                errorMessage = "Tổng số ghế phải chia hết cho số ghế mỗi hàng.";
+                return false;
+            }
+
+            // Nếu tất cả đều hợp lệ
+            errorMessage = null;
+            return true;
+        }
+
+        private async void btnExport_Click_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void cboCinemaScreenType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btnInsertCinema_Click(object sender, EventArgs e)
+        {
             string tenPhong = txtCinemaName.Text;
             string manHinh = cboCinemaScreenType.Text;
             int.TryParse(txtSeatsPerRow.Text, out int gheMoiHang);
@@ -250,7 +332,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateCinema_Click_1(object sender, EventArgs e)
+        private async void btnUpdateCinema_Click(object sender, EventArgs e)
         {
             string tenPC = txtCinemaName.Text.Trim();
             string tenMH = cboCinemaScreenType.Text.Trim();
@@ -290,69 +372,12 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private bool ValidateInput(out string errorMessage)
+        private void btnDeleteGenre_Click(object sender, EventArgs e)
         {
-            // Lấy giá trị từ các control
-            string tenPhong = txtCinemaName.Text.Trim();
-            string manHinh = cboCinemaScreenType.Text.Trim();
-            string soGheText = txtCinemaSeats.Text.Trim();
-            string gheMoiHangText = txtSeatsPerRow.Text.Trim();
 
-            // Kiểm tra tên phòng chiếu (không được bỏ trống, không chứa ký tự đặc biệt)
-            if (string.IsNullOrWhiteSpace(tenPhong))
-            {
-                errorMessage = "Vui lòng nhập tên phòng chiếu.";
-                return false;
-            }
-
-            if (!System.Text.RegularExpressions.Regex.IsMatch(tenPhong, @"^[a-zA-Z0-9\s]+$"))
-            {
-                errorMessage = "Vui lòng nhập tên phòng chiếu hợp lệ (không có ký tự đặc biệt).";
-                return false;
-            }
-
-            // Kiểm tra loại màn hình (phải được chọn)
-            if (string.IsNullOrWhiteSpace(manHinh))
-            {
-                errorMessage = "Vui lòng chọn loại màn hình.";
-                return false;
-            }
-
-            // Kiểm tra số ghế (phải là số nguyên dương, nằm trong khoảng hợp lệ)
-            if (!int.TryParse(soGheText, out int soGhe) || soGhe <= 0)
-            {
-                errorMessage = "Số ghế phải là số nguyên dương.";
-                return false;
-            }
-            if (soGhe < 10 || soGhe > 500)
-            {
-                errorMessage = "Số ghế phải nằm trong khoảng từ 10 đến 500.";
-                return false;
-            }
-
-            // Kiểm tra số ghế mỗi hàng (phải là số nguyên dương và không vượt quá tổng số ghế)
-            if (!int.TryParse(gheMoiHangText, out int gheMoiHang) || gheMoiHang <= 0)
-            {
-                errorMessage = "Số ghế mỗi hàng phải là số nguyên dương.";
-                return false;
-            }
-            if (gheMoiHang > soGhe)
-            {
-                errorMessage = "Số ghế mỗi hàng không được lớn hơn tổng số ghế.";
-                return false;
-            }
-            if (soGhe % gheMoiHang != 0)
-            {
-                errorMessage = "Tổng số ghế phải chia hết cho số ghế mỗi hàng.";
-                return false;
-            }
-
-            // Nếu tất cả đều hợp lệ
-            errorMessage = null;
-            return true;
         }
 
-        private async void btnExport_Click_1(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
             if (dtgvCinema.DataSource is not null)
             {
