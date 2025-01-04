@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            pnlLoaiPhim = new Panel();
+            pnlLoaiPhim1 = new Panel();
             btnUpLoadPictureFilm = new Button();
             picFilm = new PictureBox();
             dtmMovieEnd = new DateTimePicker();
@@ -61,21 +61,21 @@
             ((System.ComponentModel.ISupportInitialize)picFilm).BeginInit();
             SuspendLayout();
             // 
-            // pnlLoaiPhim
+            // pnlLoaiPhim1
             // 
-            pnlLoaiPhim.AutoScroll = true;
-            pnlLoaiPhim.Location = new Point(167, 426);
-            pnlLoaiPhim.Margin = new Padding(2);
-            pnlLoaiPhim.Name = "pnlLoaiPhim";
-            pnlLoaiPhim.Size = new Size(281, 157);
-            pnlLoaiPhim.TabIndex = 129;
+            pnlLoaiPhim1.AutoScroll = true;
+            pnlLoaiPhim1.Location = new Point(209, 532);
+            pnlLoaiPhim1.Margin = new Padding(2);
+            pnlLoaiPhim1.Name = "pnlLoaiPhim1";
+            pnlLoaiPhim1.Size = new Size(351, 196);
+            pnlLoaiPhim1.TabIndex = 129;
             // 
             // btnUpLoadPictureFilm
             // 
-            btnUpLoadPictureFilm.Location = new Point(1019, 458);
-            btnUpLoadPictureFilm.Margin = new Padding(3, 2, 3, 2);
+            btnUpLoadPictureFilm.Location = new Point(1274, 572);
+            btnUpLoadPictureFilm.Margin = new Padding(4, 2, 4, 2);
             btnUpLoadPictureFilm.Name = "btnUpLoadPictureFilm";
-            btnUpLoadPictureFilm.Size = new Size(132, 28);
+            btnUpLoadPictureFilm.Size = new Size(165, 35);
             btnUpLoadPictureFilm.TabIndex = 128;
             btnUpLoadPictureFilm.Text = "Chọn hình ảnh";
             btnUpLoadPictureFilm.UseVisualStyleBackColor = true;
@@ -84,10 +84,10 @@
             // picFilm
             // 
             picFilm.BorderStyle = BorderStyle.FixedSingle;
-            picFilm.Location = new Point(993, 198);
-            picFilm.Margin = new Padding(3, 2, 3, 2);
+            picFilm.Location = new Point(1241, 248);
+            picFilm.Margin = new Padding(4, 2, 4, 2);
             picFilm.Name = "picFilm";
-            picFilm.Size = new Size(189, 240);
+            picFilm.Size = new Size(236, 300);
             picFilm.SizeMode = PictureBoxSizeMode.StretchImage;
             picFilm.TabIndex = 127;
             picFilm.TabStop = false;
@@ -95,52 +95,53 @@
             // dtmMovieEnd
             // 
             dtmMovieEnd.Format = DateTimePickerFormat.Short;
-            dtmMovieEnd.Location = new Point(703, 281);
-            dtmMovieEnd.Margin = new Padding(3, 2, 3, 2);
+            dtmMovieEnd.Location = new Point(879, 351);
+            dtmMovieEnd.Margin = new Padding(4, 2, 4, 2);
             dtmMovieEnd.Name = "dtmMovieEnd";
-            dtmMovieEnd.Size = new Size(204, 27);
+            dtmMovieEnd.Size = new Size(254, 31);
             dtmMovieEnd.TabIndex = 126;
             // 
             // dtmMovieStart
             // 
             dtmMovieStart.Format = DateTimePickerFormat.Short;
-            dtmMovieStart.Location = new Point(703, 237);
-            dtmMovieStart.Margin = new Padding(3, 2, 3, 2);
+            dtmMovieStart.Location = new Point(879, 296);
+            dtmMovieStart.Margin = new Padding(4, 2, 4, 2);
             dtmMovieStart.Name = "dtmMovieStart";
-            dtmMovieStart.Size = new Size(204, 27);
+            dtmMovieStart.Size = new Size(254, 31);
             dtmMovieStart.TabIndex = 125;
             // 
             // txtMovieDirector
             // 
-            txtMovieDirector.Location = new Point(702, 382);
-            txtMovieDirector.Margin = new Padding(3, 2, 3, 2);
+            txtMovieDirector.Location = new Point(878, 478);
+            txtMovieDirector.Margin = new Padding(4, 2, 4, 2);
             txtMovieDirector.Name = "txtMovieDirector";
-            txtMovieDirector.Size = new Size(204, 27);
+            txtMovieDirector.Size = new Size(254, 31);
             txtMovieDirector.TabIndex = 122;
             // 
             // txtDoTuoi
             // 
-            txtDoTuoi.Location = new Point(702, 334);
-            txtDoTuoi.Margin = new Padding(3, 2, 3, 2);
+            txtDoTuoi.Location = new Point(878, 418);
+            txtDoTuoi.Margin = new Padding(4, 2, 4, 2);
             txtDoTuoi.Name = "txtDoTuoi";
-            txtDoTuoi.Size = new Size(204, 27);
+            txtDoTuoi.Size = new Size(254, 31);
             txtDoTuoi.TabIndex = 121;
             // 
             // txtMovieLength
             // 
-            txtMovieLength.Location = new Point(703, 194);
-            txtMovieLength.Margin = new Padding(3, 2, 3, 2);
+            txtMovieLength.Location = new Point(879, 242);
+            txtMovieLength.Margin = new Padding(4, 2, 4, 2);
             txtMovieLength.Name = "txtMovieLength";
-            txtMovieLength.Size = new Size(204, 27);
+            txtMovieLength.Size = new Size(254, 31);
             txtMovieLength.TabIndex = 120;
             // 
             // lblMovieEndDate
             // 
             lblMovieEndDate.AutoSize = true;
             lblMovieEndDate.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieEndDate.Location = new Point(567, 281);
+            lblMovieEndDate.Location = new Point(709, 351);
+            lblMovieEndDate.Margin = new Padding(4, 0, 4, 0);
             lblMovieEndDate.Name = "lblMovieEndDate";
-            lblMovieEndDate.Size = new Size(92, 23);
+            lblMovieEndDate.Size = new Size(111, 26);
             lblMovieEndDate.TabIndex = 117;
             lblMovieEndDate.Text = "Ngày KT:";
             // 
@@ -148,9 +149,10 @@
             // 
             lblMovieStartDate.AutoSize = true;
             lblMovieStartDate.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieStartDate.Location = new Point(567, 237);
+            lblMovieStartDate.Location = new Point(709, 296);
+            lblMovieStartDate.Margin = new Padding(4, 0, 4, 0);
             lblMovieStartDate.Name = "lblMovieStartDate";
-            lblMovieStartDate.Size = new Size(94, 23);
+            lblMovieStartDate.Size = new Size(115, 26);
             lblMovieStartDate.TabIndex = 115;
             lblMovieStartDate.Text = "Ngày KC:";
             // 
@@ -158,28 +160,30 @@
             // 
             lblMovieLength.AutoSize = true;
             lblMovieLength.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieLength.Location = new Point(567, 192);
+            lblMovieLength.Location = new Point(709, 240);
+            lblMovieLength.Margin = new Padding(4, 0, 4, 0);
             lblMovieLength.Name = "lblMovieLength";
-            lblMovieLength.Size = new Size(109, 23);
+            lblMovieLength.Size = new Size(133, 26);
             lblMovieLength.TabIndex = 108;
             lblMovieLength.Text = "Thời lượng:";
             // 
             // txtMovieDesc
             // 
-            txtMovieDesc.Location = new Point(210, 281);
-            txtMovieDesc.Margin = new Padding(3, 2, 3, 2);
+            txtMovieDesc.Location = new Point(262, 351);
+            txtMovieDesc.Margin = new Padding(4, 2, 4, 2);
             txtMovieDesc.Multiline = true;
             txtMovieDesc.Name = "txtMovieDesc";
-            txtMovieDesc.Size = new Size(204, 26);
+            txtMovieDesc.Size = new Size(254, 32);
             txtMovieDesc.TabIndex = 119;
             // 
             // lblMovieYear
             // 
             lblMovieYear.AutoSize = true;
             lblMovieYear.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieYear.Location = new Point(566, 423);
+            lblMovieYear.Location = new Point(708, 529);
+            lblMovieYear.Margin = new Padding(4, 0, 4, 0);
             lblMovieYear.Name = "lblMovieYear";
-            lblMovieYear.Size = new Size(124, 26);
+            lblMovieYear.Size = new Size(151, 32);
             lblMovieYear.TabIndex = 114;
             lblMovieYear.Text = "Dạng phim";
             // 
@@ -187,9 +191,10 @@
             // 
             lblMovieGenre.AutoSize = true;
             lblMovieGenre.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieGenre.Location = new Point(64, 423);
+            lblMovieGenre.Location = new Point(80, 529);
+            lblMovieGenre.Margin = new Padding(4, 0, 4, 0);
             lblMovieGenre.Name = "lblMovieGenre";
-            lblMovieGenre.Size = new Size(103, 26);
+            lblMovieGenre.Size = new Size(122, 32);
             lblMovieGenre.TabIndex = 113;
             lblMovieGenre.Text = "Thể loại:";
             // 
@@ -197,9 +202,10 @@
             // 
             lblMovieDirector.AutoSize = true;
             lblMovieDirector.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieDirector.Location = new Point(566, 376);
+            lblMovieDirector.Location = new Point(708, 470);
+            lblMovieDirector.Margin = new Padding(4, 0, 4, 0);
             lblMovieDirector.Name = "lblMovieDirector";
-            lblMovieDirector.Size = new Size(111, 26);
+            lblMovieDirector.Size = new Size(133, 32);
             lblMovieDirector.TabIndex = 112;
             lblMovieDirector.Text = "Đạo diễn:";
             // 
@@ -207,9 +213,10 @@
             // 
             lblMovieProductor.AutoSize = true;
             lblMovieProductor.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieProductor.Location = new Point(566, 328);
+            lblMovieProductor.Location = new Point(708, 410);
+            lblMovieProductor.Margin = new Padding(4, 0, 4, 0);
             lblMovieProductor.Name = "lblMovieProductor";
-            lblMovieProductor.Size = new Size(95, 26);
+            lblMovieProductor.Size = new Size(114, 32);
             lblMovieProductor.TabIndex = 111;
             lblMovieProductor.Text = "Độ tuổi:";
             // 
@@ -217,54 +224,57 @@
             // 
             lblMovieDesc.AutoSize = true;
             lblMovieDesc.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieDesc.Location = new Point(74, 281);
+            lblMovieDesc.Location = new Point(92, 351);
+            lblMovieDesc.Margin = new Padding(4, 0, 4, 0);
             lblMovieDesc.Name = "lblMovieDesc";
-            lblMovieDesc.Size = new Size(81, 26);
+            lblMovieDesc.Size = new Size(97, 32);
             lblMovieDesc.TabIndex = 110;
             lblMovieDesc.Text = "Mô tả:";
             // 
             // txtMovieName
             // 
-            txtMovieName.Location = new Point(210, 238);
-            txtMovieName.Margin = new Padding(3, 2, 3, 2);
+            txtMovieName.Location = new Point(262, 298);
+            txtMovieName.Margin = new Padding(4, 2, 4, 2);
             txtMovieName.Name = "txtMovieName";
-            txtMovieName.Size = new Size(204, 27);
+            txtMovieName.Size = new Size(254, 31);
             txtMovieName.TabIndex = 124;
             // 
             // lblMovieName
             // 
             lblMovieName.AutoSize = true;
             lblMovieName.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieName.Location = new Point(74, 236);
+            lblMovieName.Location = new Point(92, 295);
+            lblMovieName.Margin = new Padding(4, 0, 4, 0);
             lblMovieName.Name = "lblMovieName";
-            lblMovieName.Size = new Size(117, 26);
+            lblMovieName.Size = new Size(142, 32);
             lblMovieName.TabIndex = 109;
             lblMovieName.Text = "Tên phim:";
             // 
             // txtMovieID
             // 
-            txtMovieID.Location = new Point(210, 194);
-            txtMovieID.Margin = new Padding(3, 2, 3, 2);
+            txtMovieID.Location = new Point(262, 242);
+            txtMovieID.Margin = new Padding(4, 2, 4, 2);
             txtMovieID.Name = "txtMovieID";
-            txtMovieID.Size = new Size(204, 27);
+            txtMovieID.Size = new Size(254, 31);
             txtMovieID.TabIndex = 118;
             // 
             // lblMovieID
             // 
             lblMovieID.AutoSize = true;
             lblMovieID.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblMovieID.Location = new Point(74, 188);
+            lblMovieID.Location = new Point(92, 235);
+            lblMovieID.Margin = new Padding(4, 0, 4, 0);
             lblMovieID.Name = "lblMovieID";
-            lblMovieID.Size = new Size(113, 26);
+            lblMovieID.Size = new Size(137, 32);
             lblMovieID.TabIndex = 116;
             lblMovieID.Text = "Mã phim:";
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(210, 624);
+            btnHuy.Location = new Point(262, 780);
             btnHuy.Margin = new Padding(2);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(302, 43);
+            btnHuy.Size = new Size(378, 54);
             btnHuy.TabIndex = 130;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
@@ -272,10 +282,10 @@
             // 
             // btnSua
             // 
-            btnSua.Location = new Point(590, 624);
+            btnSua.Location = new Point(738, 780);
             btnSua.Margin = new Padding(2);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(302, 43);
+            btnSua.Size = new Size(378, 54);
             btnSua.TabIndex = 131;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
@@ -283,10 +293,10 @@
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(590, 624);
+            btnThem.Location = new Point(738, 780);
             btnThem.Margin = new Padding(2);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(302, 43);
+            btnThem.Size = new Size(378, 54);
             btnThem.TabIndex = 132;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
@@ -296,55 +306,57 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(74, 326);
+            label1.Location = new Point(92, 408);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(93, 26);
+            label1.Size = new Size(112, 32);
             label1.TabIndex = 133;
             label1.Text = "Ghi chú";
             // 
             // txtGhiChu
             // 
-            txtGhiChu.Location = new Point(210, 328);
-            txtGhiChu.Margin = new Padding(3, 2, 3, 2);
+            txtGhiChu.Location = new Point(262, 410);
+            txtGhiChu.Margin = new Padding(4, 2, 4, 2);
             txtGhiChu.Multiline = true;
             txtGhiChu.Name = "txtGhiChu";
-            txtGhiChu.Size = new Size(204, 26);
+            txtGhiChu.Size = new Size(254, 32);
             txtGhiChu.TabIndex = 134;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(74, 366);
+            label2.Location = new Point(92, 458);
+            label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(105, 26);
+            label2.Size = new Size(127, 32);
             label2.TabIndex = 135;
             label2.Text = "Nội dung";
             // 
             // txtNoiDung
             // 
-            txtNoiDung.Location = new Point(210, 368);
-            txtNoiDung.Margin = new Padding(3, 2, 3, 2);
+            txtNoiDung.Location = new Point(262, 460);
+            txtNoiDung.Margin = new Padding(4, 2, 4, 2);
             txtNoiDung.Multiline = true;
             txtNoiDung.Name = "txtNoiDung";
-            txtNoiDung.Size = new Size(204, 26);
+            txtNoiDung.Size = new Size(254, 32);
             txtNoiDung.TabIndex = 136;
             // 
             // ccbDangPhim
             // 
             ccbDangPhim.FormattingEnabled = true;
-            ccbDangPhim.Location = new Point(703, 422);
+            ccbDangPhim.Location = new Point(879, 528);
             ccbDangPhim.Margin = new Padding(2);
             ccbDangPhim.Name = "ccbDangPhim";
-            ccbDangPhim.Size = new Size(204, 28);
+            ccbDangPhim.Size = new Size(254, 33);
             ccbDangPhim.TabIndex = 137;
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(426, 624);
+            btnBack.Location = new Point(532, 780);
             btnBack.Margin = new Padding(2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(302, 43);
+            btnBack.Size = new Size(378, 54);
             btnBack.TabIndex = 138;
             btnBack.Text = "Quay lại";
             btnBack.UseVisualStyleBackColor = true;
@@ -352,7 +364,7 @@
             // 
             // Them_Sua
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSteelBlue;
             Controls.Add(btnBack);
@@ -364,7 +376,7 @@
             Controls.Add(btnThem);
             Controls.Add(btnSua);
             Controls.Add(btnHuy);
-            Controls.Add(pnlLoaiPhim);
+            Controls.Add(pnlLoaiPhim1);
             Controls.Add(btnUpLoadPictureFilm);
             Controls.Add(picFilm);
             Controls.Add(dtmMovieEnd);
@@ -387,7 +399,7 @@
             Controls.Add(lblMovieID);
             Margin = new Padding(2);
             Name = "Them_Sua";
-            Size = new Size(1234, 710);
+            Size = new Size(1542, 888);
             ((System.ComponentModel.ISupportInitialize)picFilm).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -425,5 +437,6 @@
         private TextBox txtNoiDung;
         private ComboBox ccbDangPhim;
         private Button btnBack;
+        private Panel pnlLoaiPhim1;
     }
 }

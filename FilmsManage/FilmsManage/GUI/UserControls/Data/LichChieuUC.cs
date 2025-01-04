@@ -200,6 +200,7 @@ namespace FilmsManage.GUI.UserControls.Data
             var maPhong = Convert.ToInt32(cbbPhongChieu.SelectedValue);
             DateTime thoiGianBd = dateStart.Value.Add(timeStart.Value.TimeOfDay);
             DateTime thoiGianKt = dateStart.Value.Add(timeEnd.Value.TimeOfDay);
+            var giaCoBan = decimal.Parse(txtBasePrice.Text);
 
             // Lấy danh sách phòng chiếu
             var phongChieuList = await _dangPhimSV.GetAsync<List<PhongChieu>>("/api/PhongChieu");
@@ -226,7 +227,8 @@ namespace FilmsManage.GUI.UserControls.Data
                 MaPhim = maPhim,
                 MaPhong = maPhong,
                 ThoiGianBatDau = thoiGianBd,
-                ThoiGianKetThuc = thoiGianKt
+                ThoiGianKetThuc = thoiGianKt,
+                GiaCoBan = giaCoBan
             };
 
             try
@@ -274,7 +276,8 @@ namespace FilmsManage.GUI.UserControls.Data
                 MaPhim = maPhim,
                 MaPhong = maPhong,
                 ThoiGianBatDau = thoiGianBd,
-                ThoiGianKetThuc = thoiGianKt
+                ThoiGianKetThuc = thoiGianKt,
+                GiaCoBan = decimal.Parse(txtBasePrice.Text)
             };
 
             try

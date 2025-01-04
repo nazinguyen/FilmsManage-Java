@@ -243,7 +243,9 @@ namespace FilmsManage.GUI.UserControls.Data
                 //Tạo vé cho mỗi ghế trong phòng chiếu
                 foreach (var ghe in listGheFromApi)
                 {
-                    decimal giaVe = (ghe.MaLoaiGhe == loaiGheVIP) ? 200000 : 100000;
+                    decimal giaVe = (ghe.MaLoaiGhe == loaiGheVIP)
+                        ? ((xuatChieu.GiaCoBan ?? 0) * 0.5m)
+                        : (xuatChieu.GiaCoBan ?? 0);
                     Debug.WriteLine(giaVe);
                     Debug.WriteLine(maXuatChieu);
                     Debug.WriteLine(ghe.MaGhe);

@@ -691,7 +691,8 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 
                     TongTien = (listVe?.Sum(v => v.GiaVe) ?? 0) + (foods?.Sum(f => f.Quantity * f.Price) ?? 0),
                     MaNv = loginResponse.User.MaNv,
-                    MaKh = null
+                    MaKh = null,
+                    NgayTao = DateTime.Now
                 };
 
                 var saveBill = await _sv.PostAsync<HoaDon>("/api/BanVe/AddBill", hoaDon);
@@ -770,7 +771,8 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 
                     TongTien = listVe.Sum(v => v.GiaVe),
                     MaNv = loginResponse.User.MaNv,
-                    MaKh = khachHang.MaKh
+                    MaKh = khachHang.MaKh,
+                    NgayTao = DateTime.Now
                 };
 
                 var saveBill = await _sv.PostAsync<HoaDon>("/api/BanVe/AddBill", hoaDon);

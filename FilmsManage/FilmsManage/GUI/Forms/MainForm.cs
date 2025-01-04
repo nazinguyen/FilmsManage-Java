@@ -100,7 +100,7 @@ namespace FilmsManage.GUI.Forms
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
-			userNameAlias.Text = "Chào mừng, " + Helper.TokenStorage.GetLoginResponse().User.TenAlias;
+			userNameAlias.Text = "Chào mừng, " + Helper.TokenStorage.GetLoginResponse().User.TenNv;
 
 		}
 

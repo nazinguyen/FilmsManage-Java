@@ -34,6 +34,7 @@
             lblDenNgay = new Label();
             label1 = new Label();
             dtgvRevenue = new DataGridView();
+            MaHD = new DataGridViewTextBoxColumn();
             tenPhim = new DataGridViewTextBoxColumn();
             ngayKc = new DataGridViewTextBoxColumn();
             Soveban = new DataGridViewTextBoxColumn();
@@ -107,14 +108,22 @@
             dtgvRevenue.AllowUserToDeleteRows = false;
             dtgvRevenue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgvRevenue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtgvRevenue.Columns.AddRange(new DataGridViewColumn[] { tenPhim, ngayKc, Soveban, tongDoanhThu });
-            dtgvRevenue.Location = new Point(250, 191);
+            dtgvRevenue.Columns.AddRange(new DataGridViewColumn[] { MaHD, tenPhim, ngayKc, Soveban, tongDoanhThu });
+            dtgvRevenue.Location = new Point(179, 188);
             dtgvRevenue.Margin = new Padding(4, 5, 4, 5);
             dtgvRevenue.Name = "dtgvRevenue";
             dtgvRevenue.ReadOnly = true;
             dtgvRevenue.RowHeadersWidth = 62;
             dtgvRevenue.Size = new Size(1291, 577);
             dtgvRevenue.TabIndex = 34;
+            // 
+            // MaHD
+            // 
+            MaHD.DataPropertyName = "MaHD";
+            MaHD.HeaderText = "Mã Hóa Đơn";
+            MaHD.MinimumWidth = 8;
+            MaHD.Name = "MaHD";
+            MaHD.ReadOnly = true;
             // 
             // tenPhim
             // 
@@ -161,6 +170,7 @@
             btnReportRevenue.TabIndex = 32;
             btnReportRevenue.Text = "Báo Cáo";
             btnReportRevenue.UseVisualStyleBackColor = false;
+            btnReportRevenue.Click += btnReportRevenue_Click;
             // 
             // btnShowRevenue
             // 
@@ -243,6 +253,7 @@
         private System.Windows.Forms.ComboBox cboSelectMovie;
         private System.Windows.Forms.DateTimePicker dtmToDate;
         private System.Windows.Forms.DateTimePicker dtmFromDate;
+        private DataGridViewTextBoxColumn MaHD;
         private DataGridViewTextBoxColumn tenPhim;
         private DataGridViewTextBoxColumn ngayKc;
         private DataGridViewTextBoxColumn Soveban;

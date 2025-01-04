@@ -191,7 +191,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
         {
             var danhSachLoaiPhim = new List<TheLoaiCuaPhim>();
 
-            foreach (var control in pnlLoaiPhim.Controls)
+            foreach (var control in pnlLoaiPhim1.Controls)
             {
                 if (control is CheckBox checkBox && checkBox.Checked)
                 {
@@ -216,7 +216,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
 
         public async Task loadLoaiPhim_Update(List<TheLoaiCuaPhim> loaiCuaPhim)
         {
-            pnlLoaiPhim.Controls.Clear();
+            pnlLoaiPhim1.Controls.Clear();
 
             // Lấy danh sách các loại phim từ API
             var loaiPhim = await _dangPhimSV.GetAsync<List<LoaiPhim>>("/api/LoaiPhim");
@@ -259,7 +259,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 {
                     Debug.WriteLine("khớp");
                 }
-                pnlLoaiPhim.Controls.Add(checkbox);
+                pnlLoaiPhim1.Controls.Add(checkbox);
 
                 i++;
             }
@@ -448,7 +448,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
         public async Task ThemLoaiChoPhim(int idPhim)
         {
             // Lấy danh sách ID của các loại phim đã được chọn
-            var selectedLoaiPhimIds = pnlLoaiPhim.Controls.OfType<CheckBox>()
+            var selectedLoaiPhimIds = pnlLoaiPhim1.Controls.OfType<CheckBox>()
                 .Where(cb => cb.Checked) // Chỉ lấy các checkbox được chọn
                 .Select(cb => int.Parse(cb.Tag.ToString())) // Giả sử bạn lưu `idLoaiPhim` trong thuộc tính `Tag`
                 .ToList();
@@ -515,7 +515,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 };
 
                 // Thêm checkbox vào Panel
-                pnlLoaiPhim.Controls.Add(checkbox);
+                pnlLoaiPhim1.Controls.Add(checkbox);
 
                 i++;
             }

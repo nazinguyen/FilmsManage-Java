@@ -244,7 +244,7 @@ namespace FilmsManage.GUI.UserControls.Data
                 MessageBox.Show("Lỗi khi tải ảnh: " + ex.Message);
                 return null;
             }
-        }    
+        }
         private void btnAddMovie_Click(object sender, EventArgs e)
         {
             var themSua = dataUC.pnData.Controls.OfType<ChucNang_Phim.Them_Sua>().FirstOrDefault();
@@ -370,6 +370,11 @@ namespace FilmsManage.GUI.UserControls.Data
 
             // Gọi hàm ExportListViewToExcel và truyền vào ListView
             exporter.ExportListViewToExcel(lwShow);
+        }
+
+        private void pnlLoaiPhim_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
