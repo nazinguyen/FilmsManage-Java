@@ -1,4 +1,4 @@
-﻿namespace FilmsManage
+namespace FilmsManage
 {
     partial class Login
     {
@@ -28,182 +28,286 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label5 = new Label();
-            clearButton = new Button();
-            cbPassword = new CheckBox();
-            label2 = new Label();
-            txtUsername = new TextBox();
+            components = new System.ComponentModel.Container();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            guna2Elipse1 = new Guna.UI2.WinForms.Guna2Elipse(components);
+            guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(components);
+            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            btn_Login = new Guna.UI2.WinForms.Guna2Button();
             label1 = new Label();
-            label3 = new Label();
-            txtPassword = new TextBox();
-            btn_Login = new Button();
-            btn_Register = new Button();
+            cbPassword = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
+            guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            clearButton = new Guna.UI2.WinForms.Guna2ControlBox();
+            guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
+            guna2ShadowForm1 = new Guna.UI2.WinForms.Guna2ShadowForm(components);
+            guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(components);
+            guna2Panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
+            guna2Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             SuspendLayout();
             // 
-            // label5
+            // guna2Elipse1
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Nirmala UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.DimGray;
-            label5.Location = new Point(104, 633);
-            label5.Name = "label5";
-            label5.Size = new Size(174, 25);
-            label5.TabIndex = 20;
-            label5.Text = "Create an account?";
+            guna2Elipse1.TargetControl = this;
             // 
-            // clearButton
+            // guna2DragControl1
             // 
-            clearButton.BackColor = Color.White;
-            clearButton.Cursor = Cursors.Hand;
-            clearButton.FlatAppearance.BorderSize = 2;
-            clearButton.FlatStyle = FlatStyle.Flat;
-            clearButton.ForeColor = Color.DimGray;
-            clearButton.Location = new Point(359, 19);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(29, 35);
-            clearButton.TabIndex = 4;
-            clearButton.Text = "X";
-            clearButton.UseVisualStyleBackColor = false;
-            clearButton.Click += clearButton_Click;
+            guna2DragControl1.ContainerControl = this;
+            guna2DragControl1.DockIndicatorTransparencyValue = 0.6D;
+            guna2DragControl1.TargetControl = guna2Panel2;
+            guna2DragControl1.UseTransparentDrag = true;
             // 
-            // cbPassword
+            // guna2Panel2
             // 
-            cbPassword.AutoSize = true;
-            cbPassword.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            cbPassword.ForeColor = Color.FromArgb(64, 64, 64);
-            cbPassword.Location = new Point(32, 272);
-            cbPassword.Name = "cbPassword";
-            cbPassword.Size = new Size(184, 25);
-            cbPassword.TabIndex = 16;
-            cbPassword.Text = "Hiển thị mật khẩu";
-            cbPassword.UseVisualStyleBackColor = true;
+            guna2Panel2.BackColor = Color.FromArgb(0, 9, 43);
+            guna2Panel2.Controls.Add(btn_Login);
+            guna2Panel2.Controls.Add(label1);
+            guna2Panel2.Controls.Add(cbPassword);
+            guna2Panel2.Controls.Add(txtPassword);
+            guna2Panel2.Controls.Add(txtUsername);
+            guna2Panel2.Controls.Add(guna2PictureBox1);
+            guna2Panel2.CustomizableEdges = customizableEdges11;
+            guna2Panel2.Dock = DockStyle.Left;
+            guna2Panel2.Location = new Point(0, 0);
+            guna2Panel2.Margin = new Padding(4, 5, 4, 5);
+            guna2Panel2.Name = "guna2Panel2";
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            guna2Panel2.Size = new Size(456, 500);
+            guna2Panel2.TabIndex = 3;
             // 
-            // label2
+            // btn_Login
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            label2.ForeColor = Color.FromArgb(64, 64, 64);
-            label2.Location = new Point(29, 209);
-            label2.Name = "label2";
-            label2.Size = new Size(88, 21);
-            label2.TabIndex = 8;
-            label2.Text = "Mật khẩu";
-            // 
-            // txtUsername
-            // 
-            txtUsername.BackColor = Color.FromArgb(230, 231, 233);
-            txtUsername.BorderStyle = BorderStyle.None;
-            txtUsername.Font = new Font("Arial", 12F);
-            txtUsername.Location = new Point(32, 163);
-            txtUsername.Multiline = true;
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(330, 28);
-            txtUsername.TabIndex = 0;
+            btn_Login.Animated = true;
+            btn_Login.BackColor = Color.Transparent;
+            btn_Login.BorderRadius = 10;
+            btn_Login.CustomizableEdges = customizableEdges1;
+            btn_Login.FillColor = Color.FromArgb(193, 20, 137);
+            btn_Login.Font = new Font("Segoe UI", 9F);
+            btn_Login.ForeColor = Color.White;
+            btn_Login.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btn_Login.Location = new Point(59, 372);
+            btn_Login.Margin = new Padding(4, 5, 4, 5);
+            btn_Login.Name = "btn_Login";
+            btn_Login.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btn_Login.Size = new Size(335, 60);
+            btn_Login.TabIndex = 6;
+            btn_Login.Text = "Đăng nhập";
+            btn_Login.UseTransparentBackground = true;
+            btn_Login.Click += btn_Login_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(29, 133);
+            label1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(113, 311);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(94, 21);
-            label1.TabIndex = 9;
-            label1.Text = "Tài khoản";
+            label1.Size = new Size(119, 19);
+            label1.TabIndex = 4;
+            label1.Text = "Hiển thị mật khẩu";
             // 
-            // label3
+            // cbPassword
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Arial", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(32, 61);
-            label3.Name = "label3";
-            label3.Size = new Size(244, 27);
-            label3.TabIndex = 6;
-            label3.Text = "Đăng nhập tài khoản";
+            cbPassword.Animated = true;
+            cbPassword.CheckedState.BorderColor = Color.FromArgb(234, 153, 149);
+            cbPassword.CheckedState.FillColor = Color.FromArgb(234, 153, 149);
+            cbPassword.CheckedState.InnerBorderColor = Color.FromArgb(218, 1, 88);
+            cbPassword.CheckedState.InnerColor = Color.FromArgb(0, 9, 43);
+            cbPassword.CustomizableEdges = customizableEdges3;
+            cbPassword.Location = new Point(59, 305);
+            cbPassword.Margin = new Padding(4, 5, 4, 5);
+            cbPassword.Name = "cbPassword";
+            cbPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            cbPassword.Size = new Size(47, 31);
+            cbPassword.TabIndex = 3;
+            cbPassword.UncheckedState.BorderColor = Color.FromArgb(234, 153, 149);
+            cbPassword.UncheckedState.BorderThickness = 2;
+            cbPassword.UncheckedState.FillColor = Color.FromArgb(0, 9, 43);
+            cbPassword.UncheckedState.InnerBorderColor = Color.FromArgb(234, 153, 149);
+            cbPassword.UncheckedState.InnerColor = Color.FromArgb(234, 153, 149);
+            cbPassword.CheckedChanged += cbPassword_CheckedChanged;
             // 
             // txtPassword
             // 
-            txtPassword.BackColor = Color.FromArgb(230, 231, 233);
-            txtPassword.BorderStyle = BorderStyle.None;
-            txtPassword.Font = new Font("Arial", 12F);
-            txtPassword.Location = new Point(32, 238);
-            txtPassword.Multiline = true;
+            txtPassword.Animated = true;
+            txtPassword.BorderColor = Color.FromArgb(234, 153, 149);
+            txtPassword.BorderRadius = 6;
+            txtPassword.Cursor = Cursors.IBeam;
+            txtPassword.CustomizableEdges = customizableEdges5;
+            txtPassword.DefaultText = "";
+            txtPassword.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtPassword.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtPassword.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtPassword.FillColor = Color.FromArgb(0, 9, 43);
+            txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.Font = new Font("Segoe UI", 9F);
+            txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtPassword.Location = new Point(59, 209);
+            txtPassword.Margin = new Padding(4, 6, 4, 6);
             txtPassword.Name = "txtPassword";
-            txtPassword.PasswordChar = '*';
-            txtPassword.Size = new Size(330, 28);
-            txtPassword.TabIndex = 1;
+            txtPassword.PasswordChar = '●';
+            txtPassword.PlaceholderText = "Mật khẩu";
+            txtPassword.SelectedText = "";
+            txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            txtPassword.Size = new Size(335, 55);
+            txtPassword.TabIndex = 2;
+            txtPassword.UseSystemPasswordChar = true;
             // 
-            // btn_Login
+            // txtUsername
             // 
-            btn_Login.BackColor = Color.FromArgb(133, 19, 33);
-            btn_Login.Cursor = Cursors.Hand;
-            btn_Login.FlatAppearance.BorderSize = 0;
-            btn_Login.FlatStyle = FlatStyle.Flat;
-            btn_Login.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Login.ForeColor = Color.White;
-            btn_Login.Location = new Point(32, 343);
-            btn_Login.Name = "btn_Login";
-            btn_Login.Size = new Size(330, 52);
-            btn_Login.TabIndex = 3;
-            btn_Login.Text = "Đăng nhập";
-            btn_Login.UseVisualStyleBackColor = false;
-            btn_Login.Click += registrationButton_Click;
+            txtUsername.Animated = true;
+            txtUsername.BorderColor = Color.FromArgb(234, 153, 149);
+            txtUsername.BorderRadius = 6;
+            txtUsername.Cursor = Cursors.IBeam;
+            txtUsername.CustomizableEdges = customizableEdges7;
+            txtUsername.DefaultText = "";
+            txtUsername.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtUsername.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtUsername.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtUsername.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtUsername.FillColor = Color.FromArgb(0, 9, 43);
+            txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtUsername.Font = new Font("Segoe UI", 9F);
+            txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtUsername.Location = new Point(59, 119);
+            txtUsername.Margin = new Padding(4, 6, 4, 6);
+            txtUsername.Name = "txtUsername";
+            txtUsername.PasswordChar = '\0';
+            txtUsername.PlaceholderText = "Tài khoản";
+            txtUsername.SelectedText = "";
+            txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            txtUsername.Size = new Size(335, 55);
+            txtUsername.TabIndex = 1;
             // 
-            // btn_Register
+            // guna2PictureBox1
             // 
-            btn_Register.BackColor = Color.FromArgb(133, 19, 33);
-            btn_Register.Cursor = Cursors.Hand;
-            btn_Register.FlatAppearance.BorderSize = 0;
-            btn_Register.FlatStyle = FlatStyle.Flat;
-            btn_Register.Font = new Font("Arial", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_Register.ForeColor = Color.White;
-            btn_Register.Location = new Point(29, 674);
-            btn_Register.Name = "btn_Register";
-            btn_Register.Size = new Size(330, 52);
-            btn_Register.TabIndex = 21;
-            btn_Register.Text = "Đăng ký";
-            btn_Register.UseVisualStyleBackColor = false;
-            btn_Register.Click += btn_Register_Click;
+            guna2PictureBox1.BackColor = Color.Transparent;
+            guna2PictureBox1.CustomizableEdges = customizableEdges9;
+            guna2PictureBox1.Image = (Image)resources.GetObject("guna2PictureBox1.Image");
+            guna2PictureBox1.ImageRotate = 0F;
+            guna2PictureBox1.Location = new Point(13, 12);
+            guna2PictureBox1.Margin = new Padding(4, 5, 4, 5);
+            guna2PictureBox1.Name = "guna2PictureBox1";
+            guna2PictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            guna2PictureBox1.Size = new Size(58, 58);
+            guna2PictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            guna2PictureBox1.TabIndex = 0;
+            guna2PictureBox1.TabStop = false;
+            guna2PictureBox1.UseTransparentBackground = true;
+            // 
+            // guna2Panel1
+            // 
+            guna2Panel1.Controls.Add(clearButton);
+            guna2Panel1.Controls.Add(guna2PictureBox2);
+            guna2Panel1.CustomizableEdges = customizableEdges17;
+            guna2Panel1.Dock = DockStyle.Right;
+            guna2Panel1.Location = new Point(442, 0);
+            guna2Panel1.Margin = new Padding(4, 5, 4, 5);
+            guna2Panel1.Name = "guna2Panel1";
+            guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            guna2Panel1.Size = new Size(758, 500);
+            guna2Panel1.TabIndex = 2;
+            // 
+            // clearButton
+            // 
+            clearButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            clearButton.CustomizableEdges = customizableEdges13;
+            clearButton.FillColor = Color.FromArgb(0, 9, 43);
+            clearButton.HoverState.FillColor = Color.Red;
+            clearButton.IconColor = Color.White;
+            clearButton.Location = new Point(695, 18);
+            clearButton.Margin = new Padding(4, 5, 4, 5);
+            clearButton.Name = "clearButton";
+            clearButton.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            clearButton.Size = new Size(47, 43);
+            clearButton.TabIndex = 2;
+            // 
+            // guna2PictureBox2
+            // 
+            guna2PictureBox2.BackColor = Color.Transparent;
+            guna2PictureBox2.CustomizableEdges = customizableEdges15;
+            guna2PictureBox2.Image = (Image)resources.GetObject("guna2PictureBox2.Image");
+            guna2PictureBox2.ImageRotate = 0F;
+            guna2PictureBox2.Location = new Point(4, 0);
+            guna2PictureBox2.Margin = new Padding(4, 5, 4, 5);
+            guna2PictureBox2.Name = "guna2PictureBox2";
+            guna2PictureBox2.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            guna2PictureBox2.Size = new Size(760, 500);
+            guna2PictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            guna2PictureBox2.TabIndex = 1;
+            guna2PictureBox2.TabStop = false;
+            guna2PictureBox2.UseTransparentBackground = true;
+            // 
+            // guna2ShadowForm1
+            // 
+            guna2ShadowForm1.BorderRadius = 6;
+            guna2ShadowForm1.ShadowColor = Color.FromArgb(193, 20, 137);
+            guna2ShadowForm1.TargetForm = this;
+            // 
+            // guna2AnimateWindow1
+            // 
+            guna2AnimateWindow1.AnimationType = Guna.UI2.WinForms.Guna2AnimateWindow.AnimateWindowType.AW_VER_POSITIVE;
+            guna2AnimateWindow1.TargetForm = this;
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(10F, 21F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(400, 761);
-            ControlBox = false;
-            Controls.Add(btn_Register);
-            Controls.Add(label5);
-            Controls.Add(clearButton);
-            Controls.Add(btn_Login);
-            Controls.Add(cbPassword);
-            Controls.Add(txtPassword);
-            Controls.Add(label2);
-            Controls.Add(txtUsername);
-            Controls.Add(label1);
-            Controls.Add(label3);
-            Font = new Font("Nirmala UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ForeColor = Color.FromArgb(164, 165, 169);
+            ClientSize = new Size(1200, 500);
+            Controls.Add(guna2Panel2);
+            Controls.Add(guna2Panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(4);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "LoginForm";
+            Text = "Form1";
+            guna2Panel2.ResumeLayout(false);
+            guna2Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
+            guna2Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.CheckBox cbPassword;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtUsername;
+
+        private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
+        private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private Guna.UI2.WinForms.Guna2Button btn_Login;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtPassword;
-        private Button btn_Login;
-        private Button btn_Register;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch cbPassword;
+        private Guna.UI2.WinForms.Guna2TextBox txtPassword;
+        private Guna.UI2.WinForms.Guna2TextBox txtUsername;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
+        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
+        private Guna.UI2.WinForms.Guna2ControlBox clearButton;
+        private Guna.UI2.WinForms.Guna2ShadowForm guna2ShadowForm1;
+        private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
     }
 }

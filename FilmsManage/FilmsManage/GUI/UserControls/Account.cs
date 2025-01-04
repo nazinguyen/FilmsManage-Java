@@ -77,7 +77,7 @@ namespace FilmsManage.GUI.Forms
                     x.MaKh,
                     TenKH = x.MaKhNavigation?.TenKh,
                     x.TenDangNhap,
-                    MatKhau="********"
+                    MatKhau = "********"
                 }).ToList();
                 dtgvAccount.DataSource = accountDisplayList;
                 dtgvAccount.Refresh();
@@ -162,10 +162,84 @@ namespace FilmsManage.GUI.Forms
 
         private async void btnInsertAccount_Click_1(object sender, EventArgs e)
         {
+          
+        }
+
+        private void btnDeleteAccount_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void btnUpdateAccount_Click_1(object sender, EventArgs e)
+        {
+           
+        }
+        private void cbbAccountID_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra nếu SelectedItem không null và là KhachHang
+            if (cbbAccountID.SelectedItem is KhachHang selectedCustomer)
+            {
+                txtAccountName.Text = selectedCustomer.TenKh; // Gán tên khách hàng vào ô text
+            }
+            else
+            {
+                txtAccountName.Clear(); // Xóa ô text nếu không chọn khách hàng
+            }
+        }
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Chuyển dữ liệu trong DataGridView sang DataTable
+                DataTable dataTable = new DataTable();
+
+                // Thêm các cột vào DataTable từ DataGridView
+                foreach (DataGridViewColumn column in dtgvAccount.Columns)
+                {
+                    dataTable.Columns.Add(column.HeaderText);
+                }
+
+                // Thêm các dòng dữ liệu vào DataTable
+                foreach (DataGridViewRow row in dtgvAccount.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        DataRow dataRow = dataTable.NewRow();
+                        for (int i = 0; i < dtgvAccount.Columns.Count; i++)
+                        {
+                            dataRow[i] = row.Cells[i].Value;
+                        }
+                        dataTable.Rows.Add(dataRow);
+                    }
+                }
+
+                // Sử dụng dịch vụ ExportSV để xuất dữ liệu ra file Excel
+                string filePath = "C:\\path_to_your_file\\AccountData.xlsx"; // Đường dẫn lưu file Excel
+                ExportSV exportSV = new ExportSV();
+                bool isExported = exportSV.ExportToExcel(dataTable, filePath);
+
+                if (isExported)
+                {
+                    MessageBox.Show("Dữ liệu đã được xuất ra Excel thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Đã xảy ra lỗi khi xuất dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnInsertAccount_Click(object sender, EventArgs e)
+        {
             string maKh = cbbAccountID.Text;
             string tenDangNhap = txtUserName.Text;
             string matKhau = txtPassWord.Text;
-			if (string.IsNullOrWhiteSpace(maKh) || string.IsNullOrWhiteSpace(tenDangNhap) || string.IsNullOrWhiteSpace(matKhau))
+            if (string.IsNullOrWhiteSpace(maKh) || string.IsNullOrWhiteSpace(tenDangNhap) || string.IsNullOrWhiteSpace(matKhau))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -235,39 +309,7 @@ namespace FilmsManage.GUI.Forms
             }
         }
 
-        private void btnDeleteAccount_Click_1(object sender, EventArgs e)
-        {
-            string accountId = txtMaTK.Text.Trim();
-            if (string.IsNullOrWhiteSpace(accountId))
-            {
-                MessageBox.Show("Vui lòng chọn tài khoản cần xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            try
-            {
-                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    string endpoint = $"api/TaiKhoan/{accountId}";
-                    var response = _dangphimSV.DeleteAsync(endpoint);
-                    if (response != null)
-                    {
-                        MessageBox.Show("Xóa tài khoản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Xóa tài khoản thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private async void btnUpdateAccount_Click_1(object sender, EventArgs e)
+        private async void btnUpdateAccount_Click(object sender, EventArgs e)
         {
             string newAccountID = txtMaTK.Text.Trim();
             string newCustomerID = cbbAccountID.Text.Trim(); // Mã Khách Hàng mới
@@ -354,20 +396,40 @@ namespace FilmsManage.GUI.Forms
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void cbbAccountID_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void btnDeleteAccount_Click(object sender, EventArgs e)
         {
-            // Kiểm tra nếu SelectedItem không null và là KhachHang
-            if (cbbAccountID.SelectedItem is KhachHang selectedCustomer)
+            string accountId = txtMaTK.Text.Trim();
+            if (string.IsNullOrWhiteSpace(accountId))
             {
-                txtAccountName.Text = selectedCustomer.TenKh; // Gán tên khách hàng vào ô text
+                MessageBox.Show("Vui lòng chọn tài khoản cần xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+            try
             {
-                txtAccountName.Clear(); // Xóa ô text nếu không chọn khách hàng
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa tài khoản này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    string endpoint = $"api/TaiKhoan/{accountId}";
+                    var response = _dangphimSV.DeleteAsync(endpoint);
+                    if (response != null)
+                    {
+                        MessageBox.Show("Xóa tài khoản thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa tài khoản thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnExport_Click_1(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
             try
             {
@@ -412,29 +474,6 @@ namespace FilmsManage.GUI.Forms
             {
                 MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void btnReset_Click_1(object sender, EventArgs e)
-        {
-
-            txtMaTK.Clear();
-
-            // Đặt lại ComboBox nếu không null và có mục
-            if (cbbAccountID != null && cbbAccountID.Items.Count > 0)
-            {
-                cbbAccountID.SelectedIndex = -1;
-            }
-            else
-            {
-                cbbAccountID.Text = string.Empty; // Đặt trạng thái trống
-            }
-
-            txtUserName.Clear();
-            txtPassWord.Clear();
-        }
-
-        private void btnShowAccount_Click(object sender, EventArgs e)
-        {
 
         }
     }

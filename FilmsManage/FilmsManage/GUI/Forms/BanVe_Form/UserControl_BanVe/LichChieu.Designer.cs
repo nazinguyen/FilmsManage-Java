@@ -60,6 +60,7 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(289, 33);
             comboBox1.TabIndex = 5;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged_1;
             // 
             // pictureBox2
             // 
@@ -79,6 +80,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(207, 31);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged_1;
             // 
             // pictureBox1
             // 

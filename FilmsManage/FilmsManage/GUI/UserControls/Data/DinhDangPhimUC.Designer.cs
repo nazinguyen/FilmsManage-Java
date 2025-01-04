@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-		#region Component Designer generated code
+        #region Component Designer generated code
 
         /// <summary> 
         /// Required method for Designer support - do not modify 
@@ -28,55 +28,255 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DinhDangPhimUC));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel1 = new Panel();
+            groupBox1 = new GroupBox();
+            btnDeleteGenre = new Guna.UI2.WinForms.Guna2Button();
+            btnExport = new Guna.UI2.WinForms.Guna2Button();
+            btnUpdateGenre = new Guna.UI2.WinForms.Guna2Button();
+            btnInsertGenre = new Guna.UI2.WinForms.Guna2Button();
+            grpAccount = new GroupBox();
+            cbMaMH = new Guna.UI2.WinForms.Guna2ComboBox();
+            txtFormatID = new Guna.UI2.WinForms.Guna2TextBox();
+            txtTenDangPhim = new Guna.UI2.WinForms.Guna2TextBox();
             panel2 = new Panel();
             dtgvFormat = new DataGridView();
-            panel3 = new Panel();
-            cbMaMH = new ComboBox();
-            label3 = new Label();
-            txtTenMh = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            txtTenDangPhim = new TextBox();
-            lblFormatID = new Label();
-            txtFormatID = new TextBox();
-            btnShowFormat = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            btnInsertFormat = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            btnUpdateFormat = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            btnExport = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             panel1.SuspendLayout();
+            groupBox1.SuspendLayout();
+            grpAccount.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgvFormat).BeginInit();
-            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Controls.Add(btnExport);
-            panel1.Controls.Add(btnUpdateFormat);
-            panel1.Controls.Add(btnInsertFormat);
-            panel1.Controls.Add(btnShowFormat);
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(groupBox1);
+            panel1.Controls.Add(grpAccount);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(4, 5, 4, 5);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1935, 420);
+            panel1.Size = new Size(1935, 370);
             panel1.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(btnDeleteGenre);
+            groupBox1.Controls.Add(btnExport);
+            groupBox1.Controls.Add(btnUpdateGenre);
+            groupBox1.Controls.Add(btnInsertGenre);
+            groupBox1.FlatStyle = FlatStyle.Popup;
+            groupBox1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            groupBox1.ForeColor = Color.Black;
+            groupBox1.Location = new Point(32, 257);
+            groupBox1.Margin = new Padding(4, 2, 4, 2);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Padding = new Padding(4, 2, 4, 2);
+            groupBox1.Size = new Size(1856, 96);
+            groupBox1.TabIndex = 35;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Chức năng";
+            // 
+            // btnDeleteGenre
+            // 
+            btnDeleteGenre.Animated = true;
+            btnDeleteGenre.BackColor = Color.Transparent;
+            btnDeleteGenre.BorderRadius = 10;
+            btnDeleteGenre.CustomizableEdges = customizableEdges1;
+            btnDeleteGenre.FillColor = Color.FromArgb(0, 0, 64);
+            btnDeleteGenre.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnDeleteGenre.ForeColor = Color.White;
+            btnDeleteGenre.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDeleteGenre.Image = (Image)resources.GetObject("btnDeleteGenre.Image");
+            btnDeleteGenre.Location = new Point(591, 34);
+            btnDeleteGenre.Margin = new Padding(5, 6, 5, 6);
+            btnDeleteGenre.Name = "btnDeleteGenre";
+            btnDeleteGenre.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnDeleteGenre.Size = new Size(202, 54);
+            btnDeleteGenre.TabIndex = 49;
+            btnDeleteGenre.Text = "Xóa";
+            btnDeleteGenre.UseTransparentBackground = true;
+            btnDeleteGenre.Click += btnDeleteGenre_Click;
+            // 
+            // btnExport
+            // 
+            btnExport.Animated = true;
+            btnExport.BackColor = Color.Transparent;
+            btnExport.BorderRadius = 10;
+            btnExport.CustomizableEdges = customizableEdges3;
+            btnExport.FillColor = Color.FromArgb(0, 0, 64);
+            btnExport.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnExport.ForeColor = Color.White;
+            btnExport.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnExport.Image = (Image)resources.GetObject("btnExport.Image");
+            btnExport.Location = new Point(820, 34);
+            btnExport.Margin = new Padding(5, 6, 5, 6);
+            btnExport.Name = "btnExport";
+            btnExport.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnExport.Size = new Size(202, 54);
+            btnExport.TabIndex = 48;
+            btnExport.Text = "Xuất File";
+            btnExport.UseTransparentBackground = true;
+            btnExport.Click += btnExport_Click;
+            // 
+            // btnUpdateGenre
+            // 
+            btnUpdateGenre.Animated = true;
+            btnUpdateGenre.BackColor = Color.Transparent;
+            btnUpdateGenre.BorderRadius = 10;
+            btnUpdateGenre.CustomizableEdges = customizableEdges5;
+            btnUpdateGenre.FillColor = Color.FromArgb(0, 0, 64);
+            btnUpdateGenre.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnUpdateGenre.ForeColor = Color.White;
+            btnUpdateGenre.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnUpdateGenre.Image = (Image)resources.GetObject("btnUpdateGenre.Image");
+            btnUpdateGenre.Location = new Point(345, 34);
+            btnUpdateGenre.Margin = new Padding(5, 6, 5, 6);
+            btnUpdateGenre.Name = "btnUpdateGenre";
+            btnUpdateGenre.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnUpdateGenre.Size = new Size(202, 54);
+            btnUpdateGenre.TabIndex = 50;
+            btnUpdateGenre.Text = "Sửa";
+            btnUpdateGenre.UseTransparentBackground = true;
+            btnUpdateGenre.Click += btnUpdateGenre_Click;
+            // 
+            // btnInsertGenre
+            // 
+            btnInsertGenre.Animated = true;
+            btnInsertGenre.BackColor = Color.Transparent;
+            btnInsertGenre.BorderRadius = 10;
+            btnInsertGenre.CustomizableEdges = customizableEdges7;
+            btnInsertGenre.FillColor = Color.FromArgb(0, 0, 64);
+            btnInsertGenre.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnInsertGenre.ForeColor = Color.White;
+            btnInsertGenre.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnInsertGenre.Image = (Image)resources.GetObject("btnInsertGenre.Image");
+            btnInsertGenre.Location = new Point(104, 34);
+            btnInsertGenre.Margin = new Padding(5, 6, 5, 6);
+            btnInsertGenre.Name = "btnInsertGenre";
+            btnInsertGenre.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnInsertGenre.Size = new Size(202, 54);
+            btnInsertGenre.TabIndex = 47;
+            btnInsertGenre.Text = "Thêm";
+            btnInsertGenre.UseTransparentBackground = true;
+            btnInsertGenre.Click += btnInsertGenre_Click;
+            // 
+            // grpAccount
+            // 
+            grpAccount.BackColor = Color.White;
+            grpAccount.Controls.Add(cbMaMH);
+            grpAccount.Controls.Add(txtFormatID);
+            grpAccount.Controls.Add(txtTenDangPhim);
+            grpAccount.FlatStyle = FlatStyle.Popup;
+            grpAccount.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            grpAccount.ForeColor = Color.Black;
+            grpAccount.Location = new Point(32, 122);
+            grpAccount.Margin = new Padding(4, 2, 4, 2);
+            grpAccount.Name = "grpAccount";
+            grpAccount.Padding = new Padding(4, 2, 4, 2);
+            grpAccount.Size = new Size(1856, 122);
+            grpAccount.TabIndex = 32;
+            grpAccount.TabStop = false;
+            grpAccount.Text = "Thông tin định dạng";
+            // 
+            // cbMaMH
+            // 
+            cbMaMH.BackColor = Color.Transparent;
+            cbMaMH.BorderColor = Color.Black;
+            cbMaMH.BorderRadius = 10;
+            cbMaMH.CustomizableEdges = customizableEdges9;
+            cbMaMH.DrawMode = DrawMode.OwnerDrawFixed;
+            cbMaMH.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbMaMH.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbMaMH.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbMaMH.Font = new Font("Segoe UI", 10F);
+            cbMaMH.ForeColor = Color.Black;
+            cbMaMH.ItemHeight = 30;
+            cbMaMH.Location = new Point(870, 62);
+            cbMaMH.Margin = new Padding(4);
+            cbMaMH.Name = "cbMaMH";
+            cbMaMH.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            cbMaMH.Size = new Size(253, 36);
+            cbMaMH.TabIndex = 15;
+            // 
+            // txtFormatID
+            // 
+            txtFormatID.Animated = true;
+            txtFormatID.BorderColor = Color.Black;
+            txtFormatID.BorderRadius = 6;
+            txtFormatID.Cursor = Cursors.IBeam;
+            txtFormatID.CustomizableEdges = customizableEdges11;
+            txtFormatID.DefaultText = "";
+            txtFormatID.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtFormatID.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtFormatID.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtFormatID.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtFormatID.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtFormatID.Font = new Font("Segoe UI", 9F);
+            txtFormatID.ForeColor = Color.Black;
+            txtFormatID.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtFormatID.Location = new Point(72, 50);
+            txtFormatID.Margin = new Padding(5, 8, 5, 8);
+            txtFormatID.Name = "txtFormatID";
+            txtFormatID.PasswordChar = '\0';
+            txtFormatID.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
+            txtFormatID.PlaceholderText = "Mã định dạng";
+            txtFormatID.SelectedText = "";
+            txtFormatID.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtFormatID.Size = new Size(251, 48);
+            txtFormatID.TabIndex = 32;
+            // 
+            // txtTenDangPhim
+            // 
+            txtTenDangPhim.Animated = true;
+            txtTenDangPhim.BorderColor = Color.Black;
+            txtTenDangPhim.BorderRadius = 6;
+            txtTenDangPhim.Cursor = Cursors.IBeam;
+            txtTenDangPhim.CustomizableEdges = customizableEdges13;
+            txtTenDangPhim.DefaultText = "";
+            txtTenDangPhim.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtTenDangPhim.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtTenDangPhim.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtTenDangPhim.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtTenDangPhim.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtTenDangPhim.Font = new Font("Segoe UI", 9F);
+            txtTenDangPhim.ForeColor = Color.Black;
+            txtTenDangPhim.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtTenDangPhim.Location = new Point(462, 50);
+            txtTenDangPhim.Margin = new Padding(5, 8, 5, 8);
+            txtTenDangPhim.Name = "txtTenDangPhim";
+            txtTenDangPhim.PasswordChar = '\0';
+            txtTenDangPhim.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
+            txtTenDangPhim.PlaceholderText = "Tên dạng phim";
+            txtTenDangPhim.SelectedText = "";
+            txtTenDangPhim.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            txtTenDangPhim.Size = new Size(251, 48);
+            txtTenDangPhim.TabIndex = 10;
             // 
             // panel2
             // 
             panel2.Controls.Add(dtgvFormat);
-            panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 420);
+            panel2.Location = new Point(0, 370);
             panel2.Margin = new Padding(5, 6, 5, 6);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1935, 578);
+            panel2.Size = new Size(1935, 628);
             panel2.TabIndex = 1;
             // 
             // dtgvFormat
@@ -91,468 +291,9 @@
             dtgvFormat.Name = "dtgvFormat";
             dtgvFormat.ReadOnly = true;
             dtgvFormat.RowHeadersWidth = 51;
-            dtgvFormat.Size = new Size(1096, 578);
+            dtgvFormat.Size = new Size(1935, 628);
             dtgvFormat.TabIndex = 9;
             dtgvFormat.CellContentClick += dtgvFormat_CellContentClick;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(cbMaMH);
-            panel3.Controls.Add(label3);
-            panel3.Controls.Add(txtTenMh);
-            panel3.Controls.Add(label2);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(txtTenDangPhim);
-            panel3.Controls.Add(lblFormatID);
-            panel3.Controls.Add(txtFormatID);
-            panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1096, 0);
-            panel3.Margin = new Padding(4, 5, 4, 5);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(839, 578);
-            panel3.TabIndex = 0;
-            // 
-            // cbMaMH
-            // 
-            cbMaMH.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbMaMH.FormattingEnabled = true;
-            cbMaMH.Location = new Point(219, 149);
-            cbMaMH.Margin = new Padding(4, 2, 4, 2);
-            cbMaMH.Name = "cbMaMH";
-            cbMaMH.Size = new Size(310, 33);
-            cbMaMH.TabIndex = 27;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(20, 225);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(161, 26);
-            label3.TabIndex = 26;
-            label3.Text = "Tên màn hình:";
-            // 
-            // txtTenMh
-            // 
-            txtTenMh.Location = new Point(219, 220);
-            txtTenMh.Margin = new Padding(5);
-            txtTenMh.Name = "txtTenMh";
-            txtTenMh.Size = new Size(304, 31);
-            txtTenMh.TabIndex = 25;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(20, 151);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(157, 26);
-            label2.TabIndex = 24;
-            label2.Text = "Mã màn hình:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(20, 79);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(173, 26);
-            label1.TabIndex = 23;
-            label1.Text = "Tên dạng phim:";
-            // 
-            // txtTenDangPhim
-            // 
-            txtTenDangPhim.Location = new Point(219, 74);
-            txtTenDangPhim.Margin = new Padding(5);
-            txtTenDangPhim.Name = "txtTenDangPhim";
-            txtTenDangPhim.Size = new Size(310, 31);
-            txtTenDangPhim.TabIndex = 22;
-            // 
-            // lblFormatID
-            // 
-            lblFormatID.AutoSize = true;
-            lblFormatID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblFormatID.Location = new Point(20, 26);
-            lblFormatID.Margin = new Padding(4, 0, 4, 0);
-            lblFormatID.Name = "lblFormatID";
-            lblFormatID.Size = new Size(163, 26);
-            lblFormatID.TabIndex = 19;
-            lblFormatID.Text = "Mã định dạng:";
-            // 
-            // txtFormatID
-            // 
-            txtFormatID.Location = new Point(219, 24);
-            txtFormatID.Margin = new Padding(4, 5, 4, 5);
-            txtFormatID.Name = "txtFormatID";
-            txtFormatID.Size = new Size(310, 31);
-            txtFormatID.TabIndex = 14;
-            // 
-            // btnShowFormat
-            // 
-            btnShowFormat.AllowAnimations = true;
-            btnShowFormat.AllowMouseEffects = true;
-            btnShowFormat.AllowToggling = false;
-            btnShowFormat.AnimationSpeed = 200;
-            btnShowFormat.AutoGenerateColors = false;
-            btnShowFormat.AutoRoundBorders = false;
-            btnShowFormat.AutoSizeLeftIcon = true;
-            btnShowFormat.AutoSizeRightIcon = true;
-            btnShowFormat.BackColor = Color.Transparent;
-            btnShowFormat.BackColor1 = Color.FromArgb(51, 122, 183);
-            btnShowFormat.BackgroundImage = (Image)resources.GetObject("btnShowFormat.BackgroundImage");
-            btnShowFormat.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnShowFormat.ButtonText = "Xem";
-            btnShowFormat.ButtonTextMarginLeft = 0;
-            btnShowFormat.ColorContrastOnClick = 45;
-            btnShowFormat.ColorContrastOnHover = 45;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            btnShowFormat.CustomizableEdges = borderEdges4;
-            btnShowFormat.DialogResult = DialogResult.None;
-            btnShowFormat.DisabledBorderColor = Color.FromArgb(191, 191, 191);
-            btnShowFormat.DisabledFillColor = Color.Empty;
-            btnShowFormat.DisabledForecolor = Color.Empty;
-            btnShowFormat.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            btnShowFormat.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnShowFormat.ForeColor = Color.White;
-            btnShowFormat.IconLeft = null;
-            btnShowFormat.IconLeftAlign = ContentAlignment.MiddleLeft;
-            btnShowFormat.IconLeftCursor = Cursors.Default;
-            btnShowFormat.IconLeftPadding = new Padding(11, 3, 3, 3);
-            btnShowFormat.IconMarginLeft = 11;
-            btnShowFormat.IconPadding = 10;
-            btnShowFormat.IconRight = null;
-            btnShowFormat.IconRightAlign = ContentAlignment.MiddleRight;
-            btnShowFormat.IconRightCursor = Cursors.Default;
-            btnShowFormat.IconRightPadding = new Padding(3, 3, 7, 3);
-            btnShowFormat.IconSize = 25;
-            btnShowFormat.IdleBorderColor = Color.Empty;
-            btnShowFormat.IdleBorderRadius = 0;
-            btnShowFormat.IdleBorderThickness = 0;
-            btnShowFormat.IdleFillColor = Color.Empty;
-            btnShowFormat.IdleIconLeftImage = null;
-            btnShowFormat.IdleIconRightImage = null;
-            btnShowFormat.IndicateFocus = false;
-            btnShowFormat.Location = new Point(43, 306);
-            btnShowFormat.Name = "btnShowFormat";
-            btnShowFormat.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
-            btnShowFormat.OnDisabledState.BorderRadius = 30;
-            btnShowFormat.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnShowFormat.OnDisabledState.BorderThickness = 2;
-            btnShowFormat.OnDisabledState.FillColor = Color.FromArgb(204, 204, 204);
-            btnShowFormat.OnDisabledState.ForeColor = Color.FromArgb(168, 160, 168);
-            btnShowFormat.OnDisabledState.IconLeftImage = null;
-            btnShowFormat.OnDisabledState.IconRightImage = null;
-            btnShowFormat.onHoverState.BorderColor = Color.FromArgb(30, 150, 255);
-            btnShowFormat.onHoverState.BorderRadius = 30;
-            btnShowFormat.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnShowFormat.onHoverState.BorderThickness = 2;
-            btnShowFormat.onHoverState.FillColor = Color.FromArgb(30, 150, 255);
-            btnShowFormat.onHoverState.ForeColor = Color.White;
-            btnShowFormat.onHoverState.IconLeftImage = null;
-            btnShowFormat.onHoverState.IconRightImage = null;
-            btnShowFormat.OnIdleState.BorderColor = Color.DodgerBlue;
-            btnShowFormat.OnIdleState.BorderRadius = 30;
-            btnShowFormat.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnShowFormat.OnIdleState.BorderThickness = 2;
-            btnShowFormat.OnIdleState.FillColor = Color.FromArgb(119, 33, 19);
-            btnShowFormat.OnIdleState.ForeColor = Color.White;
-            btnShowFormat.OnIdleState.IconLeftImage = null;
-            btnShowFormat.OnIdleState.IconRightImage = null;
-            btnShowFormat.OnPressedState.BorderColor = Color.DodgerBlue;
-            btnShowFormat.OnPressedState.BorderRadius = 30;
-            btnShowFormat.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnShowFormat.OnPressedState.BorderThickness = 2;
-            btnShowFormat.OnPressedState.FillColor = Color.Gold;
-            btnShowFormat.OnPressedState.ForeColor = Color.White;
-            btnShowFormat.OnPressedState.IconLeftImage = null;
-            btnShowFormat.OnPressedState.IconRightImage = null;
-            btnShowFormat.Size = new Size(155, 68);
-            btnShowFormat.TabIndex = 0;
-            btnShowFormat.TextAlign = ContentAlignment.MiddleCenter;
-            btnShowFormat.TextAlignment = HorizontalAlignment.Center;
-            btnShowFormat.TextMarginLeft = 0;
-            btnShowFormat.TextPadding = new Padding(0);
-            btnShowFormat.UseDefaultRadiusAndThickness = true;
-            btnShowFormat.Click += btnShowFormat_Click;
-            // 
-            // btnInsertFormat
-            // 
-            btnInsertFormat.AllowAnimations = true;
-            btnInsertFormat.AllowMouseEffects = true;
-            btnInsertFormat.AllowToggling = false;
-            btnInsertFormat.AnimationSpeed = 200;
-            btnInsertFormat.AutoGenerateColors = false;
-            btnInsertFormat.AutoRoundBorders = false;
-            btnInsertFormat.AutoSizeLeftIcon = true;
-            btnInsertFormat.AutoSizeRightIcon = true;
-            btnInsertFormat.BackColor = Color.Transparent;
-            btnInsertFormat.BackColor1 = Color.FromArgb(51, 122, 183);
-            btnInsertFormat.BackgroundImage = (Image)resources.GetObject("btnInsertFormat.BackgroundImage");
-            btnInsertFormat.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnInsertFormat.ButtonText = "Thêm";
-            btnInsertFormat.ButtonTextMarginLeft = 0;
-            btnInsertFormat.ColorContrastOnClick = 45;
-            btnInsertFormat.ColorContrastOnHover = 45;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            btnInsertFormat.CustomizableEdges = borderEdges3;
-            btnInsertFormat.DialogResult = DialogResult.None;
-            btnInsertFormat.DisabledBorderColor = Color.FromArgb(191, 191, 191);
-            btnInsertFormat.DisabledFillColor = Color.Empty;
-            btnInsertFormat.DisabledForecolor = Color.Empty;
-            btnInsertFormat.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            btnInsertFormat.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnInsertFormat.ForeColor = Color.White;
-            btnInsertFormat.IconLeft = null;
-            btnInsertFormat.IconLeftAlign = ContentAlignment.MiddleLeft;
-            btnInsertFormat.IconLeftCursor = Cursors.Default;
-            btnInsertFormat.IconLeftPadding = new Padding(11, 3, 3, 3);
-            btnInsertFormat.IconMarginLeft = 11;
-            btnInsertFormat.IconPadding = 10;
-            btnInsertFormat.IconRight = null;
-            btnInsertFormat.IconRightAlign = ContentAlignment.MiddleRight;
-            btnInsertFormat.IconRightCursor = Cursors.Default;
-            btnInsertFormat.IconRightPadding = new Padding(3, 3, 7, 3);
-            btnInsertFormat.IconSize = 25;
-            btnInsertFormat.IdleBorderColor = Color.Empty;
-            btnInsertFormat.IdleBorderRadius = 0;
-            btnInsertFormat.IdleBorderThickness = 0;
-            btnInsertFormat.IdleFillColor = Color.Empty;
-            btnInsertFormat.IdleIconLeftImage = null;
-            btnInsertFormat.IdleIconRightImage = null;
-            btnInsertFormat.IndicateFocus = false;
-            btnInsertFormat.Location = new Point(287, 306);
-            btnInsertFormat.Name = "btnInsertFormat";
-            btnInsertFormat.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
-            btnInsertFormat.OnDisabledState.BorderRadius = 30;
-            btnInsertFormat.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnInsertFormat.OnDisabledState.BorderThickness = 2;
-            btnInsertFormat.OnDisabledState.FillColor = Color.FromArgb(204, 204, 204);
-            btnInsertFormat.OnDisabledState.ForeColor = Color.FromArgb(168, 160, 168);
-            btnInsertFormat.OnDisabledState.IconLeftImage = null;
-            btnInsertFormat.OnDisabledState.IconRightImage = null;
-            btnInsertFormat.onHoverState.BorderColor = Color.FromArgb(30, 150, 255);
-            btnInsertFormat.onHoverState.BorderRadius = 30;
-            btnInsertFormat.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnInsertFormat.onHoverState.BorderThickness = 2;
-            btnInsertFormat.onHoverState.FillColor = Color.FromArgb(30, 150, 255);
-            btnInsertFormat.onHoverState.ForeColor = Color.White;
-            btnInsertFormat.onHoverState.IconLeftImage = null;
-            btnInsertFormat.onHoverState.IconRightImage = null;
-            btnInsertFormat.OnIdleState.BorderColor = Color.DodgerBlue;
-            btnInsertFormat.OnIdleState.BorderRadius = 30;
-            btnInsertFormat.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnInsertFormat.OnIdleState.BorderThickness = 2;
-            btnInsertFormat.OnIdleState.FillColor = Color.FromArgb(119, 33, 19);
-            btnInsertFormat.OnIdleState.ForeColor = Color.White;
-            btnInsertFormat.OnIdleState.IconLeftImage = null;
-            btnInsertFormat.OnIdleState.IconRightImage = null;
-            btnInsertFormat.OnPressedState.BorderColor = Color.DodgerBlue;
-            btnInsertFormat.OnPressedState.BorderRadius = 30;
-            btnInsertFormat.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnInsertFormat.OnPressedState.BorderThickness = 2;
-            btnInsertFormat.OnPressedState.FillColor = Color.Gold;
-            btnInsertFormat.OnPressedState.ForeColor = Color.White;
-            btnInsertFormat.OnPressedState.IconLeftImage = null;
-            btnInsertFormat.OnPressedState.IconRightImage = null;
-            btnInsertFormat.Size = new Size(155, 68);
-            btnInsertFormat.TabIndex = 1;
-            btnInsertFormat.TextAlign = ContentAlignment.MiddleCenter;
-            btnInsertFormat.TextAlignment = HorizontalAlignment.Center;
-            btnInsertFormat.TextMarginLeft = 0;
-            btnInsertFormat.TextPadding = new Padding(0);
-            btnInsertFormat.UseDefaultRadiusAndThickness = true;
-            btnInsertFormat.Click += btnInsertFormat_Click;
-            // 
-            // btnUpdateFormat
-            // 
-            btnUpdateFormat.AllowAnimations = true;
-            btnUpdateFormat.AllowMouseEffects = true;
-            btnUpdateFormat.AllowToggling = false;
-            btnUpdateFormat.AnimationSpeed = 200;
-            btnUpdateFormat.AutoGenerateColors = false;
-            btnUpdateFormat.AutoRoundBorders = false;
-            btnUpdateFormat.AutoSizeLeftIcon = true;
-            btnUpdateFormat.AutoSizeRightIcon = true;
-            btnUpdateFormat.BackColor = Color.Transparent;
-            btnUpdateFormat.BackColor1 = Color.FromArgb(51, 122, 183);
-            btnUpdateFormat.BackgroundImage = (Image)resources.GetObject("btnUpdateFormat.BackgroundImage");
-            btnUpdateFormat.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnUpdateFormat.ButtonText = "Sửa";
-            btnUpdateFormat.ButtonTextMarginLeft = 0;
-            btnUpdateFormat.ColorContrastOnClick = 45;
-            btnUpdateFormat.ColorContrastOnHover = 45;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            btnUpdateFormat.CustomizableEdges = borderEdges2;
-            btnUpdateFormat.DialogResult = DialogResult.None;
-            btnUpdateFormat.DisabledBorderColor = Color.FromArgb(191, 191, 191);
-            btnUpdateFormat.DisabledFillColor = Color.Empty;
-            btnUpdateFormat.DisabledForecolor = Color.Empty;
-            btnUpdateFormat.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            btnUpdateFormat.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnUpdateFormat.ForeColor = Color.White;
-            btnUpdateFormat.IconLeft = null;
-            btnUpdateFormat.IconLeftAlign = ContentAlignment.MiddleLeft;
-            btnUpdateFormat.IconLeftCursor = Cursors.Default;
-            btnUpdateFormat.IconLeftPadding = new Padding(11, 3, 3, 3);
-            btnUpdateFormat.IconMarginLeft = 11;
-            btnUpdateFormat.IconPadding = 10;
-            btnUpdateFormat.IconRight = null;
-            btnUpdateFormat.IconRightAlign = ContentAlignment.MiddleRight;
-            btnUpdateFormat.IconRightCursor = Cursors.Default;
-            btnUpdateFormat.IconRightPadding = new Padding(3, 3, 7, 3);
-            btnUpdateFormat.IconSize = 25;
-            btnUpdateFormat.IdleBorderColor = Color.Empty;
-            btnUpdateFormat.IdleBorderRadius = 0;
-            btnUpdateFormat.IdleBorderThickness = 0;
-            btnUpdateFormat.IdleFillColor = Color.Empty;
-            btnUpdateFormat.IdleIconLeftImage = null;
-            btnUpdateFormat.IdleIconRightImage = null;
-            btnUpdateFormat.IndicateFocus = false;
-            btnUpdateFormat.Location = new Point(532, 306);
-            btnUpdateFormat.Name = "btnUpdateFormat";
-            btnUpdateFormat.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
-            btnUpdateFormat.OnDisabledState.BorderRadius = 30;
-            btnUpdateFormat.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnUpdateFormat.OnDisabledState.BorderThickness = 2;
-            btnUpdateFormat.OnDisabledState.FillColor = Color.FromArgb(204, 204, 204);
-            btnUpdateFormat.OnDisabledState.ForeColor = Color.FromArgb(168, 160, 168);
-            btnUpdateFormat.OnDisabledState.IconLeftImage = null;
-            btnUpdateFormat.OnDisabledState.IconRightImage = null;
-            btnUpdateFormat.onHoverState.BorderColor = Color.FromArgb(30, 150, 255);
-            btnUpdateFormat.onHoverState.BorderRadius = 30;
-            btnUpdateFormat.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnUpdateFormat.onHoverState.BorderThickness = 2;
-            btnUpdateFormat.onHoverState.FillColor = Color.FromArgb(30, 150, 255);
-            btnUpdateFormat.onHoverState.ForeColor = Color.White;
-            btnUpdateFormat.onHoverState.IconLeftImage = null;
-            btnUpdateFormat.onHoverState.IconRightImage = null;
-            btnUpdateFormat.OnIdleState.BorderColor = Color.DodgerBlue;
-            btnUpdateFormat.OnIdleState.BorderRadius = 30;
-            btnUpdateFormat.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnUpdateFormat.OnIdleState.BorderThickness = 2;
-            btnUpdateFormat.OnIdleState.FillColor = Color.FromArgb(119, 33, 19);
-            btnUpdateFormat.OnIdleState.ForeColor = Color.White;
-            btnUpdateFormat.OnIdleState.IconLeftImage = null;
-            btnUpdateFormat.OnIdleState.IconRightImage = null;
-            btnUpdateFormat.OnPressedState.BorderColor = Color.DodgerBlue;
-            btnUpdateFormat.OnPressedState.BorderRadius = 30;
-            btnUpdateFormat.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnUpdateFormat.OnPressedState.BorderThickness = 2;
-            btnUpdateFormat.OnPressedState.FillColor = Color.Gold;
-            btnUpdateFormat.OnPressedState.ForeColor = Color.White;
-            btnUpdateFormat.OnPressedState.IconLeftImage = null;
-            btnUpdateFormat.OnPressedState.IconRightImage = null;
-            btnUpdateFormat.Size = new Size(155, 68);
-            btnUpdateFormat.TabIndex = 2;
-            btnUpdateFormat.TextAlign = ContentAlignment.MiddleCenter;
-            btnUpdateFormat.TextAlignment = HorizontalAlignment.Center;
-            btnUpdateFormat.TextMarginLeft = 0;
-            btnUpdateFormat.TextPadding = new Padding(0);
-            btnUpdateFormat.UseDefaultRadiusAndThickness = true;
-            btnUpdateFormat.Click += btnUpdateFormat_Click;
-            // 
-            // btnExport
-            // 
-            btnExport.AllowAnimations = true;
-            btnExport.AllowMouseEffects = true;
-            btnExport.AllowToggling = false;
-            btnExport.AnimationSpeed = 200;
-            btnExport.AutoGenerateColors = false;
-            btnExport.AutoRoundBorders = false;
-            btnExport.AutoSizeLeftIcon = true;
-            btnExport.AutoSizeRightIcon = true;
-            btnExport.BackColor = Color.Transparent;
-            btnExport.BackColor1 = Color.FromArgb(51, 122, 183);
-            btnExport.BackgroundImage = (Image)resources.GetObject("btnExport.BackgroundImage");
-            btnExport.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnExport.ButtonText = "Xuất File";
-            btnExport.ButtonTextMarginLeft = 0;
-            btnExport.ColorContrastOnClick = 45;
-            btnExport.ColorContrastOnHover = 45;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            btnExport.CustomizableEdges = borderEdges1;
-            btnExport.DialogResult = DialogResult.None;
-            btnExport.DisabledBorderColor = Color.FromArgb(191, 191, 191);
-            btnExport.DisabledFillColor = Color.Empty;
-            btnExport.DisabledForecolor = Color.Empty;
-            btnExport.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            btnExport.Font = new Font("Arial", 10.8F, FontStyle.Bold);
-            btnExport.ForeColor = Color.White;
-            btnExport.IconLeft = null;
-            btnExport.IconLeftAlign = ContentAlignment.MiddleLeft;
-            btnExport.IconLeftCursor = Cursors.Default;
-            btnExport.IconLeftPadding = new Padding(11, 3, 3, 3);
-            btnExport.IconMarginLeft = 11;
-            btnExport.IconPadding = 10;
-            btnExport.IconRight = null;
-            btnExport.IconRightAlign = ContentAlignment.MiddleRight;
-            btnExport.IconRightCursor = Cursors.Default;
-            btnExport.IconRightPadding = new Padding(3, 3, 7, 3);
-            btnExport.IconSize = 25;
-            btnExport.IdleBorderColor = Color.Empty;
-            btnExport.IdleBorderRadius = 0;
-            btnExport.IdleBorderThickness = 0;
-            btnExport.IdleFillColor = Color.Empty;
-            btnExport.IdleIconLeftImage = null;
-            btnExport.IdleIconRightImage = null;
-            btnExport.IndicateFocus = false;
-            btnExport.Location = new Point(785, 306);
-            btnExport.Name = "btnExport";
-            btnExport.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
-            btnExport.OnDisabledState.BorderRadius = 30;
-            btnExport.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnExport.OnDisabledState.BorderThickness = 2;
-            btnExport.OnDisabledState.FillColor = Color.FromArgb(204, 204, 204);
-            btnExport.OnDisabledState.ForeColor = Color.FromArgb(168, 160, 168);
-            btnExport.OnDisabledState.IconLeftImage = null;
-            btnExport.OnDisabledState.IconRightImage = null;
-            btnExport.onHoverState.BorderColor = Color.FromArgb(30, 150, 255);
-            btnExport.onHoverState.BorderRadius = 30;
-            btnExport.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnExport.onHoverState.BorderThickness = 2;
-            btnExport.onHoverState.FillColor = Color.FromArgb(30, 150, 255);
-            btnExport.onHoverState.ForeColor = Color.White;
-            btnExport.onHoverState.IconLeftImage = null;
-            btnExport.onHoverState.IconRightImage = null;
-            btnExport.OnIdleState.BorderColor = Color.DodgerBlue;
-            btnExport.OnIdleState.BorderRadius = 30;
-            btnExport.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnExport.OnIdleState.BorderThickness = 2;
-            btnExport.OnIdleState.FillColor = Color.FromArgb(119, 33, 19);
-            btnExport.OnIdleState.ForeColor = Color.White;
-            btnExport.OnIdleState.IconLeftImage = null;
-            btnExport.OnIdleState.IconRightImage = null;
-            btnExport.OnPressedState.BorderColor = Color.DodgerBlue;
-            btnExport.OnPressedState.BorderRadius = 30;
-            btnExport.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            btnExport.OnPressedState.BorderThickness = 2;
-            btnExport.OnPressedState.FillColor = Color.Gold;
-            btnExport.OnPressedState.ForeColor = Color.White;
-            btnExport.OnPressedState.IconLeftImage = null;
-            btnExport.OnPressedState.IconRightImage = null;
-            btnExport.Size = new Size(155, 68);
-            btnExport.TabIndex = 3;
-            btnExport.TextAlign = ContentAlignment.MiddleCenter;
-            btnExport.TextAlignment = HorizontalAlignment.Center;
-            btnExport.TextMarginLeft = 0;
-            btnExport.TextPadding = new Padding(0);
-            btnExport.UseDefaultRadiusAndThickness = true;
-            btnExport.Click += btnExport_Click;
             // 
             // DinhDangPhimUC
             // 
@@ -564,33 +305,31 @@
             Name = "DinhDangPhimUC";
             Size = new Size(1935, 998);
             panel1.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            grpAccount.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtgvFormat).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
+        #endregion
 
-		#endregion
-
-		private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnDeleteFormat;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label lblFormatID;
-        private System.Windows.Forms.TextBox txtFormatID;
         private System.Windows.Forms.DataGridView dtgvFormat;
-        private Label label1;
-        private TextBox txtTenDangPhim;
-        private Label label2;
-        private Label label3;
-        private TextBox txtTenMh;
-        private ComboBox cbMaMH;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnShowFormat;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnExport;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateFormat;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnInsertFormat;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnShowFormat;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnUpdateFormat;
+        private GroupBox grpAccount;
+        private Guna.UI2.WinForms.Guna2ComboBox cbMaMH;
+        private Guna.UI2.WinForms.Guna2TextBox txtTenMh;
+        private Guna.UI2.WinForms.Guna2TextBox txtFormatID;
+        private Guna.UI2.WinForms.Guna2TextBox txtTenDangPhim;
+        private GroupBox groupBox1;
+        private Guna.UI2.WinForms.Guna2Button btnDeleteGenre;
+        private Guna.UI2.WinForms.Guna2Button btnExport;
+        private Guna.UI2.WinForms.Guna2Button btnUpdateGenre;
+        private Guna.UI2.WinForms.Guna2Button btnInsertGenre;
     }
-
 }

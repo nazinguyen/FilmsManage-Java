@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FilmsAPI.Models;
 using FilmsManage.DTO;
+using System.Diagnostics;
 
 namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 {
@@ -30,6 +31,53 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
             _sv = new DangPhimSV("https://localhost:7085");
             InitializeComponent();
             btnTatCa_Click(null, null);
+        }
+
+        private Image LoadImage(string imageUrl)
+        {
+            try
+            {
+                // Check if the image URL is a web URL
+                if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute) && (imageUrl.StartsWith("http://") || imageUrl.StartsWith("https://")))
+                {
+                    using (var webClient = new System.Net.WebClient())
+                    {
+                        byte[] imageBytes = webClient.DownloadData(imageUrl);
+                        using (var ms = new System.IO.MemoryStream(imageBytes))
+                        {
+                            return Image.FromStream(ms);
+                        }
+                    }
+                }
+                // Check if the image URL is a valid local path
+                else if (System.IO.File.Exists(imageUrl))
+                {
+                    return Image.FromFile(imageUrl);
+                }
+                else
+                {
+                    // Load a default image if path is invalid
+                    return Image.FromFile(@"D:\CSharp\Winforms\FilmsManage\FilmsManage\FilmsManage\Image\Logo.jpg");
+                }
+            }
+            catch (System.Net.WebException webEx)
+            {
+                Debug.WriteLine($"Error loading image from URL: {webEx.Message}");
+                // Load a default image if URL loading fails
+                return Image.FromFile(@"D:\CSharp\Winforms\FilmsManage\FilmsManage\FilmsManage\Image\Logo.jpg");
+            }
+            catch (System.IO.FileNotFoundException fileEx)
+            {
+                Debug.WriteLine($"Error loading image from file: {fileEx.Message}");
+                // Load a default image if file loading fails
+                return Image.FromFile(@"Winform/FilmsManage/FilmsManage/Image/Logo.jpg");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unexpected error loading image: {ex.Message}");
+                // Load a default image for any other errors
+                return Image.FromFile(@"Winform/FilmsManage/FilmsManage/Image/Logo.jpg");
+            }
         }
         public async void LoadFood(List<FilmsAPI.Models.Food> products)
         {
@@ -63,15 +111,10 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
 
                 // Hình ảnh sản phẩm
                 PictureBox pictureBox = new PictureBox();
-                string imagePath = Path.Combine("Images", product.ImageUrl);
-                if (File.Exists(imagePath))
-                {
-                    pictureBox.Image = Image.FromFile(imagePath);
-                }
-                else
-                {
-                    pictureBox.Image = Image.FromFile(defaultImagePath);
-                }
+
+                pictureBox.Image = LoadImage(product.ImageUrl);
+
+
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Size = new Size(180, 120);
                 pictureBox.Location = new Point(20, 10);

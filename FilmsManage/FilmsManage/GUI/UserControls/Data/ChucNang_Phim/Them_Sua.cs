@@ -34,7 +34,6 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
             CheckChucNang(chucNang);
 
             LoadDangPhim();
-            loadLoaiPhim();
 
         }
 
@@ -46,6 +45,8 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 btnSua.Visible = false;
                 btnBack.Visible = false;
                 txtMovieID.Enabled = false;
+                await loadLoaiPhim();
+                grpAccount.Text = "Thêm phim";
             }
             else if (chucNang == "Sua")
             {
@@ -53,7 +54,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 btnSua.Visible = true;
                 txtMovieID.Enabled = false;
                 btnBack.Visible = false;
-
+                grpAccount.Text = "Sửa phim";
                 txtMovieID.Text = _dto.MaPhim.ToString();
                 txtMovieName.Text = _dto.TenPhim;
                 txtMovieDesc.Text = _dto.Mota;
@@ -68,17 +69,18 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 picFilm.Image = LoadImageFromFileSystem(_dto.AnhBia);
 
                 _listLoaiPhim = await _dangPhimSV.GetAsync<List<TheLoaiCuaPhim>>("/api/LoaiCuaPhim/" + _dto.MaPhim);
-                
-                    foreach (var loai in _listLoaiPhim)
-                    {
-                        Debug.WriteLine($"Mã thể loại: {loai.MaTheLoai}");
-                    }
-              
+
+                foreach (var loai in _listLoaiPhim)
+                {
+                    Debug.WriteLine($"Mã thể loại: {loai.MaTheLoai}");
+                }
+
 
                 await loadLoaiPhim_Update(_listLoaiPhim ?? new List<TheLoaiCuaPhim>());
             }
             else
             {
+                grpAccount.Text = "Chi tiết phim";
                 btnThem.Visible = false;
                 btnSua.Visible = false;
                 btnHuy.Visible = false;
@@ -166,7 +168,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 {
                     var listMaTheLoai = _listLoaiPhim;
                     var response = await _dangPhimSV.DeleteAsync("/api/LoaiCuaPhim", listMaTheLoai);
-                    
+
                 }
 
                 // Gửi danh sách thể loại mới lên API
@@ -191,7 +193,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
         {
             var danhSachLoaiPhim = new List<TheLoaiCuaPhim>();
 
-            foreach (var control in pnlLoaiPhim1.Controls)
+            foreach (var control in pnlLoaiPhim.Controls)
             {
                 if (control is CheckBox checkBox && checkBox.Checked)
                 {
@@ -216,7 +218,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
 
         public async Task loadLoaiPhim_Update(List<TheLoaiCuaPhim> loaiCuaPhim)
         {
-            pnlLoaiPhim1.Controls.Clear();
+            pnlLoaiPhim.Controls.Clear();
 
             // Lấy danh sách các loại phim từ API
             var loaiPhim = await _dangPhimSV.GetAsync<List<LoaiPhim>>("/api/LoaiPhim");
@@ -259,7 +261,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 {
                     Debug.WriteLine("khớp");
                 }
-                pnlLoaiPhim1.Controls.Add(checkbox);
+                pnlLoaiPhim.Controls.Add(checkbox);
 
                 i++;
             }
@@ -448,7 +450,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
         public async Task ThemLoaiChoPhim(int idPhim)
         {
             // Lấy danh sách ID của các loại phim đã được chọn
-            var selectedLoaiPhimIds = pnlLoaiPhim1.Controls.OfType<CheckBox>()
+            var selectedLoaiPhimIds = pnlLoaiPhim.Controls.OfType<CheckBox>()
                 .Where(cb => cb.Checked) // Chỉ lấy các checkbox được chọn
                 .Select(cb => int.Parse(cb.Tag.ToString())) // Giả sử bạn lưu `idLoaiPhim` trong thuộc tính `Tag`
                 .ToList();
@@ -515,7 +517,7 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                 };
 
                 // Thêm checkbox vào Panel
-                pnlLoaiPhim1.Controls.Add(checkbox);
+                pnlLoaiPhim.Controls.Add(checkbox);
 
                 i++;
             }
@@ -524,6 +526,33 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
 
 
         private void btnUpLoadPictureFilm_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            var themSua = dataUc.pnData.Controls.OfType<ChucNang_Phim.Them_Sua>().FirstOrDefault();
+            if (themSua != null)
+            {
+                dataUc.pnData.Controls.Remove(themSua);
+                themSua.Dispose();
+            }
+
+            // Ẩn tất cả các control khác
+            foreach (Control control in dataUc.pnData.Controls)
+            {
+                control.Visible = false;
+            }
+
+
+            // Khởi tạo control Them_Sua cho "ChiTiet"
+            var theLoai = new TheLoaiPhimUC(dataUc);
+            theLoai.Dock = DockStyle.Fill;
+            dataUc.pnData.Controls.Add(theLoai);
+        }
+
+        private void btnUpLoadPictureFilm_Click_1(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -550,28 +579,6 @@ namespace FilmsManage.GUI.UserControls.Data.ChucNang_Phim
                     }
                 }
             }
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            var themSua = dataUc.pnData.Controls.OfType<ChucNang_Phim.Them_Sua>().FirstOrDefault();
-            if (themSua != null)
-            {
-                dataUc.pnData.Controls.Remove(themSua);
-                themSua.Dispose();
-            }
-
-            // Ẩn tất cả các control khác
-            foreach (Control control in dataUc.pnData.Controls)
-            {
-                control.Visible = false;
-            }
-
-
-            // Khởi tạo control Them_Sua cho "ChiTiet"
-            var theLoai = new TheLoaiPhimUC(dataUc);
-            theLoai.Dock = DockStyle.Fill;
-            dataUc.pnData.Controls.Add(theLoai);
         }
     }
 }

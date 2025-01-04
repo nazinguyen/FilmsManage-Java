@@ -196,6 +196,61 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnInsertShowtime_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private async void btnUpdateShowtime_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void btnDeleteShowtime_Click_1(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
+        {
+            string searchText = txtSearchShowtime.Text.ToLower();
+            if (searchText == "")
+            {
+                LoadData();
+            }
+            var xuatChieus = await _dangPhimSV.GetAsync<List<XuatChieu>>("/api/XuatChieu");
+            if (xuatChieus == null || !xuatChieus.Any())
+            {
+                MessageBox.Show("Không có dữ liệu.");
+                return;
+            }
+
+            // Lọc dữ liệu và chuyển đổi thành đối tượng ẩn danh
+            var filteredShowtimes = xuatChieus
+                .Where(s => s.MaPhimNavigation != null &&
+                            s.MaPhimNavigation.TenPhim != null &&
+                            s.MaPhimNavigation.TenPhim.ToLower().Contains(searchText))
+                .Select(p => new
+                {
+                    p.MaXuatChieu,
+                    TenPhongChieu = p.MaPhongNavigation?.TenPhongChieu,
+                    TenPhim = p.MaPhimNavigation?.TenPhim,
+                    p.ThoiGianBatDau,
+                    p.ThoiGianKetThuc
+                })
+                .ToList();
+
+            // Hiển thị danh sách đã lọc
+            dtgvShowLichChieu.DataSource = null; // Xóa dữ liệu cũ
+            dtgvShowLichChieu.DataSource = filteredShowtimes; //
+        }
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+       
+        }
+
+        private async void btnInsertShowtime_Click_1(object sender, EventArgs e)
+        {
             var maPhim = Convert.ToInt32(cbbPhim.SelectedValue);
             var maPhong = Convert.ToInt32(cbbPhongChieu.SelectedValue);
             DateTime thoiGianBd = dateStart.Value.Add(timeStart.Value.TimeOfDay);
@@ -244,7 +299,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnUpdateShowtime_Click_1(object sender, EventArgs e)
+        private async void btnUpdateShowtime_Click(object sender, EventArgs e)
         {
             if (dtgvShowLichChieu.SelectedRows.Count == 0)
             {
@@ -257,6 +312,7 @@ namespace FilmsManage.GUI.UserControls.Data
             var maXuatChieu = Convert.ToInt32(selectedRow.Cells["TitleId"].Value);
             var maPhim = Convert.ToInt32(cbbPhim.SelectedValue);
             var maPhong = Convert.ToInt32(cbbPhongChieu.SelectedValue);
+            var giaCoBan = decimal.Parse(txtBasePrice.Text);    
             DateTime thoiGianBd = dateStart.Value.Add(timeStart.Value.TimeOfDay);
             DateTime thoiGianKt = dateStart.Value.Add(timeEnd.Value.TimeOfDay);
 
@@ -294,7 +350,7 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private async void btnDeleteShowtime_Click_1(object sender, EventArgs e)
+        private async void btnDeleteShowtime_Click(object sender, EventArgs e)
         {
             if (dtgvShowLichChieu.SelectedRows.Count == 0)
             {
@@ -336,44 +392,9 @@ namespace FilmsManage.GUI.UserControls.Data
                     MessageBox.Show("Xóa không thành công! " + ex.Message);
                 }
             }
-
         }
 
-        private async void txtSearchShowtime_TextChanged_1(object sender, EventArgs e)
-        {
-            string searchText = txtSearchShowtime.Text.ToLower();
-            if (searchText == "")
-            {
-                LoadData();
-            }
-            var xuatChieus = await _dangPhimSV.GetAsync<List<XuatChieu>>("/api/XuatChieu");
-            if (xuatChieus == null || !xuatChieus.Any())
-            {
-                MessageBox.Show("Không có dữ liệu.");
-                return;
-            }
-
-            // Lọc dữ liệu và chuyển đổi thành đối tượng ẩn danh
-            var filteredShowtimes = xuatChieus
-                .Where(s => s.MaPhimNavigation != null &&
-                            s.MaPhimNavigation.TenPhim != null &&
-                            s.MaPhimNavigation.TenPhim.ToLower().Contains(searchText))
-                .Select(p => new
-                {
-                    p.MaXuatChieu,
-                    TenPhongChieu = p.MaPhongNavigation?.TenPhongChieu,
-                    TenPhim = p.MaPhimNavigation?.TenPhim,
-                    p.ThoiGianBatDau,
-                    p.ThoiGianKetThuc
-                })
-                .ToList();
-
-            // Hiển thị danh sách đã lọc
-            dtgvShowLichChieu.DataSource = null; // Xóa dữ liệu cũ
-            dtgvShowLichChieu.DataSource = filteredShowtimes; //
-        }
-
-        private void btnExport_Click_1(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
             var exporter = new ExcelExporter();
             exporter.ExportDataGridViewToExcel(dtgvShowLichChieu);
