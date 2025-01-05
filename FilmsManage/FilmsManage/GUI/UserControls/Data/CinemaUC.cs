@@ -143,12 +143,12 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnInsertCinema_Click_1(object sender, EventArgs e)
         {
-          
+
         }
 
         private async void btnUpdateCinema_Click_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private bool ValidateInput(out string errorMessage)
@@ -215,7 +215,7 @@ namespace FilmsManage.GUI.UserControls.Data
 
         private async void btnExport_Click_1(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cboCinemaScreenType_SelectedIndexChanged(object sender, EventArgs e)
@@ -443,6 +443,36 @@ namespace FilmsManage.GUI.UserControls.Data
             else
             {
                 MessageBox.Show("Không có dữ liệu để xuất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private async void btnDeleteGenre_Click_1(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtCinemaID.Text, out var maPhongChieu) || maPhongChieu == 0)
+            {
+                MessageBox.Show("Vui lòng chọn 1 phòng chiếu để xóa!");
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa phòng chiếu này?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmResult == DialogResult.No)
+                return;
+
+            try
+            {
+                var result = await _PhongChieu.DeleteByIdAsync<string>($"/api/PhongCHieu/DeleteById/{maPhongChieu}");
+                MessageBox.Show(result);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
     }
