@@ -118,6 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnDeleteGenre.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAypJREFUWEe9
+        l8tOFEEUhnkAVvAUiHsewQ3vAGsQ5QG4jERH0OCGYbhjmBkixACi3IadRONKZXYziboxmqBycTIIyiTH
+        8xdd4+nuM909KFbyhaEu5/+76lR1dd217tZI3H6UbWDamDkmxxwx5IDfqEMb+jRoMTTUSgkHa2bSzClj
+        BcNAX4xp1mJK1ErAg+uZEabMaCJRwFjEqNc0gFrJA5qYPKMFvQiI1aRp+Sq4Ywtz4Az8lyBmi1fP9Q93
+        wJNfhrgFsV0zIcWx5jVNe3xh26C1BQCNSk5IA0gWbUCFOwtZWnqxS/mPe1Q6OSVbSic/TR3a0Ecb62HE
+        ZYArsNUCs3166xXtHRYdyeoFfdBXiyGAltmi1kBGNPpY3HlDZ+WyIxFe0Hfh+Ws1liBtDPAPnHBVDxk8
+        TS3itvw6K9PE2o4a0wGaDTCAo1PrYNZTTvvb/DuaXNqg/SP/UqAObehjy+ev+9Q3u6LGdmiDAZzfWqNJ
+        Klkg0BFPUG8yRfvf/5iAOOrQhj6yzKxkqWdmWY3PzMEAXiJaIxU4s2U5LJYoNp4xQviL/0H/WNpVJ0uu
+        8IE67o5Sjz4TORiQbzUX2F7e4jXhNeQtxeMfph0mev0mjmDAW2nAAVOtSBNB4rZ0DSZNv07FxH81cG4i
+        SX0Pn1R0/moJkHg2+aqZqCyB4NzEKjTMElwoCc1O4OyXO0AzYZJQiFs6eVZ4OUwSXmwbirMgaBtOL2+5
+        hCWcEykYuLSD6NOXbybxNHGHdhi4pKP4jAZnFzVRyynTaF9GuECqBkCtLyOIjz9e10Ql8/JtGPo6ntp8
+        yWf7gSNRvWDaQ54clDvio1crBhwToReS2NxTml3dpt3CeyqWjh1J3mr8G3VIuJA1tySsrjQQ6UrWzyau
+        D42ZQDhg5CETkQLjv5I5JiJdSmOpZ9Q1NK4FD+OAuSI1XQYAC0S6lsfSa9R1b0ITqQbEg6/lFhaI9GFy
+        K71ON+5PamJeMO2uJ7f4KiwsEOnTbCCzQTeHpzRRwNmeSDC1fZpJWCT043RgfpO6H8xIYRwyGbvVglAr
+        NVgo8POcZyLXPTydYuF2plGL4ae17jfCH7xMX3vOBQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnUpdateCinema.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAABCFJREFUWEe1

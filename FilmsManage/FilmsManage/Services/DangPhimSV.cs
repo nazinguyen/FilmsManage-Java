@@ -206,6 +206,40 @@ namespace FilmsManage.Services
             var response = await _client.ExecuteAsync(request);
             return response.IsSuccessful;
         }
+        public async Task<T> DeleteByIdAsync<T>(string endpoint)
+        {
+            // Tạo request với phương thức DELETE
+            var request = new RestRequest(endpoint, Method.Delete);
+
+            // Thêm token vào request
+            AddToken(request);
+
+            try
+            {
+                // Thực hiện request
+                var response = await _client.ExecuteAsync(request);
+
+                // Kiểm tra nếu phản hồi thành công
+                if (response.IsSuccessful)
+                {
+                    // Nếu T là kiểu string, trả về nội dung phản hồi
+                    if (typeof(T) == typeof(string))
+                        return (T)(object)response.Content;
+
+                    // Nếu T không phải string, cố gắng parse nội dung
+                    return JsonConvert.DeserializeObject<T>(response.Content);
+                }
+
+                // Nếu không thành công, ném ngoại lệ với thông tin lỗi
+                throw new Exception($"Error: {response.StatusCode} - {response.Content}");
+            }
+            catch (Exception ex)
+            {
+                // Ghi log nếu cần hoặc ném ngoại lệ ra ngoài
+                throw new Exception($"Lỗi khi gọi API: {ex.Message}", ex);
+            }
+        }
+
 
     }
 }

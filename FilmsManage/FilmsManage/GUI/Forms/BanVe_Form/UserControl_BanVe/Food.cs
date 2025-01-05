@@ -83,13 +83,11 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
         {
             flpFillFood.Controls.Clear();
 
-            string defaultImagePath = @"C:\Users\Admin\Downloads\Screenshot 2024-11-11 210536.jpg";
-
             foreach (var product in products)
             {
                 // Tạo panel con cho sản phẩm
                 Panel productPanel = new Panel();
-                productPanel.Size = new Size(220, 280);
+                productPanel.Size = new Size(220, 300);
                 productPanel.Margin = new Padding(10);
                 productPanel.BackColor = Color.White;
                 productPanel.BorderStyle = BorderStyle.None;
@@ -106,18 +104,29 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                     path.AddArc(rectangle.X + rectangle.Width - borderRadius, rectangle.Y + rectangle.Height - borderRadius, borderRadius, borderRadius, 0, 90);
                     path.AddArc(rectangle.X, rectangle.Y + rectangle.Height - borderRadius, borderRadius, borderRadius, 90, 90);
                     graphics.FillPath(new SolidBrush(Color.White), path);
-                    graphics.DrawPath(new Pen(Color.Black, 2), path);
+                    graphics.DrawPath(new Pen(Color.LightGray, 2), path);
                 };
 
                 // Hình ảnh sản phẩm
                 PictureBox pictureBox = new PictureBox();
-
                 pictureBox.Image = LoadImage(product.ImageUrl);
-
-
                 pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 pictureBox.Size = new Size(180, 120);
                 pictureBox.Location = new Point(20, 10);
+                pictureBox.BorderStyle = BorderStyle.FixedSingle;
+                pictureBox.Paint += (sender, e) =>
+                {
+                    var pb = (PictureBox)sender;
+                    var g = e.Graphics;
+                    var rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
+                    var radius = 10;
+                    var path = new System.Drawing.Drawing2D.GraphicsPath();
+                    path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
+                    path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
+                    path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
+                    path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
+                    g.DrawPath(new Pen(Color.LightGray, 2), path);
+                };
 
                 // Tên sản phẩm
                 Label lblName = new Label();
@@ -131,15 +140,17 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                 // Giá sản phẩm
                 Label lblPrice = new Label();
                 lblPrice.Text = $"{product.Price:#,##0} đ";
-                lblPrice.AutoSize = true;
-                lblPrice.Location = new Point(20, 200);
+                lblPrice.AutoSize = false;
+                lblPrice.Size = new Size(180, 25);
+                lblPrice.Location = new Point(20, 190);
+                lblPrice.TextAlign = ContentAlignment.MiddleCenter;
                 lblPrice.Font = new Font("Arial", 10, FontStyle.Regular);
 
                 // Nút thêm sản phẩm (+)
                 Button btnAdd = new Button();
                 btnAdd.Text = "+";
                 btnAdd.Size = new Size(40, 40);
-                btnAdd.Location = new Point(160, 180);
+                btnAdd.Location = new Point(160, 230);
                 btnAdd.Font = new Font("Arial", 14, FontStyle.Bold);
                 btnAdd.BackColor = Color.FromArgb(0, 123, 255);
                 btnAdd.ForeColor = Color.White;
@@ -157,7 +168,6 @@ namespace FilmsManage.GUI.Forms.BanVe_Form.UserControl_BanVe
                     }
                     else
                     {
-
                         var food = new FoodDTO()
                         {
                             Id = product.Id,

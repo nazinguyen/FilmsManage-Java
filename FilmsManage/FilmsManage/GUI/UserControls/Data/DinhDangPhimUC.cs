@@ -226,9 +226,34 @@ namespace FilmsManage.GUI.UserControls.Data
             }
         }
 
-        private void btnDeleteGenre_Click(object sender, EventArgs e)
+        private async void btnDeleteGenre_Click(object sender, EventArgs e)
         {
+            if (!int.TryParse(txtFormatID.Text, out var maDangPhim) || maDangPhim == 0)
+            {
+                MessageBox.Show("Vui lòng nhập ID hợp lệ và chọn 1 dạng phim để xóa!");
+                return;
+            }
 
+            var confirmResult = MessageBox.Show(
+                "Bạn có chắc chắn muốn xóa dạng phim này?",
+                "Xác nhận xóa",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmResult == DialogResult.No)
+                return;
+
+            try
+            {
+                var result = await _dangPhimSV.DeleteByIdAsync<string>($"/DangPhim/DeleteById/{maDangPhim}");
+                MessageBox.Show(result);
+                await LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
+            }
         }
 
         private void btnExport_Click(object sender, EventArgs e)

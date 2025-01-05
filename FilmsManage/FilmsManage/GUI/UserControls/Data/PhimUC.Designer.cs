@@ -88,10 +88,10 @@
             // lwShow
             // 
             lwShow.FullRowSelect = true;
-            lwShow.Location = new Point(0, 732);
+            lwShow.Location = new Point(2, 706);
             lwShow.Margin = new Padding(2);
             lwShow.Name = "lwShow";
-            lwShow.Size = new Size(1612, 473);
+            lwShow.Size = new Size(1612, 302);
             lwShow.TabIndex = 106;
             lwShow.UseCompatibleStateImageBehavior = false;
             lwShow.MouseClick += lwShow_MouseClick;
@@ -150,7 +150,7 @@
             grpAccount.Margin = new Padding(4, 2, 4, 2);
             grpAccount.Name = "grpAccount";
             grpAccount.Padding = new Padding(4, 2, 4, 2);
-            grpAccount.Size = new Size(1572, 478);
+            grpAccount.Size = new Size(1572, 464);
             grpAccount.TabIndex = 164;
             grpAccount.TabStop = false;
             grpAccount.Text = "Thông tin phim";
@@ -307,9 +307,9 @@
             label6.Location = new Point(28, 94);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(162, 29);
+            label6.Size = new Size(177, 29);
             label6.TabIndex = 12;
-            label6.Text = "Giờ kết thúc:";
+            label6.Text = "Ngày kết thúc:";
             // 
             // label5
             // 
@@ -458,7 +458,7 @@
             groupBox1.FlatStyle = FlatStyle.Popup;
             groupBox1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.Black;
-            groupBox1.Location = new Point(22, 596);
+            groupBox1.Location = new Point(22, 570);
             groupBox1.Margin = new Padding(4, 2, 4, 2);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 2, 4, 2);

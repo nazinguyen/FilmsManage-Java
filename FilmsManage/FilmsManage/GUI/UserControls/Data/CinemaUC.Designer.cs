@@ -45,11 +45,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel12 = new Panel();
             txtNumberOfRows = new TextBox();
             panel1 = new Panel();
             dtgvCinema = new DataGridView();
             panel2 = new Panel();
+            btnDeleteGenre = new Guna.UI2.WinForms.Guna2Button();
             btnUpdateCinema = new Guna.UI2.WinForms.Guna2Button();
             btnInsertCinema = new Guna.UI2.WinForms.Guna2Button();
             btnExport = new Guna.UI2.WinForms.Guna2Button();
@@ -115,6 +118,7 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(btnDeleteGenre);
             panel2.Controls.Add(btnUpdateCinema);
             panel2.Controls.Add(btnInsertCinema);
             panel2.Controls.Add(btnExport);
@@ -125,12 +129,33 @@
             panel2.Size = new Size(407, 632);
             panel2.TabIndex = 0;
             // 
+            // btnDeleteGenre
+            // 
+            btnDeleteGenre.Animated = true;
+            btnDeleteGenre.BackColor = Color.Transparent;
+            btnDeleteGenre.BorderRadius = 10;
+            btnDeleteGenre.CustomizableEdges = customizableEdges1;
+            btnDeleteGenre.FillColor = Color.FromArgb(0, 0, 64);
+            btnDeleteGenre.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnDeleteGenre.ForeColor = Color.White;
+            btnDeleteGenre.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDeleteGenre.Image = (Image)resources.GetObject("btnDeleteGenre.Image");
+            btnDeleteGenre.Location = new Point(45, 273);
+            btnDeleteGenre.Margin = new Padding(5, 6, 5, 6);
+            btnDeleteGenre.Name = "btnDeleteGenre";
+            btnDeleteGenre.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnDeleteGenre.Size = new Size(295, 64);
+            btnDeleteGenre.TabIndex = 50;
+            btnDeleteGenre.Text = "Xóa";
+            btnDeleteGenre.UseTransparentBackground = true;
+            btnDeleteGenre.Click += btnDeleteGenre_Click_1;
+            // 
             // btnUpdateCinema
             // 
             btnUpdateCinema.Animated = true;
             btnUpdateCinema.BackColor = Color.Transparent;
             btnUpdateCinema.BorderRadius = 10;
-            btnUpdateCinema.CustomizableEdges = customizableEdges1;
+            btnUpdateCinema.CustomizableEdges = customizableEdges3;
             btnUpdateCinema.FillColor = Color.FromArgb(0, 0, 64);
             btnUpdateCinema.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnUpdateCinema.ForeColor = Color.White;
@@ -139,7 +164,7 @@
             btnUpdateCinema.Location = new Point(45, 165);
             btnUpdateCinema.Margin = new Padding(5, 6, 5, 6);
             btnUpdateCinema.Name = "btnUpdateCinema";
-            btnUpdateCinema.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnUpdateCinema.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnUpdateCinema.Size = new Size(300, 65);
             btnUpdateCinema.TabIndex = 46;
             btnUpdateCinema.Text = "Sửa";
@@ -151,7 +176,7 @@
             btnInsertCinema.Animated = true;
             btnInsertCinema.BackColor = Color.Transparent;
             btnInsertCinema.BorderRadius = 10;
-            btnInsertCinema.CustomizableEdges = customizableEdges3;
+            btnInsertCinema.CustomizableEdges = customizableEdges5;
             btnInsertCinema.FillColor = Color.FromArgb(0, 0, 64);
             btnInsertCinema.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnInsertCinema.ForeColor = Color.White;
@@ -160,7 +185,7 @@
             btnInsertCinema.Location = new Point(45, 56);
             btnInsertCinema.Margin = new Padding(5, 6, 5, 6);
             btnInsertCinema.Name = "btnInsertCinema";
-            btnInsertCinema.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnInsertCinema.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnInsertCinema.Size = new Size(300, 65);
             btnInsertCinema.TabIndex = 43;
             btnInsertCinema.Text = "Thêm";
@@ -172,16 +197,16 @@
             btnExport.Animated = true;
             btnExport.BackColor = Color.Transparent;
             btnExport.BorderRadius = 10;
-            btnExport.CustomizableEdges = customizableEdges5;
+            btnExport.CustomizableEdges = customizableEdges7;
             btnExport.FillColor = Color.FromArgb(0, 0, 64);
             btnExport.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnExport.ForeColor = Color.White;
             btnExport.HoverState.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnExport.Image = (Image)resources.GetObject("btnExport.Image");
-            btnExport.Location = new Point(45, 281);
+            btnExport.Location = new Point(40, 365);
             btnExport.Margin = new Padding(5, 6, 5, 6);
             btnExport.Name = "btnExport";
-            btnExport.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnExport.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnExport.Size = new Size(300, 65);
             btnExport.TabIndex = 44;
             btnExport.Text = "Xuất File";
@@ -225,7 +250,7 @@
             cboCinemaScreenType.BackColor = Color.Transparent;
             cboCinemaScreenType.BorderColor = Color.Black;
             cboCinemaScreenType.BorderRadius = 10;
-            cboCinemaScreenType.CustomizableEdges = customizableEdges7;
+            cboCinemaScreenType.CustomizableEdges = customizableEdges9;
             cboCinemaScreenType.DrawMode = DrawMode.OwnerDrawFixed;
             cboCinemaScreenType.DropDownStyle = ComboBoxStyle.DropDownList;
             cboCinemaScreenType.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -236,7 +261,7 @@
             cboCinemaScreenType.Location = new Point(510, 139);
             cboCinemaScreenType.Margin = new Padding(4);
             cboCinemaScreenType.Name = "cboCinemaScreenType";
-            cboCinemaScreenType.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            cboCinemaScreenType.ShadowDecoration.CustomizableEdges = customizableEdges10;
             cboCinemaScreenType.Size = new Size(235, 36);
             cboCinemaScreenType.TabIndex = 15;
             cboCinemaScreenType.SelectedIndexChanged += cboCinemaScreenType_SelectedIndexChanged;
@@ -247,7 +272,7 @@
             txtSeatsPerRow.BorderColor = Color.Black;
             txtSeatsPerRow.BorderRadius = 6;
             txtSeatsPerRow.Cursor = Cursors.IBeam;
-            txtSeatsPerRow.CustomizableEdges = customizableEdges9;
+            txtSeatsPerRow.CustomizableEdges = customizableEdges11;
             txtSeatsPerRow.DefaultText = "";
             txtSeatsPerRow.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtSeatsPerRow.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -264,7 +289,7 @@
             txtSeatsPerRow.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             txtSeatsPerRow.PlaceholderText = "Số ghế mỗi hàng";
             txtSeatsPerRow.SelectedText = "";
-            txtSeatsPerRow.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            txtSeatsPerRow.ShadowDecoration.CustomizableEdges = customizableEdges12;
             txtSeatsPerRow.Size = new Size(254, 49);
             txtSeatsPerRow.TabIndex = 35;
             // 
@@ -274,7 +299,7 @@
             txtCinemaSeats.BorderColor = Color.Black;
             txtCinemaSeats.BorderRadius = 6;
             txtCinemaSeats.Cursor = Cursors.IBeam;
-            txtCinemaSeats.CustomizableEdges = customizableEdges11;
+            txtCinemaSeats.CustomizableEdges = customizableEdges13;
             txtCinemaSeats.DefaultText = "";
             txtCinemaSeats.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtCinemaSeats.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -291,7 +316,7 @@
             txtCinemaSeats.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             txtCinemaSeats.PlaceholderText = "Số chỗ ngồi";
             txtCinemaSeats.SelectedText = "";
-            txtCinemaSeats.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            txtCinemaSeats.ShadowDecoration.CustomizableEdges = customizableEdges14;
             txtCinemaSeats.Size = new Size(236, 49);
             txtCinemaSeats.TabIndex = 33;
             // 
@@ -301,7 +326,7 @@
             txtCinemaID.BorderColor = Color.Black;
             txtCinemaID.BorderRadius = 6;
             txtCinemaID.Cursor = Cursors.IBeam;
-            txtCinemaID.CustomizableEdges = customizableEdges13;
+            txtCinemaID.CustomizableEdges = customizableEdges15;
             txtCinemaID.DefaultText = "";
             txtCinemaID.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtCinemaID.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -318,7 +343,7 @@
             txtCinemaID.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             txtCinemaID.PlaceholderText = "Mã phòng";
             txtCinemaID.SelectedText = "";
-            txtCinemaID.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            txtCinemaID.ShadowDecoration.CustomizableEdges = customizableEdges16;
             txtCinemaID.Size = new Size(251, 49);
             txtCinemaID.TabIndex = 32;
             // 
@@ -328,7 +353,7 @@
             txtCinemaName.BorderColor = Color.Black;
             txtCinemaName.BorderRadius = 6;
             txtCinemaName.Cursor = Cursors.IBeam;
-            txtCinemaName.CustomizableEdges = customizableEdges15;
+            txtCinemaName.CustomizableEdges = customizableEdges17;
             txtCinemaName.DefaultText = "";
             txtCinemaName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtCinemaName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -345,7 +370,7 @@
             txtCinemaName.PlaceholderForeColor = Color.FromArgb(64, 64, 64);
             txtCinemaName.PlaceholderText = "Tên phòng";
             txtCinemaName.SelectedText = "";
-            txtCinemaName.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtCinemaName.ShadowDecoration.CustomizableEdges = customizableEdges18;
             txtCinemaName.Size = new Size(251, 48);
             txtCinemaName.TabIndex = 10;
             // 
@@ -385,5 +410,6 @@
         private Guna.UI2.WinForms.Guna2Button btnExport;
         private Guna.UI2.WinForms.Guna2Button btnInsertCinema;
         private Panel panel2;
+        private Guna.UI2.WinForms.Guna2Button btnDeleteGenre;
     }
 }

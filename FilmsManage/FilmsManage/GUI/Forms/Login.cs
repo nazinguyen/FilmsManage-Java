@@ -18,6 +18,9 @@ namespace FilmsManage
         {
             InitializeComponent();
             _sv = new DangPhimSV("https://localhost:7085");
+            txtPassword.PasswordChar = '*';
+            this.AcceptButton = btn_Login;
+
 
         }
 
@@ -104,8 +107,16 @@ namespace FilmsManage
         }
         private void cbPassword_CheckedChanged(object sender, EventArgs e)
         {
-            txtPassword.UseSystemPasswordChar = !cbPassword.Checked;
-
+            if (cbPassword.Checked)
+            {
+                // Hiển thị mật khẩu
+                txtPassword.PasswordChar = '\0'; // Không có ký tự thay thế
+            }
+            else
+            {
+                // Ẩn mật khẩu
+                txtPassword.PasswordChar = '*';
+            }
         }
     }
 }
