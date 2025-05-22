@@ -1,0 +1,3693 @@
+package com.filmsmanage;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.sql.*;
+import java.util.Vector;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Calendar;
+import java.util.Date;
+import com.toedter.calendar.JDateChooser;
+import java.util.Properties;
+
+public class MovieManagerApp extends JFrame {
+    private JTable movieTable;
+    private DefaultTableModel tableModel;
+    private JButton addButton, editButton, deleteButton;
+    private DatabaseUtil dbUtil;
+    private JPanel mainContentPanel;
+    private CardLayout cardLayout;
+    private DefaultTableModel foodTableModel;
+    private String currentUserRole;
+    private Integer currentUserId;
+    private String currentUsername;
+
+    public MovieManagerApp(String role) {
+        this.currentUserRole = role;
+        dbUtil = new DatabaseUtil();
+        createRevenueTables();
+        createScreensTable();
+        createGenresTable();
+        createTheatersTable();
+        createStaffTable();
+        initializeUI();
+    }
+
+    private void createRevenueTables() {
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement()) {
+            
+            // Create orders table
+            stmt.execute("CREATE TABLE IF NOT EXISTS orders (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "movie_id INTEGER NOT NULL," +
+                        "show_date DATE NOT NULL," +
+                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                        "FOREIGN KEY (movie_id) REFERENCES movies(id))");
+
+            // Create tickets table
+            stmt.execute("CREATE TABLE IF NOT EXISTS tickets (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "order_id INTEGER NOT NULL," +
+                        "schedule_id VARCHAR(20) NOT NULL," +
+                        "seat_id VARCHAR(20) NOT NULL," +
+                        "status VARCHAR(20) NOT NULL," +
+                        "price DECIMAL(10,2) NOT NULL," +
+                        "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                        "FOREIGN KEY (order_id) REFERENCES orders(id)," +
+                        "FOREIGN KEY (schedule_id) REFERENCES schedules(id))");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Lỗi khi khởi tạo bảng doanh thu: " + e.getMessage(),
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void createScreensTable() {
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement()) {
+            
+            // Create screens table
+            stmt.execute("CREATE TABLE IF NOT EXISTS screens (" +
+                        "id VARCHAR(20) PRIMARY KEY," +
+                        "name VARCHAR(100) NOT NULL)");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Lỗi khi khởi tạo bảng màn hình: " + e.getMessage(),
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void createGenresTable() {
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement()) {
+            
+            // Create genres table
+            stmt.execute("CREATE TABLE IF NOT EXISTS genres (" +
+                        "id VARCHAR(20) PRIMARY KEY," +
+                        "name VARCHAR(100) NOT NULL)");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Lỗi khi khởi tạo bảng thể loại: " + e.getMessage(),
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void createTheatersTable() {
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement()) {
+            
+            // Create theaters table
+            stmt.execute("CREATE TABLE IF NOT EXISTS theaters (" +
+                        "id VARCHAR(20) PRIMARY KEY," +
+                        "name VARCHAR(100) NOT NULL," +
+                        "screen_id VARCHAR(20) NOT NULL," +
+                        "total_seats INTEGER NOT NULL," +
+                        "rows INTEGER NOT NULL," +
+                        "seats_per_row INTEGER NOT NULL," +
+                        "FOREIGN KEY (screen_id) REFERENCES screens(id))");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Lỗi khi khởi tạo bảng phòng chiếu: " + e.getMessage(),
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void createStaffTable() {
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement()) {
+            
+            // Create staff table
+            stmt.execute("CREATE TABLE IF NOT EXISTS staff (" +
+                        "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        "name TEXT NOT NULL," +
+                        "username TEXT NOT NULL UNIQUE," +
+                        "password TEXT NOT NULL," +
+                        "role TEXT NOT NULL)");
+
+            // Insert default admin user if not exists
+            stmt.execute("INSERT OR IGNORE INTO staff (name, username, password, role) " +
+                        "VALUES ('Admin', 'admin', 'admin123', 'ADMIN')");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Lỗi khi khởi tạo bảng nhân viên: " + e.getMessage(),
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void initializeUI() {
+        setTitle("Hệ Thống Quản Lý Rạp Chiếu Phim");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1200, 800);
+        setLocationRelativeTo(null);
+
+        // Create main layout
+        setLayout(new BorderLayout());
+
+        // Create top menu bar
+        JPanel topMenuBar = createTopMenuBar();
+        add(topMenuBar, BorderLayout.NORTH);
+
+        // Create revenue summary panel
+        JPanel revenueSummaryPanel = createRevenueSummaryPanel();
+        add(revenueSummaryPanel, BorderLayout.SOUTH);
+
+        // Create main content area with CardLayout
+        cardLayout = new CardLayout();
+        mainContentPanel = new JPanel(cardLayout);
+        add(mainContentPanel, BorderLayout.CENTER);
+
+        // Add different panels based on user role
+        if ("ADMIN".equals(currentUserRole)) {
+            mainContentPanel.add(createRevenuePanel(), "REVENUE");
+            mainContentPanel.add(createDataPanel(), "DATA");
+            mainContentPanel.add(createStaffPanel(), "STAFF");
+            mainContentPanel.add(createCustomersPanel(), "CUSTOMERS");
+            cardLayout.show(mainContentPanel, "REVENUE");
+        } else if ("STAFF".equals(currentUserRole)) {
+            mainContentPanel.add(createTicketsPanel(), "TICKETS");
+            mainContentPanel.add(createSchedulesPanel(), "SCHEDULES");
+            mainContentPanel.add(createFoodPanel(), "FOOD");
+            cardLayout.show(mainContentPanel, "TICKETS");
+        }
+    }
+
+    private JPanel createRevenueSummaryPanel() {
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
+        panel.setBackground(new Color(33, 37, 41));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+
+        // Create labels for revenue metrics
+        JLabel todayRevenueLabel = new JLabel("Doanh thu hôm nay: 0 VNĐ");
+        JLabel totalRevenueLabel = new JLabel("Tổng doanh thu: 0 VNĐ");
+        JLabel ticketsSoldLabel = new JLabel("Số vé đã bán: 0");
+        JLabel activeMoviesLabel = new JLabel("Phim đang chiếu: 0");
+
+        // Style the labels
+        Font labelFont = new Font("Arial", Font.BOLD, 14);
+        Color labelColor = new Color(255, 255, 255);
+        for (JLabel label : new JLabel[]{todayRevenueLabel, totalRevenueLabel, ticketsSoldLabel, activeMoviesLabel}) {
+            label.setFont(labelFont);
+            label.setForeground(labelColor);
+        }
+
+        // Add labels to panel
+        panel.add(todayRevenueLabel);
+        panel.add(totalRevenueLabel);
+        panel.add(ticketsSoldLabel);
+        panel.add(activeMoviesLabel);
+
+        // Create timer to update revenue information every minute
+        Timer timer = new Timer(60000, e -> updateRevenueSummary(todayRevenueLabel, totalRevenueLabel, ticketsSoldLabel, activeMoviesLabel));
+        timer.start();
+
+        // Initial update
+        updateRevenueSummary(todayRevenueLabel, totalRevenueLabel, ticketsSoldLabel, activeMoviesLabel);
+
+        return panel;
+    }
+
+    private void updateRevenueSummary(JLabel todayRevenueLabel, JLabel totalRevenueLabel, 
+                                    JLabel ticketsSoldLabel, JLabel activeMoviesLabel) {
+        try (Connection conn = dbUtil.getConnection()) {
+            // Get today's revenue
+            String today = LocalDate.now().toString();
+            double todayRevenue = 0;
+            int ticketsSold = 0;
+            try (PreparedStatement pstmt = conn.prepareStatement(
+                "SELECT COUNT(*) as ticket_count, SUM(price) as total_revenue " +
+                "FROM tickets t " +
+                "JOIN orders o ON t.order_id = o.id " +
+                "WHERE DATE(o.created_at) = ?")) {
+                pstmt.setString(1, today);
+                ResultSet rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    ticketsSold = rs.getInt("ticket_count");
+                    todayRevenue = rs.getDouble("total_revenue");
+                }
+            }
+
+            // Get total revenue
+            double totalRevenue = 0;
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(
+                    "SELECT SUM(price) as total_revenue FROM tickets")) {
+                if (rs.next()) {
+                    totalRevenue = rs.getDouble("total_revenue");
+                }
+            }
+
+            // Get number of active movies
+            int activeMovies = 0;
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(
+                    "SELECT COUNT(*) as active_count FROM movies " +
+                    "WHERE start_date <= CURRENT_DATE AND end_date >= CURRENT_DATE")) {
+                if (rs.next()) {
+                    activeMovies = rs.getInt("active_count");
+                }
+            }
+
+            // Update labels
+            todayRevenueLabel.setText(String.format("Doanh thu hôm nay: %,.0f VNĐ", todayRevenue));
+            totalRevenueLabel.setText(String.format("Tổng doanh thu: %,.0f VNĐ", totalRevenue));
+            ticketsSoldLabel.setText(String.format("Số vé đã bán: %d", ticketsSold));
+            activeMoviesLabel.setText(String.format("Phim đang chiếu: %d", activeMovies));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật thông tin doanh thu: " + e.getMessage());
+        }
+    }
+
+    private JPanel createTopMenuBar() {
+        JPanel menuBar = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        menuBar.setBackground(new Color(33, 37, 41));
+        menuBar.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Add menu buttons based on user role
+        if ("ADMIN".equals(currentUserRole)) {
+            addTopMenuButton(menuBar, "Doanh thu", "REVENUE", "src/main/resources/images/doanhThu.png");
+            addTopMenuButton(menuBar, "Dữ liệu", "DATA", "src/main/resources/images/data.png");
+            addTopMenuButton(menuBar, "Nhân viên", "STAFF", "src/main/resources/images/staff.png");
+            addTopMenuButton(menuBar, "Khách hàng", "CUSTOMERS", "src/main/resources/images/customer.png");
+        } else if ("STAFF".equals(currentUserRole)) {
+            addTopMenuButton(menuBar, "Bán vé", "TICKETS", null);
+            addTopMenuButton(menuBar, "Lịch chiếu", "SCHEDULES", null);
+            addTopMenuButton(menuBar, "Thức ăn", "FOOD", null);
+        }
+
+        // Add logout button
+        menuBar.add(Box.createHorizontalGlue());
+        JButton logoutButton = new JButton("Đăng xuất");
+        try {
+            ImageIcon logoutIcon = new ImageIcon("src/main/resources/images/logout.png");
+            Image img = logoutIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            logoutButton.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        styleTopMenuButton(logoutButton);
+        logoutButton.addActionListener(e -> handleLogout());
+        menuBar.add(logoutButton);
+
+        return menuBar;
+    }
+
+    private void addTopMenuButton(JPanel menuBar, String text, String cardName, String iconPath) {
+        JButton button = new JButton(text);
+        if (iconPath != null) {
+            try {
+                ImageIcon icon = new ImageIcon(iconPath);
+                Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                button.setIcon(new ImageIcon(img));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        styleTopMenuButton(button);
+        button.addActionListener(e -> cardLayout.show(mainContentPanel, cardName));
+        button.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(255, 193, 7), 2),
+            BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+        menuBar.add(button);
+    }
+
+    private void styleTopMenuButton(JButton button) {
+        // Set text color to black for logout button, white for others
+        if (button.getText().equals("Đăng xuất")) {
+            button.setForeground(Color.BLACK);
+        } else {
+            button.setForeground(Color.WHITE);
+        }
+        button.setBackground(new Color(52, 58, 64));
+        button.setFocusPainted(false);
+        button.setBorderPainted(true);
+        button.setFont(new Font("Arial", Font.PLAIN, 14));
+        button.setPreferredSize(new Dimension(150, 40));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.setIconTextGap(10);
+        
+        // Add hover effect
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(73, 80, 87));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(52, 58, 64));
+            }
+        });
+    }
+
+    private JPanel createDashboardPanel() {
+        JPanel panel = new JPanel(new GridLayout(2, 2, 10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Add dashboard cards
+        panel.add(createDashboardCard("Doanh Thu Hôm Nay", "0 VNĐ", new Color(40, 167, 69)));
+        panel.add(createDashboardCard("Số Vé Đã Bán", "0", new Color(23, 162, 184)));
+        panel.add(createDashboardCard("Số Phim Đang Chiếu", "0", new Color(255, 193, 7)));
+        panel.add(createDashboardCard("Tổng Số Khách Hàng", "0", new Color(220, 53, 69)));
+
+        return panel;
+    }
+
+    private JPanel createDashboardCard(String title, String value, Color color) {
+        JPanel card = new JPanel(new BorderLayout());
+        card.setBackground(color);
+        card.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
+
+        JLabel valueLabel = new JLabel(value);
+        valueLabel.setForeground(Color.WHITE);
+        valueLabel.setFont(new Font("Arial", Font.BOLD, 24));
+
+        card.add(titleLabel, BorderLayout.NORTH);
+        card.add(valueLabel, BorderLayout.CENTER);
+
+        return card;
+    }
+
+    private JPanel createMoviesPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create top panel with search and CRUD buttons
+        JPanel topPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search panel
+        JPanel searchPanel = new JPanel(new GridBagLayout());
+        searchPanel.setBorder(BorderFactory.createTitledBorder("Tìm kiếm"));
+        GridBagConstraints searchGbc = new GridBagConstraints();
+        searchGbc.insets = new Insets(5, 5, 5, 5);
+        searchGbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search field
+        JTextField searchField = new JTextField(20);
+        searchField.setPreferredSize(new Dimension(200, 30));
+        searchGbc.gridx = 0;
+        searchGbc.gridy = 0;
+        searchPanel.add(new JLabel("Tìm kiếm:"), searchGbc);
+        searchGbc.gridx = 1;
+        searchPanel.add(searchField, searchGbc);
+
+        // Search button
+        JButton searchButton = new JButton("Tìm");
+        searchButton.setPreferredSize(new Dimension(80, 30));
+        searchButton.setBackground(new Color(0, 123, 255));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchGbc.gridx = 2;
+        searchPanel.add(searchButton, searchGbc);
+
+        // CRUD buttons panel
+        JPanel crudPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        crudPanel.setBorder(BorderFactory.createTitledBorder("Thao tác"));
+
+        addButton = new JButton("Thêm phim");
+        editButton = new JButton("Sửa phim");
+        deleteButton = new JButton("Xóa phim");
+
+        // Style CRUD buttons
+        for (JButton button : new JButton[]{addButton, editButton, deleteButton}) {
+            button.setPreferredSize(new Dimension(120, 35));
+            button.setBackground(new Color(40, 167, 69));
+            button.setForeground(Color.WHITE);
+            button.setFocusPainted(false);
+            button.setBorderPainted(false);
+            button.setFont(new Font("Arial", Font.BOLD, 14));
+            crudPanel.add(button);
+        }
+
+        // Add search panel and CRUD panel to top panel side by side
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.7; // Give more space to search panel
+        topPanel.add(searchPanel, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 0.3; // Less space for CRUD panel
+        topPanel.add(crudPanel, gbc);
+
+        // Create table
+        String[] columnNames = {"ID", "Tên phim", "Nội dung", "Thời lượng", "Ngày bắt đầu", "Ngày kết thúc", 
+                              "Đạo diễn", "Mô tả", "Thể loại"};
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        movieTable = new JTable(tableModel);
+        movieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        movieTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        movieTable.getTableHeader().setReorderingAllowed(false);
+        
+        // Set up scroll pane with preferred size
+        JScrollPane scrollPane = new JScrollPane(movieTable);
+        scrollPane.setPreferredSize(new Dimension(800, 400));
+
+        // Add components to main panel
+        panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Add action listeners
+        searchButton.addActionListener(e -> {
+            String searchText = searchField.getText().trim();
+            loadMovies(searchText);
+        });
+
+        addButton.addActionListener(e -> showMovieDialog(null));
+        editButton.addActionListener(e -> {
+            int selectedRow = movieTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String movieId = (String) movieTable.getValueAt(selectedRow, 0);
+                showMovieDialog(movieId);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn phim cần sửa.");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = movieTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String movieId = (String) movieTable.getValueAt(selectedRow, 0);
+                deleteMovie(movieId);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn phim cần xóa.");
+            }
+        });
+
+        // Load initial data
+        loadMovies("");
+
+        return panel;
+    }
+
+    private void showMovieDialog(String movieId) {
+        Movie movie = null;
+        if (movieId != null) {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                     "SELECT m.*, GROUP_CONCAT(g.name) as genres " +
+                     "FROM movies m " +
+                     "LEFT JOIN movie_genres mg ON m.id = mg.movie_id " +
+                     "LEFT JOIN genres g ON mg.genre_id = g.id " +
+                     "WHERE m.id = ? " +
+                     "GROUP BY m.id")) {
+                
+                pstmt.setString(1, movieId);
+                try (ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        movie = new Movie(
+                            rs.getInt("id"),
+                            rs.getString("title"),
+                            rs.getString("content"),
+                            rs.getInt("duration"),
+                            rs.getString("start_date"),
+                            rs.getString("end_date"),
+                            rs.getString("director"),
+                            rs.getString("description"),
+                            rs.getString("image_path"),
+                            rs.getString("genres")
+                        );
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi tải thông tin phim: " + e.getMessage());
+                return;
+            }
+        }
+
+        String dialogTitle = movieId == null ? "Thêm phim mới" : "Sửa phim";
+        MovieDialog dialog = new MovieDialog(this, dialogTitle, movie);
+        dialog.setVisible(true);
+        if (dialog.isConfirmed()) {
+            loadMovies("");
+        }
+    }
+
+    private void deleteMovie(String movieId) {
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Bạn có chắc chắn muốn xóa phim này?",
+            "Xác nhận xóa",
+            JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            try (Connection conn = dbUtil.getConnection()) {
+                // First delete related records from movie_genres table
+                try (PreparedStatement pstmt = conn.prepareStatement(
+                    "DELETE FROM movie_genres WHERE movie_id = ?")) {
+                    pstmt.setString(1, movieId);
+                    pstmt.executeUpdate();
+                }
+
+                // Then delete the movie
+                try (PreparedStatement pstmt = conn.prepareStatement(
+                    "DELETE FROM movies WHERE id = ?")) {
+                    pstmt.setString(1, movieId);
+                    pstmt.executeUpdate();
+                }
+
+                loadMovies("");
+                JOptionPane.showMessageDialog(this, "Xóa phim thành công");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi xóa phim: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void loadMovies(String searchText) {
+        DefaultTableModel model = (DefaultTableModel) movieTable.getModel();
+        model.setRowCount(0);
+
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                 "SELECT m.id, m.title, m.content, m.duration, m.start_date, m.end_date, " +
+                 "m.director, m.description, GROUP_CONCAT(g.name) as genres " +
+                 "FROM movies m " +
+                 "LEFT JOIN movie_genres mg ON m.id = mg.movie_id " +
+                 "LEFT JOIN genres g ON mg.genre_id = g.id " +
+                 "WHERE m.title LIKE ? OR m.director LIKE ? OR m.description LIKE ? " +
+                 "GROUP BY m.id")) {
+            
+            stmt.setString(1, "%" + searchText + "%");
+            stmt.setString(2, "%" + searchText + "%");
+            stmt.setString(3, "%" + searchText + "%");
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getString("id"),
+                        rs.getString("title"),
+                        rs.getString("content"),
+                        rs.getInt("duration"),
+                        rs.getString("start_date"),
+                        rs.getString("end_date"),
+                        rs.getString("director"),
+                        rs.getString("description"),
+                        rs.getString("genres")
+                    };
+                    model.addRow(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải danh sách phim: " + e.getMessage());
+        }
+    }
+
+    private void showAddMovieDialog() {
+        JDialog dialog = new JDialog(this, "Thêm phim mới", true);
+        dialog.setLayout(new BorderLayout());
+        
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        
+        // Add form fields
+        gbc.gridx = 0; gbc.gridy = 0;
+        formPanel.add(new JLabel("Tên phim:"), gbc);
+        gbc.gridx = 1;
+        JTextField titleField = new JTextField(20);
+        formPanel.add(titleField, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 1;
+        formPanel.add(new JLabel("Nội dung:"), gbc);
+        gbc.gridx = 1;
+        JTextArea contentArea = new JTextArea(3, 20);
+        formPanel.add(new JScrollPane(contentArea), gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 2;
+        formPanel.add(new JLabel("Thời lượng (phút):"), gbc);
+        gbc.gridx = 1;
+        JTextField durationField = new JTextField(20);
+        formPanel.add(durationField, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 3;
+        formPanel.add(new JLabel("Ngày bắt đầu:"), gbc);
+        gbc.gridx = 1;
+        JDateChooser startDatePicker = createDatePicker();
+        formPanel.add(startDatePicker, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 4;
+        formPanel.add(new JLabel("Ngày kết thúc:"), gbc);
+        gbc.gridx = 1;
+        JDateChooser endDatePicker = createDatePicker();
+        formPanel.add(endDatePicker, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 5;
+        formPanel.add(new JLabel("Đạo diễn:"), gbc);
+        gbc.gridx = 1;
+        JTextField directorField = new JTextField(20);
+        formPanel.add(directorField, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 6;
+        formPanel.add(new JLabel("Mô tả:"), gbc);
+        gbc.gridx = 1;
+        JTextArea descriptionArea = new JTextArea(3, 20);
+        formPanel.add(new JScrollPane(descriptionArea), gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 7;
+        formPanel.add(new JLabel("Thể loại:"), gbc);
+        gbc.gridx = 1;
+        JTextField genresField = new JTextField(20);
+        formPanel.add(genresField, gbc);
+        
+        dialog.add(formPanel, BorderLayout.CENTER);
+        
+        JPanel buttonPanel = new JPanel();
+        JButton saveButton = new JButton("Lưu");
+        JButton cancelButton = new JButton("Hủy");
+        
+        saveButton.addActionListener(e -> {
+            try {
+                String title = titleField.getText();
+                String content = contentArea.getText();
+                int duration = Integer.parseInt(durationField.getText());
+                String startDate = getDateFromPicker(startDatePicker);
+                String endDate = getDateFromPicker(endDatePicker);
+                String director = directorField.getText();
+                String description = descriptionArea.getText();
+                String[] genres = genresField.getText().split(",");
+                
+                // Insert movie
+                String sql = "INSERT INTO movies (title, content, duration, start_date, end_date, director, description) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                
+                try (Connection conn = dbUtil.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                    
+                    pstmt.setString(1, title);
+                    pstmt.setString(2, content);
+                    pstmt.setInt(3, duration);
+                    pstmt.setString(4, startDate);
+                    pstmt.setString(5, endDate);
+                    pstmt.setString(6, director);
+                    pstmt.setString(7, description);
+                    pstmt.executeUpdate();
+                    
+                    // Get the generated movie ID
+                    int movieId;
+                    try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            movieId = generatedKeys.getInt(1);
+                            
+                            // Insert movie-genre relationships
+                            String insertMovieGenre = "INSERT INTO movie_genres (movie_id, genre_id) VALUES (?, ?)";
+                            
+                            for (String genreName : genres) {
+                                // Get or create genre ID
+                                int genreId;
+                                try (PreparedStatement genreStmt = conn.prepareStatement(
+                                    "SELECT id FROM genres WHERE name = ?")) {
+                                    genreStmt.setString(1, genreName.trim());
+                                    try (ResultSet genreRs = genreStmt.executeQuery()) {
+                                        if (genreRs.next()) {
+                                            genreId = genreRs.getInt("id");
+                                        } else {
+                                            // Create new genre
+                                            try (PreparedStatement insertGenreStmt = conn.prepareStatement(
+                                                "INSERT INTO genres (name) VALUES (?)", Statement.RETURN_GENERATED_KEYS)) {
+                                                insertGenreStmt.setString(1, genreName.trim());
+                                                insertGenreStmt.executeUpdate();
+                                                try (ResultSet genreKeys = insertGenreStmt.getGeneratedKeys()) {
+                                                    if (genreKeys.next()) {
+                                                        genreId = genreKeys.getInt(1);
+                                                    } else {
+                                                        throw new SQLException("Failed to create genre");
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                // Insert movie-genre relationship
+                                try (PreparedStatement movieGenreStmt = conn.prepareStatement(insertMovieGenre)) {
+                                    movieGenreStmt.setInt(1, movieId);
+                                    movieGenreStmt.setInt(2, genreId);
+                                    movieGenreStmt.executeUpdate();
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                loadMovies("");
+                dialog.dispose();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(dialog, "Error adding movie: " + ex.getMessage());
+            }
+        });
+        
+        cancelButton.addActionListener(e -> dialog.dispose());
+        
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+        
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+    }
+
+    private void showEditMovieDialog(int selectedRow) {
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn phim để sửa");
+            return;
+        }
+
+        int movieId = (int) movieTable.getValueAt(selectedRow, 0);
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(
+                 "SELECT m.*, GROUP_CONCAT(g.name) as genres " +
+                 "FROM movies m " +
+                 "LEFT JOIN movie_genres mg ON m.id = mg.movie_id " +
+                 "LEFT JOIN genres g ON mg.genre_id = g.id " +
+                 "WHERE m.id = ? " +
+                 "GROUP BY m.id")) {
+            
+            pstmt.setInt(1, movieId);
+            ResultSet rs = pstmt.executeQuery();
+            
+            if (rs.next()) {
+                Movie movie = new Movie(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("content"),
+                    rs.getInt("duration"),
+                    rs.getString("start_date"),
+                    rs.getString("end_date"),
+                    rs.getString("director"),
+                    rs.getString("description"),
+                    rs.getString("image_path"),
+                    rs.getString("genres")
+                );
+                
+                MovieDialog dialog = new MovieDialog(this, "Sửa phim", movie);
+                dialog.setVisible(true);
+                
+                if (dialog.isConfirmed()) {
+                    Movie updatedMovie = dialog.getMovie();
+                    updateMovie(updatedMovie);
+                    loadMovies("");
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải thông tin phim: " + e.getMessage());
+        }
+    }
+
+    private void updateMovie(Movie movie) {
+        try (Connection conn = dbUtil.getConnection()) {
+            conn.setAutoCommit(false);
+            try {
+                // Update movie details
+                try (PreparedStatement pstmt = conn.prepareStatement(
+                    "UPDATE movies SET title = ?, content = ?, duration = ?, " +
+                    "start_date = ?, end_date = ?, director = ?, description = ?, " +
+                    "image_path = ? WHERE id = ?")) {
+                    
+                    pstmt.setString(1, movie.getTitle());
+                    pstmt.setString(2, movie.getContent());
+                    pstmt.setInt(3, movie.getDuration());
+                    pstmt.setString(4, movie.getStartDate());
+                    pstmt.setString(5, movie.getEndDate());
+                    pstmt.setString(6, movie.getDirector());
+                    pstmt.setString(7, movie.getDescription());
+                    pstmt.setString(8, movie.getImagePath());
+                    pstmt.setInt(9, movie.getId());
+                    pstmt.executeUpdate();
+                }
+
+                // Update genres
+                try (PreparedStatement deleteStmt = conn.prepareStatement(
+                    "DELETE FROM movie_genres WHERE movie_id = ?")) {
+                    deleteStmt.setInt(1, movie.getId());
+                    deleteStmt.executeUpdate();
+                }
+
+                if (movie.getGenres() != null && !movie.getGenres().isEmpty()) {
+                    try (PreparedStatement insertStmt = conn.prepareStatement(
+                        "INSERT INTO movie_genres (movie_id, genre_id) VALUES (?, ?)")) {
+                        for (String genre : movie.getGenres().split(",")) {
+                            insertStmt.setInt(1, movie.getId());
+                            insertStmt.setString(2, genre.trim());
+                            insertStmt.addBatch();
+                        }
+                        insertStmt.executeBatch();
+                    }
+                }
+
+                conn.commit();
+                JOptionPane.showMessageDialog(this, "Cập nhật phim thành công!");
+            } catch (SQLException e) {
+                conn.rollback();
+                throw e;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật phim: " + e.getMessage());
+        }
+    }
+
+    private JPanel createScreensPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create form panel
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Screen ID field
+        gbc.gridx = 0; gbc.gridy = 0;
+        formPanel.add(new JLabel("Mã màn hình:"), gbc);
+        gbc.gridx = 1;
+        JTextField screenIdField = new JTextField(20);
+        formPanel.add(screenIdField, gbc);
+
+        // Screen Name field
+        gbc.gridx = 0; gbc.gridy = 1;
+        formPanel.add(new JLabel("Tên màn hình:"), gbc);
+        gbc.gridx = 1;
+        JTextField screenNameField = new JTextField(20);
+        formPanel.add(screenNameField, gbc);
+
+        // Create button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton exportButton = createActionButton("Xuất File", "export.png");
+
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(exportButton);
+
+        // Create table
+        String[] columnNames = {"Mã màn hình", "Tên màn hình"};
+        DefaultTableModel screenTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable screenTable = new JTable(screenTableModel);
+        JScrollPane scrollPane = new JScrollPane(screenTable);
+
+        // Add action listeners
+        addButton.addActionListener(e -> {
+            String screenId = screenIdField.getText().trim();
+            String screenName = screenNameField.getText().trim();
+
+            if (screenId.isEmpty() || screenName.isEmpty()) {
+                JOptionPane.showMessageDialog(panel, "Vui lòng nhập đầy đủ thông tin");
+                return;
+            }
+
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                     "INSERT INTO screens (id, name) VALUES (?, ?)")) {
+                
+                pstmt.setString(1, screenId);
+                pstmt.setString(2, screenName);
+                pstmt.executeUpdate();
+
+                screenIdField.setText("");
+                screenNameField.setText("");
+                loadScreens(screenTableModel);
+                // Refresh all screen combo boxes in the app
+                refreshAllScreenComboBoxes();
+                JOptionPane.showMessageDialog(panel, "Thêm màn hình thành công");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(panel, "Lỗi khi thêm màn hình: " + ex.getMessage());
+            }
+        });
+
+        editButton.addActionListener(e -> {
+            int selectedRow = screenTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String oldScreenId = (String) screenTableModel.getValueAt(selectedRow, 0);
+                String newScreenId = screenIdField.getText().trim();
+                String newScreenName = screenNameField.getText().trim();
+
+                if (newScreenId.isEmpty() || newScreenName.isEmpty()) {
+                    JOptionPane.showMessageDialog(panel, "Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
+
+                try (Connection conn = dbUtil.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(
+                         "UPDATE screens SET id = ?, name = ? WHERE id = ?")) {
+                    
+                    pstmt.setString(1, newScreenId);
+                    pstmt.setString(2, newScreenName);
+                    pstmt.setString(3, oldScreenId);
+                    pstmt.executeUpdate();
+
+                    screenIdField.setText("");
+                    screenNameField.setText("");
+                    loadScreens(screenTableModel);
+                    JOptionPane.showMessageDialog(panel, "Cập nhật màn hình thành công");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi cập nhật màn hình: " + ex.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(panel, "Vui lòng chọn màn hình cần sửa");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = screenTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String screenId = (String) screenTableModel.getValueAt(selectedRow, 0);
+                int confirm = JOptionPane.showConfirmDialog(panel,
+                    "Bạn có chắc chắn muốn xóa màn hình này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == JOptionPane.YES_OPTION) {
+                    try (Connection conn = dbUtil.getConnection();
+                         PreparedStatement pstmt = conn.prepareStatement(
+                             "DELETE FROM screens WHERE id = ?")) {
+                        
+                        pstmt.setString(1, screenId);
+                        pstmt.executeUpdate();
+
+                        screenIdField.setText("");
+                        screenNameField.setText("");
+                        loadScreens(screenTableModel);
+                        JOptionPane.showMessageDialog(panel, "Xóa màn hình thành công");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(panel, "Lỗi khi xóa màn hình: " + ex.getMessage());
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(panel, "Vui lòng chọn màn hình cần xóa");
+            }
+        });
+
+        exportButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            
+            if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".csv")) {
+                    file = new File(file.getAbsolutePath() + ".csv");
+                }
+                
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                    // Write header
+                    writer.println("Mã màn hình,Tên màn hình");
+                    
+                    // Write data
+                    for (int i = 0; i < screenTableModel.getRowCount(); i++) {
+                        String screenId = (String) screenTableModel.getValueAt(i, 0);
+                        String screenName = (String) screenTableModel.getValueAt(i, 1);
+                        writer.println(screenId + "," + screenName);
+                    }
+                    
+                    JOptionPane.showMessageDialog(panel, "Xuất file thành công");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi xuất file: " + ex.getMessage());
+                }
+            }
+        });
+
+        // Add table selection listener
+        screenTable.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = screenTable.getSelectedRow();
+                if (selectedRow >= 0) {
+                    screenIdField.setText((String) screenTableModel.getValueAt(selectedRow, 0));
+                    screenNameField.setText((String) screenTableModel.getValueAt(selectedRow, 1));
+                }
+            }
+        });
+
+        // Add panels to main panel
+        panel.add(formPanel, BorderLayout.NORTH);
+        panel.add(buttonPanel, BorderLayout.CENTER);
+        panel.add(scrollPane, BorderLayout.SOUTH);
+
+        // Load initial data
+        loadScreens(screenTableModel);
+
+        return panel;
+    }
+
+    private void loadScreens(DefaultTableModel model) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM screens")) {
+            
+            while (rs.next()) {
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getString("id"));
+                row.add(rs.getString("name"));
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu màn hình: " + e.getMessage());
+        }
+    }
+
+    private JPanel createTheatersPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create top panel with search and CRUD buttons
+        JPanel topPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search panel
+        JPanel searchPanel = new JPanel(new GridBagLayout());
+        searchPanel.setBorder(BorderFactory.createTitledBorder("Tìm kiếm"));
+        GridBagConstraints searchGbc = new GridBagConstraints();
+        searchGbc.insets = new Insets(5, 5, 5, 5);
+        searchGbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search field
+        JTextField searchField = new JTextField(20);
+        searchField.setPreferredSize(new Dimension(200, 30));
+        searchGbc.gridx = 0;
+        searchGbc.gridy = 0;
+        searchPanel.add(new JLabel("Tìm kiếm:"), searchGbc);
+        searchGbc.gridx = 1;
+        searchPanel.add(searchField, searchGbc);
+
+        // Search button
+        JButton searchButton = new JButton("Tìm");
+        searchButton.setPreferredSize(new Dimension(80, 30));
+        searchButton.setBackground(new Color(0, 123, 255));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchGbc.gridx = 2;
+        searchPanel.add(searchButton, searchGbc);
+
+        // CRUD buttons panel
+        JPanel crudPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        crudPanel.setBorder(BorderFactory.createTitledBorder("Thao tác"));
+
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton exportButton = createActionButton("Xuất File", "export.png");
+
+        crudPanel.add(addButton);
+        crudPanel.add(editButton);
+        crudPanel.add(deleteButton);
+        crudPanel.add(exportButton);
+
+        // Add search panel and CRUD panel to top panel side by side
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.7; // Give more space to search panel
+        topPanel.add(searchPanel, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 0.3; // Less space for CRUD panel
+        topPanel.add(crudPanel, gbc);
+
+        // Create table
+        String[] columnNames = {"Mã phòng", "Tên phòng chiếu", "Tên màn hình", "Số chỗ ngồi", "Số hàng ghế", "Số ghế mỗi hàng"};
+        DefaultTableModel theaterTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable theaterTable = new JTable(theaterTableModel);
+        JScrollPane scrollPane = new JScrollPane(theaterTable);
+
+        // Add panels to main panel
+        panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Load initial data
+        loadTheaters(theaterTableModel, "");
+
+        // Add action listeners
+        searchButton.addActionListener(e -> {
+            String searchText = searchField.getText().trim();
+            loadTheaters(theaterTableModel, searchText);
+        });
+
+        addButton.addActionListener(e -> showTheaterDialog(null, theaterTableModel));
+
+        editButton.addActionListener(e -> {
+            int selectedRow = theaterTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String theaterId = (String) theaterTable.getValueAt(selectedRow, 0);
+                showTheaterDialog(theaterId, theaterTableModel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn phòng chiếu cần sửa.");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = theaterTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String theaterId = (String) theaterTable.getValueAt(selectedRow, 0);
+                deleteTheater(theaterId, theaterTableModel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn phòng chiếu cần xóa.");
+            }
+        });
+
+        exportButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            
+            if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".csv")) {
+                    file = new File(file.getAbsolutePath() + ".csv");
+                }
+                
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                    // Write header
+                    writer.println("Mã phòng,Tên phòng chiếu,Tên màn hình,Số chỗ ngồi,Số hàng ghế,Số ghế mỗi hàng");
+                    
+                    // Write data
+                    for (int i = 0; i < theaterTableModel.getRowCount(); i++) {
+                        StringBuilder line = new StringBuilder();
+                        for (int j = 0; j < theaterTableModel.getColumnCount(); j++) {
+                            if (j > 0) line.append(",");
+                            line.append(theaterTableModel.getValueAt(i, j));
+                        }
+                        writer.println(line.toString());
+                    }
+                    
+                    JOptionPane.showMessageDialog(panel, "Xuất file thành công");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi xuất file: " + ex.getMessage());
+                }
+            }
+        });
+
+        return panel;
+    }
+
+    private void loadTheaters(DefaultTableModel model, String searchText) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                 "SELECT t.*, s.name as screen_name FROM theaters t " +
+                 "JOIN screens s ON t.screen_id = s.id " +
+                 "WHERE t.name LIKE ? OR s.name LIKE ?")) {
+            
+            stmt.setString(1, "%" + searchText + "%");
+            stmt.setString(2, "%" + searchText + "%");
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("screen_name"),
+                        rs.getInt("total_seats"),
+                        rs.getInt("rows"),
+                        rs.getInt("seats_per_row")
+                    };
+                    model.addRow(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu phòng chiếu: " + e.getMessage());
+        }
+    }
+
+    private void loadScreensToComboBox(JComboBox<String> comboBox) {
+        comboBox.removeAllItems();
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT id, name FROM screens")) {
+            
+            while (rs.next()) {
+                comboBox.addItem(rs.getString("id") + " - " + rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải danh sách màn hình: " + e.getMessage());
+        }
+    }
+
+    private void clearTheaterFields(JTextField idField, JTextField nameField, JComboBox<String> screenComboBox,
+                                  JTextField totalSeatsField, JTextField rowsField, JTextField seatsPerRowField) {
+        idField.setText("");
+        nameField.setText("");
+        screenComboBox.setSelectedIndex(0);
+        totalSeatsField.setText("");
+        rowsField.setText("");
+        seatsPerRowField.setText("");
+    }
+
+    private JPanel createGenresPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create form panel
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Genre ID field
+        gbc.gridx = 0; gbc.gridy = 0;
+        formPanel.add(new JLabel("Mã thể loại:"), gbc);
+        gbc.gridx = 1;
+        JTextField genreIdField = new JTextField(20);
+        formPanel.add(genreIdField, gbc);
+
+        // Genre Name field
+        gbc.gridx = 0; gbc.gridy = 1;
+        formPanel.add(new JLabel("Tên thể loại:"), gbc);
+        gbc.gridx = 1;
+        JTextField genreNameField = new JTextField(20);
+        formPanel.add(genreNameField, gbc);
+
+        // Create button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton exportButton = createActionButton("Xuất File", "export.png");
+
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(exportButton);
+
+        // Create table
+        String[] columnNames = {"Mã thể loại", "Tên thể loại"};
+        DefaultTableModel genreTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable genreTable = new JTable(genreTableModel);
+        JScrollPane scrollPane = new JScrollPane(genreTable);
+
+        // Add action listeners
+        addButton.addActionListener(e -> {
+            String genreId = genreIdField.getText().trim();
+            String genreName = genreNameField.getText().trim();
+
+            if (genreId.isEmpty() || genreName.isEmpty()) {
+                JOptionPane.showMessageDialog(panel, "Vui lòng nhập đầy đủ thông tin");
+                return;
+            }
+
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                     "INSERT INTO genres (id, name) VALUES (?, ?)")) {
+                
+                pstmt.setString(1, genreId);
+                pstmt.setString(2, genreName);
+                pstmt.executeUpdate();
+
+                genreIdField.setText("");
+                genreNameField.setText("");
+                loadGenres(genreTableModel);
+                JOptionPane.showMessageDialog(panel, "Thêm thể loại thành công");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(panel, "Lỗi khi thêm thể loại: " + ex.getMessage());
+            }
+        });
+
+        editButton.addActionListener(e -> {
+            int selectedRow = genreTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String oldGenreId = (String) genreTableModel.getValueAt(selectedRow, 0);
+                String newGenreId = genreIdField.getText().trim();
+                String newGenreName = genreNameField.getText().trim();
+
+                if (newGenreId.isEmpty() || newGenreName.isEmpty()) {
+                    JOptionPane.showMessageDialog(panel, "Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
+
+                try (Connection conn = dbUtil.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(
+                         "UPDATE genres SET id = ?, name = ? WHERE id = ?")) {
+                    
+                    pstmt.setString(1, newGenreId);
+                    pstmt.setString(2, newGenreName);
+                    pstmt.setString(3, oldGenreId);
+                    pstmt.executeUpdate();
+
+                    genreIdField.setText("");
+                    genreNameField.setText("");
+                    loadGenres(genreTableModel);
+                    JOptionPane.showMessageDialog(panel, "Cập nhật thể loại thành công");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi cập nhật thể loại: " + ex.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(panel, "Vui lòng chọn thể loại cần sửa");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = genreTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String genreId = (String) genreTableModel.getValueAt(selectedRow, 0);
+                int confirm = JOptionPane.showConfirmDialog(panel,
+                    "Bạn có chắc chắn muốn xóa thể loại này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == JOptionPane.YES_OPTION) {
+                    try (Connection conn = dbUtil.getConnection();
+                         PreparedStatement pstmt = conn.prepareStatement(
+                             "DELETE FROM genres WHERE id = ?")) {
+                        
+                        pstmt.setString(1, genreId);
+                        pstmt.executeUpdate();
+
+                        genreIdField.setText("");
+                        genreNameField.setText("");
+                        loadGenres(genreTableModel);
+                        JOptionPane.showMessageDialog(panel, "Xóa thể loại thành công");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(panel, "Lỗi khi xóa thể loại: " + ex.getMessage());
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(panel, "Vui lòng chọn thể loại cần xóa");
+            }
+        });
+
+        exportButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            
+            if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".csv")) {
+                    file = new File(file.getAbsolutePath() + ".csv");
+                }
+                
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                    // Write header
+                    writer.println("Mã thể loại,Tên thể loại");
+                    
+                    // Write data
+                    for (int i = 0; i < genreTableModel.getRowCount(); i++) {
+                        String genreId = (String) genreTableModel.getValueAt(i, 0);
+                        String genreName = (String) genreTableModel.getValueAt(i, 1);
+                        writer.println(genreId + "," + genreName);
+                    }
+                    
+                    JOptionPane.showMessageDialog(panel, "Xuất file thành công");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi xuất file: " + ex.getMessage());
+                }
+            }
+        });
+
+        // Add table selection listener
+        genreTable.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = genreTable.getSelectedRow();
+                if (selectedRow >= 0) {
+                    genreIdField.setText((String) genreTableModel.getValueAt(selectedRow, 0));
+                    genreNameField.setText((String) genreTableModel.getValueAt(selectedRow, 1));
+                }
+            }
+        });
+
+        // Add panels to main panel
+        panel.add(formPanel, BorderLayout.NORTH);
+        panel.add(buttonPanel, BorderLayout.CENTER);
+        panel.add(scrollPane, BorderLayout.SOUTH);
+
+        // Load initial data
+        loadGenres(genreTableModel);
+
+        return panel;
+    }
+
+    private void loadGenres(DefaultTableModel model) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM genres")) {
+            
+            while (rs.next()) {
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getString("id"));
+                row.add(rs.getString("name"));
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu thể loại: " + e.getMessage());
+        }
+    }
+
+    private JPanel createFormatsPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create table
+        String[] columnNames = {"Mã định dạng", "Tên dạng phim", "Mã màn hình", "Tên màn hình"};
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable formatTable = new JTable(tableModel);
+        formatTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        formatTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        formatTable.getTableHeader().setReorderingAllowed(false);
+
+        // Create button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton exportButton = createActionButton("Xuất Excel", "export.png");
+
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(exportButton);
+
+        // Add action listeners
+        addButton.addActionListener(e -> showAddFormatDialog(tableModel));
+        editButton.addActionListener(e -> showEditFormatDialog(formatTable, tableModel));
+        deleteButton.addActionListener(e -> deleteFormat(formatTable, tableModel));
+        exportButton.addActionListener(e -> exportFormatsToExcel(formatTable));
+
+        // Add components to panel
+        panel.add(new JScrollPane(formatTable), BorderLayout.CENTER);
+        panel.add(buttonPanel, BorderLayout.NORTH);
+
+        // Load initial data
+        loadFormats(tableModel);
+
+        return panel;
+    }
+
+    private void loadFormats(DefaultTableModel model) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(
+                "SELECT f.id, f.name, f.screen_id, s.name as screen_name " +
+                "FROM formats f " +
+                "LEFT JOIN screens s ON f.screen_id = s.id")) {
+            
+            while (rs.next()) {
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getString("id"));
+                row.add(rs.getString("name"));
+                row.add(rs.getString("screen_id"));
+                row.add(rs.getString("screen_name"));
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this,
+                "Lỗi khi tải dữ liệu định dạng: " + e.getMessage(),
+                "Lỗi",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void showAddFormatDialog(DefaultTableModel model) {
+        JDialog dialog = new JDialog(this, "Thêm định dạng mới", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(400, 200);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel inputPanel = new JPanel(new GridLayout(3, 2, 5, 5));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JTextField idField = new JTextField();
+        JTextField nameField = new JTextField();
+        JComboBox<String> screenComboBox = new JComboBox<>();
+        loadScreensToComboBox(screenComboBox);
+
+        inputPanel.add(new JLabel("Mã định dạng:"));
+        inputPanel.add(idField);
+        inputPanel.add(new JLabel("Tên định dạng:"));
+        inputPanel.add(nameField);
+        inputPanel.add(new JLabel("Màn hình:"));
+        inputPanel.add(screenComboBox);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Lưu");
+        JButton cancelButton = new JButton("Hủy");
+
+        saveButton.addActionListener(e -> {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                    "INSERT INTO formats (id, name, screen_id) VALUES (?, ?, ?)")) {
+                
+                pstmt.setString(1, idField.getText().trim());
+                pstmt.setString(2, nameField.getText().trim());
+                pstmt.setString(3, ((String)screenComboBox.getSelectedItem()).split(" - ")[0]); // Extract screen ID
+                pstmt.executeUpdate();
+
+                loadFormats(model);
+                dialog.dispose();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(dialog,
+                    "Lỗi khi thêm định dạng: " + ex.getMessage(),
+                    "Lỗi",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        cancelButton.addActionListener(e -> dialog.dispose());
+
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        dialog.add(inputPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+        dialog.setVisible(true);
+    }
+
+    private void showEditFormatDialog(JTable table, DefaultTableModel model) {
+        if (table.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this,
+                "Vui lòng chọn định dạng cần sửa",
+                "Thông báo",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String id = (String) table.getValueAt(table.getSelectedRow(), 0);
+        String name = (String) table.getValueAt(table.getSelectedRow(), 1);
+        String screenId = (String) table.getValueAt(table.getSelectedRow(), 2);
+
+        JDialog dialog = new JDialog(this, "Sửa định dạng", true);
+        dialog.setLayout(new BorderLayout());
+        dialog.setSize(400, 200);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel inputPanel = new JPanel(new GridLayout(3, 2, 5, 5));
+        inputPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        JTextField idField = new JTextField(id);
+        idField.setEditable(false);
+        JTextField nameField = new JTextField(name);
+        JComboBox<String> screenComboBox = new JComboBox<>();
+        loadScreensToComboBox(screenComboBox);
+        screenComboBox.setSelectedItem(screenId);
+
+        inputPanel.add(new JLabel("Mã định dạng:"));
+        inputPanel.add(idField);
+        inputPanel.add(new JLabel("Tên định dạng:"));
+        inputPanel.add(nameField);
+        inputPanel.add(new JLabel("Màn hình:"));
+        inputPanel.add(screenComboBox);
+
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Lưu");
+        JButton cancelButton = new JButton("Hủy");
+
+        saveButton.addActionListener(e -> {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                    "UPDATE formats SET name = ?, screen_id = ? WHERE id = ?")) {
+                
+                pstmt.setString(1, nameField.getText().trim());
+                pstmt.setString(2, screenComboBox.getSelectedItem().toString());
+                pstmt.setString(3, id);
+                pstmt.executeUpdate();
+
+                loadFormats(model);
+                dialog.dispose();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(dialog,
+                    "Lỗi khi cập nhật định dạng: " + ex.getMessage(),
+                    "Lỗi",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        cancelButton.addActionListener(e -> dialog.dispose());
+
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        dialog.add(inputPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+        dialog.setVisible(true);
+    }
+
+    private void deleteFormat(JTable table, DefaultTableModel model) {
+        if (table.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this,
+                "Vui lòng chọn định dạng cần xóa",
+                "Thông báo",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int result = JOptionPane.showConfirmDialog(this,
+            "Bạn có chắc chắn muốn xóa định dạng này?",
+            "Xác nhận xóa",
+            JOptionPane.YES_NO_OPTION);
+
+        if (result == JOptionPane.YES_OPTION) {
+            String id = (String) table.getValueAt(table.getSelectedRow(), 0);
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(
+                    "DELETE FROM formats WHERE id = ?")) {
+                
+                pstmt.setString(1, id);
+                pstmt.executeUpdate();
+
+                loadFormats(model);
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this,
+                    "Lỗi khi xóa định dạng: " + e.getMessage(),
+                    "Lỗi",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private void exportFormatsToExcel(JTable table) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Lưu file Excel");
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            public boolean accept(File f) {
+                return f.getName().toLowerCase().endsWith(".xlsx") || f.isDirectory();
+            }
+            public String getDescription() {
+                return "Excel Files (*.xlsx)";
+            }
+        });
+
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if (!file.getName().toLowerCase().endsWith(".xlsx")) {
+                file = new File(file.getAbsolutePath() + ".xlsx");
+            }
+
+            try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                // Write header
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                    writer.print(table.getColumnName(i));
+                    if (i < table.getColumnCount() - 1) writer.print(",");
+                }
+                writer.println();
+
+                // Write data
+                for (int i = 0; i < table.getRowCount(); i++) {
+                    for (int j = 0; j < table.getColumnCount(); j++) {
+                        writer.print(table.getValueAt(i, j));
+                        if (j < table.getColumnCount() - 1) writer.print(",");
+                    }
+                    writer.println();
+                }
+
+                JOptionPane.showMessageDialog(this,
+                    "Xuất dữ liệu thành công!",
+                    "Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this,
+                    "Lỗi khi xuất file Excel: " + e.getMessage(),
+                    "Lỗi",
+                    JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    private JPanel createSchedulesPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create top panel with search and CRUD buttons
+        JPanel topPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search panel
+        JPanel searchPanel = new JPanel(new GridBagLayout());
+        searchPanel.setBorder(BorderFactory.createTitledBorder("Tìm kiếm"));
+        GridBagConstraints searchGbc = new GridBagConstraints();
+        searchGbc.insets = new Insets(5, 5, 5, 5);
+        searchGbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search field
+        JTextField searchField = new JTextField(20);
+        searchField.setPreferredSize(new Dimension(200, 30));
+        searchGbc.gridx = 0;
+        searchGbc.gridy = 0;
+        searchPanel.add(new JLabel("Tìm kiếm:"), searchGbc);
+        searchGbc.gridx = 1;
+        searchPanel.add(searchField, searchGbc);
+
+        // Search button
+        JButton searchButton = new JButton("Tìm");
+        searchButton.setPreferredSize(new Dimension(80, 30));
+        searchButton.setBackground(new Color(0, 123, 255));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchGbc.gridx = 2;
+        searchPanel.add(searchButton, searchGbc);
+
+        // CRUD buttons panel
+        JPanel crudPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        crudPanel.setBorder(BorderFactory.createTitledBorder("Thao tác"));
+
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton exportButton = createActionButton("Xuất File", "export.png");
+
+        crudPanel.add(addButton);
+        crudPanel.add(editButton);
+        crudPanel.add(deleteButton);
+        crudPanel.add(exportButton);
+
+        // Add search panel and CRUD panel to top panel side by side
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.7; // Give more space to search panel
+        topPanel.add(searchPanel, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 0.3; // Less space for CRUD panel
+        topPanel.add(crudPanel, gbc);
+
+        // Create table
+        String[] columnNames = {"Mã suất chiếu", "Mã phòng", "Tên phim", "Thời gian bắt đầu", "Thời gian kết thúc"};
+        DefaultTableModel scheduleTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable scheduleTable = new JTable(scheduleTableModel);
+        JScrollPane scrollPane = new JScrollPane(scheduleTable);
+
+        // Add panels to main panel
+        panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Load initial data
+        loadSchedules(scheduleTableModel, "");
+
+        // Add action listeners
+        searchButton.addActionListener(e -> {
+            String searchText = searchField.getText().trim();
+            loadSchedules(scheduleTableModel, searchText);
+        });
+
+        addButton.addActionListener(e -> showScheduleDialog(null, scheduleTableModel));
+
+        editButton.addActionListener(e -> {
+            int selectedRow = scheduleTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String scheduleId = (String) scheduleTable.getValueAt(selectedRow, 0);
+                showScheduleDialog(scheduleId, scheduleTableModel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn lịch chiếu cần sửa.");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = scheduleTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String scheduleId = (String) scheduleTable.getValueAt(selectedRow, 0);
+                deleteSchedule(scheduleId, scheduleTableModel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn lịch chiếu cần xóa.");
+            }
+        });
+
+        exportButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            
+            if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".csv")) {
+                    file = new File(file.getAbsolutePath() + ".csv");
+                }
+                
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                    // Write header
+                    writer.println("Mã suất chiếu,Mã phòng,Tên phim,Thời gian bắt đầu,Thời gian kết thúc");
+                    
+                    // Write data
+                    for (int i = 0; i < scheduleTableModel.getRowCount(); i++) {
+                        StringBuilder line = new StringBuilder();
+                        for (int j = 0; j < scheduleTableModel.getColumnCount(); j++) {
+                            if (j > 0) line.append(",");
+                            line.append(scheduleTableModel.getValueAt(i, j));
+                        }
+                        writer.println(line.toString());
+                    }
+                    
+                    JOptionPane.showMessageDialog(panel, "Xuất file thành công");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi xuất file: " + ex.getMessage());
+                }
+            }
+        });
+
+        return panel;
+    }
+
+    private void loadSchedules(DefaultTableModel model, String searchText) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                 "SELECT s.id, s.theater_id, m.title, s.start_time, s.end_time " +
+                 "FROM schedules s " +
+                 "JOIN movies m ON s.movie_id = m.id " +
+                 "WHERE s.start_time LIKE ? OR s.end_time LIKE ? OR m.title LIKE ? " +
+                 "ORDER BY s.show_date, s.start_time")) {
+            
+            stmt.setString(1, "%" + searchText + "%");
+            stmt.setString(2, "%" + searchText + "%");
+            stmt.setString(3, "%" + searchText + "%");
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getString("id"),
+                        rs.getString("theater_id"),
+                        rs.getString("title"),
+                        rs.getString("start_time"),
+                        rs.getString("end_time")
+                    };
+                    model.addRow(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu lịch chiếu: " + e.getMessage());
+        }
+    }
+
+    private void loadTheatersToComboBox(JComboBox<String> comboBox) {
+        comboBox.removeAllItems();
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT id, name FROM theaters")) {
+            
+            while (rs.next()) {
+                comboBox.addItem(rs.getString("id") + " - " + rs.getString("name"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải danh sách phòng chiếu: " + e.getMessage());
+        }
+    }
+
+    private void clearScheduleFields(JTextField idField, JComboBox<String> movieComboBox, 
+                                   JComboBox<String> theaterComboBox, JTextField priceField,
+                                   JDateChooser dateChooser, JTextField startTimeField, 
+                                   JTextField endTimeField) {
+        idField.setText("");
+        movieComboBox.setSelectedIndex(0);
+        theaterComboBox.setSelectedIndex(0);
+        priceField.setText("");
+        dateChooser.setDate(null);
+        startTimeField.setText("");
+        endTimeField.setText("");
+    }
+
+    private JPanel createTicketsPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Filter panel
+        JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JLabel filterLabel = new JLabel("Lọc lịch chiếu:");
+        JComboBox<String> statusFilter = new JComboBox<>(new String[]{"Tất cả", "Chưa tạo vé", "Đã tạo vé"});
+        filterPanel.add(filterLabel);
+        filterPanel.add(statusFilter);
+
+        // Button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton autoAddButton = new JButton("Tự động thêm vé");
+        JButton exportButton = new JButton("Xuất File");
+        buttonPanel.add(autoAddButton);
+        buttonPanel.add(exportButton);
+
+        // Schedule table
+        String[] scheduleColumnNames = {"Tên phòng chiếu", "Tên phim", "Thời gian", "Trạng thái", "Mã lịch chiếu"};
+        DefaultTableModel scheduleTableModel = new DefaultTableModel(scheduleColumnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable scheduleTable = new JTable(scheduleTableModel);
+        scheduleTable.getColumnModel().getColumn(4).setMinWidth(0);
+        scheduleTable.getColumnModel().getColumn(4).setMaxWidth(0);
+        JScrollPane scheduleScrollPane = new JScrollPane(scheduleTable);
+
+        // Ticket table
+        String[] ticketColumnNames = {"Mã vé", "Mã ghế", "Loại ghế", "Trạng thái", "Giá vé"};
+        DefaultTableModel ticketTableModel = new DefaultTableModel(ticketColumnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable ticketTable = new JTable(ticketTableModel);
+        JScrollPane ticketScrollPane = new JScrollPane(ticketTable);
+
+        // Split pane
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scheduleScrollPane, ticketScrollPane);
+        splitPane.setDividerLocation(200);
+
+        // Load schedules with status
+        Runnable loadSchedulesWithStatus = () -> {
+            String filter = (String) statusFilter.getSelectedItem();
+            scheduleTableModel.setRowCount(0);
+            try (Connection conn = dbUtil.getConnection();
+                 Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(
+                    "SELECT s.id, t.name as theater_name, m.title, s.show_date, s.start_time, s.end_time, " +
+                    "(SELECT COUNT(*) FROM tickets WHERE schedule_id = s.id) as ticket_count " +
+                    "FROM schedules s " +
+                    "JOIN theaters t ON s.theater_id = t.id " +
+                    "JOIN movies m ON s.movie_id = m.id " +
+                    "ORDER BY s.show_date, s.start_time")) {
+                while (rs.next()) {
+                    int ticketCount = rs.getInt("ticket_count");
+                    String status = ticketCount == 0 ? "Chưa tạo vé" : "Đã tạo vé";
+                    if ("Chưa tạo vé".equals(filter) && ticketCount > 0) continue;
+                    if ("Đã tạo vé".equals(filter) && ticketCount == 0) continue;
+                    Vector<Object> row = new Vector<>();
+                    row.add(rs.getString("theater_name"));
+                    row.add(rs.getString("title"));
+                    row.add(rs.getString("show_date") + " " + rs.getString("start_time") + " - " + rs.getString("end_time"));
+                    row.add(status);
+                    row.add(rs.getString("id")); // schedule_id (hidden)
+                    scheduleTableModel.addRow(row);
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(panel, "Lỗi khi tải dữ liệu lịch chiếu: " + e.getMessage());
+            }
+        };
+        loadSchedulesWithStatus.run();
+
+        // Filter action
+        statusFilter.addActionListener(e -> loadSchedulesWithStatus.run());
+
+        // Auto-add tickets action
+        autoAddButton.addActionListener(e -> {
+            int selectedRow = scheduleTable.getSelectedRow();
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(panel, "Vui lòng chọn lịch chiếu để tạo vé");
+                return;
+            }
+            String status = (String) scheduleTableModel.getValueAt(selectedRow, 3);
+            if (!"Chưa tạo vé".equals(status)) {
+                JOptionPane.showMessageDialog(panel, "Vé đã được tạo cho lịch chiếu này");
+                return;
+            }
+            String scheduleId = (String) scheduleTableModel.getValueAt(selectedRow, 4);
+            String theaterName = (String) scheduleTableModel.getValueAt(selectedRow, 0);
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement theaterStmt = conn.prepareStatement(
+                    "SELECT id, rows, seats_per_row FROM theaters WHERE name = ?");) {
+                theaterStmt.setString(1, theaterName);
+                ResultSet theaterRs = theaterStmt.executeQuery();
+                if (theaterRs.next()) {
+                    String theaterId = theaterRs.getString("id");
+                    int rows = theaterRs.getInt("rows");
+                    int seatsPerRow = theaterRs.getInt("seats_per_row");
+                    // For demo: alternate seat type and price
+                    String[] seatTypes = {"Standard", "VIP"};
+                    double[] prices = {100000, 150000};
+                    PreparedStatement ticketStmt = conn.prepareStatement(
+                        "INSERT INTO tickets (order_id, schedule_id, seat_id, status, price) VALUES (?, ?, ?, ?, ?)");
+                    for (int row = 1; row <= rows; row++) {
+                        for (int seat = 1; seat <= seatsPerRow; seat++) {
+                            String seatId = String.format("%s-%d-%d", theaterId, row, seat);
+                            String seatType = seatTypes[(row + seat) % 2];
+                            double price = prices[(row + seat) % 2];
+                            ticketStmt.setNull(1, java.sql.Types.INTEGER); // order_id is NULL
+                            ticketStmt.setString(2, scheduleId);
+                            ticketStmt.setString(3, seatId);
+                            ticketStmt.setString(4, "available");
+                            ticketStmt.setDouble(5, price);
+                            ticketStmt.executeUpdate();
+                        }
+                    }
+                    loadSchedulesWithStatus.run();
+                    JOptionPane.showMessageDialog(panel, "Tạo vé thành công");
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(panel, "Lỗi khi tạo vé: " + ex.getMessage());
+            }
+        });
+
+        // Schedule table selection: show tickets for selected showtime
+        scheduleTable.getSelectionModel().addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                int selectedRow = scheduleTable.getSelectedRow();
+                if (selectedRow >= 0) {
+                    String scheduleId = (String) scheduleTableModel.getValueAt(selectedRow, 4);
+                    loadTicketsWithSeatType(ticketTableModel, scheduleId);
+                    // Enable autoAddButton only if status is "Chưa tạo vé"
+                    String status = (String) scheduleTableModel.getValueAt(selectedRow, 3);
+                    autoAddButton.setEnabled("Chưa tạo vé".equals(status));
+                }
+            }
+        });
+
+        // Export button (existing logic)
+        exportButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".csv")) {
+                    file = new File(file.getAbsolutePath() + ".csv");
+                }
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                    // Write schedule header
+                    writer.println("Tên phòng chiếu,Tên phim,Thời gian,Trạng thái");
+                    for (int i = 0; i < scheduleTableModel.getRowCount(); i++) {
+                        StringBuilder line = new StringBuilder();
+                        for (int j = 0; j < scheduleTableModel.getColumnCount() - 1; j++) { // skip hidden scheduleId
+                            if (j > 0) line.append(",");
+                            line.append(scheduleTableModel.getValueAt(i, j));
+                        }
+                        writer.println(line.toString());
+                    }
+                    // Write ticket header
+                    writer.println("\nMã vé,Mã ghế,Loại ghế,Trạng thái,Giá vé");
+                    for (int i = 0; i < ticketTableModel.getRowCount(); i++) {
+                        StringBuilder line = new StringBuilder();
+                        for (int j = 0; j < ticketTableModel.getColumnCount(); j++) {
+                            if (j > 0) line.append(",");
+                            line.append(ticketTableModel.getValueAt(i, j));
+                        }
+                        writer.println(line.toString());
+                    }
+                    JOptionPane.showMessageDialog(panel, "Xuất file thành công");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi xuất file: " + ex.getMessage());
+                }
+            }
+        });
+
+        // Add panels to main panel
+        panel.add(filterPanel, BorderLayout.NORTH);
+        panel.add(buttonPanel, BorderLayout.SOUTH);
+        panel.add(splitPane, BorderLayout.CENTER);
+        return panel;
+    }
+
+    private void loadTicketsWithSeatType(DefaultTableModel model, String scheduleId) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(
+                "SELECT id, seat_id, status, price FROM tickets WHERE schedule_id = ?")) {
+            pstmt.setString(1, scheduleId);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String seatId = rs.getString("seat_id");
+                // For demo: seat type based on seatId
+                String[] parts = seatId.split("-");
+                String seatType = (Integer.parseInt(parts[1]) + Integer.parseInt(parts[2])) % 2 == 0 ? "Standard" : "VIP";
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getString("id"));
+                row.add(seatId);
+                row.add(seatType);
+                row.add(rs.getString("status"));
+                row.add(rs.getDouble("price"));
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Lỗi khi tải dữ liệu vé: " + e.getMessage());
+        }
+    }
+
+    private JPanel createFoodPanel() {
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(new Color(240, 240, 240));
+
+        // Create table model
+        String[] columnNames = {"ID", "Tên", "Mô tả", "Giá", "Danh mục", "Hình ảnh"};
+        foodTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable foodTable = new JTable(foodTableModel);
+        foodTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(foodTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Create buttons panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        buttonPanel.setBackground(new Color(240, 240, 240));
+        
+        JButton addButton = createActionButton("Thêm mới", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+
+        // Add action listeners
+        addButton.addActionListener(e -> {
+            FoodDialog dialog = new FoodDialog(this, "Thêm thức ăn mới", null);
+            dialog.setVisible(true);
+            if (dialog.isConfirmed()) {
+                loadFoods(); // Refresh the table
+            }
+        });
+
+        editButton.addActionListener(e -> {
+            int selectedRow = foodTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                Food food = new Food(
+                    (int) foodTable.getValueAt(selectedRow, 0),
+                    (String) foodTable.getValueAt(selectedRow, 1),
+                    (String) foodTable.getValueAt(selectedRow, 2),
+                    (double) foodTable.getValueAt(selectedRow, 3),
+                    (String) foodTable.getValueAt(selectedRow, 4),
+                    (String) foodTable.getValueAt(selectedRow, 5)
+                );
+                FoodDialog dialog = new FoodDialog(this, "Sửa thức ăn", food);
+                dialog.setVisible(true);
+                if (dialog.isConfirmed()) {
+                    loadFoods(); // Refresh the table
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn một thức ăn để sửa");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = foodTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                int id = (int) foodTable.getValueAt(selectedRow, 0);
+                int confirm = JOptionPane.showConfirmDialog(this,
+                    "Bạn có chắc chắn muốn xóa thức ăn này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    deleteFood(id);
+                    loadFoods(); // Refresh the table
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn một thức ăn để xóa");
+            }
+        });
+
+        panel.add(buttonPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Load initial data
+        loadFoods();
+
+        return panel;
+    }
+
+    private void loadFoods() {
+        foodTableModel.setRowCount(0);
+
+        try (Connection conn = DatabaseUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM foods")) {
+            
+            while (rs.next()) {
+                foodTableModel.addRow(new Object[]{
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("description"),
+                    rs.getDouble("price"),
+                    rs.getString("category"),
+                    rs.getString("image_path")
+                });
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu thức ăn: " + e.getMessage());
+        }
+    }
+
+    private void deleteFood(int id) {
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM foods WHERE id = ?")) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi xóa thức ăn: " + e.getMessage());
+        }
+    }
+
+    private JPanel createRevenuePanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create filter panel
+        JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        
+        // Movie selection
+        JLabel movieLabel = new JLabel("Chọn phim:");
+        JComboBox<String> movieComboBox = new JComboBox<>();
+        movieComboBox.addItem("Tất cả phim");
+        loadMoviesToComboBox(movieComboBox);
+        
+        // Date selection
+        JLabel fromDateLabel = new JLabel("Từ ngày:");
+        JDateChooser fromDatePicker = createDatePicker();
+        
+        JLabel toDateLabel = new JLabel("Đến ngày:");
+        JDateChooser toDatePicker = createDatePicker();
+        
+        // Buttons
+        JButton statisticsButton = new JButton("Thống kê");
+        JButton reportButton = new JButton("Báo cáo");
+        
+        // Add components to filter panel
+        filterPanel.add(movieLabel);
+        filterPanel.add(movieComboBox);
+        filterPanel.add(fromDateLabel);
+        filterPanel.add(fromDatePicker);
+        filterPanel.add(toDateLabel);
+        filterPanel.add(toDatePicker);
+        filterPanel.add(statisticsButton);
+        filterPanel.add(reportButton);
+
+        // Create table
+        String[] columnNames = {"Mã hoá đơn", "Tên Phim", "Ngày khởi chiếu", "Số vé bán", "Tổng doanh thu"};
+        DefaultTableModel revenueTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable revenueTable = new JTable(revenueTableModel);
+        JScrollPane scrollPane = new JScrollPane(revenueTable);
+
+        // Create total panel
+        JPanel totalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JLabel totalLabel = new JLabel("Tổng doanh thu: ");
+        JLabel totalAmountLabel = new JLabel("0 VNĐ");
+        totalAmountLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        totalPanel.add(totalLabel);
+        totalPanel.add(totalAmountLabel);
+
+        // Add action listeners
+        statisticsButton.addActionListener(e -> {
+            String selectedMovie = (String) movieComboBox.getSelectedItem();
+            String fromDate = getDateFromPicker(fromDatePicker);
+            String toDate = getDateFromPicker(toDatePicker);
+            
+            updateRevenueTable(revenueTableModel, totalAmountLabel, selectedMovie, fromDate, toDate);
+        });
+
+        reportButton.addActionListener(e -> {
+            String selectedMovie = (String) movieComboBox.getSelectedItem();
+            String fromDate = getDateFromPicker(fromDatePicker);
+            String toDate = getDateFromPicker(toDatePicker);
+            
+            exportRevenueReport(selectedMovie, fromDate, toDate);
+        });
+
+        // Add panels to main panel
+        panel.add(filterPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(totalPanel, BorderLayout.SOUTH);
+
+        return panel;
+    }
+
+    private boolean isValidDateFormat(String date) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            sdf.setLenient(false);
+            sdf.parse(date);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
+
+    private void exportRevenueReport(String movie, String fromDate, String toDate) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Chọn nơi lưu báo cáo");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            if (!file.getName().toLowerCase().endsWith(".csv")) {
+                file = new File(file.getAbsolutePath() + ".csv");
+            }
+            
+            try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                // Write header
+                writer.println("Báo cáo doanh thu");
+                writer.println("Thời gian: " + fromDate + " đến " + toDate);
+                writer.println("Phim: " + movie);
+                writer.println();
+                writer.println("Mã suất chiếu,Tên Phim,Ngày chiếu,Số vé bán,Tổng doanh thu");
+                
+                // Get data
+                try (Connection conn = dbUtil.getConnection()) {
+                    StringBuilder sql = new StringBuilder(
+                        "SELECT s.id as schedule_id, m.title, s.show_date, " +
+                        "COUNT(t.id) as ticket_count, SUM(t.price) as total_revenue " +
+                        "FROM schedules s " +
+                        "JOIN movies m ON s.movie_id = m.id " +
+                        "LEFT JOIN tickets t ON t.schedule_id = s.id " +
+                        "WHERE 1=1");
+                    
+                    List<Object> params = new ArrayList<>();
+                    
+                    if (!"Tất cả phim".equals(movie)) {
+                        sql.append(" AND m.id = ?");
+                        params.add(Integer.parseInt(movie.split(" - ")[0]));
+                    }
+                    if (!fromDate.isEmpty()) {
+                        sql.append(" AND s.show_date >= ?");
+                        params.add(fromDate);
+                    }
+                    if (!toDate.isEmpty()) {
+                        sql.append(" AND s.show_date <= ?");
+                        params.add(toDate);
+                    }
+                    
+                    sql.append(" GROUP BY s.id, m.title, s.show_date ORDER BY s.show_date DESC");
+                    
+                    PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+                    for (int i = 0; i < params.size(); i++) {
+                        pstmt.setObject(i + 1, params.get(i));
+                    }
+                    
+                    ResultSet rs = pstmt.executeQuery();
+                    double totalRevenue = 0;
+                    
+                    while (rs.next()) {
+                        writer.printf("%s,%s,%s,%d,%.0f VNĐ%n",
+                            rs.getString("schedule_id"),
+                            rs.getString("title"),
+                            rs.getString("show_date"),
+                            rs.getInt("ticket_count"),
+                            rs.getDouble("total_revenue"));
+                        totalRevenue += rs.getDouble("total_revenue");
+                    }
+                    
+                    writer.println();
+                    writer.printf("Tổng doanh thu: %.0f VNĐ%n", totalRevenue);
+                }
+                
+                JOptionPane.showMessageDialog(this, "Xuất báo cáo thành công!");
+            } catch (IOException | SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Lỗi khi xuất báo cáo: " + ex.getMessage());
+            }
+        }
+    }
+
+    private void loadMoviesToComboBox(JComboBox<String> comboBox) {
+        comboBox.removeAllItems();
+        try (Connection conn = dbUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT id, title FROM movies")) {
+            while (rs.next()) {
+                comboBox.addItem(rs.getInt("id") + " - " + rs.getString("title"));
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải danh sách phim: " + e.getMessage());
+        }
+    }
+
+    private void updateRevenueTable(DefaultTableModel model, JLabel totalLabel, String movie, String fromDate, String toDate) {
+        model.setRowCount(0);
+        double totalRevenue = 0;
+
+        try (Connection conn = dbUtil.getConnection()) {
+            StringBuilder sql = new StringBuilder(
+                "SELECT s.id as schedule_id, m.title, s.show_date, " +
+                "COUNT(t.id) as ticket_count, SUM(t.price) as total_revenue " +
+                "FROM schedules s " +
+                "JOIN movies m ON s.movie_id = m.id " +
+                "LEFT JOIN tickets t ON t.schedule_id = s.id " +
+                "WHERE 1=1");
+
+            List<Object> params = new ArrayList<>();
+
+            if (!"Tất cả phim".equals(movie)) {
+                sql.append(" AND m.id = ?");
+                params.add(Integer.parseInt(movie.split(" - ")[0]));
+            }
+            if (!fromDate.isEmpty()) {
+                sql.append(" AND s.show_date >= ?");
+                params.add(fromDate);
+            }
+            if (!toDate.isEmpty()) {
+                sql.append(" AND s.show_date <= ?");
+                params.add(toDate);
+            }
+            sql.append(" GROUP BY s.id, m.title, s.show_date ORDER BY s.show_date DESC");
+
+            PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+            
+            // Set parameters
+            for (int i = 0; i < params.size(); i++) {
+                pstmt.setObject(i + 1, params.get(i));
+            }
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getString("schedule_id"));
+                row.add(rs.getString("title"));
+                row.add(rs.getString("show_date"));
+                row.add(rs.getInt("ticket_count"));
+                double revenue = rs.getDouble("total_revenue");
+                row.add(String.format("%,.0f VNĐ", revenue));
+                model.addRow(row);
+                totalRevenue += revenue;
+            }
+
+            totalLabel.setText(String.format("%,.0f VNĐ", totalRevenue));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi khi cập nhật bảng doanh thu: " + e.getMessage());
+        }
+    }
+
+    private JPanel createDataPanel() {
+        JPanel dataPanel = new JPanel(new BorderLayout());
+        
+        // Create menu panel for data sub-items
+        JPanel menuPanel = new JPanel();
+        menuPanel.setLayout(new BoxLayout(menuPanel, BoxLayout.Y_AXIS));
+        menuPanel.setBackground(new Color(33, 37, 41));
+        menuPanel.setPreferredSize(new Dimension(200, getHeight()));
+        menuPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Add sub-menu buttons
+        addSubMenuButton(menuPanel, "Loại màn hình", "SCREENS");
+        addSubMenuButton(menuPanel, "Phòng chiếu", "THEATERS");
+        addSubMenuButton(menuPanel, "Thể loại", "GENRES");
+        addSubMenuButton(menuPanel, "Phim", "MOVIES");
+        addSubMenuButton(menuPanel, "Định dạng", "FORMATS");
+        addSubMenuButton(menuPanel, "Lịch chiếu", "SCHEDULES");
+        addSubMenuButton(menuPanel, "Vé", "TICKETS");
+        addSubMenuButton(menuPanel, "Thức ăn", "FOOD");
+
+        // Create content panel for data sub-items
+        JPanel dataContentPanel = new JPanel(new CardLayout());
+        dataContentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Add sub-panels to content panel
+        dataContentPanel.add(createScreensPanel(), "SCREENS");
+        dataContentPanel.add(createTheatersPanel(), "THEATERS");
+        dataContentPanel.add(createGenresPanel(), "GENRES");
+        dataContentPanel.add(createMoviesPanel(), "MOVIES");
+        dataContentPanel.add(createFormatsPanel(), "FORMATS");
+        dataContentPanel.add(createSchedulesPanel(), "SCHEDULES");
+        dataContentPanel.add(createTicketsPanel(), "TICKETS");
+        dataContentPanel.add(createFoodPanel(), "FOOD");
+
+        // Add panels to data panel
+        dataPanel.add(menuPanel, BorderLayout.WEST);
+        dataPanel.add(dataContentPanel, BorderLayout.CENTER);
+
+        return dataPanel;
+    }
+
+    private void addSubMenuButton(JPanel panel, String text, String cardName) {
+        JButton button = new JButton(text);
+        
+        // Add icon based on the button text
+        String iconPath = null;
+        switch (text) {
+            case "Loại màn hình":
+                iconPath = "src/main/resources/images/manHinh.png";
+                break;
+            case "Phòng chiếu":
+                iconPath = "src/main/resources/images/phongChieu.png";
+                break;
+            case "Thể loại":
+                iconPath = "src/main/resources/images/theLoai (2).png";
+                break;
+            case "Phim":
+                iconPath = "src/main/resources/images/phim.png";
+                break;
+            case "Định dạng":
+                iconPath = "src/main/resources/images/dinhDang.png";
+                break;
+            case "Lịch chiếu":
+                iconPath = "src/main/resources/images/lichChieu.png";
+                break;
+            case "Vé":
+                iconPath = "src/main/resources/images/ve.png";
+                break;
+            case "Thức ăn":
+                iconPath = "src/main/resources/images/ve.png"; // Using ve.png as placeholder
+                break;
+        }
+
+        if (iconPath != null) {
+            try {
+                ImageIcon icon = new ImageIcon(iconPath);
+                Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                button.setIcon(new ImageIcon(img));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Style the button
+        button.setForeground(Color.WHITE);
+        button.setBackground(new Color(52, 58, 64));
+        button.setFocusPainted(false);
+        button.setBorderPainted(true);
+        button.setFont(new Font("Arial", Font.PLAIN, 14));
+        button.setPreferredSize(new Dimension(200, 40));
+        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        button.setIconTextGap(10);
+        
+        // Add border
+        button.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(255, 193, 7), 2),
+            BorderFactory.createEmptyBorder(5, 10, 5, 10)
+        ));
+
+        // Add hover effect
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(73, 80, 87));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(new Color(52, 58, 64));
+            }
+        });
+
+        button.addActionListener(e -> {
+            JPanel dataPanel = (JPanel) mainContentPanel.getComponent(1);
+            JPanel contentPanel = (JPanel) dataPanel.getComponent(1);
+            CardLayout cl = (CardLayout) contentPanel.getLayout();
+            cl.show(contentPanel, cardName);
+        });
+
+        panel.add(button);
+        panel.add(Box.createVerticalStrut(10));
+    }
+
+    private JPanel createStaffPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create table
+        String[] columnNames = {"ID", "Tên nhân viên", "Tên đăng nhập", "Quyền"};
+        DefaultTableModel staffTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable staffTable = new JTable(staffTableModel);
+        JScrollPane scrollPane = new JScrollPane(staffTable);
+
+        // Create button panel
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton resetPasswordButton = createActionButton("Cấp lại mật khẩu", "Setting.png");
+
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(resetPasswordButton);
+
+        // Add action listeners
+        addButton.addActionListener(e -> {
+            StaffDialog dialog = new StaffDialog(this, "Thêm nhân viên mới", null);
+            dialog.setVisible(true);
+            if (dialog.isConfirmed()) {
+                Staff staff = dialog.getStaff();
+                try (Connection conn = DatabaseUtil.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(
+                         "INSERT INTO staff (name, username, password, role) VALUES (?, ?, ?, ?)")) {
+                    
+                    pstmt.setString(1, staff.getName());
+                    pstmt.setString(2, staff.getUsername());
+                    pstmt.setString(3, staff.getPassword());
+                    pstmt.setString(4, staff.getRole());
+                    pstmt.executeUpdate();
+
+                    loadStaff(staffTableModel);
+                    JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "Lỗi khi thêm nhân viên: " + ex.getMessage());
+                }
+            }
+        });
+
+        editButton.addActionListener(e -> {
+            int selectedRow = staffTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                Staff staff = new Staff(
+                    (int) staffTable.getValueAt(selectedRow, 0),
+                    (String) staffTable.getValueAt(selectedRow, 1),
+                    (String) staffTable.getValueAt(selectedRow, 2),
+                    "", // Password will be updated only if changed
+                    (String) staffTable.getValueAt(selectedRow, 3)
+                );
+
+                StaffDialog dialog = new StaffDialog(this, "Sửa thông tin nhân viên", staff);
+                dialog.setVisible(true);
+                if (dialog.isConfirmed()) {
+                    Staff updatedStaff = dialog.getStaff();
+                    try (Connection conn = DatabaseUtil.getConnection();
+                         PreparedStatement pstmt = conn.prepareStatement(
+                             "UPDATE staff SET name = ?, username = ?, password = ?, role = ? WHERE id = ?")) {
+                        
+                        pstmt.setString(1, updatedStaff.getName());
+                        pstmt.setString(2, updatedStaff.getUsername());
+                        pstmt.setString(3, updatedStaff.getPassword());
+                        pstmt.setString(4, updatedStaff.getRole());
+                        pstmt.setInt(5, updatedStaff.getId());
+                        pstmt.executeUpdate();
+
+                        loadStaff(staffTableModel);
+                        JOptionPane.showMessageDialog(this, "Cập nhật thông tin nhân viên thành công");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật thông tin nhân viên: " + ex.getMessage());
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn nhân viên cần sửa");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = staffTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                int id = (int) staffTable.getValueAt(selectedRow, 0);
+                int confirm = JOptionPane.showConfirmDialog(this,
+                    "Bạn có chắc chắn muốn xóa nhân viên này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == JOptionPane.YES_OPTION) {
+                    try (Connection conn = DatabaseUtil.getConnection();
+                         PreparedStatement pstmt = conn.prepareStatement(
+                             "DELETE FROM staff WHERE id = ?")) {
+                        
+                        pstmt.setInt(1, id);
+                        pstmt.executeUpdate();
+
+                        loadStaff(staffTableModel);
+                        JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công");
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this, "Lỗi khi xóa nhân viên: " + ex.getMessage());
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn nhân viên cần xóa");
+            }
+        });
+
+        resetPasswordButton.addActionListener(e -> {
+            int selectedRow = staffTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                int id = (int) staffTable.getValueAt(selectedRow, 0);
+                String defaultPassword = "123456"; // Default password
+                
+                try (Connection conn = DatabaseUtil.getConnection();
+                     PreparedStatement pstmt = conn.prepareStatement(
+                         "UPDATE staff SET password = ? WHERE id = ?")) {
+                    
+                    pstmt.setString(1, defaultPassword);
+                    pstmt.setInt(2, id);
+                    pstmt.executeUpdate();
+
+                    JOptionPane.showMessageDialog(this, 
+                        "Đã cấp lại mật khẩu mặc định: " + defaultPassword);
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this, 
+                        "Lỗi khi cấp lại mật khẩu: " + ex.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "Vui lòng chọn nhân viên cần cấp lại mật khẩu");
+            }
+        });
+
+        // Add components to panel
+        panel.add(buttonPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Load initial data
+        loadStaff(staffTableModel);
+
+        return panel;
+    }
+
+    private void loadStaff(DefaultTableModel model) {
+        model.setRowCount(0);
+        try (Connection conn = DatabaseUtil.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(
+                 "SELECT * FROM staff ORDER BY id")) {
+            
+            while (rs.next()) {
+                Vector<Object> row = new Vector<>();
+                row.add(rs.getInt("id"));
+                row.add(rs.getString("name"));
+                row.add(rs.getString("username"));
+                row.add(rs.getString("role"));
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, 
+                "Lỗi khi tải dữ liệu nhân viên: " + e.getMessage());
+        }
+    }
+
+    private JPanel createCustomersPanel() {
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        // Create top panel with search and CRUD buttons
+        JPanel topPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search panel
+        JPanel searchPanel = new JPanel(new GridBagLayout());
+        searchPanel.setBorder(BorderFactory.createTitledBorder("Tìm kiếm"));
+        GridBagConstraints searchGbc = new GridBagConstraints();
+        searchGbc.insets = new Insets(5, 5, 5, 5);
+        searchGbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Search field
+        JTextField searchField = new JTextField(20);
+        searchField.setPreferredSize(new Dimension(200, 30));
+        searchGbc.gridx = 0;
+        searchGbc.gridy = 0;
+        searchPanel.add(new JLabel("Tìm kiếm:"), searchGbc);
+        searchGbc.gridx = 1;
+        searchPanel.add(searchField, searchGbc);
+
+        // Search button
+        JButton searchButton = new JButton("Tìm");
+        searchButton.setPreferredSize(new Dimension(80, 30));
+        searchButton.setBackground(new Color(0, 123, 255));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+        searchGbc.gridx = 2;
+        searchPanel.add(searchButton, searchGbc);
+
+        // CRUD buttons panel
+        JPanel crudPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        crudPanel.setBorder(BorderFactory.createTitledBorder("Thao tác"));
+
+        JButton addButton = createActionButton("Thêm", "icon-add.png");
+        JButton editButton = createActionButton("Sửa", "Setting.png");
+        JButton deleteButton = createActionButton("Xóa", "remove.png");
+        JButton viewButton = createActionButton("Xem", "view.png");
+        JButton exportButton = createActionButton("Xuất File", "export.png");
+
+        crudPanel.add(addButton);
+        crudPanel.add(editButton);
+        crudPanel.add(deleteButton);
+        crudPanel.add(viewButton);
+        crudPanel.add(exportButton);
+
+        // Add search panel and CRUD panel to top panel side by side
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.7; // Give more space to search panel
+        topPanel.add(searchPanel, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 0.3; // Less space for CRUD panel
+        topPanel.add(crudPanel, gbc);
+
+        // Create table
+        String[] columnNames = {"Mã KH", "Họ tên", "Ngày sinh", "Địa chỉ", "SĐT", "CCCD", "Điểm tích lũy"};
+        DefaultTableModel customerTableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        JTable customerTable = new JTable(customerTableModel);
+        JScrollPane scrollPane = new JScrollPane(customerTable);
+
+        // Add panels to main panel
+        panel.add(topPanel, BorderLayout.NORTH);
+        panel.add(scrollPane, BorderLayout.CENTER);
+
+        // Add action listeners
+        searchButton.addActionListener(e -> {
+            String searchText = searchField.getText().trim();
+            loadCustomers(customerTableModel, searchText);
+        });
+
+        addButton.addActionListener(e -> showCustomerDialog(null, customerTableModel));
+
+        editButton.addActionListener(e -> {
+            int selectedRow = customerTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String customerId = (String) customerTable.getValueAt(selectedRow, 0);
+                showCustomerDialog(customerId, customerTableModel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng cần sửa.");
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            int selectedRow = customerTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String customerId = (String) customerTable.getValueAt(selectedRow, 0);
+                deleteCustomer(customerId, customerTableModel);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng cần xóa.");
+            }
+        });
+
+        viewButton.addActionListener(e -> {
+            int selectedRow = customerTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String customerId = (String) customerTable.getValueAt(selectedRow, 0);
+                viewCustomerDetails(customerId);
+            } else {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn khách hàng cần xem.");
+            }
+        });
+
+        exportButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Chọn nơi lưu file");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            
+            if (fileChooser.showSaveDialog(panel) == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                if (!file.getName().toLowerCase().endsWith(".csv")) {
+                    file = new File(file.getAbsolutePath() + ".csv");
+                }
+                
+                try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
+                    // Write header
+                    writer.println("Mã KH,Họ tên,Ngày sinh,Địa chỉ,SĐT,CCCD,Điểm tích lũy");
+                    
+                    // Write data
+                    for (int i = 0; i < customerTableModel.getRowCount(); i++) {
+                        StringBuilder line = new StringBuilder();
+                        for (int j = 0; j < customerTableModel.getColumnCount(); j++) {
+                            if (j > 0) line.append(",");
+                            line.append(customerTableModel.getValueAt(i, j));
+                        }
+                        writer.println(line.toString());
+                    }
+                    
+                    JOptionPane.showMessageDialog(panel, "Xuất file thành công");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(panel, "Lỗi khi xuất file: " + ex.getMessage());
+                }
+            }
+        });
+
+        // Load initial data
+        loadCustomers(customerTableModel, "");
+
+        return panel;
+    }
+
+    private void loadCustomers(DefaultTableModel model, String searchQuery) {
+        model.setRowCount(0);
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM customers WHERE 1=1" + (searchQuery.isEmpty() ? "" : " AND (" + searchQuery + ")"))) {
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Object[] row = {
+                    rs.getString("customer_id"),
+                    rs.getString("full_name"),
+                    rs.getString("date_of_birth"),
+                    rs.getString("address"),
+                    rs.getString("phone_number"),
+                    rs.getString("id_card"),
+                    rs.getInt("loyalty_points")
+                };
+                model.addRow(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu khách hàng: " + e.getMessage());
+        }
+    }
+
+    private void deleteCustomer(String customerId, DefaultTableModel model) {
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM customers WHERE customer_id = ?")) {
+            pstmt.setString(1, customerId);
+            pstmt.executeUpdate();
+            model.removeRow(model.getRowCount() - 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi xóa khách hàng: " + e.getMessage());
+        }
+    }
+
+    private void viewCustomerDetails(String customerId) {
+        try (Connection conn = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM customers WHERE customer_id = ?")) {
+            pstmt.setString(1, customerId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                String fullName = rs.getString("full_name");
+                String dateOfBirth = rs.getString("date_of_birth");
+                String address = rs.getString("address");
+                String phoneNumber = rs.getString("phone_number");
+                String idCard = rs.getString("id_card");
+                int loyaltyPoints = rs.getInt("loyalty_points");
+                JOptionPane.showMessageDialog(this,
+                    "Thông tin khách hàng:\n" +
+                    "Họ tên: " + fullName + "\n" +
+                    "Ngày sinh: " + dateOfBirth + "\n" +
+                    "Địa chỉ: " + address + "\n" +
+                    "Số điện thoại: " + phoneNumber + "\n" +
+                    "CCCD: " + idCard + "\n" +
+                    "Điểm tích lũy: " + loyaltyPoints,
+                    "Thông tin khách hàng",
+                    JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Lỗi khi lấy thông tin khách hàng: " + e.getMessage());
+        }
+    }
+
+    private void handleLogout() {
+        int choice = JOptionPane.showConfirmDialog(
+            this,
+            "Bạn có chắc chắn muốn đăng xuất?",
+            "Xác nhận đăng xuất",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+        
+        if (choice == JOptionPane.YES_OPTION) {
+            showLoginDialog();
+        }
+    }
+
+    private void showLoginDialog() {
+        // Dispose current window
+        dispose();
+        
+        // Create and show new login dialog
+        SwingUtilities.invokeLater(() -> {
+            LoginDialog loginDialog = new LoginDialog(null);
+            loginDialog.setVisible(true);
+            
+            if (loginDialog.isAuthenticated()) {
+                String role = loginDialog.getCurrentUserRole();
+                if ("ADMIN".equals(role)) {
+                    MovieManagerApp app = new MovieManagerApp(role);
+                    app.setVisible(true);
+                } else if ("STAFF".equals(role)) {
+                    StaffControlPanel staffPanel = new StaffControlPanel();
+                    staffPanel.setVisible(true);
+                }
+            } else {
+                System.exit(0);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            LoginDialog loginDialog = new LoginDialog(null);
+            loginDialog.setVisible(true);
+            
+            if (loginDialog.isAuthenticated()) {
+                String role = loginDialog.getCurrentUserRole();
+                if ("ADMIN".equals(role)) {
+                    MovieManagerApp app = new MovieManagerApp(role);
+                    app.setVisible(true);
+                } else if ("STAFF".equals(role)) {
+                    StaffControlPanel staffPanel = new StaffControlPanel();
+                    staffPanel.setVisible(true);
+                }
+            } else {
+                System.exit(0);
+            }
+        });
+    }
+
+    // Add this helper method to refresh all screen combo boxes
+    private void refreshAllScreenComboBoxes() {
+        // If you have references to all screen combo boxes, call loadScreensToComboBox on each
+        // For now, reload the theater panel if possible
+        // This is a placeholder for a more robust solution
+        // You may need to refactor to keep references to the combo boxes
+    }
+
+    private void styleButton(JButton button) {
+        button.setBackground(new Color(255, 193, 7));
+        button.setForeground(Color.BLACK);
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+    }
+
+    // Add this helper method for creating action buttons
+    private JButton createActionButton(String text, String iconPath) {
+        JButton button = new JButton(text);
+        try {
+            ImageIcon icon = new ImageIcon("src/main/resources/images/" + iconPath);
+            Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(img));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        styleButton(button);
+        button.setIconTextGap(10);
+        return button;
+    }
+
+    private String buildSearchQuery(String customerId, String name, String dob, String address, 
+                                  String phone, String idCard, String points) {
+        StringBuilder query = new StringBuilder();
+        List<String> conditions = new ArrayList<>();
+
+        if (!customerId.isEmpty()) {
+            conditions.add("customer_id LIKE '%" + customerId + "%'");
+        }
+        if (!name.isEmpty()) {
+            conditions.add("full_name LIKE '%" + name + "%'");
+        }
+        if (!dob.isEmpty()) {
+            conditions.add("date_of_birth LIKE '%" + dob + "%'");
+        }
+        if (!address.isEmpty()) {
+            conditions.add("address LIKE '%" + address + "%'");
+        }
+        if (!phone.isEmpty()) {
+            conditions.add("phone_number LIKE '%" + phone + "%'");
+        }
+        if (!idCard.isEmpty()) {
+            conditions.add("id_card LIKE '%" + idCard + "%'");
+        }
+        if (!points.isEmpty()) {
+            conditions.add("loyalty_points = " + points);
+        }
+
+        if (!conditions.isEmpty()) {
+            query.append(String.join(" AND ", conditions));
+        }
+
+        return query.toString();
+    }
+
+    private void showCustomerDialog(String customerId, DefaultTableModel model) {
+        JDialog dialog = new JDialog(this, "Thông tin khách hàng", true);
+        dialog.setLayout(new BorderLayout(10, 10));
+        dialog.setSize(400, 500);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel formPanel = new JPanel(new GridBagLayout());
+        formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Create form fields
+        JTextField idField = new JTextField(20);
+        JTextField nameField = new JTextField(20);
+        JTextField dobField = new JTextField(20);
+        JTextField addressField = new JTextField(20);
+        JTextField phoneField = new JTextField(20);
+        JTextField idCardField = new JTextField(20);
+        JTextField pointsField = new JTextField(20);
+
+        // If editing existing customer, load their data
+        if (customerId != null) {
+            try (Connection conn = DatabaseUtil.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM customers WHERE customer_id = ?")) {
+                pstmt.setString(1, customerId);
+                ResultSet rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    idField.setText(rs.getString("customer_id"));
+                    nameField.setText(rs.getString("full_name"));
+                    dobField.setText(rs.getString("date_of_birth"));
+                    addressField.setText(rs.getString("address"));
+                    phoneField.setText(rs.getString("phone_number"));
+                    idCardField.setText(rs.getString("id_card"));
+                    pointsField.setText(String.valueOf(rs.getInt("loyalty_points")));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(dialog, "Lỗi khi tải thông tin khách hàng: " + e.getMessage());
+                return;
+            }
+        } else {
+            // For new customer, generate ID
+            idField.setText("C" + System.currentTimeMillis());
+            idField.setEditable(false);
+            pointsField.setText("0");
+        }
+
+        // Add form fields
+        gbc.gridx = 0; gbc.gridy = 0;
+        formPanel.add(new JLabel("Mã khách hàng:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(idField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 1;
+        formPanel.add(new JLabel("Họ tên:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(nameField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 2;
+        formPanel.add(new JLabel("Ngày sinh:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(dobField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 3;
+        formPanel.add(new JLabel("Địa chỉ:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(addressField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 4;
+        formPanel.add(new JLabel("Số điện thoại:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(phoneField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 5;
+        formPanel.add(new JLabel("CCCD:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(idCardField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 6;
+        formPanel.add(new JLabel("Điểm tích lũy:"), gbc);
+        gbc.gridx = 1;
+        formPanel.add(pointsField, gbc);
+
+        // Add buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Lưu");
+        JButton cancelButton = new JButton("Hủy");
+
+        saveButton.addActionListener(e -> {
+            try {
+                String id = idField.getText().trim();
+                String name = nameField.getText().trim();
+                String dob = dobField.getText().trim();
+                String address = addressField.getText().trim();
+                String phone = phoneField.getText().trim();
+                String idCard = idCardField.getText().trim();
+                int points = Integer.parseInt(pointsField.getText().trim());
+
+                if (name.isEmpty() || dob.isEmpty() || address.isEmpty() || phone.isEmpty() || idCard.isEmpty()) {
+                    JOptionPane.showMessageDialog(dialog, "Vui lòng điền đầy đủ thông tin!");
+                    return;
+                }
+
+                try (Connection conn = DatabaseUtil.getConnection()) {
+                    if (customerId == null) {
+                        // Insert new customer
+                        try (PreparedStatement pstmt = conn.prepareStatement(
+                                "INSERT INTO customers (customer_id, full_name, date_of_birth, address, phone_number, id_card, loyalty_points) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+                            pstmt.setString(1, id);
+                            pstmt.setString(2, name);
+                            pstmt.setString(3, dob);
+                            pstmt.setString(4, address);
+                            pstmt.setString(5, phone);
+                            pstmt.setString(6, idCard);
+                            pstmt.setInt(7, points);
+                            pstmt.executeUpdate();
+                        }
+                    } else {
+                        // Update existing customer
+                        try (PreparedStatement pstmt = conn.prepareStatement(
+                                "UPDATE customers SET full_name = ?, date_of_birth = ?, address = ?, phone_number = ?, id_card = ?, loyalty_points = ? WHERE customer_id = ?")) {
+                            pstmt.setString(1, name);
+                            pstmt.setString(2, dob);
+                            pstmt.setString(3, address);
+                            pstmt.setString(4, phone);
+                            pstmt.setString(5, idCard);
+                            pstmt.setInt(6, points);
+                            pstmt.setString(7, id);
+                            pstmt.executeUpdate();
+                        }
+                    }
+                    loadCustomers(model, "");
+                    dialog.dispose();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(dialog, "Lỗi khi lưu thông tin khách hàng: " + ex.getMessage());
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(dialog, "Điểm tích lũy phải là số!");
+            }
+        });
+
+        cancelButton.addActionListener(e -> dialog.dispose());
+
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        dialog.add(formPanel, BorderLayout.CENTER);
+        dialog.add(buttonPanel, BorderLayout.SOUTH);
+        dialog.setVisible(true);
+    }
+
+    // Remove the old DatePicker class and add these utility methods
+    private JDateChooser createDatePicker() {
+        JDateChooser dateChooser = new JDateChooser();
+        dateChooser.setDateFormatString("dd/MM/yyyy");
+        dateChooser.setPreferredSize(new Dimension(120, 30));
+        dateChooser.setFont(new Font("Arial", Font.PLAIN, 14));
+        dateChooser.setBackground(Color.WHITE);
+        return dateChooser;
+    }
+
+    private String getDateFromPicker(JDateChooser picker) {
+        if (picker.getDate() == null) return "";
+        return new SimpleDateFormat("dd/MM/yyyy").format(picker.getDate());
+    }
+
+    private void setDateToPicker(JDateChooser picker, String dateStr) {
+        try {
+            if (dateStr != null && !dateStr.isEmpty()) {
+                Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateStr);
+                picker.setDate(date);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showTheaterDialog(String theaterId, DefaultTableModel model) {
+        JDialog dialog = new JDialog(this, theaterId == null ? "Thêm phòng chiếu" : "Sửa phòng chiếu", true);
+        dialog.setSize(400, 300);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Add form fields
+        JTextField nameField = new JTextField(20);
+        JComboBox<String> screenCombo = new JComboBox<>();
+        JTextField seatsField = new JTextField(20);
+        JTextField rowsField = new JTextField(20);
+        JTextField seatsPerRowField = new JTextField(20);
+
+        // Load screen data
+        loadScreensToComboBox(screenCombo);
+
+        // Add components to panel
+        gbc.gridx = 0; gbc.gridy = 0;
+        panel.add(new JLabel("Tên phòng:"), gbc);
+        gbc.gridx = 1;
+        panel.add(nameField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 1;
+        panel.add(new JLabel("Màn hình:"), gbc);
+        gbc.gridx = 1;
+        panel.add(screenCombo, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 2;
+        panel.add(new JLabel("Số chỗ ngồi:"), gbc);
+        gbc.gridx = 1;
+        panel.add(seatsField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 3;
+        panel.add(new JLabel("Số hàng ghế:"), gbc);
+        gbc.gridx = 1;
+        panel.add(rowsField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 4;
+        panel.add(new JLabel("Số ghế mỗi hàng:"), gbc);
+        gbc.gridx = 1;
+        panel.add(seatsPerRowField, gbc);
+
+        // Add buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Lưu");
+        JButton cancelButton = new JButton("Hủy");
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        gbc.gridx = 0; gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        panel.add(buttonPanel, gbc);
+
+        // Load existing data if editing
+        if (theaterId != null) {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM theaters WHERE id = ?")) {
+                stmt.setString(1, theaterId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        nameField.setText(rs.getString("name"));
+                        screenCombo.setSelectedItem(rs.getString("screen_id"));
+                        seatsField.setText(String.valueOf(rs.getInt("total_seats")));
+                        rowsField.setText(String.valueOf(rs.getInt("rows")));
+                        seatsPerRowField.setText(String.valueOf(rs.getInt("seats_per_row")));
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu phòng chiếu: " + e.getMessage());
+            }
+        }
+
+        // Add action listeners
+        saveButton.addActionListener(e -> {
+            try {
+                String name = nameField.getText().trim();
+                String screenId = screenCombo.getSelectedItem().toString().split(" - ")[0];
+                int seats = Integer.parseInt(seatsField.getText().trim());
+                int rows = Integer.parseInt(rowsField.getText().trim());
+                int seatsPerRow = Integer.parseInt(seatsPerRowField.getText().trim());
+
+                if (theaterId == null) {
+                    // Add new theater
+                    try (Connection conn = dbUtil.getConnection();
+                         PreparedStatement stmt = conn.prepareStatement(
+                             "INSERT INTO theaters (name, screen_id, total_seats, rows, seats_per_row) VALUES (?, ?, ?, ?, ?)")) {
+                        stmt.setString(1, name);
+                        stmt.setString(2, screenId);
+                        stmt.setInt(3, seats);
+                        stmt.setInt(4, rows);
+                        stmt.setInt(5, seatsPerRow);
+                        stmt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Thêm phòng chiếu thành công");
+                    }
+                } else {
+                    // Update existing theater
+                    try (Connection conn = dbUtil.getConnection();
+                         PreparedStatement stmt = conn.prepareStatement(
+                             "UPDATE theaters SET name = ?, screen_id = ?, total_seats = ?, rows = ?, seats_per_row = ? WHERE id = ?")) {
+                        stmt.setString(1, name);
+                        stmt.setString(2, screenId);
+                        stmt.setInt(3, seats);
+                        stmt.setInt(4, rows);
+                        stmt.setInt(5, seatsPerRow);
+                        stmt.setString(6, theaterId);
+                        stmt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Cập nhật phòng chiếu thành công");
+                    }
+                }
+                dialog.dispose();
+                loadTheaters(model, "");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số hợp lệ cho số chỗ ngồi, số hàng ghế và số ghế mỗi hàng");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi lưu phòng chiếu: " + ex.getMessage());
+            }
+        });
+
+        cancelButton.addActionListener(e -> dialog.dispose());
+
+        dialog.add(panel);
+        dialog.setVisible(true);
+    }
+
+    private void showScheduleDialog(String scheduleId, DefaultTableModel model) {
+        JDialog dialog = new JDialog(this, scheduleId == null ? "Thêm lịch chiếu" : "Sửa lịch chiếu", true);
+        dialog.setSize(400, 300);
+        dialog.setLocationRelativeTo(this);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Add form fields
+        JComboBox<String> theaterCombo = new JComboBox<>();
+        JComboBox<String> movieCombo = new JComboBox<>();
+        JDateChooser dateChooser = createDatePicker();
+        JTextField startTimeField = new JTextField(20);
+        JTextField endTimeField = new JTextField(20);
+
+        // Load data
+        loadTheatersToComboBox(theaterCombo);
+        loadMoviesToComboBox(movieCombo);
+
+        // Add components to panel
+        gbc.gridx = 0; gbc.gridy = 0;
+        panel.add(new JLabel("Phòng chiếu:"), gbc);
+        gbc.gridx = 1;
+        panel.add(theaterCombo, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 1;
+        panel.add(new JLabel("Phim:"), gbc);
+        gbc.gridx = 1;
+        panel.add(movieCombo, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 2;
+        panel.add(new JLabel("Ngày chiếu:"), gbc);
+        gbc.gridx = 1;
+        panel.add(dateChooser, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 3;
+        panel.add(new JLabel("Giờ bắt đầu:"), gbc);
+        gbc.gridx = 1;
+        panel.add(startTimeField, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 4;
+        panel.add(new JLabel("Giờ kết thúc:"), gbc);
+        gbc.gridx = 1;
+        panel.add(endTimeField, gbc);
+
+        // Add buttons
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton saveButton = new JButton("Lưu");
+        JButton cancelButton = new JButton("Hủy");
+        buttonPanel.add(saveButton);
+        buttonPanel.add(cancelButton);
+
+        gbc.gridx = 0; gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        panel.add(buttonPanel, gbc);
+
+        // Load existing data if editing
+        if (scheduleId != null) {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM schedules WHERE id = ?")) {
+                stmt.setString(1, scheduleId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        theaterCombo.setSelectedItem(rs.getString("theater_id"));
+                        movieCombo.setSelectedItem(rs.getString("movie_id"));
+                        dateChooser.setDate(rs.getDate("show_date"));
+                        startTimeField.setText(rs.getString("start_time"));
+                        endTimeField.setText(rs.getString("end_time"));
+                    }
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu lịch chiếu: " + e.getMessage());
+            }
+        }
+
+        // Add action listeners
+        saveButton.addActionListener(e -> {
+            try {
+                String theaterId = theaterCombo.getSelectedItem().toString().split(" - ")[0];
+                String movieId = movieCombo.getSelectedItem().toString().split(" - ")[0];
+                Date showDate = dateChooser.getDate();
+                String startTime = startTimeField.getText().trim();
+                String endTime = endTimeField.getText().trim();
+
+                if (scheduleId == null) {
+                    // Add new schedule
+                    try (Connection conn = dbUtil.getConnection();
+                         PreparedStatement stmt = conn.prepareStatement(
+                             "INSERT INTO schedules (theater_id, movie_id, show_date, start_time, end_time) VALUES (?, ?, ?, ?, ?)")) {
+                        stmt.setString(1, theaterId);
+                        stmt.setString(2, movieId);
+                        stmt.setDate(3, new java.sql.Date(showDate.getTime()));
+                        stmt.setString(4, startTime);
+                        stmt.setString(5, endTime);
+                        stmt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Thêm lịch chiếu thành công");
+                    }
+                } else {
+                    // Update existing schedule
+                    try (Connection conn = dbUtil.getConnection();
+                         PreparedStatement stmt = conn.prepareStatement(
+                             "UPDATE schedules SET theater_id = ?, movie_id = ?, show_date = ?, start_time = ?, end_time = ? WHERE id = ?")) {
+                        stmt.setString(1, theaterId);
+                        stmt.setString(2, movieId);
+                        stmt.setDate(3, new java.sql.Date(showDate.getTime()));
+                        stmt.setString(4, startTime);
+                        stmt.setString(5, endTime);
+                        stmt.setString(6, scheduleId);
+                        stmt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Cập nhật lịch chiếu thành công");
+                    }
+                }
+                dialog.dispose();
+                loadSchedules(model, "");
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập số hợp lệ cho số chỗ ngồi, số hàng ghế và số ghế mỗi hàng");
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi lưu lịch chiếu: " + ex.getMessage());
+            }
+        });
+
+        cancelButton.addActionListener(e -> dialog.dispose());
+
+        dialog.add(panel);
+        dialog.setVisible(true);
+    }
+
+    private void deleteTheater(String theaterId, DefaultTableModel model) {
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Bạn có chắc chắn muốn xóa phòng chiếu này?",
+            "Xác nhận xóa",
+            JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement("DELETE FROM theaters WHERE id = ?")) {
+                stmt.setString(1, theaterId);
+                stmt.executeUpdate();
+                loadTheaters(model, "");
+                JOptionPane.showMessageDialog(this, "Xóa phòng chiếu thành công");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi xóa phòng chiếu: " + e.getMessage());
+            }
+        }
+    }
+
+    private void deleteSchedule(String scheduleId, DefaultTableModel model) {
+        int confirm = JOptionPane.showConfirmDialog(this,
+            "Bạn có chắc chắn muốn xóa lịch chiếu này?",
+            "Xác nhận xóa",
+            JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            try (Connection conn = dbUtil.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement("DELETE FROM schedules WHERE id = ?")) {
+                stmt.setString(1, scheduleId);
+                stmt.executeUpdate();
+                loadSchedules(model, "");
+                JOptionPane.showMessageDialog(this, "Xóa lịch chiếu thành công");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Lỗi khi xóa lịch chiếu: " + e.getMessage());
+            }
+        }
+    }
+
+    private void loadTheaters(DefaultTableModel model, String searchText) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                 "SELECT t.*, s.name as screen_name FROM theaters t " +
+                 "JOIN screens s ON t.screen_id = s.id " +
+                 "WHERE t.name LIKE ? OR s.name LIKE ?")) {
+            
+            stmt.setString(1, "%" + searchText + "%");
+            stmt.setString(2, "%" + searchText + "%");
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("screen_name"),
+                        rs.getInt("total_seats"),
+                        rs.getInt("rows"),
+                        rs.getInt("seats_per_row")
+                    };
+                    model.addRow(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu phòng chiếu: " + e.getMessage());
+        }
+    }
+
+    private void loadSchedules(DefaultTableModel model, String searchText) {
+        model.setRowCount(0);
+        try (Connection conn = dbUtil.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(
+                 "SELECT s.id, s.theater_id, m.title, s.start_time, s.end_time " +
+                 "FROM schedules s " +
+                 "JOIN movies m ON s.movie_id = m.id " +
+                 "WHERE s.start_time LIKE ? OR s.end_time LIKE ? OR m.title LIKE ? " +
+                 "ORDER BY s.show_date, s.start_time")) {
+            
+            stmt.setString(1, "%" + searchText + "%");
+            stmt.setString(2, "%" + searchText + "%");
+            stmt.setString(3, "%" + searchText + "%");
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Object[] row = {
+                        rs.getString("id"),
+                        rs.getString("theater_id"),
+                        rs.getString("title"),
+                        rs.getString("start_time"),
+                        rs.getString("end_time")
+                    };
+                    model.addRow(row);
+                }
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi tải dữ liệu lịch chiếu: " + e.getMessage());
+        }
+    }
+} 
